@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Classification &amp; Terminology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
+    --verified:#2f7a4d; --verified-soft:#dcefe1; --warn:#8a3a3a; --warn-soft:#f6e2e2; --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;line-height:1.55;}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 20px 100px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:30px;margin:0 0 8px;}
+  .sub{color:var(--ink-soft);font-size:14px;max-width:640px;}
+  .backlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);text-decoration:none;border-bottom:1px dashed var(--rule);}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:0 0 6px;}
+  .section{margin-top:46px;}
+  .section-sub{color:var(--ink-soft);font-size:13.5px;margin-bottom:16px;}
+  .tree{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:20px 24px;}
+  .tree-node{margin:6px 0;}
+  .tree-l1{font-family:'Fraunces',serif;font-weight:700;font-size:17px;}
+  .tree-l2{margin-left:24px;font-weight:600;font-size:15px;margin-top:10px;}
+  .tree-l3{margin-left:48px;font-size:13.5px;color:var(--ink-soft);}
+  .confuse-box{background:var(--warn-soft);border:1px solid var(--warn);border-radius:8px;padding:16px 20px;margin:14px 0;}
+  .confuse-box .vs{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--warn);margin-bottom:6px;}
+  .confuse-box h3{font-family:'Fraunces',serif;font-size:16px;margin:0 0 8px;}
+  .confuse-pair{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
+  .confuse-item{flex:1;min-width:220px;background:var(--paper);border-radius:6px;padding:10px 14px;font-size:13.5px;}
+  .confuse-item strong{display:block;font-family:'Fraunces',serif;font-size:14.5px;margin-bottom:4px;}
+  .src{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--verified);margin-top:4px;display:block;}
+  .card{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:14px 0;}
+  .card h3{font-family:'Fraunces',serif;font-size:16px;margin:0 0 8px;}
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px;}
+  th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;}
+  th{background:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;}
+  footer{max-width:880px;margin:44px auto 0;padding:0 20px;font-size:12.5px;color:var(--ink-soft);}
+  footer .box{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:16px 20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">&larr; back to hub</a>
+  <header>
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology</div>
+    <h1>Rock &amp; Mineral Classification, and Confusing Terms</h1>
+    <p class="sub">Sulfide/carbonate/oxide-type mineral classes are intuitive because the category name describes the chemistry. Silicate mineral names and rock-name pairs often don't work that way — this page exists to give the underlying taxonomy explicitly, and to call out specific name collisions before they cost you a question.</p>
+  </header>
+
+  <div class="section">
+    <h2>Rock classification, top level</h2>
+    <p class="section-sub">Three classes, defined by how the rock formed &mdash; not by what it looks like.</p>
+    <div class="tree">
+      <div class="tree-node tree-l1">Igneous &mdash; crystallized from molten rock (magma/lava)</div>
+      <div class="tree-node tree-l2">Intrusive (plutonic) &mdash; cooled slowly underground &rarr; coarse-grained (granite, gabbro)</div>
+      <div class="tree-node tree-l2">Extrusive (volcanic) &mdash; cooled quickly at the surface &rarr; fine-grained/glassy (rhyolite, basalt)</div>
+      <div class="tree-node tree-l2">Classified further by silica content (felsic&rarr;mafic&rarr;ultramafic) and, when mineralogy is known, by the QAPF diagram; by bulk chemistry alone (e.g., altered/glassy rocks), by the TAS diagram instead &mdash; see the 3.4 sourcing note below.</div>
+
+      <div class="tree-node tree-l1" style="margin-top:16px;">Sedimentary &mdash; formed from compacted/cemented particles, or chemical/biological precipitation</div>
+      <div class="tree-node tree-l2">Clastic &mdash; broken fragments of preexisting rock (sandstone, shale, conglomerate)</div>
+      <div class="tree-node tree-l2">Chemical &mdash; precipitated directly from solution (rock salt, some limestone)</div>
+      <div class="tree-node tree-l2">Biochemical &mdash; built from organic/skeletal material (most limestone, coal)</div>
+      <div class="tree-node tree-l3">"Facies" here means a body of rock with characteristics reflecting a specific depositional environment (reef facies, deltaic facies) &mdash; see the facies disambiguation box below; this is NOT the same use of the word as metamorphic facies.</div>
+
+      <div class="tree-node tree-l1" style="margin-top:16px;">Metamorphic &mdash; preexisting rock (the protolith) altered by heat/pressure/fluids without melting</div>
+      <div class="tree-node tree-l2">Foliated &mdash; minerals aligned/banded from directed pressure: slate &rarr; phyllite &rarr; schist &rarr; gneiss, in order of increasing grade</div>
+      <div class="tree-node tree-l2">Nonfoliated &mdash; no directional pressure, or minerals that can't align: hornfels, quartzite, marble</div>
+      <div class="tree-node tree-l3">Classified further by <strong>metamorphic facies</strong> &mdash; see the dedicated section below.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Mineral classification, top level</h2>
+    <p class="section-sub">Every mineral belongs to one chemical class first. This is the part that's already intuitive for you (sulfides, carbonates, oxides) &mdash; silicates are the one class that then gets subdivided again by structure, which is where names stop being self-explanatory.</p>
+    <div class="tree">
+      <div class="tree-node tree-l1">Non-silicate classes (name usually IS the chemistry)</div>
+      <div class="tree-node tree-l2">Native elements (gold, copper, diamond/graphite)</div>
+      <div class="tree-node tree-l2">Sulfides (pyrite, galena, sphalerite)</div>
+      <div class="tree-node tree-l2">Oxides (hematite, magnetite, corundum)</div>
+      <div class="tree-node tree-l2">Carbonates (calcite, dolomite)</div>
+      <div class="tree-node tree-l2">Sulfates (gypsum, anhydrite, barite)</div>
+      <div class="tree-node tree-l2">Halides (halite, fluorite)</div>
+
+      <div class="tree-node tree-l1" style="margin-top:16px;">Silicates &mdash; the class where names stop describing the chemistry directly, because they're grouped by how SiO&#8324; tetrahedra link together, not by which elements are present</div>
+      <div class="tree-node tree-l2">Nesosilicates (isolated tetrahedra) &mdash; olivine, garnet, and the Al&#8322;SiO&#8325; polymorph trio (kyanite, andalusite, sillimanite &mdash; see dedicated section below)</div>
+      <div class="tree-node tree-l2">Inosilicates (chains) &mdash; single-chain = pyroxene group; double-chain = amphibole group (hornblende lives here &mdash; see disambiguation box)</div>
+      <div class="tree-node tree-l2">Phyllosilicates (sheets) &mdash; micas (biotite, muscovite), clay minerals</div>
+      <div class="tree-node tree-l2">Tectosilicates (3D framework) &mdash; quartz, <strong>feldspar group</strong> &mdash; see dedicated section below</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Feldspar and plagioclase</h2>
+    <p class="section-sub">This is the specific gap flagged from last session &mdash; feldspar only ever appeared in table rows, never explained as a concept.</p>
+    <div class="card">
+      <h3>The hierarchy</h3>
+      <p><strong>Feldspar</strong> is the group name (a tectosilicate framework mineral group, and the single most abundant mineral group in Earth's crust). It splits into two subgroups by composition:</p>
+      <table>
+        <tr><th>Subgroup</th><th>Composition</th><th>Common members</th></tr>
+        <tr><td>K-feldspar (alkali feldspar)</td><td>KAlSi&#8323;O&#8328;</td><td>Orthoclase, microcline, sanidine</td></tr>
+        <tr><td>Plagioclase</td><td>NaAlSi&#8323;O&#8328; (albite) &ndash; CaAl&#8322;Si&#8322;O&#8328; (anorthite), a continuous solid-solution series</td><td>Albite, oligoclase, andesine, labradorite, bytownite, anorthite</td></tr>
+      </table>
+      <p style="margin-top:10px;"><strong>Plagioclase is not one fixed mineral</strong> &mdash; it's a compositional continuum between two end-members (albite and anorthite), and the specific name changes with the Na:Ca ratio (An%, the mole percent anorthite component):</p>
+      <table>
+        <tr><th>Name</th><th>An% (anorthite content)</th></tr>
+        <tr><td>Albite</td><td>0&ndash;10%</td></tr>
+        <tr><td>Oligoclase</td><td>10&ndash;30%</td></tr>
+        <tr><td>Andesine</td><td>30&ndash;50%</td></tr>
+        <tr><td>Labradorite</td><td>50&ndash;70%</td></tr>
+        <tr><td>Bytownite</td><td>70&ndash;90%</td></tr>
+        <tr><td>Anorthite</td><td>90&ndash;100%</td></tr>
+      </table>
+      <span class="src">Marshak (2013), Ch. 3 mineral tables; Klein &amp; Dutrow (2007) feldspar group chapter</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The Al&#8322;SiO&#8325; polymorphs &mdash; why they're not "a silly list"</h2>
+    <div class="card">
+      <p><strong>Kyanite, andalusite, and sillimanite are polymorphs</strong> &mdash; identical chemical formula (Al&#8322;SiO&#8325;), different crystal structure, because each is the stable structural form under a different pressure-temperature regime. That's the whole reason they matter: find one of these three minerals in a metamorphic rock, and you've directly read off the P-T conditions that rock experienced, without needing any other evidence.</p>
+      <table>
+        <tr><th>Mineral</th><th>Indicates</th></tr>
+        <tr><td>Kyanite</td><td>High pressure</td></tr>
+        <tr><td>Andalusite</td><td>Low pressure, moderate temperature</td></tr>
+        <tr><td>Sillimanite</td><td>High temperature</td></tr>
+      </table>
+      <p style="margin-top:10px;">This is a direct application of <strong>metamorphic facies</strong> thinking (below) at the single-mineral scale &mdash; these three are sometimes called "index minerals" for exactly this reason.</p>
+      <span class="src">Marshak (2013) p.200, Box 7.1</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Metamorphic facies</h2>
+    <div class="card">
+      <p><strong>A metamorphic facies is a group of metamorphic mineral assemblages that develop under a specified range of temperature and pressure conditions.</strong> It's a way of reading a rock's P-T history from its mineralogy, the same logic as the Al&#8322;SiO&#8325; polymorphs above, extended to whole mineral assemblages rather than one mineral.</p>
+      <table>
+        <tr><th>Facies</th><th>Typical setting</th></tr>
+        <tr><td>Zeolite</td><td>Lowest grade, shallow burial</td></tr>
+        <tr><td>Greenschist</td><td>Regional metamorphism, moderate grade</td></tr>
+        <tr><td>Blueschist</td><td>High pressure, low temperature &mdash; specifically accretionary prisms at subduction zones</td></tr>
+        <tr><td>Amphibolite</td><td>Regional metamorphism, higher grade</td></tr>
+        <tr><td>Granulite</td><td>Highest grade regional metamorphism</td></tr>
+        <tr><td>Eclogite</td><td>Very high pressure, subducted oceanic crust</td></tr>
+        <tr><td>Hornfels</td><td>Contact (thermal) metamorphism &mdash; NOT a pressure-driven facies, purely heat-driven; see disambiguation box, this is also a rock name</td></tr>
+      </table>
+      <span class="src">Marshak (2013) p.200, Box 7.1</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Name collisions &mdash; terms that sound related and aren't</h2>
+    <p class="section-sub">These are the specific pairs flagged as confusing. Mineralogy/petrology terminology was not built on a consistent naming logic for a beginner &mdash; these overlaps are real, not a sign anything's being missed conceptually.</p>
+
+    <div class="confuse-box">
+      <div class="vs">Rock vs. Mineral &mdash; not related despite the shared root</div>
+      <h3>Hornfels vs. Hornblende</h3>
+      <div class="confuse-pair">
+        <div class="confuse-item"><strong>Hornfels</strong> &mdash; a ROCK. Fine-grained, nonfoliated metamorphic rock formed by contact metamorphism around an igneous intrusion. Mineral content varies by protolith.<span class="src">Marshak (2013) p.195</span></div>
+        <div class="confuse-item"><strong>Hornblende</strong> &mdash; a MINERAL. A common dark green-to-black amphibole group mineral (double-chain silicate), found in both igneous and metamorphic rocks. Not specific to hornfels at all.<span class="src">standard mineralogy, amphibole group</span></div>
+      </div>
+    </div>
+
+    <div class="confuse-box">
+      <div class="vs">Same word, two unrelated technical meanings</div>
+      <h3>Facies (sedimentary) vs. Facies (metamorphic)</h3>
+      <div class="confuse-pair">
+        <div class="confuse-item"><strong>Sedimentary facies</strong> &mdash; a body of rock with characteristics (texture, composition, fossils) reflecting the depositional environment it formed in (e.g., "reef facies," "deltaic facies").</div>
+        <div class="confuse-item"><strong>Metamorphic facies</strong> &mdash; a mineral assemblage indicating the pressure-temperature conditions of metamorphism (greenschist, amphibolite, etc. &mdash; see above).<span class="src">Marshak (2013) p.200</span></div>
+      </div>
+      <p style="margin-top:8px;font-size:13px;">Both are legitimate, standard uses of the word "facies" in geology &mdash; the term itself just means "aspect" or "appearance," and geologists apply it to two completely different phenomena. Context (sedimentary rocks vs. metamorphic rocks) tells you which meaning is in play.</p>
+    </div>
+
+    <div class="confuse-box">
+      <div class="vs">Foliation intensity gradient, easy to blur together</div>
+      <h3>Slate &rarr; Phyllite &rarr; Schist &rarr; Gneiss</h3>
+      <p style="font-size:13.5px;">Not four unrelated rocks &mdash; one continuum of increasing metamorphic grade, same general (shale/mudstone) protolith. Slate: fine, dull, splits into flat sheets. Phyllite: slightly coarser, silky sheen. Schist: coarse enough to see individual mica flakes, strongly foliated. Gneiss: highest grade, compositional banding rather than mica-flake foliation.</p>
+      <span class="src">Marshak (2013) Ch.7</span>
+    </div>
+
+    <div class="confuse-box">
+      <div class="vs">Both feldspars, different subgroup &mdash; see the dedicated section above for the full breakdown</div>
+      <h3>Orthoclase vs. Plagioclase</h3>
+      <p style="font-size:13.5px;">Orthoclase is one specific K-feldspar mineral. Plagioclase is the entire Na-Ca solid-solution series, not a single mineral. They're not parallel terms at the same level &mdash; orthoclase is a species, plagioclase is a whole compositional range.</p>
+    </div>
+
+    <div class="confuse-box">
+      <div class="vs">Both dark, chain-silicate mineral groups &mdash; distinguished by cleavage angle</div>
+      <h3>Pyroxene vs. Amphibole</h3>
+      <p style="font-size:13.5px;">Pyroxene = single-chain silicate, cleavage at ~90&deg;. Amphibole (hornblende's group) = double-chain silicate, cleavage at ~56&deg;/124&deg;. Both are common dark ("mafic") rock-forming minerals and easy to conflate at a glance &mdash; the cleavage angle is the reliable field discriminator.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Sourced from last session's flagged gap (Domain B, section 3.4)</h2>
+    <div class="card">
+      <h3>Porphyry alteration zonation</h3>
+      <p>Concentric hydrothermal alteration zones around a porphyry intrusion, moving outward from the causative stock: <strong>potassic</strong> (innermost &mdash; K-feldspar, biotite, magnetite) &rarr; <strong>phyllic</strong> (sericite, pyrite, quartz) &rarr; <strong>argillic/advanced argillic</strong> (clay minerals, often overprinting the other zones from above) &rarr; <strong>propylitic</strong> (outermost &mdash; chlorite, epidote, albite, calcite). Copper mineralization concentrates near the potassic-phyllic boundary.</p>
+      <span class="src">Lowell &amp; Guilbert 1970 (original model); Sillitoe 2010 (modern revision)</span>
+    </div>
+    <div class="card">
+      <h3>CIPW normative mineralogy</h3>
+      <p>A calculation, not a mineral assemblage you observe directly &mdash; it converts a rock's bulk chemical analysis (oxide weight percentages) into a standardized set of hypothetical "normative minerals," assuming anhydrous crystallization at low pressure. This lets geologists compare igneous rocks on a consistent basis regardless of actual cooling history or crystallinity (e.g., comparing a glassy volcanic rock to a coarse plutonic rock of similar chemistry). Not to be confused with the <em>mode</em>, the rock's actual observed mineral content.</p>
+      <span class="src">Cross, Iddings, Pirsson &amp; Washington, early 1900s; Britannica, "CIPW norm"</span>
+    </div>
+    <div class="card">
+      <h3>QAPF vs. TAS diagrams</h3>
+      <p><strong>QAPF</strong> (Quartz &ndash; Alkali feldspar &ndash; Plagioclase &ndash; Feldspathoid) classifies igneous rocks by their actual mineral content (mode) &mdash; usable only when minerals can be identified, which generally means coarse-grained/plutonic rocks. <strong>TAS</strong> (Total Alkali-Silica) classifies by bulk chemistry instead, for rocks where minerals can't be resolved &mdash; fine-grained, glassy, or altered volcanic rocks. Same underlying goal (name the rock), different input data depending on what's actually observable in the specimen.</p>
+      <span class="src">Streckeisen 1973/1976 (QAPF); Le Bas et al. 1986 (TAS)</span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>Scope note:</strong> this page exists specifically to address the terminology/organization confusion flagged after building Domain B &mdash; it's a decoder, not a replacement for the guide or flashcards. Cross-referenced from Domain B's guide section 3.4 and the glossary where relevant.
+    </div>
+  </footer>
+</div>
+</body>
+</html>

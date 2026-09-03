@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Geologic Timescale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
+    --verified:#2f7a4d; --verified-soft:#dcefe1; --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;line-height:1.5;}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 20px 100px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:30px;margin:0 0 8px;}
+  .sub{color:var(--ink-soft);font-size:14px;max-width:640px;}
+  .backlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);text-decoration:none;border-bottom:1px dashed var(--rule);}
+
+  /* rank badges: always present, always identical shape at a given level, so level is never ambiguous */
+  .rank{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:3px;margin-right:8px;
+    vertical-align:middle;
+  }
+  .rank-eon{background:var(--ink);color:#fff;}
+  .rank-era{background:#c9cdc0;color:var(--ink);}
+  .rank-period{background:var(--verified-soft);color:var(--verified);}
+  .rank-epochs{background:transparent;color:var(--ink-soft);border:1px solid var(--rule);}
+
+  .eon{margin-top:44px;}
+  .eon-head{
+    font-family:'Fraunces',serif;font-weight:700;font-size:23px;
+    background:var(--ink);color:#fff;padding:12px 18px;border-radius:var(--radius);
+    display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  }
+  .eon-head .rank-eon{background:rgba(255,255,255,.18);color:#fff;}
+  .eon-range{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:400;opacity:.75;margin-left:auto;}
+
+  .era{margin:16px 0 0 18px;padding-left:18px;border-left:3px solid var(--ink);}
+  .era-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
+  .era-range{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);font-weight:400;margin-left:auto;}
+
+  .period{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;margin:10px 0 10px 14px;}
+  .period-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;}
+  .period-name{font-family:'Fraunces',serif;font-weight:600;font-size:16px;}
+  .period-range{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--verified);margin-left:auto;}
+
+  .epochs-row{font-size:12.5px;color:var(--ink-soft);margin-top:8px;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;}
+  .epochs-list{font-family:'IBM Plex Mono',monospace;}
+  .events{font-size:13.5px;margin-top:8px;line-height:1.55;}
+  .events ul{margin:4px 0 0;padding-left:18px;}
+  .eon-events{font-size:13.5px;line-height:1.55;margin:10px 4px 0 4px;color:var(--ink-soft);}
+
+  footer{max-width:900px;margin:44px auto 0;padding:0 20px;font-size:12.5px;color:var(--ink-soft);}
+  footer .box{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:16px 20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">&larr; back to hub</a>
+  <header>
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology</div>
+    <h1>Geologic Timescale</h1>
+    <p class="sub">Most recent at top. Every unit is labeled with its rank (EON / ERA / PERIOD / EPOCHS) so the level is never ambiguous, regardless of scroll position. Boundary ages sourced directly from the ICS International Chronostratigraphic Chart, v.2026/06 (stratigraphy.org) — the current official standard. Precambrian boundaries are fixed by convention (GSSA), not fossil evidence, which is why they land on round numbers.</p>
+  </header>
+
+  <div class="eon">
+    <div class="eon-head"><span class="rank rank-eon">Eon</span>Phanerozoic <span class="eon-range">538.8 Ma&ndash;present</span></div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Cenozoic <span class="era-range">66.0 Ma&ndash;present</span></div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Quaternary</span><span class="period-range">2.58 Ma&ndash;present</span></div>
+        <div class="epochs-row"><span class="rank rank-epochs">Epochs</span><span class="epochs-list">Holocene (11.7 ka&ndash;present) &middot; Pleistocene (2.58 Ma&ndash;11.7 ka)</span></div>
+        <div class="events">Repeated glacial-interglacial cycles ("Ice Ages"); <em>Homo sapiens</em> emerges (~300 ka); Holocene begins with the end of the last glacial period &mdash; the entire span of recorded human civilization sits inside the Holocene.</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Neogene</span><span class="period-range">23.04&ndash;2.58 Ma</span></div>
+        <div class="epochs-row"><span class="rank rank-epochs">Epochs</span><span class="epochs-list">Pliocene (5.333&ndash;2.58 Ma) &middot; Miocene (23.04&ndash;5.333 Ma)</span></div>
+        <div class="events">Grasslands expand globally; hominid lineage diverges from other great apes (~7&ndash;6 Ma); Mediterranean nearly desiccates (Messinian Salinity Crisis).</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Paleogene</span><span class="period-range">66.0&ndash;23.04 Ma</span></div>
+        <div class="epochs-row"><span class="rank rank-epochs">Epochs</span><span class="epochs-list">Oligocene (33.9&ndash;23.04 Ma) &middot; Eocene (56.0&ndash;33.9 Ma) &middot; Paleocene (66.0&ndash;56.0 Ma)</span></div>
+        <div class="events">Rapid mammalian radiation into niches vacated by dinosaurs; Paleocene-Eocene Thermal Maximum (PETM, ~56 Ma) &mdash; abrupt global warming event; Antarctic ice sheet begins forming (Eocene-Oligocene boundary).</div>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Mesozoic <span class="era-range">251.9&ndash;66.0 Ma</span></div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Cretaceous</span><span class="period-range">143.1&ndash;66.0 Ma</span></div>
+        <div class="events">Flowering plants (angiosperms) radiate; peak dinosaur diversity. Ends in the <strong>K-Pg extinction</strong> (Chicxulub impactor, Yucat&aacute;n) &mdash; end of non-avian dinosaurs, ammonites, and most marine reptiles; the boundary itself is a globally traceable iridium-anomaly clay layer.</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Jurassic</span><span class="period-range">201.4&ndash;143.1 Ma</span></div>
+        <div class="events">Dinosaurs dominate terrestrial ecosystems; Pangaea rifting produces the early Atlantic Ocean; first birds (<em>Archaeopteryx</em>).</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Triassic</span><span class="period-range">251.9&ndash;201.4 Ma</span></div>
+        <div class="events">Biotic recovery from the P-T extinction; first dinosaurs and mammals appear; Pangaea begins rifting. Ends in another Big Five extinction (Triassic-Jurassic), opening the way for dinosaur dominance.</div>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Paleozoic <span class="era-range">538.8&ndash;251.9 Ma</span></div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Permian</span><span class="period-range">298.9&ndash;251.9 Ma</span></div>
+        <div class="events">Supercontinent Pangaea fully assembled. Ends in the <strong>Permian-Triassic extinction</strong> ("the Great Dying") &mdash; the most severe mass extinction in Earth history, ~90%+ of marine species lost, linked to Siberian Traps volcanism.</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Carboniferous</span><span class="period-range">358.86&ndash;298.9 Ma</span></div>
+        <div class="epochs-row"><span class="rank rank-epochs">Epochs</span><span class="epochs-list">Pennsylvanian (323.4&ndash;298.9 Ma) &middot; Mississippian (358.86&ndash;323.4 Ma)</span></div>
+        <div class="events">Extensive coal-forming swamp forests (the coal beds that give the period its name); atmospheric O&#8322; peaks unusually high (~35%), enabling giant arthropods; first reptiles (amniotic egg).</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Devonian</span><span class="period-range">419.62&ndash;358.86 Ma</span></div>
+        <div class="events">"Age of Fishes" &mdash; jawed fish diversify explosively; first forests and seed plants; first tetrapods (fish-to-amphibian transition) near the end. Ends in another Big Five extinction (Late Devonian).</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Silurian</span><span class="period-range">443.1&ndash;419.62 Ma</span></div>
+        <div class="events">First jawed fish; first vascular land plants; coral reefs diversify.</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Ordovician</span><span class="period-range">486.85&ndash;443.1 Ma</span></div>
+        <div class="events">Diversification of marine invertebrates continues (GOBE &mdash; Great Ordovician Biodiversification Event); first land plants (bryophyte-like); ends in one of the "Big Five" mass extinctions, tied to glaciation and sea-level fall.</div>
+      </div>
+
+      <div class="period">
+        <div class="period-head"><span class="rank rank-period">Period</span><span class="period-name">Cambrian</span><span class="period-range">538.8&ndash;486.85 Ma</span></div>
+        <div class="events">The <strong>Cambrian Explosion</strong> &mdash; rapid diversification of nearly all major animal phyla with hard parts (trilobites, brachiopods) in a geologically short interval; first appearance of most animal body plans in the fossil record.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eon">
+    <div class="eon-head"><span class="rank rank-eon">Eon</span>Proterozoic <span class="eon-range">2.5&ndash;0.5388 Ga</span></div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Neoproterozoic <span class="era-range">1.0&ndash;0.5388 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;"><ul>
+        <li><strong>Ediacaran (635&ndash;538.8 Ma):</strong> First macroscopic, complex multicellular life &mdash; the Ediacaran biota (soft-bodied, enigmatic organisms, e.g., <em>Dickinsonia</em>) &mdash; appears in the fossil record just after the Snowball glaciations end.</li>
+        <li><strong>Cryogenian (720&ndash;635 Ma):</strong> "Snowball Earth" &mdash; global or near-global glaciation events (Sturtian, Marinoan), among the most severe ice ages in Earth history.</li>
+        <li><strong>Tonian (1.0 Ga&ndash;720 Ma):</strong> Rodinia fully assembled, then begins rifting apart.</li>
+      </ul></div>
+    </div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Mesoproterozoic <span class="era-range">1.6&ndash;1.0 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;"><ul>
+        <li><strong>Stenian (1.2&ndash;1.0 Ga):</strong> Supercontinent Rodinia begins assembling via the Grenville orogeny.</li>
+        <li><strong>Calymmian&ndash;Ectasian (1.6&ndash;1.2 Ga):</strong> Supercontinent Columbia breaks up; first eukaryotic red algae fossils.</li>
+      </ul></div>
+    </div>
+
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Paleoproterozoic <span class="era-range">2.5&ndash;1.6 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;"><ul>
+        <li><strong>Statherian (1.8&ndash;1.6 Ga):</strong> Supercontinent Columbia (Nuna) assembling.</li>
+        <li><strong>Orosirian (2.05&ndash;1.8 Ga):</strong> Major mountain-building episodes; large impact structures (Vredefort, Sudbury) date to this interval.</li>
+        <li><strong>Rhyacian (2.3&ndash;2.05 Ga):</strong> Banded iron formations peak and then decline as dissolved ocean Fe&sup2;&#8314; is progressively oxidized out; Huronian glaciation, possibly the first "Snowball Earth."</li>
+        <li><strong>Siderian (2.5&ndash;2.3 Ga):</strong> Great Oxidation Event (GOE) begins &mdash; cyanobacterial photosynthesis starts raising free atmospheric O&#8322; for the first time.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="eon">
+    <div class="eon-head"><span class="rank rank-eon">Eon</span>Archean <span class="eon-range">4.031&ndash;2.5 Ga</span></div>
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Neoarchean <span class="era-range">2.8&ndash;2.5 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;">Peak crustal growth rate in Earth history; cyanobacteria proliferating, setting up the Great Oxidation Event just after this eon ends.</div>
+    </div>
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Mesoarchean <span class="era-range">3.2&ndash;2.8 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;">Continued craton growth; earliest greenstone belts well preserved.</div>
+    </div>
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Paleoarchean <span class="era-range">3.6&ndash;3.2 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;">Oldest undisputed microfossils and stromatolites (~3.5 Ga, Pilbara Craton, Australia). Earliest continental crust beginning to stabilize.</div>
+    </div>
+    <div class="era">
+      <div class="era-head"><span class="rank rank-era">Era</span>Eoarchean <span class="era-range">4.031&ndash;3.6 Ga</span></div>
+      <div class="events" style="margin:8px 0 0 4px;">Oldest confirmed rocks on Earth (Acasta Gneiss, Canada, ~4.03 Ga; Isua supracrustal belt, Greenland). Earliest possible chemical/isotopic evidence for life, contested.</div>
+    </div>
+  </div>
+
+  <div class="eon">
+    <div class="eon-head"><span class="rank rank-eon">Eon</span>Hadean <span class="eon-range">4.567&ndash;4.031 Ga</span></div>
+    <div class="eon-events">Informal eon, no ratified lower boundary within it. Earth accretes (~4.567 Ga); Moon-forming giant impact; magma ocean solidifies; oldest known material on Earth is detrital zircon (Jack Hills, Australia, ~4.4 Ga), not a whole rock &mdash; no rock record survives from this eon.</div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>Source and scope:</strong> boundary ages are the ICS International Chronostratigraphic Chart, v.2026/06 (<a href="https://stratigraphy.org/ICSchart/ChronostratChart2026-06.pdf" target="_blank" rel="noopener" style="color:var(--verified);">stratigraphy.org</a>), fetched directly rather than reconstructed from memory. This page stops at Period/Epoch resolution &mdash; the ICS chart subdivides further into individual Ages/Stages (dozens more boundaries), which is beyond FG-exam scope; that level of granularity is a PG/professional-practice concern, not a conceptual one. Event descriptions are standard, well-established historical geology, not individually re-cited per event.
+    </div>
+  </footer>
+</div>
+</body>
+</html>
