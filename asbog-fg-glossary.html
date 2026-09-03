@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
+    --verified:#2f7a4d; --verified-soft:#dcefe1;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;line-height:1.5;}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 20px 100px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:30px;margin:0 0 8px;letter-spacing:-.01em;}
+  .sub{color:var(--ink-soft);font-size:14px;max-width:600px;margin-bottom:6px;}
+  .backlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);text-decoration:none;border-bottom:1px dashed var(--rule);}
+  .backlink:hover{color:var(--ink);}
+
+  .toolbar{
+    position:sticky;top:0;background:var(--bg);padding:14px 0 10px;z-index:10;
+    border-bottom:1px solid var(--rule);margin-top:18px;
+  }
+  #filterInput{
+    width:100%;font-family:'Source Sans 3',sans-serif;font-size:15px;padding:10px 14px;
+    border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);
+  }
+  .count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);margin-top:6px;}
+
+  .letter-head{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.08em;margin:28px 0 8px;padding-top:6px;
+    border-top:1px solid var(--rule);
+  }
+  .letter-head:first-of-type{border-top:none;margin-top:20px;}
+
+  .entry{padding:12px 0;border-bottom:1px solid var(--rule);}
+  .entry.hide{display:none;}
+  .term-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .term{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;}
+  .aka{font-weight:400;color:var(--ink-soft);font-size:14px;}
+  .domtags{display:flex;gap:4px;flex-wrap:wrap;}
+  .domtag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:1px 6px;border-radius:8px;
+    border:1px solid var(--rule);color:var(--ink-soft);
+  }
+  .def{font-size:14px;line-height:1.55;margin:6px 0 4px;}
+  .warn{
+    font-size:12.5px;background:#f6e2e2;color:#8a3a3a;border-radius:4px;padding:6px 10px;margin:6px 0;
+  }
+  .src{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--verified);}
+
+  .empty-note{color:var(--ink-soft);font-size:14px;padding:30px 0;text-align:center;}
+
+  footer{max-width:820px;margin:40px auto 0;padding:0 20px;font-size:12.5px;color:var(--ink-soft);}
+  footer .box{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="backlink" href="index.html">&larr; back to hub</a>
+  <header>
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology</div>
+    <h1>Glossary</h1>
+    <p class="sub">Alphabetical, cross-domain. Every entry cites either Marshak (<em>Essentials of Geology</em>, 4th ed.) or an external authority where Marshak doesn't cover the term. Domain tags show where each term is tested.</p>
+  </header>
+
+  <div class="toolbar">
+    <input type="text" id="filterInput" placeholder="Filter terms...">
+    <div class="count" id="countLabel"></div>
+  </div>
+
+  <div id="glossaryList"></div>
+  <div class="empty-note" id="emptyNote" style="display:none;">No terms match.</div>
+
+  <footer>
+    <div class="box">
+      <strong>Note on the two "USCS" entries:</strong> Marshak's "U.S. Comprehensive Soil Classification System" (soil science/agriculture — Alfisol, Mollisol, etc.) and the geotechnical "USCS" (Unified Soil Classification System — GW, CL, etc., ASTM D2487) share an acronym but are unrelated systems. Both are listed below, separately, each cross-referencing the other.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const ENTRIES = [
+{term:"Angular unconformity", domains:["A","C"], def:"Rocks below the unconformity were tilted or folded before the unconformity developed; layers below differ in orientation from layers above.", src:"Marshak p.310"},
+{term:"Aquiclude", domains:["F"], def:"Rock or sediment that is relatively impermeable and absorbs water slowly; does not transmit significant groundwater.", src:"Marshak p.476"},
+{term:"Aquifer", domains:["F"], def:"Rock or sediment with high porosity and permeability that transmits significant groundwater.", src:"Marshak p.476"},
+{term:"Aquitard", domains:["F"], def:"Rock or sediment that retards groundwater flow but is leaky — can still serve as a storage unit, unlike an aquiclude.", src:"Marshak p.476"},
+{term:"Bed / bedding plane / strata / stratification", domains:["C"], def:"A bed is a single layer of sediment or sedimentary rock with a recognizable top and bottom; the boundary between two beds is a bedding plane; several beds together constitute strata; the overall arrangement of sediment into beds is bedding, or stratification.", src:"Marshak p.173"},
+{term:"Borehole televiewer (acoustic or optical)", domains:["A"], def:"A borehole logging tool that produces a continuous image of the borehole wall, used to identify fractures, bedding dip/strike, and rock structure directly rather than inferring them from surface data.", src:"standard borehole geophysics literature (e.g., USGS)"},
+{term:"Carbonate depositional environments (reef, lagoon, platform, deep-marine)", domains:["C"], def:"Shallow-marine carbonate settings include beaches (shell-fragment sand), lagoons (carbonate mud), and reefs (coral and coral debris); deep-marine settings accumulate fine clay and plankton shells forming mudstone, chalk, or chert.", src:"Marshak p.182-183"},
+{term:"Carbonatite", domains:["H"], def:"An igneous rock, intrusive or extrusive, composed of more than 50% carbonate minerals — an unusual composition, since most igneous rocks are silicate-dominated.", src:"standard igneous petrology"},
+{term:"Cementation", domains:["C"], def:"A diagenetic process in which minerals precipitate in the pore spaces between sediment grains, binding them together.", src:"Marshak p.166"},
+{term:"Chemical fossil", domains:["C"], def:"A distinctive organic chemical (also called a molecular fossil or biomarker) preserved in rock, derived from once-living material even where no physical body structure survives.", src:"Marshak, Interlude E"},
+{term:"Cleavage (mineral)", domains:["B"], def:"The tendency of a mineral to break along planes of weakness related to its crystal structure, producing smooth, flat surfaces.", src:"Marshak p.79"},
+{term:"Compaction", domains:["C"], def:"A diagenetic process in which the weight of overlying sediment reduces pore space and volume in buried sediment.", src:"Marshak p.166"},
+{term:"Concretion", domains:["C"], def:"A hard, rounded mass within sedimentary rock formed by localized precipitation of cementing minerals around a nucleus, distinct in composition or hardness from the surrounding host rock.", src:"standard diagenesis literature"},
+{term:"Cone Penetration Test (CPT)", domains:["G"], def:"An instrumented cone is pushed into the ground at a controlled rate, continuously recording tip resistance and sleeve friction; unlike SPT, no soil sample is recovered, but data is continuous rather than at discrete intervals.", src:"ASTM D5778"},
+{term:"Crystal habit", domains:["B"], def:"The characteristic shape of a single well-formed crystal, or of an aggregate of crystals that grew together, reflecting the internal atomic arrangement.", src:"Marshak p.78"},
+{term:"Cross bed", domains:["C"], def:"An internal lamination within a bed, inclined at an angle, formed as sediment builds up and slips down the leeward face of a ripple or dune; orientation records current or wind direction at time of deposition.", src:"Marshak p.175"},
+{term:"Cross-cutting relations, principle of", domains:["A","C"], def:"If one geologic feature cuts across another, the feature that has been cut is older.", src:"Marshak p.307"},
+{term:"Cutoff grade", domains:["H"], def:"The minimum ore grade at which the value of the extracted commodity equals mining and processing cost; material below it is classified as waste, not ore, and only material above it counts toward reserve/resource estimates.", src:"CIM Definition Standards"},
+{term:"Diagenesis", domains:["B","C"], def:"Physical and chemical processes that alter sediment after deposition and lead to its lithification into rock, occurring at temperatures too low to cause metamorphism.", src:"Marshak p.185"},
+{term:"Diamond core drilling", domains:["H"], def:"Rotary drilling using a diamond-impregnated bit that cuts a cylindrical, intact rock core for recovery and direct geological logging; slower and costlier than reverse circulation drilling, but preserves structural and textural detail RC destroys.", src:"standard mining/exploration drilling terminology"},
+{term:"Disconformity", domains:["C"], def:"An unconformity where beds above and below are parallel, but the contact represents an interruption in deposition, typically with a visible erosional surface.", src:"Marshak p.310-311"},
+{term:"Dune", domains:["C"], def:"A large, elongate ridge of sediment built by current or wind transport — effectively a 'mega-ripple' — whose internal slip-face laminations form cross beds.", src:"Marshak p.174-175"},
+{term:"Earth System", domains:["A"], def:"The global interconnecting web of physical and biological phenomena involving the solid Earth (lithosphere), hydrosphere, atmosphere, and biosphere, and the interactions among them.", src:"Marshak backmatter glossary"},
+{term:"Electrical resistivity survey", domains:["A"], def:"Measures subsurface electrical resistivity via electrode arrays at the surface or across boreholes to infer lithology, groundwater presence, or contamination.", src:"standard environmental/engineering geophysics"},
+{term:"Fire assay", domains:["H"], def:"A quantitative analytical method, mainly for gold and other precious metals, using high-temperature smelting with fluxes to separate and concentrate metal from an ore sample for weighing; still the industry-standard method for precious-metal grade determination.", src:"standard economic geology/assay literature"},
+{term:"Fossil correlation", domains:["C"], def:"Correlating rock units between locations using fossils of the same relative age, used when rock type alone is insufficient because depositional environments differed between locations.", src:"Marshak p.312"},
+{term:"Graded bed", domains:["C"], def:"A bed showing a gradual change in grain size from coarse at the base to fine at the top, typically formed by a turbidity current as flow velocity decreases.", src:"Marshak p.176"},
+{term:"Ground Penetrating Radar (GPR)", domains:["A"], def:"A non-destructive geophysical method that transmits electromagnetic radar pulses into the ground and records reflections off subsurface layers or objects to image the shallow subsurface.", src:"EPA; ASTM D6432"},
+{term:"Hardness (mineral)", domains:["B"], def:"A measure of a mineral's resistance to scratching, reflecting the strength of atomic bonds in its crystal structure; ranked via the Mohs hardness scale.", src:"Marshak p.78"},
+{term:"Hiatus", domains:["A","C"], def:"The gap in the geologic record represented by an unconformity — the time interval during which no new strata were deposited and/or older strata were eroded.", src:"Marshak p.310"},
+{term:"Hoek-Brown failure criterion", domains:["G"], def:"An empirical, non-linear strength relationship for rock and rock masses, distinguished from Mohr-Coulomb's straight-line form by curving to reflect how confining stress increases peak strength; incorporates rock mass quality via the Geological Strength Index (GSI).", src:"Hoek & Brown 1980, rev. 1997/2002"},
+{term:"Hydraulic gradient", domains:["F"], def:"The difference in hydraulic head between two points divided by the flow-path distance between them; the driving force per unit distance for groundwater flow.", src:"Marshak Box 16.1, p.479"},
+{term:"Hydraulic head", domains:["F"], def:"The potential energy available to drive groundwater flow at a location, measured as the elevation to which water rises in a piezometer.", src:"Marshak Box 16.1, p.479"},
+{term:"Hydrosphere", domains:["A"], def:"The Earth's water, including surface water (lakes, rivers, oceans), groundwater, and liquid water in the atmosphere.", src:"Marshak backmatter glossary"},
+{term:"Index fossil", domains:["C"], def:"A fossil species with a short time range and wide geographic distribution, useful for establishing the relative age of the strata it occurs in.", src:"Marshak, Ch.10"},
+{term:"Kimberlite", domains:["H"], def:"An igneous rock formed when magma generated during continental rifting rises rapidly from great depth (~150 km), sometimes carrying diamonds formed at those depths to the surface.", src:"Marshak Ch.3"},
+{term:"Liesegang banding (Liesegang rings)", domains:["C"], def:"Concentric, ring-like colored bands (commonly iron oxide) formed by rhythmic mineral precipitation during diagenesis; cuts across original bedding rather than following it, distinguishing it from primary sedimentary structures.", src:"Jackson, Glossary of Geology"},
+{term:"Lithification", domains:["C"], def:"The set of processes, including compaction and cementation, by which loose sediment becomes solid sedimentary rock.", src:"Marshak p.165"},
+{term:"Lithologic correlation", domains:["C"], def:"Correlating rock formations between nearby locations based on similarities in rock type.", src:"Marshak p.312"},
+{term:"Luster (mineral)", domains:["B"], def:"The way a mineral surface scatters light, described by comparison to familiar substances (e.g., metallic, glassy, silky, pearly, earthy).", src:"Marshak p.78"},
+{term:"Macrofossil / microfossil", domains:["C"], def:"A macrofossil is large enough to see with the naked eye; a microfossil requires a microscope or electron microscope to see (e.g., plankton, pollen, bacteria remnants).", src:"Marshak, Interlude E"},
+{term:"Marker bed (key bed)", domains:["C"], def:"A particularly distinctive rock layer that provides a definitive basis for correlation between locations.", src:"Marshak p.312"},
+{term:"Massive-sulfide / disseminated / vein deposit", domains:["H"], def:"Hydrothermal ore deposits: disseminated deposits have ore minerals dispersed through an intrusion; vein deposits fill mineral cracks in preexisting rock; massive-sulfide deposits accumulate concentrated sulfide minerals, either at the base of a cooling magma chamber (magmatic) or around submarine hydrothermal vents (black smokers).", src:"Marshak Ch.12, p.376-377"},
+{term:"Mineral Reserve", domains:["H"], def:"The economically mineable subset of a Measured or Indicated Mineral Resource, demonstrated (not just estimated) via at least a Preliminary Feasibility Study applying \"Modifying Factors\" (mining, processing, metallurgical, economic, legal, environmental, social, governmental). Subdivided into Probable and Proven. The narrower, more rigorously demonstrated of the two resource/reserve terms — not the more speculative one.", src:"CIM Definition Standards / JORC Code"},
+{term:"Mineral Resource", domains:["H"], def:"A concentration of material with \"reasonable prospects for eventual economic extraction\" — a geological estimate, not yet proven economically viable. Subdivided by increasing confidence into Inferred, Indicated, and Measured.", src:"CIM Definition Standards / JORC Code"},
+{term:"Mohr-Coulomb failure criterion (Mohr circle analysis)", domains:["E","G"], def:"A linear model relating a material's shear strength to normal stress through cohesion and internal friction angle; the standard basis for most geotechnical software. Determined and visualized graphically using a Mohr circle — the term Domain E's content uses for the same underlying framework.", src:"standard geomechanics"},
+{term:"Mohs hardness scale", domains:["B"], def:"A relative ranking of ten reference minerals (talc softest to diamond hardest) used to compare mineral hardness in the field.", src:"Marshak p.78"},
+{term:"Mold / cast (fossil)", domains:["C"], def:"A mold is the cavity left behind when a shell or body dissolves out of surrounding sediment; a cast is the sediment fill that preserves the shape, protruding from the adjacent bed.", src:"Marshak, Interlude E"},
+{term:"MVT (Mississippi Valley-type) ore", domains:["H"], def:"Lead- and zinc-bearing ore deposits formed when basin groundwater, heated at depth, dissolves metals and precipitates them as it returns toward the surface at the basin margin; named for occurrences in the Mississippi Valley region.", src:"Marshak Ch.12"},
+{term:"Nonconformity", domains:["C"], def:"An unconformity where sedimentary rocks overlie much older, eroded intrusive igneous or metamorphic basement rock.", src:"Marshak p.310-311"},
+{term:"Optically Stimulated Luminescence (OSL)", domains:["C","D","E"], def:"Measures the light-sensitive trapped-electron signal in mineral grains (typically quartz or feldspar) to date the last time they were exposed to sunlight — effectively, the burial age of the sediment. Range is roughly centuries to ~150,000-500,000 years, extending well past radiocarbon's ~50,000-year ceiling.", src:"Huntley et al. 1985; standard Quaternary geochronology"},
+{term:"Paraconformity", domains:["C"], def:"A subtype of disconformity where strata remain parallel across the gap, but no erosional surface is visible; the missing time is detectable only through fossil/biostratigraphic gaps or age dating, not physical relief.", src:"Dunbar & Rodgers 1957, Principles of Stratigraphy"},
+{term:"Pegmatite", domains:["H"], def:"A very coarse-grained igneous rock formed from water-rich melts in which atoms can move rapidly enough for unusually large crystals to grow.", src:"Marshak Ch.4"},
+{term:"Permineralization", domains:["C"], def:"The process by which minerals precipitate in the pores of an organic material (e.g., wood or bone) from groundwater, producing a fossil like petrified wood.", src:"Marshak, Interlude E"},
+{term:"Placer deposit", domains:["H"], def:"An ore deposit formed when heavy native-metal grains (e.g., gold) concentrate in stream or beach sediment after erosion frees them from bedrock, while moving water carries away lighter mineral grains.", src:"Marshak Ch.12"},
+{term:"Point Load test", domains:["G"], def:"A quick rock-strength index test: a specimen is squeezed to failure between conical platens, giving a strength classification without full triaxial lab setup.", src:"ASTM D5731"},
+{term:"Regression (stratigraphy)", domains:["C"], def:"Seaward migration of a shoreline caused by a fall in relative sea level.", src:"Marshak p.184"},
+{term:"Residual mineral deposit (bauxite, laterite)", domains:["H"], def:"An ore deposit formed by intense leaching in rainy, tropical climates, which concentrates residual metals (e.g., iron, aluminum) left behind in soil; most aluminum ore is bauxite formed this way.", src:"Marshak Ch.12"},
+{term:"Reverse circulation (RC) drilling", domains:["H"], def:"Rotary drilling where cuttings return to the surface through the inside of a double-walled drill string rather than the annulus, reducing sample contamination; faster and cheaper than diamond coring for exploration sampling, but no intact core is recovered.", src:"standard mining/exploration drilling terminology"},
+{term:"Ripple mark", domains:["C"], def:"A small, elongated ridge (up to a few centimeters high) forming on a bed surface at right angles to current flow.", src:"Marshak p.175"},
+{term:"RQD (Rock Quality Designation)", domains:["G"], def:"Percentage of intact core pieces \u226510 cm long relative to total core-run length, used to grade fractured rock quality from borehole cores.", src:"Deere 1964; ASTM D6032"},
+{term:"Scour mark", domains:["C"], def:"A small trough eroded into a sediment surface by a flowing current, parallel to flow direction.", src:"Marshak p.177"},
+{term:"Secondary-enrichment deposit", domains:["H"], def:"A new ore deposit formed when groundwater dissolves metals from a preexisting ore body and re-precipitates them in a different chemical environment, often at higher concentration than the original.", src:"Marshak Ch.12"},
+{term:"Sedimentary basin", domains:["C"], def:"A region where the lithosphere subsides, allowing thick piles of sediment to accumulate over time.", src:"Marshak p.184"},
+{term:"Sequence stratigraphy / systems tract / sequence boundary", domains:["C"], def:"Sequence stratigraphy organizes strata into packages (\"sequences\") bounded by unconformities (sequence boundaries) tied to relative sea-level cycles; each sequence subdivides further into systems tracts (lowstand, transgressive, highstand, and sometimes falling-stage) representing different phases of that cycle.", src:"Catuneanu 2022; Van Wagoner et al. 1988"},
+{term:"Skarn", domains:["H"], def:"A coarse-grained, calc-silicate metamorphic rock formed where carbonate rocks (limestone, dolostone) are altered by contact metamorphism and metasomatism adjacent to an igneous intrusion; a common host for copper, iron, tungsten, and other metal ore deposits.", src:"Britannica; USGS skarn deposit literature"},
+{term:"Specific gravity", domains:["B"], def:"The ratio of a mineral's weight to the weight of an equal volume of water at 4\u00b0C — a proxy for density usable in hand-sample identification.", src:"Marshak p.78"},
+{term:"Standard Penetration Test (SPT)", domains:["G"], def:"In-situ dynamic test: a split-barrel sampler is driven into the ground with a standard hammer weight and drop height, and the blow count (N-value) needed to advance it correlates with soil density and strength.", src:"ASTM D1586"},
+{term:"Stereonet / kinematic analysis", domains:["E","G"], def:"A circular graphical grid for plotting and analyzing the orientation of planes and lines (bedding, faults, joints, fold axes) in three dimensions on a two-dimensional diagram. Kinematic analysis uses stereonet plots to assess rock slope failure modes from discontinuity orientations \u2014 Domain G's specific application; Domain E's \"fabric analysis\" is the same underlying tool applied more generally.", src:"standard structural geology methodology (Wulff/Schmidt nets)"},
+{term:"Stratigraphic formation / group", domains:["C"], def:"A formation is a sequence of beds of a specific rock type (or types) traceable across a broad region, typically with a specific geologic age; several adjacent formations may be lumped into a group.", src:"Marshak p.175, 312"},
+{term:"Streak", domains:["B"], def:"The color of a mineral's powder, obtained by scraping it against an unglazed ceramic plate; more consistent than whole-crystal color.", src:"Marshak p.78"},
+{term:"Stromatolite", domains:["C"], def:"A distinctive layered sedimentary mound formed when cyanobacteria secrete a mucus-like substance that traps sediment, building the mound upward as new bacteria colonize the top; among the oldest evidence of life on Earth.", src:"Marshak Ch.11, p.331-332"},
+{term:"Stylolite", domains:["C"], def:"An irregular, tooth-like suture surface (most common in limestone) formed by pressure dissolution, marked by insoluble residue (clay, iron oxide) concentrated along the seam.", src:"Britannica"},
+{term:"Trace fossil", domains:["C"], def:"Fossilized imprints or debris left behind by an organism moving on or through sediment — footprints, burrows, feeding traces, dung (coprolites).", src:"Marshak backmatter glossary"},
+{term:"Transgression (stratigraphy)", domains:["C"], def:"Inland migration of a shoreline caused by a rise in relative sea level.", src:"Marshak p.184"},
+{term:"Triaxial compression test", domains:["G"], def:"Applies confining pressure plus axial load to a cylindrical soil or rock specimen to determine shear strength (cohesion, friction angle) via the resulting Mohr-Coulomb envelope. Three drainage-condition variants exist (unconsolidated-undrained, consolidated-undrained, consolidated-drained), each a separate ASTM standard.", src:"ASTM D2850 / D4767 / D7181"},
+{term:"U.S. Comprehensive Soil Classification System", domains:["D"], def:"A pedological (soil-science) classification distinguishing 12 soil orders (Alfisol, Aridisol, Mollisol, etc.) based on physical characteristics and formation environment. NOT the same system as USCS (geotechnical) below, despite the shared acronym.", src:"Marshak, Interlude B"},
+{term:"USCS (Unified Soil Classification System, geotechnical)", domains:["D","G"], def:"A geotechnical engineering system that sorts soils into coarse-grained, fine-grained, and highly organic categories based on grain-size distribution, liquid limit, and plasticity index, assigning each a two-letter group symbol (e.g., GW = well-graded gravel, CL = low-plasticity clay). NOT the same system as Marshak's U.S. Comprehensive Soil Classification System above, despite the shared acronym.", src:"ASTM D2487"},
+];
+
+const CROSS_REF_WARNINGS = {
+  "U.S. Comprehensive Soil Classification System": "See also USCS (Unified Soil Classification System, geotechnical) — different system, same acronym.",
+  "USCS (Unified Soil Classification System, geotechnical)": "See also U.S. Comprehensive Soil Classification System — different system, same acronym."
+};
+
+function sortKey(term){
+  return term.replace(/^[^A-Za-z0-9]+/, '').toUpperCase();
+}
+
+function render(filterText){
+  const list = document.getElementById('glossaryList');
+  const emptyNote = document.getElementById('emptyNote');
+  const countLabel = document.getElementById('countLabel');
+  list.innerHTML = '';
+
+  const q = (filterText || '').trim().toLowerCase();
+  const filtered = ENTRIES.filter(e => {
+    if(!q) return true;
+    return e.term.toLowerCase().includes(q) || e.def.toLowerCase().includes(q) || e.domains.join(' ').toLowerCase().includes(q);
+  }).sort((a,b) => sortKey(a.term).localeCompare(sortKey(b.term)));
+
+  countLabel.textContent = filtered.length + ' of ' + ENTRIES.length + ' terms';
+
+  if(filtered.length === 0){
+    emptyNote.style.display = 'block';
+    return;
+  }
+  emptyNote.style.display = 'none';
+
+  let currentLetter = '';
+  filtered.forEach(e => {
+    const letter = sortKey(e.term)[0];
+    if(letter !== currentLetter){
+      currentLetter = letter;
+      const head = document.createElement('div');
+      head.className = 'letter-head';
+      head.textContent = currentLetter;
+      list.appendChild(head);
+    }
+    const div = document.createElement('div');
+    div.className = 'entry';
+    const domTags = e.domains.map(d => `<span class="domtag">${d}</span>`).join('');
+    const warn = CROSS_REF_WARNINGS[e.term] ? `<div class="warn">${CROSS_REF_WARNINGS[e.term]}</div>` : '';
+    div.innerHTML = `
+      <div class="term-row">
+        <span class="term">${e.term}</span>
+        <span class="domtags">${domTags}</span>
+      </div>
+      <div class="def">${e.def}</div>
+      ${warn}
+      <div class="src">${e.src}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById('filterInput').addEventListener('input', (ev) => render(ev.target.value));
+render('');
+</script>
+</body>
+</html>
