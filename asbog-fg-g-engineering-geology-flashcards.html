@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain G Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --f1:#2f6b6e;
+    --f2:#93691a;
+    --f3:#6d3f60;
+    --f4:#3b5b7a;
+    --f5:#a3462c;
+    --f6:#5c6b2e;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;min-width:60px;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-origins{border-color:var(--f1);color:var(--f1);}
+  .tag.cat-soil{border-color:var(--f2);color:var(--f2);}
+  .tag.cat-rock{border-color:var(--f3);color:var(--f3);}
+  .tag.cat-hazards{border-color:var(--f4);color:var(--f4);}
+  .tag.cat-methods{border-color:var(--f5);color:var(--f5);}
+  .tag.cat-testing{border-color:var(--f6);color:var(--f6);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.other{background:var(--asbog-soft);color:var(--asbog);}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--f4);color:var(--f4);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--f4);color:#fff;border-color:var(--f4);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Domain G</div>
+    <h1>Engineering Geology — Flashcards</h1>
+    <p class="sub">Production and cued recall, no multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty. Categories 2 and 3 (soil and rock mechanics) are the least familiar for your background — lean hardest there. The separate USCS/plasticity priority deck drills the highest-yield single figure in this domain on its own.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--f1);border-radius:50%;"></span>Origins &amp; Groundwater</span>
+    <span><span class="dot" style="background:var(--f2);border-radius:50%;"></span>Soil Mechanics</span>
+    <span><span class="dot" style="background:var(--f3);border-radius:50%;"></span>Rock Mechanics</span>
+    <span><span class="dot" style="background:var(--f4);border-radius:50%;"></span>Geologic Hazards</span>
+    <span><span class="dot" style="background:var(--f5);border-radius:50%;"></span>Investigation Methods</span>
+    <span><span class="dot" style="background:var(--f6);border-radius:50%;"></span>In-Situ &amp; Lab Testing</span>
+    <span><span class="cite verified" style="margin:0;">verified</span>full source in study guide</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices. Copy/paste is the more reliable method if the file picker shows no files.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if opened standalone in a browser, progress will not persist between sessions.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== ORIGINS 1.1 Soil Origin =====
+{id:"org-1-1",cat:"origins",sub:"1.1 Soil Origin",type:"CUED",
+ front:"Distinguish residual soil from transported soil, and name the transport agents.",
+ back:"Residual soil forms in place by weathering of underlying bedrock. Transported soil is moved by an agent and deposited elsewhere: ice → till, water → alluvium, gravity → colluvium/talus, wind → loess.",
+ cites:[{t:"verified",l:"Marshak Interlude B, pp.155–161"}]},
+
+// ===== ORIGINS 1.2 Terminology Trap =====
+{id:"org-1-2",cat:"origins",sub:"1.2 Terminology Trap",type:"PRODUCE",
+ front:"Marshak's \"Soil Classification\" chapter and the engineering USCS both use the word \"classification\" — how do they differ, and which one does FG actually test under G-2?",
+ back:"Marshak's is the U.S. Comprehensive Soil Classification System — a pedogenic/agronomic scheme (aridisol, mollisol, etc.) describing soil formation environment. The engineering USCS (ASTM D2487/D2488 — GW, CL, CH, etc.) is unrelated and is what G-2 tests.",
+ cites:[{t:"verified",l:"Marshak Table B.2, p.159"}]},
+
+// ===== ORIGINS 1.3 Groundwater =====
+{id:"org-1-3",cat:"origins",sub:"1.3 Groundwater",type:"PRODUCE",
+ front:"Distinguish aquifer, aquitard, and aquiclude.",
+ back:"Aquifer: transmits usable water to wells/springs. Aquitard: retards but does not prevent flow — a \"leaky\" confining bed. Aquiclude: relatively impermeable; does not transmit significant groundwater.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.9"}]},
+{id:"org-1-4",cat:"origins",sub:"1.3 Groundwater",type:"PRODUCE",
+ front:"State Darcy's Law.",
+ back:"Q = K·A·(h₁−h₂)/L, where K = hydraulic conductivity, A = cross-sectional area, (h₁−h₂)/L = hydraulic gradient.",
+ cites:[{t:"verified",l:"Marshak Box 16.1, p.479"}]},
+{id:"org-1-5",cat:"origins",sub:"1.3 Groundwater",type:"CUED",
+ front:"What's the difference between the water table and a potentiometric surface?",
+ back:"The water table is the top of the saturated zone in an unconfined aquifer, at atmospheric pressure. A potentiometric surface is the level water rises to in a well tapping a confined aquifer — can lie above ground surface under artesian conditions.",
+ cites:[{t:"verified",l:"Marshak Ch.16, pp.473–494"}]},
+
+// ===== SOIL 2.1 Index Properties =====
+{id:"sol-1-1",cat:"soil",sub:"2.1 Index Properties",type:"PRODUCE",
+ front:"What sieve sizes bound the gravel, sand, and fines fractions in USCS?",
+ back:"Gravel: passes 3-in (75 mm), retained on No. 4 (4.75 mm). Sand: passes No. 4, retained on No. 200 (0.075 mm). Fines (silt/clay): passes No. 200.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
+{id:"sol-1-2",cat:"soil",sub:"2.1 Index Properties",type:"CUED",
+ front:"What percent-fines threshold separates coarse-grained from fine-grained soil in USCS?",
+ back:"50% — less than 50% fines is coarse-grained, 50% or more is fine-grained.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
+
+// ===== SOIL 2.2/2.3 USCS & Plasticity Chart =====
+{id:"sol-2-1",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"PRODUCE",
+ front:"What does each letter of a two-letter USCS group symbol mean?",
+ back:"First letter = dominant fraction (G-gravel, S-sand, M-silt, C-clay, O-organic, PT-peat). Second letter = gradation/plasticity modifier (W-well graded, P-poorly graded, M-silty, C-clayey, L-low plasticity, H-high plasticity).",
+ cites:[{t:"verified",l:"ASTM D2487"}]},
+{id:"sol-2-2",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"CUED",
+ front:"On the plasticity chart, what does the \"A\"-line separate?",
+ back:"Clays (plot on/above the A-line) from silts (plot below the A-line).",
+ cites:[{t:"verified",l:"ASTM D2487"}]},
+{id:"sol-2-3",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"PRODUCE",
+ front:"A soil has LL = 65 and plots above the A-line. What is its USCS group symbol, and why?",
+ back:"CH (fat clay) — LL ≥ 50 and above the A-line.",
+ cites:[{t:"verified",l:"ASTM D2487"}]},
+{id:"sol-2-4",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"CUED",
+ front:"What criterion defines an organic soil (OL/OH) in USCS?",
+ back:"Oven-dried liquid limit is less than 75% of the not-oven-dried liquid limit.",
+ cites:[{t:"verified",l:"ASTM D2487"}]},
+{id:"sol-2-5",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"CUED",
+ front:"In the field identification tests, how does dilatancy relate to plasticity?",
+ back:"Inversely — high dry strength, no dilatancy, and high toughness indicate a highly plastic clay (CH); low/no dry strength, rapid dilatancy, and low toughness indicate a silt (ML).",
+ cites:[{t:"verified",l:"ASTM D2488"}]},
+
+// ===== SOIL 2.4/2.5 Strength =====
+{id:"sol-3-1",cat:"soil",sub:"2.4/2.5 Strength",type:"PRODUCE",
+ front:"State the Mohr-Coulomb shear strength equation.",
+ back:"τ = c + σₙ·tan(φ), where c = cohesion, σₙ = normal stress, φ = angle of internal friction.",
+ cites:[{t:"verified",l:"FHWA-NHI-11-032"}]},
+{id:"sol-3-2",cat:"soil",sub:"2.4/2.5 Strength",type:"CUED",
+ front:"What's the difference between compaction and consolidation?",
+ back:"Compaction is mechanical densification (reducing air voids), typically for engineered fill. Consolidation is time-dependent settlement from expulsion of pore water under load, mainly in saturated fine-grained soils.",
+ cites:[{t:"verified",l:"FHWA-NHI-11-032"}]},
+
+// ===== SOIL 2.6 Slope Stability =====
+{id:"sol-4-1",cat:"soil",sub:"2.6 Slope Stability",type:"PRODUCE",
+ front:"What is the factor of safety in slope stability, and what value indicates failure?",
+ back:"FS = resisting forces / driving forces; FS < 1 indicates failure.",
+ cites:[{t:"verified",l:"FHWA-NHI-11-032"}]},
+
+// ===== ROCK 3.2 RQD =====
+{id:"rck-1-1",cat:"rock",sub:"3.2 RQD",type:"PRODUCE",
+ front:"How is RQD calculated from a core run?",
+ back:"Sum the lengths of intact core pieces ≥4 inches (100 mm) long, divide by the total run length, express as a percentage.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]},
+{id:"rck-1-2",cat:"rock",sub:"3.2 RQD",type:"PRODUCE",
+ front:"What's the outcrop-estimation formula for RQD, and what does Jᵥ represent?",
+ back:"RQD = 115 − 3.3·Jᵥ, where Jᵥ = number of joints per cubic meter.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5; Deere 1964"}]},
+{id:"rck-1-3",cat:"rock",sub:"3.2 RQD",type:"CUED",
+ front:"What RQD ranges correspond to \"very poor\" and \"good\" rock quality?",
+ back:"Very poor: <25%. Good: 75–90%.",
+ cites:[{t:"verified",l:"Deere 1964 five-band scale"}]},
+
+// ===== ROCK 3.2/3.5 Discontinuities =====
+{id:"rck-2-1",cat:"rock",sub:"3.2/3.5 Discontinuities",type:"CUED",
+ front:"What's the difference between a joint and a fault?",
+ back:"A joint is a fracture with little/no displacement parallel to the plane; a fault is a shear with significant, correlatable displacement (evidenced by gouge, breccia, slickensides).",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]},
+{id:"rck-2-2",cat:"rock",sub:"3.2/3.5 Discontinuities",type:"PRODUCE",
+ front:"What is the discontinuity-surface form of Coulomb's shear strength equation, and what does the added term represent?",
+ back:"S = C + N·tan(φ + i), where i is the roughness/waviness angle — a rougher or wavier surface has higher shear resistance at the same normal stress.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]},
+
+// ===== ROCK 3.3/3.6 Strength & Failure Criteria =====
+{id:"rck-3-1",cat:"rock",sub:"3.3/3.6 Strength",type:"CUED",
+ front:"What does GSI (Geological Strength Index) estimate, and how is it typically determined?",
+ back:"An input to the Hoek-Brown failure criterion for jointed rock masses; estimated visually from rock-mass structure (blockiness) and discontinuity surface condition via a reference chart, not calculated from a formula.",
+ cites:[{t:"verified",l:"Hoek, Carranza-Torres &amp; Corkum 2002"}]},
+{id:"rck-3-2",cat:"rock",sub:"3.3/3.6 Strength",type:"PRODUCE",
+ front:"What does a Schmidt hammer measure, and how is the reading typically used?",
+ back:"Rebound hardness of a rock surface; used to estimate uniaxial compressive strength — average the 5 highest of 10 readings, discard the 5 lowest.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]},
+
+// ===== ROCK 3.4/3.7 Kinematic Analysis =====
+{id:"rck-4-1",cat:"rock",sub:"3.4/3.7 Kinematics",type:"CUED",
+ front:"What geometric condition defines a kinematically possible planar failure?",
+ back:"The discontinuity dips in roughly the same direction as the slope face, with dip angle gentler than the slope but steeper than the friction angle (φ < dip of plane < dip of slope).",
+ cites:[{t:"verified",l:"Hoek &amp; Bray 1981"}]},
+{id:"rck-4-2",cat:"rock",sub:"3.4/3.7 Kinematics",type:"CUED",
+ front:"How does a toppling failure's discontinuity orientation differ from a planar failure's?",
+ back:"Toppling discontinuities dip steeply into the slope (opposite direction from the slope face); planar/wedge failures involve discontinuities dipping out of the slope face.",
+ cites:[{t:"verified",l:"Goodman 1989"}]},
+
+// ===== HAZARDS 4.1 =====
+{id:"haz-1-1",cat:"hazards",sub:"4.1 Hazard &amp; Risk Analysis",type:"CUED",
+ front:"Which geologic hazards does Marshak cover thoroughly enough for FG purposes under Domain G-4?",
+ back:"Landslides, floods, earthquakes, and karst/subsidence — all confirmed strong in Marshak, no supplementation needed.",
+ cites:[{t:"verified",l:"Marshak Ch.8, 13, 14, 16"}]},
+
+// ===== METHODS 5.1 Drilling =====
+{id:"mth-1-1",cat:"methods",sub:"5.1 Drilling",type:"PRODUCE",
+ front:"Why is hollow-stem augering the preferred drilling method in the impervious core of an embankment dam?",
+ back:"It doesn't pressurize the borehole, eliminating the risk of hydraulically fracturing the embankment.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.8"}]},
+{id:"mth-1-2",cat:"methods",sub:"5.1 Drilling",type:"CUED",
+ front:"What's the key advantage of sonic drilling over conventional rotary methods in mixed soil/rock/cobble conditions?",
+ back:"High-frequency vibration advances casing and core simultaneously, recovering continuous core quickly through mixed subsurface conditions that would be difficult for conventional rotary drilling.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.8"}]},
+
+// ===== METHODS 5.2 Geophysics =====
+{id:"mth-2-1",cat:"methods",sub:"5.2 Geophysics",type:"CUED",
+ front:"What subsurface condition causes a seismic refraction survey to fail (a \"blind spot\")?",
+ back:"A low-velocity layer underlying a high-velocity layer — refraction requires velocity to increase with depth.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.2 Ch.13/14"}]},
+{id:"mth-2-2",cat:"methods",sub:"5.2 Geophysics",type:"CUED",
+ front:"What's a key limitation of ground-penetrating radar (GPR)?",
+ back:"Poor performance / limited depth penetration in saturated, conductive materials like clay, due to signal attenuation.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.2 Ch.13/14"}]},
+
+// ===== METHODS 5.3 Remote Sensing =====
+{id:"mth-3-1",cat:"methods",sub:"5.3 Remote Sensing",type:"CUED",
+ front:"What kinds of engineering-geology investigation does image analysis / remote sensing cover?",
+ back:"Aerial photograph interpretation, satellite imagery, and LiDAR/UAV digital outcrop mapping — used for regional structural mapping, landslide inventory, and lineament (fracture/fault trace) analysis.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.2 Ch.15"}]},
+
+// ===== TESTING 6.1 SPT/CPT =====
+{id:"tst-1-1",cat:"testing",sub:"6.1 SPT &amp; CPT",type:"PRODUCE",
+ front:"How is the SPT N-value determined from the drive?",
+ back:"Sum of blow counts for the second and third 6-inch increments of an 18-inch drive — the first 6 inches, the \"seating drive,\" is discarded.",
+ cites:[{t:"verified",l:"ASTM D1586; USBR 7015"}]},
+{id:"tst-1-2",cat:"testing",sub:"6.1 SPT &amp; CPT",type:"PRODUCE",
+ front:"What are the standard SPT hammer specifications?",
+ back:"140-lb hammer, 30-inch drop.",
+ cites:[{t:"verified",l:"ASTM D1586"}]},
+{id:"tst-1-3",cat:"testing",sub:"6.1 SPT &amp; CPT",type:"CUED",
+ front:"What's the key procedural difference between SPT and CPT?",
+ back:"SPT is a driven, incremental test that recovers a physical soil sample. CPT is continuously pushed at a controlled rate and provides continuous resistance data but no physical sample.",
+ cites:[{t:"verified",l:"ASTM D5778"}]},
+
+// ===== TESTING 6.1 Groundwater Tests =====
+{id:"tst-2-1",cat:"testing",sub:"6.1 Groundwater Tests",type:"CUED",
+ front:"What's the difference between a pumping test and a slug test?",
+ back:"A pumping test pumps a well at constant rate and observes drawdown in nearby observation wells to estimate transmissivity/storativity. A slug test instantaneously changes water level in a single well and observes recovery for a localized permeability estimate.",
+ cites:[{t:"gap",l:"gap — analytical theory unsourced, see study guide §6.1"}]},
+
+// ===== TESTING 6.2 Lab Testing =====
+{id:"tst-3-1",cat:"testing",sub:"6.2 Lab Testing",type:"CUED",
+ front:"What's the practical difference between a drained and an undrained lab test?",
+ back:"Drained tests allow pore pressure to dissipate (slow loading, effective-stress c'/φ', relevant to long-term stability). Undrained tests prevent drainage (rapid loading, total-stress parameters, relevant to short-term/construction-stage stability in saturated clays).",
+ cites:[{t:"verified",l:"FHWA-NHI-11-032"}]},
+{id:"tst-3-2",cat:"testing",sub:"6.2 Lab Testing",type:"CUED",
+ front:"What does a direct shear test measure, and what field-expedient version exists for discontinuity surfaces?",
+ back:"It shears a sample along a fixed plane under a range of normal stresses, building a Mohr-Coulomb envelope directly. The \"tilt test\" is a field-expedient version for estimating discontinuity-surface friction angle.",
+ cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]}
+];
+
+const CAT_LABEL = {origins:"Origins &amp; Groundwater", soil:"Soil Mechanics", rock:"Rock Mechanics", hazards:"Geologic Hazards", methods:"Investigation Methods", testing:"In-Situ &amp; Lab Testing"};
+
+let progress = {};
+let feedback = {};
+let queue = [];
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('domG-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('domG-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('domG-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('domG-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Domain G (Engineering Geology)\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null;
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text);
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'domG-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

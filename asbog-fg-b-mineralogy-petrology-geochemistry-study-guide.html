@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Category 2: Mineralogy, Petrology, Geochemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --mineralogy:#9c6b30;
+    --mineralogy-soft:#f1e6d3;
+    --petrology:#a63d1f;
+    --petrology-soft:#f4ded6;
+    --geochem:#1f6e73;
+    --geochem-soft:#dcecec;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  /* ===== Header ===== */
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  /* ===== Scope box ===== */
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box blockquote{
+    margin:0 0 14px;
+    padding-left:16px;
+    border-left:2px solid var(--rule);
+    font-style:italic;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* ===== Section nav ===== */
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.min .cat{color:var(--mineralogy);}
+  nav.toc a.pet .cat{color:var(--petrology);}
+  nav.toc a.geo .cat{color:var(--geochem);}
+
+  /* ===== Category sections with stratum spine ===== */
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.min::before{background:linear-gradient(var(--mineralogy),var(--mineralogy) 33%, var(--mineralogy) 33%);background:var(--mineralogy);}
+  .category.pet::before{background:var(--petrology);}
+  .category.geo::before{background:var(--geochem);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.min .cat-label{color:var(--mineralogy);}
+  .category.pet .cat-label{color:var(--petrology);}
+  .category.geo .cat-label{color:var(--geochem);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  /* ===== Citation tags ===== */
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.m, .cite.p, .cite.g{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.asbog{background:#e4e4de;color:#54574d;}
+
+  /* ===== Tables ===== */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  /* ===== Tier badges ===== */
+  .tier{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:10px;
+    margin-bottom:8px;
+    letter-spacing:.05em;
+  }
+  .tier.t1{background:#20241f;color:#fff;}
+  .tier.t2{background:#c9cdc0;color:#20241f;}
+  .tier.t3{background:transparent;color:var(--ink-soft);border:1px solid var(--rule);}
+
+  /* ===== Diagram frames ===== */
+  .diagram-frame{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:18px 18px 8px;
+    margin:18px 0 24px;
+  }
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    padding-bottom:10px;
+  }
+
+  /* ===== Gap callout ===== */
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  /* ===== Footer / legend ===== */
+  .mineral-table{width:100%;}
+  .mineral-table th, .mineral-table td{padding:7px 10px 7px 0;}
+  .cite-cell{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--verified);
+    white-space:nowrap;
+  }
+  .formula-col{
+    font-family:'IBM Plex Mono', monospace;
+    transition:opacity .15s ease;
+  }
+  body.formulas-hidden .formula-col{
+    opacity:0;
+    filter:blur(4px);
+    user-select:none;
+  }
+  .formula-toggle{
+    display:block;
+    margin:14px 0 16px;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:16px;
+    cursor:pointer;
+  }
+  .formula-toggle:hover{opacity:.9;}
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body class="formulas-hidden">
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('formulaToggle');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    var hidden = document.body.classList.toggle('formulas-hidden');
+    btn.textContent = hidden ? 'Show chemical formulas' : 'Hide chemical formulas';
+  });
+});
+</script>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Category 2: Mineralogy,<br>Petrology &amp; Geochemistry</h1>
+    <p class="subtitle">12% of the FG exam (~17 of 140 questions). Scope verified against the official ASBOG Candidate Handbook; references verified against three uploaded texts: Marshak, <em>Essentials of Geology</em> 4th ed. (M), Klein &amp; Dutrow, <em>Manual of Mineral Science</em> 23rd ed. (K), and White, <em>Isotope Geochemistry</em> (W).</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain B, 12% FG / 5% PG</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite m" style="margin-left:0;">M 83</span> Marshak &nbsp; <span class="cite m">K 545</span> Klein &amp; Dutrow &nbsp; <span class="cite m">W 33</span> White</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain B Knowledge Base (detailed)</h2>
+    <blockquote>
+      B-1 Mineralogy (mineral groups, chemical/physical properties, hazardous minerals, material characterization methods) · B-2 Igneous petrology (classification, magma evolution/phase diagrams, petrogenesis/tectonic settings, volcanism) · B-3 Sedimentary petrology (classification, mineralogy by environment, diagenesis) · B-4 Metamorphic petrology (classification, facies/tectonic regimes, mineral associations) · B-5 Geochemistry (Earth composition, element classification, chemical weathering, stability diagrams, isotope/geochronology).
+    </blockquote>
+    <p style="margin-bottom:6px;">Tasks assessed (6–10): plan mineralogic/petrologic/geochemical investigations · identify minerals and rocks and their characteristics · interpret rock/mineral sequences and genesis · evaluate geochemical and isotopic data, construct geochemical models · determine type/degree/effects of alteration.</p>
+    <div class="src">Source: ASBOG Domain B (Mineralogy, Petrology, Geochemistry) Knowledge Base, final version — the itemized document, not just the Candidate Handbook Appendix 2 summary previously used. B-6 (project planning) is PG-only and excluded here.</div>
+  </div>
+
+  <div class="scope-box" style="border-left-color:var(--verified);">
+    <h2 style="color:var(--verified);">Alignment check, this pass</h2>
+    <p style="margin-bottom:0;">This guide was originally scoped against the Candidate Handbook's brief Appendix 2 summary. Checked directly against ASBOG's full itemized Domain B document, several subtopics were entirely absent: hazardous minerals (B-1.3), material characterization methods (B-1.4), igneous petrogenesis/tectonic settings and volcanism (B-2.3/B-2.4), Earth's chemical composition and element classification (B-5.1/B-5.2), and stability diagrams (B-5.4). All have been added — new material is marked with a <span class="cite gap" style="margin-left:0;">red note</span> at the top of the relevant subsection, or a B-code next to the subsection number, so it's visible at a glance which parts are new versus original.</p>
+  </div>
+
+  <nav class="toc">
+    <a class="min" href="#mineralogy"><span class="cat">Mineralogy</span>Crystallography · Classification · Priority list</a>
+    <a class="pet" href="#petrology"><span class="cat">Petrology</span>Igneous · Sedimentary · Metamorphic</a>
+    <a class="geo" href="#geochemistry"><span class="cat">Geochemistry</span>Weathering · Isotopes · Alteration</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- MINERALOGY -->
+  <!-- ============================================================ -->
+  <section class="category min" id="mineralogy">
+    <div class="cat-header">
+      <div class="cat-label">01 / Mineralogy</div>
+      <h2 class="cat-title">Crystallography, classification, and a weighted mineral list</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Crystallography, simplified</h3>
+      <p>FG-level crystallography is recognition, not derivation: match a symmetry description or drawing to a crystal system, and connect symmetry to habit and identification value. <span class="cite m">M 73</span> introduces crystalline vs. noncrystalline structure; <span class="cite m">M 76</span> covers crystal characteristics; <span class="cite m">M 77</span> (Fig. 3.4) is Marshak's overview figure. For real depth on this topic — full derivation of symmetry elements, not just the pattern-matching table — Klein &amp; Dutrow devotes three chapters to it: external symmetry <span class="cite m">K 109, Ch. 6</span>, internal order/lattices <span class="cite m">K 143, Ch. 7</span>, and each crystal system worked individually with its own point groups <span class="cite m">K 182, Ch. 9</span>.</p>
+
+      <table>
+        <tr><th>System</th><th>Symmetry</th><th>Habit cue</th><th>High-yield examples</th><th>Klein &amp; Dutrow</th></tr>
+        <tr><td>Isometric</td><td>3 equal axes, all 90°</td><td>Cubes, octahedra</td><td>Pyrite, galena, garnet, halite, magnetite</td><td class="cite-cell">K 200</td></tr>
+        <tr><td>Hexagonal</td><td>3 equal + 1 unique, 120°/90°</td><td>6-sided prisms</td><td>Apatite, beryl</td><td class="cite-cell">K 194</td></tr>
+        <tr><td>Trigonal</td><td>3-fold symmetry</td><td>Rhombohedral</td><td>Calcite, dolomite, quartz, hematite</td><td class="cite-cell">K 194</td></tr>
+        <tr><td>Tetragonal</td><td>2 equal + 1 unique, 90°</td><td>4-sided prisms</td><td>Zircon, rutile, chalcopyrite</td><td class="cite-cell">K 191</td></tr>
+        <tr><td>Orthorhombic</td><td>3 unequal axes, all 90°</td><td>Rhombic prisms</td><td>Olivine, barite, aragonite</td><td class="cite-cell">K 187</td></tr>
+        <tr><td>Monoclinic</td><td>3 unequal, one oblique angle</td><td>Tabular</td><td>Micas, gypsum, orthoclase, pyroxenes</td><td class="cite-cell">K 186</td></tr>
+        <tr><td>Triclinic</td><td>3 unequal, all oblique</td><td>Least symmetric</td><td>Plagioclase, kyanite, microcline</td><td class="cite-cell">K 185</td></tr>
+      </table>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Axial Systems, Relative Symmetry</text>
+          <!-- isometric cube -->
+          <g transform="translate(60,45)">
+            <polygon points="0,60 40,60 55,40 15,40" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="0,60 15,40 15,0 0,20" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="15,40 55,40 55,-0 15,0" fill="#e8d9bc" stroke="#9c6b30"/>
+            <text x="27" y="90" text-anchor="middle" font-size="10.5" fill="#20241f">Isometric</text>
+            <text x="27" y="103" text-anchor="middle" font-size="9" fill="#4b5148">a=b=c, 90°</text>
+          </g>
+          <!-- tetragonal -->
+          <g transform="translate(200,45)">
+            <polygon points="0,60 30,60 45,40 15,40" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="0,60 15,40 15,-15 0,5" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="15,40 45,40 45,-35 15,-15" fill="#e8d9bc" stroke="#9c6b30"/>
+            <text x="22" y="90" text-anchor="middle" font-size="10.5" fill="#20241f">Tetragonal</text>
+            <text x="22" y="103" text-anchor="middle" font-size="9" fill="#4b5148">a=b≠c, 90°</text>
+          </g>
+          <!-- orthorhombic -->
+          <g transform="translate(340,45)">
+            <polygon points="0,60 35,60 48,42 13,42" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="0,60 13,42 13,10 0,28" fill="#f1e6d3" stroke="#9c6b30"/>
+            <polygon points="13,42 48,42 48,-8 13,10" fill="#e8d9bc" stroke="#9c6b30"/>
+            <text x="24" y="90" text-anchor="middle" font-size="10.5" fill="#20241f">Orthorhombic</text>
+            <text x="24" y="103" text-anchor="middle" font-size="9" fill="#4b5148">a≠b≠c, 90°</text>
+          </g>
+          <!-- monoclinic -->
+          <g transform="translate(490,45)">
+            <polygon points="0,60 35,60 55,45 20,45" fill="#f1e6d3" stroke="#a63d1f"/>
+            <polygon points="0,60 20,45 28,10 8,25" fill="#f1e6d3" stroke="#a63d1f"/>
+            <polygon points="20,45 55,45 63,10 28,10" fill="#f4ded6" stroke="#a63d1f"/>
+            <text x="28" y="90" text-anchor="middle" font-size="10.5" fill="#20241f">Monoclinic</text>
+            <text x="28" y="103" text-anchor="middle" font-size="9" fill="#4b5148">one oblique ∠</text>
+          </g>
+          <!-- triclinic -->
+          <g transform="translate(610,45)">
+            <polygon points="0,60 32,58 50,40 22,44" fill="#f4ded6" stroke="#a63d1f"/>
+            <polygon points="0,60 22,44 26,8 6,26" fill="#f4ded6" stroke="#a63d1f"/>
+            <polygon points="22,44 50,40 54,4 26,8" fill="#eed4c8" stroke="#a63d1f"/>
+            <text x="26" y="90" text-anchor="middle" font-size="10.5" fill="#20241f">Triclinic</text>
+            <text x="26" y="103" text-anchor="middle" font-size="9" fill="#4b5148">all oblique</text>
+          </g>
+          <text x="10" y="135" font-size="10" fill="#4b5148">Hexagonal/Trigonal (4-axis system, not sketched here — see Klein &amp; Dutrow p.194 for the full derivation)</text>
+        </svg>
+        <div class="diagram-caption">Original sketch — decreasing symmetry left to right. Full construction: <span class="cite m" style="margin-left:0;">K 129, "Crystallographic Axes"</span></div>
+      </div>
+
+      <p><strong>Drawing-practice target:</strong> reproduce this table from memory, then sketch one representative habit per system. That combination (recall + generation) is more durable than reading it again.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Classification, simplified</h3>
+      <p>Full Dana/Strunz classification has ~9 chemical classes. Collapse to a working hierarchy:</p>
+      <ol>
+        <li><strong>Silicates</strong> — ~90% of crustal minerals; nearly all your points live here <span class="cite m">M 81</span></li>
+        <li>Carbonates — calcite, dolomite (sedimentary/diagenetic)</li>
+        <li>Oxides/hydroxides — magnetite, hematite (ore + weathering)</li>
+        <li>Sulfides — pyrite, galena, sphalerite, chalcopyrite (ore)</li>
+        <li>Sulfates, halides — evaporite minerals</li>
+        <li>Native elements, phosphates — low volume, high economic/biogenic relevance</li>
+      </ol>
+
+      <p><strong>The single highest-value table in this category</strong> — silicate structure predicts cleavage, hardness, and weathering behavior. Marshak's reference figure: <span class="cite m">M 83, Fig. 3.9</span>. Klein &amp; Dutrow covers the same classification with full crystal-chemical reasoning behind it, chapter-length: <span class="cite m">K 434, Ch. 18, "Crystal Chemistry of Rock-Forming Silicates"</span></p>
+
+      <table>
+        <tr><th>Structure</th><th>Linkage</th><th>Cleavage</th><th>Examples</th><th>K&amp;D</th></tr>
+        <tr><td>Nesosilicates</td><td>Isolated tetrahedra</td><td>None / fracture</td><td>Olivine, garnet, zircon, kyanite</td><td class="cite-cell">K 438</td></tr>
+        <tr><td>Sorosilicates</td><td>Paired tetrahedra</td><td>Variable</td><td>Epidote</td><td class="cite-cell">K 441</td></tr>
+        <tr><td>Cyclosilicates</td><td>Rings</td><td>Poor</td><td>Beryl, tourmaline</td><td class="cite-cell">K 442</td></tr>
+        <tr><td>Inosilicates — single chain</td><td>1:3</td><td>2 @ ~87°/93°</td><td>Pyroxenes (augite)</td><td class="cite-cell">K 447</td></tr>
+        <tr><td>Inosilicates — double chain</td><td>4:11</td><td>2 @ ~56°/124°</td><td>Amphiboles (hornblende)</td><td class="cite-cell">K 452</td></tr>
+        <tr><td>Phyllosilicates</td><td>Sheets</td><td>1 perfect</td><td>Micas, clays, chlorite, talc</td><td class="cite-cell">K 456</td></tr>
+        <tr><td>Tectosilicates</td><td>3D framework, all O shared</td><td>2 @ ~90° or none</td><td>Quartz, feldspars, zeolites</td><td class="cite-cell">K 467</td></tr>
+      </table>
+
+      <p>This table also explains Bowen's Reaction Series (see Petrology §2.1) — Bowen's sequence is this table read in order of crystallization temperature.</p>
+
+      <p><strong>ID toolkit</strong> — physical properties <span class="cite m">M 80, Fig. 3.7</span> / <span class="cite m">K 19, Ch. 2</span>, Mohs hardness scale <span class="cite m">M 81, Table 3.1</span> / <span class="cite m">K 30</span>, cleavage/fracture <span class="cite m">M 82, Fig. 3.8</span> / <span class="cite m">K 28</span>:</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;background:var(--mineralogy-soft);padding:10px 14px;border-radius:var(--radius);">Talc(1) · Gypsum(2) · Calcite(3) · Fluorite(4) · Apatite(5) · Orthoclase(6) · Quartz(7) · Topaz(8) · Corundum(9) · Diamond(10)</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Mohs Scale: Ordinal Rank vs. Approximate Absolute Hardness</text>
+          <line x1="60" y1="200" x2="660" y2="200" stroke="#c9cdc0" stroke-width="1.5"/>
+          <line x1="60" y1="200" x2="60" y2="35" stroke="#c9cdc0" stroke-width="1.5"/>
+          <text x="30" y="200" font-size="9" fill="#4b5148">0</text>
+          <text x="20" y="40" font-size="9" fill="#4b5148">~1600+</text>
+          <text x="360" y="225" text-anchor="middle" font-size="10" fill="#4b5148">Mohs rank (1–10, evenly spaced on this axis)</text>
+          <!-- approx relative hardness values (Ridgway/Knoop-style, illustrative) -->
+          <!-- points roughly: 1:0.5 2:1.25 3:4.5 4:5 5:6.5 6:37 7:120 8:175 9:400 10:1600 (log-ish curve) -->
+          <polyline fill="none" stroke="#1f6e73" stroke-width="2.5" points="
+            90,197 150,195 210,190 270,188 330,182 390,150 450,110 510,85 570,45 630,38" />
+          <g font-size="9" fill="#20241f">
+            <circle cx="90" cy="197" r="3" fill="#1f6e73"/><text x="90" y="212" text-anchor="middle">Talc</text>
+            <circle cx="630" cy="38" r="3" fill="#1f6e73"/><text x="630" y="30" text-anchor="middle">Diamond</text>
+            <circle cx="570" cy="45" r="3" fill="#1f6e73"/><text x="570" y="30" text-anchor="middle">Corundum</text>
+            <circle cx="390" cy="150" r="3" fill="#1f6e73"/><text x="390" y="140" text-anchor="middle">Orthoclase</text>
+          </g>
+          <text x="660" y="220" text-anchor="end" font-size="9" fill="#4b5148" font-style="italic">curve shape is illustrative, not a precise plot</text>
+        </svg>
+        <div class="diagram-caption">Original diagram — <strong>not from either textbook.</strong> Neither Marshak nor Klein &amp; Dutrow presents Mohs hardness as an absolute-vs-ordinal curve; this is general, well-established mineralogy/materials-science knowledge (diamond is roughly 4x harder than corundum despite being one rank higher), included here because it's genuinely useful, not because it's citable to a specific figure. Worth flagging: this corrects an earlier assumption in our conversation that this curve was Marshak's "Fig. 3.1" — it isn't; Marshak's actual Fig. 3.1 is an unrelated photo of copper ore.</div>
+      </div>
+
+      <p>Other diagnostics: streak (more reliable than color for metallics), luster, specific gravity (most silicates ~2.6–3.3; metallic ores often &gt;5), HCl reaction (calcite fizzes readily; dolomite only when powdered), magnetism (magnetite).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Priority mineral list, weighted</h3>
+      <p>You can't memorize every mineral. This tiers them by how likely each is to anchor an actual question. <span class="cite m">M 71–96</span> · systematic descriptions with full crystal-chemical detail: <span class="cite m">K 331–573, Ch. 15–20</span></p>
+      <p style="font-size:13px;color:var(--ink-soft);">Chemical formulas below are standard mineralogical formulas, cross-checked against Klein &amp; Dutrow's systematic entries at the pages cited (OCR quality on that source varies enough that exact subscripts weren't trusted blindly — formulas reflect standard mineralogy, page numbers confirm the mineral is discussed there).</p>
+
+      <button class="formula-toggle" id="formulaToggle">Show chemical formulas</button>
+
+      <span class="tier t1">Tier 1 — know cold</span>
+      <table class="mineral-table">
+        <tr><th>Mineral</th><th class="formula-col">Formula</th><th>Klein &amp; Dutrow</th></tr>
+        <tr><td>Quartz</td><td class="formula-col">SiO&#8322;</td><td class="cite-cell">K 542</td></tr>
+        <tr><td>K-feldspar (orthoclase/microcline)</td><td class="formula-col">KAlSi&#8323;O&#8328;</td><td class="cite-cell">K 545</td></tr>
+        <tr><td>Plagioclase</td><td class="formula-col">NaAlSi&#8323;O&#8328; – CaAl&#8322;Si&#8322;O&#8328;</td><td class="cite-cell">K 545</td></tr>
+        <tr><td>Muscovite</td><td class="formula-col">KAl&#8322;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322;</td><td class="cite-cell">K 530</td></tr>
+        <tr><td>Biotite</td><td class="formula-col">K(Mg,Fe)&#8323;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322;</td><td class="cite-cell">K 530</td></tr>
+        <tr><td>Amphibole (hornblende)</td><td class="formula-col">Ca&#8322;(Mg,Fe,Al)&#8325;(Si,Al)&#8328;O&#8322;&#8322;(OH)&#8322;</td><td class="cite-cell">K 525</td></tr>
+        <tr><td>Pyroxene (augite)</td><td class="formula-col">(Ca,Na)(Mg,Fe,Al)(Si,Al)&#8322;O&#8326;</td><td class="cite-cell">K 516</td></tr>
+        <tr><td>Olivine</td><td class="formula-col">(Mg,Fe)&#8322;SiO&#8324;</td><td class="cite-cell">K 483</td></tr>
+        <tr><td>Calcite</td><td class="formula-col">CaCO&#8323;</td><td class="cite-cell">K 399</td></tr>
+        <tr><td>Dolomite</td><td class="formula-col">CaMg(CO&#8323;)&#8322;</td><td class="cite-cell">K 399</td></tr>
+        <tr><td>Clay minerals (kaolinite)</td><td class="formula-col">Al&#8322;Si&#8322;O&#8325;(OH)&#8324;</td><td class="cite-cell">K 530</td></tr>
+      </table>
+
+      <span class="tier t2">Tier 2 — know well</span>
+      <table class="mineral-table">
+        <tr><th>Mineral</th><th class="formula-col">Formula</th><th>Klein &amp; Dutrow</th></tr>
+        <tr><td>Garnet (general)</td><td class="formula-col">A&#8323;B&#8322;(SiO&#8324;)&#8323;</td><td class="cite-cell">K 483</td></tr>
+        <tr><td>Chlorite</td><td class="formula-col">(Mg,Fe,Al)&#8326;(Si,Al)&#8324;O&#8321;&#8320;(OH)&#8328;</td><td class="cite-cell">K 530</td></tr>
+        <tr><td>Serpentine</td><td class="formula-col">Mg&#8323;Si&#8322;O&#8325;(OH)&#8324;</td><td class="cite-cell">K 530</td></tr>
+        <tr><td>Talc</td><td class="formula-col">Mg&#8323;Si&#8324;O&#8321;&#8320;(OH)&#8322;</td><td class="cite-cell">K 530</td></tr>
+        <tr><td>Gypsum</td><td class="formula-col">CaSO&#8324;·2H&#8322;O</td><td class="cite-cell">K 419</td></tr>
+        <tr><td>Anhydrite</td><td class="formula-col">CaSO&#8324;</td><td class="cite-cell">K 419</td></tr>
+        <tr><td>Halite</td><td class="formula-col">NaCl</td><td class="cite-cell">K 392</td></tr>
+        <tr><td>Kyanite</td><td class="formula-col">Al&#8322;SiO&#8325;</td><td class="cite-cell">K 491</td></tr>
+        <tr><td>Andalusite</td><td class="formula-col">Al&#8322;SiO&#8325;</td><td class="cite-cell">K 491</td></tr>
+        <tr><td>Sillimanite</td><td class="formula-col">Al&#8322;SiO&#8325;</td><td class="cite-cell">K 491</td></tr>
+        <tr><td>Staurolite</td><td class="formula-col">Fe&#8322;Al&#8329;Si&#8324;O&#8322;&#8323;(OH)&#8322;</td><td class="cite-cell">K 483</td></tr>
+        <tr><td>Epidote</td><td class="formula-col">Ca&#8322;(Al,Fe)&#8323;Si&#8323;O&#8321;&#8322;(OH)</td><td class="cite-cell">K 509</td></tr>
+        <tr><td>Tourmaline</td><td class="formula-col">(Na,Ca)(Al,Fe,Li,Mg)&#8323;Al&#8326;(BO&#8323;)&#8323;Si&#8326;O&#8321;&#8328;(OH)&#8324;</td><td class="cite-cell">K 513</td></tr>
+      </table>
+
+      <span class="tier t3">Tier 3 — ID/economic relevance</span>
+      <table class="mineral-table">
+        <tr><th>Mineral</th><th class="formula-col">Formula</th><th>Klein &amp; Dutrow</th></tr>
+        <tr><td>Pyrite</td><td class="formula-col">FeS&#8322;</td><td class="cite-cell">K 354</td></tr>
+        <tr><td>Galena</td><td class="formula-col">PbS</td><td class="cite-cell">K 339</td></tr>
+        <tr><td>Sphalerite</td><td class="formula-col">ZnS</td><td class="cite-cell">K 339</td></tr>
+        <tr><td>Chalcopyrite</td><td class="formula-col">CuFeS&#8322;</td><td class="cite-cell">K 339</td></tr>
+        <tr><td>Magnetite</td><td class="formula-col">Fe&#8323;O&#8324;</td><td class="cite-cell">K 368</td></tr>
+        <tr><td>Hematite</td><td class="formula-col">Fe&#8322;O&#8323;</td><td class="cite-cell">K 368</td></tr>
+        <tr><td>Limonite / goethite</td><td class="formula-col">FeO(OH)·nH&#8322;O</td><td class="cite-cell">K 372</td></tr>
+        <tr><td>Fluorite</td><td class="formula-col">CaF&#8322;</td><td class="cite-cell">K 370</td></tr>
+        <tr><td>Apatite</td><td class="formula-col">Ca&#8325;(PO&#8324;)&#8323;(F,Cl,OH)</td><td class="cite-cell">K 426</td></tr>
+        <tr><td>Corundum</td><td class="formula-col">Al&#8322;O&#8323;</td><td class="cite-cell">K 375</td></tr>
+        <tr><td>Graphite</td><td class="formula-col">C</td><td class="cite-cell">K 332</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--ink-soft);">Note: "Limonite" isn't a formal mineral species — it's a field term for undifferentiated Fe-oxyhydroxide mixtures. Goethite is the actual mineral usually meant. Klein &amp; Dutrow discusses this distinction directly at the cited page.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.4 &nbsp;<span style="font-size:11px;color:var(--ink-soft);">(B-1.2 cont., B-1.3, B-1.4)</span></div>
+      <h3 class="sub-title">Hazardous minerals, optical properties, and lab identification methods</h3>
+      <p style="font-size:13px;color:var(--gap);">Added after cross-checking the guide against ASBOG's own detailed Domain B knowledge-base document (not just the Candidate Handbook summary) — this entire subsection was previously missing.</p>
+
+      <p><strong>Optical properties beyond streak/luster</strong> — B-1.2 also names luminescence and crystal-structure anisotropy specifically. <span class="cite m">K 26, "Properties Based on Interaction with Light"</span></p>
+      <ul>
+        <li><strong>Fluorescence</strong> — mineral glows under UV light, stops when the UV source is removed (fluorite is the namesake example — it's in your Tier 3 list already).</li>
+        <li><strong>Phosphorescence</strong> — like fluorescence, but the glow persists briefly after the UV source is removed.</li>
+        <li><strong>Anisotropy</strong> — optical properties (e.g., refractive index) vary with crystal direction, a direct consequence of non-isometric crystal structure. Isometric minerals are optically isotropic (properties are the same in all directions); every other crystal system is anisotropic to some degree. This is the physical basis for how polarized-light microscopy identifies minerals in thin section.</li>
+      </ul>
+
+      <p><strong>Hazardous minerals</strong> — genuinely absent from the guide until now, and worth taking seriously given ASBOG's stated mission is public health and safety, not just technical competence.</p>
+      <ul>
+        <li><strong>Asbestos</strong> isn't one mineral — it's a regulatory/commercial term covering six fibrous ("asbestiform") mineral varieties: one serpentine-group mineral (chrysotile — by far the most heavily mined) and five amphibole-group varieties (amosite, crocidolite, tremolite, actinolite, anthophyllite, all asbestiform habits of minerals that also occur in ordinary, non-hazardous forms). <span class="cite m">K 527, Box 19.2, "Asbestos: A Mixture and Mix-up of Minerals"</span></li>
+        <li>Health effects: asbestosis (lung scarring), lung cancer, and mesothelioma (cancer of the lung/abdominal lining) from inhaled fibers. <span class="cite m">K 531</span></li>
+        <li><strong>Silicosis</strong> — lung disease from inhaling fine crystalline silica (quartz) dust, an occupational hazard in mining, quarrying, and stone-cutting. <span class="cite gap">Gap — checked five sources (Marshak, Klein &amp; Dutrow, White, Earle, USBR field manual); genuinely absent from all, general occupational-health knowledge</span></li>
+        <li><strong>Pb-bearing minerals</strong> — galena (PbS, already Tier 3) is the primary natural source of environmental lead contamination near mine sites/tailings; lead toxicity (neurological, especially in children) is the standard concern. <span class="cite gap">Gap — general toxicology knowledge, not textbook-specific</span></li>
+      </ul>
+
+      <p><strong>Material characterization methods</strong> — Klein &amp; Dutrow devotes a full chapter to this, which directly matches B-1.4's example list almost item-for-item: <span class="cite m">K 307, Ch. 14, "Analytical and Imaging Methods in Mineral Science"</span></p>
+      <table>
+        <tr><th>Method</th><th>What it tells you</th></tr>
+        <tr><td>XRD (X-ray Diffraction)</td><td>Identifies mineral structure/species from its characteristic diffraction pattern — the standard method for confirming "which mineral is this" when visual ID isn't enough.</td></tr>
+        <tr><td>XRF (X-ray Fluorescence)</td><td>Bulk chemical (elemental) composition of a sample. <span class="cite m" style="margin-left:4px;">K 321</span></td></tr>
+        <tr><td>SEM (Scanning Electron Microscopy)</td><td>High-magnification surface imaging of crystal morphology; often paired with elemental analysis (EDS).</td></tr>
+        <tr><td>ICP-MS</td><td>Extremely sensitive trace-element and isotopic composition analysis, requires dissolving the sample.</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--ink-soft);">FG-level treatment of these is almost certainly "what is this technique used for," not operating principles — don't over-invest here relative to the rest of the category.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PETROLOGY -->
+  <!-- ============================================================ -->
+  <section class="category pet" id="petrology">
+    <div class="cat-header">
+      <div class="cat-label">02 / Petrology</div>
+      <h2 class="cat-title">Igneous, sedimentary, and metamorphic rocks</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Igneous rocks</h3>
+      <p>Classification is 2-dimensional: composition (x-axis) × texture (y-axis). Marshak's own classification chart: <span class="cite p">M 113, Fig. 4.13</span>; texture types <span class="cite p">M 111, Fig. 4.12</span>; overview spread <span class="cite p">M 112, Geology at a Glance</span></p>
+
+      <table>
+        <tr><th></th><th>Felsic (&gt;65% SiO&#8322;)</th><th>Intermediate</th><th>Mafic</th><th>Ultramafic</th></tr>
+        <tr><td>Intrusive (coarse)</td><td>Granite</td><td>Diorite</td><td>Gabbro</td><td>Peridotite</td></tr>
+        <tr><td>Extrusive (fine)</td><td>Rhyolite</td><td>Andesite</td><td>Basalt</td><td>Komatiite (rare)</td></tr>
+      </table>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="24" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Bowen's Reaction Series ←→ Goldich Weathering Series</text>
+
+          <!-- axis line -->
+          <line x1="70" y1="55" x2="70" y2="255" stroke="#c9cdc0" stroke-width="2"/>
+          <text x="40" y="50" font-size="10" fill="#4b5148" transform="rotate(0)">High T</text>
+          <text x="40" y="265" font-size="10" fill="#4b5148">Low T</text>
+
+          <!-- discontinuous branch -->
+          <text x="180" y="45" font-size="10.5" fill="#a63d1f" text-anchor="middle">discontinuous</text>
+          <g font-size="12" fill="#20241f">
+            <rect x="120" y="55" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/>
+            <text x="180" y="72" text-anchor="middle">Olivine</text>
+            <line x1="180" y1="81" x2="180" y2="95" stroke="#a63d1f"/>
+            <rect x="120" y="95" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/>
+            <text x="180" y="112" text-anchor="middle">Pyroxene</text>
+            <line x1="180" y1="121" x2="180" y2="135" stroke="#a63d1f"/>
+            <rect x="120" y="135" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/>
+            <text x="180" y="152" text-anchor="middle">Amphibole</text>
+            <line x1="180" y1="161" x2="180" y2="175" stroke="#a63d1f"/>
+            <rect x="120" y="175" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/>
+            <text x="180" y="192" text-anchor="middle">Biotite</text>
+          </g>
+
+          <!-- continuous branch -->
+          <text x="420" y="45" font-size="10.5" fill="#9c6b30" text-anchor="middle">continuous</text>
+          <g font-size="12" fill="#20241f">
+            <rect x="360" y="55" width="130" height="26" rx="4" fill="#f1e6d3" stroke="#9c6b30"/>
+            <text x="425" y="72" text-anchor="middle">Ca-plagioclase</text>
+            <line x1="425" y1="81" x2="425" y2="135" stroke="#9c6b30"/>
+            <rect x="360" y="135" width="130" height="26" rx="4" fill="#f1e6d3" stroke="#9c6b30"/>
+            <text x="425" y="152" text-anchor="middle">Na-plagioclase</text>
+          </g>
+
+          <!-- convergence -->
+          <line x1="180" y1="201" x2="300" y2="220" stroke="#8a8f83"/>
+          <line x1="425" y1="161" x2="300" y2="220" stroke="#8a8f83"/>
+          <rect x="240" y="220" width="120" height="26" rx="4" fill="#eef0ea" stroke="#8a8f83"/>
+          <text x="300" y="237" text-anchor="middle" font-size="12">K-feldspar</text>
+          <line x1="300" y1="246" x2="300" y2="258" stroke="#8a8f83"/>
+          <rect x="240" y="258" width="120" height="26" rx="4" fill="#eef0ea" stroke="#8a8f83"/>
+          <text x="300" y="275" text-anchor="middle" font-size="12">Quartz</text>
+
+          <!-- weathering arrow -->
+          <line x1="530" y1="60" x2="530" y2="270" stroke="#1f6e73" stroke-width="2" marker-end="url(#arrow)"/>
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#1f6e73"/>
+            </marker>
+          </defs>
+          <text x="545" y="70" font-size="11" fill="#1f6e73">weathers fastest</text>
+          <text x="545" y="262" font-size="11" fill="#1f6e73">weathers slowest</text>
+          <text x="545" y="165" font-size="10.5" fill="#4b5148" transform="rotate(90 545 165)"></text>
+        </svg>
+        <div class="diagram-caption">Original diagram — not a reproduction of Marshak's figure. Boxed feature in the text: <span class="cite p" style="margin-left:0;">M 105, Box 4.1</span>. Minerals crystallizing first (high T) are also least stable at the surface — same order as the Goldich weathering series, just read in reverse.</div>
+      </div>
+
+      <p><strong>Igneous process vocabulary:</strong> fractional crystallization, partial melting, assimilation, magma mixing, crystal settling — definitions, not derivations, at FG level. <span class="cite p">M 99–104, §4.2–4.3</span></p>
+
+      <p><strong>Phase diagrams, exsolution, nucleation</strong> (B-2.2) — Marshak doesn't cover these by name; Klein &amp; Dutrow does, in a dedicated chapter: <span class="cite p">K 249, Ch. 11, "Mineral Stability and Phase Diagrams"</span></p>
+      <ul>
+        <li><strong>Phase diagram</strong> — a plot (often T vs. composition, or T vs. P) showing which mineral phase(s) are stable under given conditions; Bowen's diagram above is itself a simplified phase-relationship diagram.</li>
+        <li><strong>Exsolution</strong> — a single homogeneous mineral, stable at high temperature, "unmixes" into two distinct mineral phases as it cools and solubility drops (classic example: perthite, exsolved intergrowths of K-feldspar and Na-plagioclase). <span class="cite p">K 276, "Exsolution"</span></li>
+        <li><strong>Nucleation</strong> — the initial formation of a tiny stable crystal from melt/solution, the first step before crystal growth. <span class="cite gap">Gap — not treated distinctly as a named concept in either source at the igneous-process level; standard petrology/crystallization theory</span></li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2 &nbsp;<span style="font-size:11px;color:var(--ink-soft);">(B-2.3, B-2.4)</span></div>
+      <h3 class="sub-title">Igneous petrogenesis, tectonic settings &amp; volcanism</h3>
+      <p style="font-size:13px;color:var(--gap);">Added after cross-checking against ASBOG's detailed Domain B document — previously the guide covered <em>what</em> igneous rocks are but not <em>where/why</em> they form, or volcano types/eruption behavior at all.</p>
+
+      <p><strong>Tectonic settings of igneous activity</strong> — Marshak covers this directly, tied to the volcanism chapter: <span class="cite p">M 135, "Relation of Volcanism to Plate Tectonics"</span></p>
+      <table>
+        <tr><th>Setting</th><th>Typical magma</th><th>Example</th></tr>
+        <tr><td>Mid-ocean ridge spreading centers</td><td>Mafic (basalt/gabbro) — decompression melting of mantle peridotite</td><td>Mid-Atlantic Ridge</td></tr>
+        <tr><td>Subduction zones (continental arc)</td><td>Intermediate (andesite/diorite) — flux melting from subducted slab's water content</td><td>Andes, Cascades</td></tr>
+        <tr><td>Subduction zones (island arc)</td><td>Mafic to intermediate</td><td>Aleutians, Japan</td></tr>
+        <tr><td>Hotspots</td><td>Mafic (basalt) — melting over a stationary mantle plume, independent of plate boundaries</td><td>Hawaii, Yellowstone</td></tr>
+        <tr><td>Continental rift zones</td><td>Bimodal (basalt + rhyolite)</td><td>East African Rift</td></tr>
+      </table>
+
+      <p><strong>Volcano types and eruption style</strong> — directly covered, Ch. 5: <span class="cite p">M 126, "Shield, Cinder Cone, and Composite Volcanoes"</span></p>
+      <ul>
+        <li><strong>Shield volcano</strong> — broad, gently-sloping, built from many low-viscosity basaltic lava flows (effusive eruptions). Example: Mauna Loa.</li>
+        <li><strong>Cinder cone</strong> — small, steep, built from a single eruption's basaltic cinders/lapilli (fountaining eruptions).</li>
+        <li><strong>Stratovolcano (composite volcano)</strong> — large, steep-sided, alternating lava flows and pyroclastic layers from more viscous, gas-rich intermediate-to-felsic magma. Example: Mt. St. Helens. Associated with the most explosive, hazardous eruptions. <span class="cite p">M 137, "Beware: Volcanoes Are Hazards!"</span></li>
+      </ul>
+      <p><strong>Volcanic Explosivity Index (VEI)</strong> — a logarithmic 0–8 scale ranking eruption magnitude, based on ejecta volume, plume height, and duration. Devised by Newhall &amp; Self (USGS, 1982) — not in any of the six geology textbooks/manuals checked, but it's a standard, citable, widely-used index outside those texts. <span class="cite m">Newhall, C.G. &amp; Self, S. (1982), <em>J. Geophys. Res.</em> 87(C2)</span></p>
+      <p style="font-size:13px;">Related, and actually covered: <strong>Plinian eruption</strong> — the term for the most violently explosive eruption style (tall ash/gas column reaching the stratosphere), the qualitative top end of what VEI measures numerically. <span class="cite m">E Ch.4, "Volcanism"</span></p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Sedimentary rocks</h3>
+      <p>Two tracks: clastic (grain size) and chemical/biochemical (composition). Grain-size classification: <span class="cite p">M 167–168, Table 6.1 / Fig. 6.4</span>; 5-step lithification process: <span class="cite p">M 165, Fig. 6.2</span></p>
+
+      <table>
+        <tr><th>Grain size</th><th>Sediment</th><th>Rock name</th></tr>
+        <tr><td>&gt;2 mm</td><td>Gravel</td><td>Conglomerate (rounded) / Breccia (angular)</td></tr>
+        <tr><td>1/16–2 mm</td><td>Sand</td><td>Sandstone (quartz arenite / arkose / graywacke)</td></tr>
+        <tr><td>1/256–1/16 mm</td><td>Silt</td><td>Siltstone</td></tr>
+        <tr><td>&lt;1/256 mm</td><td>Clay</td><td>Claystone / Shale (fissile)</td></tr>
+      </table>
+
+      <p><strong>Chemical/biochemical:</strong> Limestone (calcite), Dolostone (diagenetic dolomitization of limestone), Chert (biogenic or chemical SiO&#8322;), Evaporites (gypsum, anhydrite, halite), Coal. <span class="cite p">M 164–172, §6.2</span></p>
+
+      <p><strong>Mineralogy tied to environmental setting</strong> (B-3.2) — the same mineral in a sedimentary rock is a clue to the depositional environment: heavy, chemically resistant minerals (zircon, magnetite, garnet) concentrate in high-energy beach/placer settings; clay minerals dominate quiet low-energy settings (lakes, deep marine); evaporite minerals require arid, restricted-basin settings. <span class="cite gap">Gap — this framing isn't spelled out as a unified concept in Marshak, though each piece appears separately</span></p>
+
+      <div class="gap-box"><strong>Diagenesis</strong> gets brief treatment in this textbook relative to how ASBOG weights it <span class="cite p">M 185</span> — this is a strength area for you already, so the gap matters less, but don't assume Marshak's coverage alone is sufficient depth here. <strong>Redoximorphic features</strong> (B-3.3) — mottling, color banding, and Fe/Mn concentration or depletion zones that record alternating oxidizing/reducing conditions during diagenesis (or soil formation) — aren't named in Marshak either. <span class="cite gap">Gap — general soil-science/diagenesis knowledge, directly in your wheelhouse</span></div>
+
+      <p style="font-size:13px;"><strong>Field weathering-grade terminology</strong> — a practical, real-world framework worth knowing exists even if FG is unlikely to test it directly: the Bureau of Reclamation's field manual defines a 9-step weathering scale (W1 "fresh" through W9 "decomposed, resembles soil") based on discoloration, fracture condition, and hammer-ring test, plus a parallel hardness scale (H1–H7) — this is PG/field-application territory, not FG recall, but grounds the abstract "weathering" concept in something concrete. <span class="cite m">USBR Field Manual, Vol. 1, Ch. 4, Table 4-4</span></p>
+
+      <p><strong>Sedimentary structures:</strong> graded bedding, cross-bedding <span class="cite p">M 175, Fig. 6.13</span>, ripple marks, mud cracks <span class="cite p">M 177, Fig. 6.15</span>, flaser/wavy/lenticular bedding, bioturbation.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Metamorphic rocks</h3>
+      <p>Three controls: contact (localized heat, non-foliated), regional (heat + directed pressure, foliated), dynamic/cataclastic (fault-zone deformation). Causes/processes: <span class="cite p">M 190–193, §7.2</span></p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Foliated Metamorphic Grade Progression</text>
+          <line x1="50" y1="70" x2="650" y2="70" stroke="#a63d1f" stroke-width="2" marker-end="url(#arrow2)"/>
+          <defs><marker id="arrow2" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#a63d1f"/></marker></defs>
+          <g font-size="12" fill="#20241f" text-anchor="middle">
+            <text x="90" y="60">Shale</text>
+            <text x="230" y="60">Slate</text>
+            <text x="370" y="60">Phyllite</text>
+            <text x="510" y="60">Schist</text>
+            <text x="620" y="60">Gneiss</text>
+          </g>
+          <g font-size="10" fill="#4b5148" text-anchor="middle">
+            <text x="90" y="95">protolith</text>
+            <text x="230" y="95">slaty cleavage</text>
+            <text x="370" y="95">silky sheen</text>
+            <text x="510" y="95">visible mica</text>
+            <text x="620" y="95">coarse banding</text>
+          </g>
+          <text x="650" y="115" text-anchor="end" font-size="10.5" fill="#a63d1f">increasing grade →</text>
+        </svg>
+        <div class="diagram-caption">Original diagram. Marshak's equivalent figure — literally titled "Intensity of metamorphism is indicated by metamorphic grade": <span class="cite p" style="margin-left:0;">M 199, Fig. 7.8</span>. Slate example: <span class="cite p">M 194, Fig. 7.4</span></div>
+      </div>
+
+      <p><strong>Non-foliated:</strong> Limestone→Marble, Quartz sandstone→Quartzite, Basalt (contact)→Hornfels.</p>
+
+      <p><strong>Grade/index minerals (Barrovian sequence):</strong> Chlorite → Biotite → Garnet → Staurolite → Kyanite → Sillimanite. Combined with the Al&#8322;SiO&#8325; polymorph triangle (Mineralogy §1.3), this answers both "what grade" and "what P-T regime" from mineral assemblage alone.</p>
+
+      <p><strong>Metamorphic facies</strong> <span class="cite p">M 200, Box 7.1</span> — boxed feature, easy to skip if flipping fast. Normal geothermal gradient: Zeolite → Greenschist → Amphibolite → Granulite. Subduction-related (high P, low T): Blueschist → Eclogite. Environments overview: <span class="cite p">M 198–207, §7.4 &amp; p.204–205</span></p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- GEOCHEMISTRY -->
+  <!-- ============================================================ -->
+  <section class="category geo" id="geochemistry">
+    <div class="cat-header">
+      <div class="cat-label">03 / Geochemistry</div>
+      <h2 class="cat-title">Earth composition, weathering, isotopes, and alteration</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1 &nbsp;<span style="font-size:11px;color:var(--ink-soft);">(B-5.1, B-5.2, B-5.4)</span></div>
+      <h3 class="sub-title">Earth's chemical composition, element classification &amp; stability diagrams</h3>
+      <p style="font-size:13px;color:var(--gap);">Added after cross-checking against ASBOG's detailed Domain B document — this was a fully missing subsection, not a refinement of existing content.</p>
+
+      <p><strong>Composition of Earth's layers</strong> — whole-Earth vs. crust-only composition are genuinely different, and mixing them up is an easy mistake: <span class="cite g">M 27, Fig. 1.12</span> (whole Earth) vs. <span class="cite g">M 31, Fig. 1.16</span> (crust only)</p>
+      <table>
+        <tr><th>Reservoir</th><th>Dominant elements (by mass)</th><th>Note</th></tr>
+        <tr><td>Whole Earth</td><td>Fe 32%, O 30%, Si 15%, Mg 14%</td><td>Iron dominates because the dense core is iron-rich</td></tr>
+        <tr><td>Crust only</td><td>O most abundant, then Si, Al, Fe</td><td>Oxygen dominates — crust is depleted in the iron that sank to the core</td></tr>
+        <tr><td>Core</td><td>~85% Fe, ~5% Ni, ~10% lighter element (O/Si/S)</td><td>Composition inferred from meteorites + seismic behavior, not direct sampling</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--ink-soft);">Core composition detail: <span class="cite g">M 258, Interlude D</span></p>
+
+      <p><strong>Element classification and associations</strong> (B-5.2) — standard periodic-table groupings, worth knowing by geochemical behavior rather than just position. Halides and noble/inert gases are directly covered in an open-access source: <span class="cite m">E Ch.2, §2.1 &amp; §2.3</span></p>
+      <ul>
+        <li><strong>Halides</strong> — Group 17 (F, Cl, Br, I) plus At; anion in halide minerals (halite, fluorite). <span class="cite m">E §2.3, "Mineral Groups"</span></li>
+        <li><strong>Noble (inert) gases</strong> — Group 18 (He, Ne, Ar, Kr, Xe); full outer electron shell means no tendency to bond — explicitly why K-Ar dating works (radiogenic Ar stays trapped rather than reacting away). <span class="cite m">E §2.1, "Electrons, Protons, Neutrons, and Atoms"</span></li>
+        <li><strong>Transition elements</strong> — the d-block metals (Fe, Cu, Zn, Ni, etc.); variable oxidation states make them geochemically mobile and central to ore deposits/redox chemistry. Now solidly covered — Luther devotes two full chapters to this group specifically. <span class="cite m">L 237, Ch.8 "Introduction to Transition Metals"</span> &middot; <span class="cite m">L 356, Ch.10 "Transition Metals in Natural Systems"</span></li>
+      </ul>
+
+      <p><strong>Stability diagrams</strong> (B-5.4) — squarely in your own background. Klein &amp; Dutrow covers this with a full chapter: <span class="cite g">K 249, Ch. 11, "Mineral Stability and Phase Diagrams"</span>, Eh-pH diagrams specifically <span class="cite g">K 262</span></p>
+      <ul>
+        <li><strong>Eh-pH (Pourbaix) diagrams</strong> — plot redox potential (Eh) against pH to show which mineral/ionic species is stable under given water-chemistry conditions. Standard tool for predicting mineral stability in weathering, acid mine drainage, and groundwater geochemistry.</li>
+        <li><strong>P-T diagrams</strong> — pressure-temperature stability fields; this is the same logic behind the Al&#8322;SiO&#8325; polymorph triangle (Mineralogy §1.3) and metamorphic facies (Petrology §2.4) — a P-T diagram is just that logic made explicit and graphical.</li>
+        <li><strong>T-X diagrams</strong> — temperature vs. composition; this is what Bowen's Reaction Series actually is, formalized (Petrology §2.1).</li>
+      </ul>
+      <p style="font-size:12.5px;color:var(--ink-soft);">Note the pattern: three of ASBOG's named diagram types (T-X, P-T, Eh-pH) are formalized versions of concepts already in this guide under other names — Bowen's series, the metamorphic facies/polymorph logic, and redox weathering, respectively.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Fundamentals of geochemical reactions and weathering</h3>
+      <p>This overlaps your existing expertise — treat this as reframing into ASBOG vocabulary rather than new learning. Weathering overview: <span class="cite g">M 148–162, Interlude B</span>, esp. §B.2 <span class="cite g">M 150</span> and the "Geology at a Glance" spread <span class="cite g">M 154–155</span></p>
+
+      <ul>
+        <li><strong>Goldich weathering stability series</strong> — inverse of Bowen's crystallization order (Petrology §2.1). Olivine/Ca-plagioclase weather fastest; quartz/muscovite most resistant. Named and sourced (S.S. Goldich, 1938) — covered directly in an open-access source. <span class="cite m">LT — <em>Mineralogy</em> (Perkins et al.), Geosciences LibreTexts, §7.1.3 "Ease of Weathering"</span></li>
+        <li><strong>Redox potential / master variables</strong> — pH, Eh, and ionic strength as the "master variables" controlling aqueous geochemical behavior (directly underlies the Eh-pH diagrams in §3.1). <span class="cite m">L 11, Ch.1</span></li>
+        <li><strong>Congruent vs. incongruent dissolution</strong> — congruent = full dissolution (halite, calcite in acid); incongruent = partial dissolution + new solid residue (feldspar → clay + ions). <span class="cite gap">Gap — checked six sources (Marshak, Klein &amp; Dutrow, White, Earle, USBR field manual, Luther); terminology not named in any, though the underlying feldspar-to-clay process is covered (Earle Ch.5, Luther's dissolution chemistry) without this specific vocabulary</span></li>
+        <li><strong>Redox / pyrite oxidation</strong> — appears directly in ASBOG's own sample questions (pyrite + water at surface → acidic runoff). <span class="cite asbog">ASBOG Handbook, Appendix 3, Q1</span></li>
+        <li><strong>Solubility controls</strong> — pH/Eh govern mineral solubility; carbonate solubility rises with decreasing pH and increasing CO&#8322; (karst chemistry — your territory).</li>
+        <li><strong>Clay mineral sequence</strong> — smectite → illite → kaolinite as a weathering-intensity/leaching gradient (kaolinite = most weathered end-member).</li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Isotope geochemistry &amp; geochronology</h3>
+      <p>Directly in the ASBOG task list ("evaluate geochemical and isotopic data") and in the official sample questions (K-Ar dating of two Miocene ash beds). Marshak covers this thinly, in Ch. 10 "Deep Time" rather than a dedicated chapter <span class="cite g">M 320–322, §10.7</span>. White's <em>Isotope Geochemistry</em> is a full dedicated text — this is where the real depth (and the numbers below) comes from: decay-constant table <span class="cite g">W 33</span>.</p>
+
+      <table>
+        <tr><th>System</th><th>Half-life</th><th>Daughter</th><th>Best for</th></tr>
+        <tr><td>K-Ar / Ar-Ar</td><td>1.28 Ga</td><td>&#8308;&#8304;Ar, &#8308;&#8304;Ca</td><td>Volcanic rocks, K-bearing minerals — fits Miocene ash scenario</td></tr>
+        <tr><td>U-Pb</td><td>4.47 Ga (U-238) / 0.707 Ga (U-235)</td><td>&#8322;&#8320;&#8326;Pb / &#8322;&#8320;&#8324;Pb</td><td>Zircons, very old igneous/metamorphic rocks</td></tr>
+        <tr><td>Rb-Sr</td><td>48.8 Ga</td><td>&#8318;&#8324;Sr</td><td>Whole-rock igneous/metamorphic, isochron method</td></tr>
+        <tr><td>Sm-Nd</td><td>106 Ga</td><td>&#185;&#8308;&#179;Nd</td><td>Mafic/ultramafic, mantle-derived</td></tr>
+        <tr><td>Lu-Hf</td><td>36 Ga</td><td>&#185;&#8327;&#8310;Hf</td><td>Long-lived, mantle/crust evolution studies</td></tr>
+        <tr><td>Re-Os</td><td>42.3 Ga</td><td>&#185;&#8327;&#8324;Os</td><td>Mafic/ultramafic, sulfide ore dating</td></tr>
+        <tr><td>Th-Pb</td><td>14 Ga (Th-232)</td><td>&#178;&#8304;&#8312;Pb</td><td>Long-lived, used alongside U-Pb</td></tr>
+        <tr><td>Carbon-14</td><td>5,730 yr</td><td>&#185;&#8308;N</td><td>Organic material, &lt;~50,000 yrs — classic wrong-answer trap for "old rock" questions</td></tr>
+        <tr><td>U-series (U-Th)</td><td>~75 kyr (Th-230)</td><td>&#178;&#179;&#8304;Th</td><td>Young carbonates, speleothems, Quaternary</td></tr>
+        <tr><td>Optically Stimulated Luminescence (OSL)</td><td>N/A — not radiometric</td><td>N/A</td><td>Dates the last time buried sediment grains were exposed to sunlight (0–~150 kyr range); measures trapped-electron signal, not isotope decay. <span class="cite gap" style="margin-left:0;">Gap — not in Marshak or White; named explicitly in ASBOG's B-5.5</span></td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--ink-soft);">All half-lives above are now verified against White's own decay-constant table <span class="cite g" style="margin-left:0;">W 33</span> rather than general recollection — K-Ar, Rb-Sr, and Sm-Nd values matched what was already in this guide; the rest are additions.</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Radioactive Decay: Parent Remaining vs. Half-Lives Elapsed</text>
+          <line x1="60" y1="180" x2="640" y2="180" stroke="#c9cdc0" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="60" y2="35" stroke="#c9cdc0" stroke-width="1.5"/>
+          <text x="30" y="184" font-size="9" fill="#4b5148">0%</text>
+          <text x="18" y="40" font-size="9" fill="#4b5148">100%</text>
+          <text x="350" y="205" text-anchor="middle" font-size="10" fill="#4b5148">half-lives elapsed (t / t&#189;)</text>
+          <path d="M 60,40 C 150,60 200,110 640,175" fill="none" stroke="#1f6e73" stroke-width="2.5"/>
+          <g font-size="9" fill="#20241f">
+            <line x1="176" y1="110" x2="176" y2="180" stroke="#c9cdc0" stroke-dasharray="3,3"/>
+            <circle cx="176" cy="110" r="3" fill="#1f6e73"/>
+            <text x="176" y="195" text-anchor="middle">1 t&#189; (50%)</text>
+            <line x1="292" y1="145" x2="292" y2="180" stroke="#c9cdc0" stroke-dasharray="3,3"/>
+            <circle cx="292" cy="145" r="3" fill="#1f6e73"/>
+            <text x="292" y="195" text-anchor="middle">2 t&#189; (25%)</text>
+            <line x1="408" y1="163" x2="408" y2="180" stroke="#c9cdc0" stroke-dasharray="3,3"/>
+            <circle cx="408" cy="163" r="3" fill="#1f6e73"/>
+            <text x="408" y="195" text-anchor="middle">3 t&#189; (12.5%)</text>
+          </g>
+          <text x="640" y="205" text-anchor="end" font-size="9" fill="#4b5148" font-style="italic">standard exponential decay, same shape for every system above</text>
+        </svg>
+        <div class="diagram-caption">Original diagram — general radioactive-decay relationship, same curve shape regardless of which system's half-life you plug in. Formal definition: <span class="cite g" style="margin-left:0;">W 33, "This is the definition of the half-life"</span></div>
+      </div>
+
+      <p><strong>Stable isotopes</strong> — no longer a gap. White defines the &#948; notation formally: <span class="cite g">W 246, §8.2.1</span></p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--geochem-soft);padding:10px 14px;border-radius:var(--radius);">&#948;<sup>18</sup>O = [(<sup>18</sup>O/<sup>16</sup>O)<sub>sample</sub> &#8722; (<sup>18</sup>O/<sup>16</sup>O)<sub>SMOW</sub>] / (<sup>18</sup>O/<sup>16</sup>O)<sub>SMOW</sub> &#215; 1000 (permil, ‰)</p>
+      <p>SMOW = Standard Mean Ocean Water, the reference standard for oxygen/hydrogen isotopes. The fractionation factor &#945; and its relationship to &#916; (&#916; &#8776; (&#945;&#8722;1)&#215;10&#179;) are covered right after <span class="cite g">W 246, §8.2.2</span>. &#948;&#185;&#179;C uses the PDB standard instead of SMOW — same permil logic, different reference material.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">Geochemical models, alteration, and diagnostic tools</h3>
+      <p>Maps to ASBOG Task 9 (construct geochemical models) and Task 10 (rock/mineral alteration). Ore/economic mineral geochemistry sits in Marshak's Ch. 12, "Riches in Rock" <span class="cite g">M 375–383</span> — that's really Category 8 (Economic Geology) territory; treat as cross-reference only.</p>
+
+      <div class="gap-box">
+        <strong>Not in Marshak</strong> — the following are standard, valid ASBOG content, but this intro-level "essentials" textbook doesn't cover them at this depth. No page reference exists; treat these as needing a supplemental source before flashcard-lock:
+        <ul style="margin:8px 0 0;">
+          <li>Porphyry alteration zonation (potassic → phyllic → argillic → propylitic)</li>
+          <li>CIPW normative mineralogy</li>
+          <li>QAPF / TAS classification diagrams</li>
+        </ul>
+      </div>
+
+      <p><strong>Rock cycle / material cycling</strong> — the connective thread across this whole category: <span class="cite g">M 210–216, Interlude C</span>, overview spread <span class="cite g">M 214–215</span></p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite m">M 83</span> Marshak, <em>Essentials of Geology</em> 4th ed. — verified page from your uploaded copy</div>
+    <div class="legend-row"><span class="cite m">K 545</span> Klein &amp; Dutrow, <em>Manual of Mineral Science</em> 23rd ed. — verified page/chapter; OCR scan, so exact subscripted formulas are cross-checked against standard mineralogy rather than trusted verbatim</div>
+    <div class="legend-row"><span class="cite m">W 33</span> White, <em>Isotope Geochemistry</em> — verified page/table, clean digital text</div>
+    <div class="legend-row"><span class="cite m">E Ch.2</span> Earle, <em>Physical Geology</em> (BCcampus/Pressbooks) — open-access, CC BY 4.0; cited by chapter/section rather than page since it's a web-native text without fixed pagination</div>
+    <div class="legend-row"><span class="cite m">USBR</span> Bureau of Reclamation Engineering Geology Field Manual — US federal government publication, public domain; practical/field-application framing rather than academic, so treated as supplementary context rather than FG-exam-weighted content</div>
+    <div class="legend-row"><span class="cite m">L 237</span> Luther, <em>Inorganic Chemistry for Geochemistry and Environmental Sciences</em> (Wiley, 2016) — verified page, clean digital text; graduate-level chemistry depth, well beyond FG recall level in most places — cited for the specific concepts named, not as required reading</div>
+    <div class="legend-row"><span class="cite m">LT</span> Geosciences LibreTexts network — open-access (CC BY-NC-SA), aggregates multiple open geology textbooks; cited by book/section since it's web-native</div>
+    <div class="legend-row"><span class="cite asbog">ASBOG p.41</span> ASBOG Candidate Handbook (Jan 2024) — official scope/blueprint or sample question</div>
+    <div class="legend-row"><span class="cite gap">Gap</span> Checked six sources (Marshak, Klein &amp; Dutrow, White, Earle, USBR field manual, Luther) plus a LibreTexts/general search pass. As of this final pass, two items remain genuinely unsourced to any of them: silicosis, and congruent/incongruent dissolution terminology. Both are real, valid ASBOG content — just without a page to point to.</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">This guide is intentionally lean per our study-strategy discussion — it's the reference layer, not the practice layer. Diagrams are original constructions built as drawing-practice targets, not reproductions of any source's figures. Chemical formulas in §1.3 are hidden by default (click to reveal) — this section works as a quick verbatim-recall check, separate from the flashcards.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Corrected this pass:</strong> the Mohs-hardness "exponential curve" earlier attributed to Marshak's Fig. 3.1 was a misremembered citation — that figure is actually an unrelated copper-ore photo. The curve is included in §1.2 as general knowledge, properly labeled as not sourced to either textbook.</p>
+  </div>
+</footer>
+
+</body>
+</html>

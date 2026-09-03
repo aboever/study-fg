@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain F: Hydrogeology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --f1:#2f6b6e; --f1-soft:#dcebea;
+    --f2:#93691a; --f2-soft:#f0e6d2;
+    --f3:#6d3f60; --f3-soft:#ecdfe8;
+    --f4:#3b5b7a; --f4-soft:#dde6ee;
+    --f5:#a3462c; --f5-soft:#f4ded6;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.cycle .cat{color:var(--f1);}
+  nav.toc a.props .cat{color:var(--f2);}
+  nav.toc a.flow .cat{color:var(--f3);}
+  nav.toc a.methods .cat{color:var(--f4);}
+  nav.toc a.geochem .cat{color:var(--f5);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.cycle::before{background:var(--f1);}
+  .category.props::before{background:var(--f2);}
+  .category.flow::before{background:var(--f3);}
+  .category.methods::before{background:var(--f4);}
+  .category.geochem::before{background:var(--f5);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.cycle .cat-label{color:var(--f1);}
+  .category.props .cat-label{color:var(--f2);}
+  .category.flow .cat-label{color:var(--f3);}
+  .category.methods .cat-label{color:var(--f4);}
+  .category.geochem .cat-label{color:var(--f5);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.v{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.pg{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .note-box{
+    background:#eceeea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+    color:var(--ink-soft);
+  }
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain F: Hydrogeology</h1>
+    <p class="subtitle">Given your background in low-P/T geochemistry and hydrology, this is your strength domain — treat this guide as a targeted check of ASBOG-specific vocabulary and the mechanics-heavy subtopics (flow nets, pumping-test analysis, storage terms) rather than a first introduction. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. first; gaps closed against Freeze &amp; Cherry (1979) <em>Groundwater</em> — the field's foundational text, freely hosted by The Groundwater Project — the Bureau of Reclamation <em>Engineering Geology Field Manual</em>, Stumm &amp; Morgan <em>Aquatic Chemistry</em> 3rd ed., and several other Groundwater Project volumes and peer-reviewed originals.</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain F is FG-scope; three KB items (F-1.7, F-4.1, F-5.4) and all of F-6 are PG-only and excluded here</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite v" style="margin-left:0;">verified</span> <span class="cite gap">gap</span> not resolved in any source checked <span class="cite pg">PG-only</span> excluded from FG scope</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain F Knowledge Base (FG items only)</h2>
+    <p style="margin-bottom:10px;">Paraphrased from the official domain document: hydrologic cycle and hydrostratigraphy (aquifers/aquitards, saturated/unsaturated zones, watershed mass balance, stream discharge and hydrographs, groundwater/surface-water interaction); hydrogeologic properties and principles (head, gradient, hydraulic parameters, Darcy's Law, storage terms); groundwater flow systems (flow nets, flow models, well interference, karst and fractured-rock flow); hydrogeologic methods of investigation (laboratory and field hydraulic tests, single- and multiple-well tests, pumping-test boundary conditions, unsaturated-zone instrumentation, hydrogeophysical methods); aqueous geochemistry and contaminant hydrogeology (geochemical parameters, contaminants, fate and transport, isotopic/tracer studies).</p>
+    <div class="src">Sources: ASBOG Domain F Hydrogeology Knowledge Base (asbog.org/candidates); ASBOG Candidate Handbook (Jan 2024).</div>
+  </div>
+
+  <div class="gap-box">
+    <strong>Read this before the rest of the guide.</strong> Marshak covers the core Ch.16 groundwater material solidly (aquifers/aquitards, water table, Darcy's Law, wells, karst) but — as an intro physical-geology text — has no treatment of aquifer-test analysis, flow nets, numerical flow models, formal storage terminology (transmissivity, storativity, specific yield/retention/storage), or rigorous geochemical/transport theory. Every one of those gaps has been closed against real sources below, principally Freeze &amp; Cherry (1979), which by itself resolves the large majority of what Marshak omits. One item remains genuinely unresolved: <strong>sublimation</strong> as a named component of the watershed water balance does not appear explicitly in any source checked (§1.4) — noted there rather than force-cited.
+  </div>
+
+  <nav class="toc">
+    <a class="cycle" href="#cycle"><span class="cat">Hydrologic Cycle &amp; Hydrostratigraphy</span>Aquifers · Water table · Mass balance · Hydrographs · GW/SW interaction</a>
+    <a class="props" href="#props"><span class="cat">Hydrogeologic Properties &amp; Principles</span>Head · Gradient · Darcy's Law · Storage terms</a>
+    <a class="flow" href="#flow"><span class="cat">Groundwater Flow Systems</span>Flow nets · Flow models · Well interference · Karst/fractured rock</a>
+    <a class="methods" href="#methods"><span class="cat">Methods of Investigation</span>Permeability tests · Slug tests · Pumping tests · Geophysics</a>
+    <a class="geochem" href="#geochem"><span class="cat">Aqueous Geochemistry &amp; Contamination</span>pH/Eh · Contaminants · Transport · Isotopes</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- F-1: HYDROLOGIC CYCLE & HYDROSTRATIGRAPHY -->
+  <!-- ============================================================ -->
+  <section class="category cycle" id="cycle">
+    <div class="cat-header">
+      <div class="cat-label">01 / Hydrologic Cycle &amp; Hydrostratigraphy</div>
+      <h2 class="cat-title">F-1</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">The Hydrologic Cycle</h3>
+      <p>Water circulates among reservoirs — ocean, atmosphere, surface water, glacial ice, groundwater, and living organisms — in the never-ending hydrologic cycle <span class="cite v">Marshak Interlude F.4, pp.390–393</span>. About 30% of ocean volume evaporates annually; ~76% of atmospheric water precipitates directly back into the ocean, the remainder onto land, where it infiltrates, runs off, or returns to the atmosphere by evapotranspiration (the sum of evaporation from water/ground surfaces plus plant/animal release) <span class="cite v">Marshak p.390</span>.</p>
+      <p>At the regional scale, groundwater flow forms part of a larger steady-state system linking recharge areas, discharge areas, and groundwater divides — the framework used to quantitatively interpret flow systems and hydrologic budgets <span class="cite v">Freeze &amp; Cherry 1979, Ch.6.1–6.2</span>. A parallel, more approachable treatment of the cycle's groundwater role is in <span class="cite v">Poeter et al. 2020, <em>Groundwater in Our Water Cycle</em>, pp.17–22</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Aquifers, Aquitards &amp; Hydrostratigraphy</h3>
+      <p>An <strong>aquifer</strong> is sediment or rock with high porosity and permeability; an <strong>aquitard</strong> retards water movement without fully stopping it. An unconfined aquifer has no overlying aquitard; a confined aquifer is isolated from the surface by one <span class="cite v">Marshak p.476</span>.</p>
+      <p>Formal USBR field definitions, useful for precise KB wording: <strong>aquiclude</strong> — relatively impermeable, absorbs water slowly, does not transmit significant groundwater (distinct from an aquitard, which is leaky); <strong>artesian aquifer</strong> — contains water under artesian (hydrostatic) pressure <span class="cite v">USBR Field Manual Vol.1 Ch.9, pp.245–246</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Saturated &amp; Unsaturated Systems</h3>
+      <p>The <strong>unsaturated zone</strong> (Marshak's term; USBR/ASBOG also use <strong>vadose zone</strong> or <strong>zone of aeration</strong> for the same thing) lies between the ground surface and the water table, where pores hold both air and water. The <strong>saturated zone</strong> below has all pores water-filled. The <strong>water table</strong> is the boundary between them; the <strong>capillary fringe</strong> is a thin zone just above it where surface tension pulls water up from the water table <span class="cite v">Marshak pp.477–478</span>.</p>
+      <p>A <strong>perched water table</strong> forms above the regional water table where a lens of impermeable material (e.g., a shale lens in a sand aquifer) locally blocks downward percolation <span class="cite v">Marshak p.477</span>. Negative pore-water pressure in the unsaturated zone is measured with a <strong>tensiometer</strong>; characteristic curves relate unsaturated hydraulic conductivity to moisture content <span class="cite v">Freeze &amp; Cherry 1979, Ch.2.6</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.4</div>
+      <h3 class="sub-title">Watershed Mass Balance &amp; Processes</h3>
+      <p>Evapotranspiration, infiltration, precipitation, and recharge are all defined and quantified in the reservoir-based treatment of the hydrologic cycle <span class="cite v">Marshak Interlude F.4, pp.390–393</span>; steady-state hydrologic budgets formalize this at the watershed/basin scale, including recharge and discharge as explicit budget components <span class="cite v">Freeze &amp; Cherry 1979, Ch.6.2</span>.</p>
+      <div class="gap-box"><strong>Gap:</strong> sublimation (ice/snow → vapor, bypassing the liquid phase) is not named as a discrete water-balance term in Marshak, Freeze &amp; Cherry, or the Groundwater Project water-cycle volume. The concept itself is basic (K–12 level) — just be aware ASBOG may test it as a named term in a mass-balance list without a deep source to cross-check against here.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.5</div>
+      <h3 class="sub-title">Stream Discharge &amp; Hydrographs</h3>
+      <p><strong>Discharge</strong> (Q) = cross-sectional area × average velocity, measured at stream-gauging stations <span class="cite v">Marshak Ch.14.3, pp.420–422</span>. A <strong>hydrograph</strong> is a graph of discharge (or stage) versus time at a point on a stream <span class="cite v">FHWA-NHI-02-001 (2002), <em>Highway Hydrology</em></span>. Key hydrograph features: the <strong>rising limb</strong> (increasing discharge following a rain event), <strong>peak discharge</strong>, the <strong>recession (falling) limb</strong>, and <strong>baseflow</strong> — the sustained, groundwater-derived flow between storm events, separated from stormflow at the recession limb's inflection point.</p>
+      <p>Baseflow can also be separated using environmental isotopes rather than the recession curve alone — comparing the isotopic signature of storm runoff against baseflow's groundwater signature — a technique developed in full in <span class="cite v">Diamond 2022, <em>Stable Isotope Hydrology</em></span> (see §5.5).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.6</div>
+      <h3 class="sub-title">Groundwater/Surface-Water Interaction</h3>
+      <p>Whether a stream is <strong>permanent</strong> or <strong>ephemeral</strong> depends on whether the water table lies above or below the channel bed <span class="cite v">Marshak Ch.14.2, pp.420–421</span>. Diverting surface water from a recharge area can lower the regional water table even where no groundwater is pumped directly — the Everglades case is Marshak's own example <span class="cite v">Marshak pp.484–485</span>.</p>
+      <p>The exchange zone where surface water and groundwater actively mix is the <strong>hyporheic zone</strong>, treated in depth (streams, lakes, wetlands) in <span class="cite v">Woessner 2020, <em>Groundwater-Surface Water Exchange</em></span>; the same steady-state flow-system framework covers groundwater-lake interaction and baseflow recession specifically <span class="cite v">Freeze &amp; Cherry 1979, Ch.6.5–6.7</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- F-2: HYDROGEOLOGIC PROPERTIES & PRINCIPLES -->
+  <!-- ============================================================ -->
+  <section class="category props" id="props">
+    <div class="cat-header">
+      <div class="cat-label">02 / Hydrogeologic Properties &amp; Principles</div>
+      <h2 class="cat-title">F-2</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Hydraulic Head &amp; Hydraulic Gradient</h3>
+      <p><strong>Hydraulic head</strong> is the potential energy driving groundwater flow at a point, measured as the elevation to which water rises in a piezometer. <strong>Hydraulic gradient</strong> is the change in head per unit distance along the flow path: (h₁ − h₂)/l — roughly equal to the water table's slope <span class="cite v">Marshak Box 16.1, p.479</span>. Groundwater flows from higher to lower head, not necessarily "downhill" in a topographic sense. A fuller conceptual/visual treatment of head is in <span class="cite v">Cohen &amp; Cherry 2020, <em>Conceptual and Visual Understanding of Hydraulic Head and Groundwater Flow</em></span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Hydraulic Parameters</h3>
+      <table>
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Porosity</td><td>Total open (pore) space as a fraction of total volume <span class="cite v">Marshak p.474</span></td></tr>
+        <tr><td>Permeability</td><td>Degree to which pores are interconnected, allowing fluid flow <span class="cite v">Marshak p.475</span></td></tr>
+        <tr><td>Hydraulic conductivity (K)</td><td>Coefficient in Darcy's Law; incorporates both material permeability and fluid viscosity <span class="cite v">Marshak Box 16.1, p.479</span></td></tr>
+        <tr><td>Transmissivity (T)</td><td>Average hydraulic conductivity × saturated aquifer thickness; the key parameter in multi-aquifer settings <span class="cite v">Woessner &amp; Poeter 2020, pp.7, 80–86, 93, 225</span>; <span class="cite v">USBR Field Manual Vol.2 Ch.17, pp.107–108</span></td></tr>
+      </table>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Groundwater Flow Concepts</h3>
+      <p><strong>Darcy's Law</strong>: Q = KA(h₁−h₂)/l — discharge is proportional to hydraulic conductivity, cross-sectional area, and hydraulic gradient <span class="cite v">Marshak Box 16.1, p.479</span>.</p>
+      <p>Two distinct velocity concepts are a classic point of confusion: <strong>specific discharge</strong> (Darcy flux, Q/A) is a bulk flow rate through the <em>entire</em> cross-sectional area, including solids — it is not the actual speed of water molecules. <strong>Average linear (seepage) velocity</strong> = specific discharge ÷ effective porosity, and is always larger than specific discharge because flow is confined to the pore space alone <span class="cite v">Devlin 2020, <em>Groundwater Velocity</em>, pp.15–18</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.2.12</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Groundwater Storage</h3>
+      <table>
+        <tr><th>Term</th><th>Definition</th><th>Applies to</th></tr>
+        <tr><td>Specific yield (Sy)</td><td>Volume of water an unconfined aquifer releases per unit surface-area drop in water table, by gravity drainage</td><td>Unconfined</td></tr>
+        <tr><td>Specific retention (Sr)</td><td>Water retained against gravity by molecular/surface-tension forces; Sy + Sr = total porosity</td><td>Unconfined</td></tr>
+        <tr><td>Storativity (S)</td><td>Volume of water an aquifer releases per unit surface area per unit head decline; for confined aquifers, S is small (elastic compression/expansion only)</td><td>Confined</td></tr>
+        <tr><td>Specific storage (Ss)</td><td>Storativity per unit aquifer thickness (S = Ss × thickness)</td><td>Confined</td></tr>
+      </table>
+      <p><span class="cite v">Woessner &amp; Poeter 2020, pp.33–37, 80–86, 94, 98</span>; <span class="cite v">Wang 2020, <em>Groundwater Storage in Confined Aquifers</em>, pp.8, 20–31</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.2.10</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- F-3: GROUNDWATER FLOW SYSTEMS -->
+  <!-- ============================================================ -->
+  <section class="category flow" id="flow">
+    <div class="cat-header">
+      <div class="cat-label">03 / Groundwater Flow Systems</div>
+      <h2 class="cat-title">F-3</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Groundwater Flow Systems &amp; Flow Nets</h3>
+      <p>Regional flow follows curved paths from recharge areas (under topographic highs) to discharge areas (under lows); some water travels deep before returning to the surface <span class="cite v">Marshak Fig.16.5, p.478</span>. A <strong>flow net</strong> is a graphical grid of equipotential lines (constant head) and flow lines (perpendicular to them in isotropic media), used to visualize and quantify flow direction and rate <span class="cite v">Poeter &amp; Hsieh 2020, <em>Graphical Construction of Groundwater Flow Nets</em></span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.5</span>; conceptual grounding in <span class="cite v">Cohen &amp; Cherry 2020, pp.9, 11, 29–37</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Groundwater Flow Models</h3>
+      <p>Numerical models predict aquifer response using <strong>finite-difference</strong> or <strong>finite-element</strong> methods to discretize and solve the groundwater flow equation over a grid; model calibration addresses the "inverse problem" of matching parameters to observed heads. Older <strong>analog simulation</strong> (electrical resistance-capacitance networks) exploited the mathematical equivalence between electrical and groundwater flow before digital methods became standard <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.8–8.9</span>.</p>
+      <div class="note-box"><strong>Beyond FG scope, but useful context:</strong> the dominant real-world tool implementing this theory is <strong>MODFLOW</strong>, the USGS's modular three-dimensional finite-difference groundwater flow model, first released in 1984 and now the de facto worldwide standard. Its defining innovation was a <strong>modular "package" architecture</strong> — separate, independently developed packages handle different boundary conditions and processes (e.g., the River Package, Recharge Package, Well Package, General-Head Boundary Package), sharing a common flow-solution core rather than requiring a monolithic custom code for each new problem. This modularity is why it displaced the earlier generation of purpose-built 2D and 3D codes (Pinder 1970; Prickett &amp; Lonnquist 1971; Trescott 1975) that preceded it. Later versions extended the core code: MODFLOW-96, MODFLOW-2000 (added parameter-estimation processes), MODFLOW-2005, MODFLOW-NWT (Newton-Raphson solver, improved unconfined-aquifer stability), MODFLOW-USG (unstructured grids), and the current MODFLOW 6 (object-oriented rewrite, integrates prior variants into one framework). <span class="cite v">McDonald, Harbaugh &amp; the original authors of MODFLOW 2003, "The History of MODFLOW," <em>Groundwater</em> 41(2), pp.280–283</span> — a peer-reviewed historical note written by MODFLOW's original developers; original program documentation in <span class="cite v">McDonald &amp; Harbaugh 1988, USGS Techniques of Water-Resources Investigations, Book 6, Ch.A1</span>.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Zones of Influence &amp; Well Interference</h3>
+      <p>Pumping draws the water table down around a well into a <strong>cone of depression</strong>; a deep well's drawdown can dry out shallower wells nearby <span class="cite v">Marshak p.480</span>. The local gradient created by a cone of depression can be steep enough to reverse nearby groundwater flow direction — a mechanism by which septic-tank or other nearby contamination can be drawn into a pumping well <span class="cite v">Marshak pp.484–485</span>. Formally, <strong>well interference</strong> occurs where multiple wells' cones of depression overlap; <strong>bounded aquifers</strong> (a nearby recharge or no-flow boundary, such as a stream or impermeable fault) distort the ideal radial drawdown pattern and are analyzed using image-well theory <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.3</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">Karst &amp; Fractured-Rock Flow Systems</h3>
+      <p><strong>Karst</strong>: limestone dissolution below the water table forms caves; if the water table drops, caves drain and speleothems (stalactites/stalagmites) precipitate from dripping water. Collapsed cave terrain produces sinkholes, natural bridges, and disappearing streams <span class="cite v">Marshak Ch.16.7, pp.487–491</span>.</p>
+      <p><strong>Fractured rock</strong>: joints and faults provide <strong>secondary porosity</strong> not present when the rock originally formed <span class="cite v">Marshak Fig.16.2c, p.475</span>; fractured-rock flow behaves as a distinct medium from primary intergranular porosity, with flow concentrated along discrete discontinuities rather than distributed through the matrix <span class="cite v">Woessner &amp; Poeter 2020, pp.7, 62, 71–74, 146–147</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.2.12, Ch.9.2 ("Transport in Fractured Media")</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- F-4: METHODS OF INVESTIGATION -->
+  <!-- ============================================================ -->
+  <section class="category methods" id="methods">
+    <div class="cat-header">
+      <div class="cat-label">04 / Hydrogeologic Methods of Investigation</div>
+      <h2 class="cat-title">F-4 <span style="font-size:14px;font-weight:400;color:var(--ink-soft);">(F-4.1 well drilling/construction is PG-only, excluded)</span></h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.2</div>
+      <h3 class="sub-title">Laboratory &amp; Field Hydraulic Tests</h3>
+      <p>Field permeability tests fall into four types <span class="cite v">USBR Field Manual Vol.2 Ch.17, pp.107–165</span>:</p>
+      <ul>
+        <li><strong>Pressure (packer) tests</strong> — one or two inflatable packers isolate a borehole interval; water is pumped in under pressure; used in stable rock</li>
+        <li><strong>Constant-head gravity tests</strong> — no packers; water level held constant by continuous inflow</li>
+        <li><strong>Falling-head gravity tests</strong> — packers used, only gravity head (no applied pressure)</li>
+        <li><strong>Slug tests</strong> — a small, rapid water-level change; see §4.3</li>
+      </ul>
+      <p>Laboratory permeameter tests on collected samples are generally less reliable than field tests because specimens are rarely truly undisturbed <span class="cite v">USBR Field Manual Vol.2 Ch.17, p.115</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.4</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.3</div>
+      <h3 class="sub-title">Single-Well Tests</h3>
+      <p><strong>Slug tests</strong> induce a rapid, small water-level change (by adding/removing a known volume of water, air, or a solid "slug") and track recovery to the static level; useful where the aquifer can't sustain a full pumping test or where introducing water risks water-quality impact. Two standard analyses: the <strong>Hvorslev method</strong> (assumes a homogeneous, isotropic, infinite medium; neglects wellbore storage) and the <strong>Bouwer-Rice method</strong> (accounts for finite wellbore storage; usable in confined, unconfined, or partially penetrating wells) <span class="cite v">USBR Field Manual Vol.2 Ch.17, pp.166–174</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.5</span>.</p>
+      <p><strong>Specific capacity</strong> = well yield ÷ drawdown at that yield — a quick, approximate index of well/aquifer performance, distinct from a full aquifer test.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.4</div>
+      <h3 class="sub-title">Multiple-Well (Pumping) Tests</h3>
+      <p>A control well is pumped at a constant rate while drawdown is measured over time in one or more nearby observation wells. The classic solution for a fully confined, homogeneous, infinite aquifer is the <strong>Theis solution</strong> <span class="cite v">Theis 1935, <em>Trans. AGU</em> 16(2)</span>, matched to field data via log-log <strong>type-curve matching</strong>. The simplified <strong>Cooper-Jacob (semilog) method</strong> approximates the Theis solution for later time/small radius, plotting drawdown against log-time <span class="cite v">Cooper &amp; Jacob 1946, <em>Trans. AGU</em> 27(4)</span>. Distinct solutions exist for <strong>leaky</strong> (aquitard-connected) and <strong>unconfined</strong> aquifers (the latter complicated by delayed gravity drainage) <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.3, 8.6</span>. A <strong>recovery test</strong> — measuring residual drawdown after pumping stops — is considered an integral companion to any pumping test, not a separate procedure.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.5</div>
+      <h3 class="sub-title">Pumping Test Boundary Conditions</h3>
+      <p>Real aquifers are rarely infinite. A nearby <strong>recharge boundary</strong> (e.g., a hydraulically connected stream) slows drawdown below the ideal Theis curve; a nearby <strong>no-flow (impermeable) boundary</strong> (e.g., a fault or valley wall) accelerates it. Both are modeled using <strong>image-well theory</strong> — placing a hypothetical mirror-image well across the boundary (an injection well for a recharge boundary, a matching pumping well for a no-flow boundary) to reproduce the boundary's effect mathematically <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.3 ("Bounded Aquifers")</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.6</div>
+      <h3 class="sub-title">Investigating the Unsaturated Zone</h3>
+      <table>
+        <tr><th>Instrument</th><th>Measures</th></tr>
+        <tr><td>Tensiometer</td><td>Soil-water (matric) pressure directly, via a porous cup, water-filled tube, and vacuum gauge</td></tr>
+        <tr><td>Gypsum block (resistance block)</td><td>Soil-water content indirectly, via electrical resistance changes as the block equilibrates with surrounding moisture</td></tr>
+        <tr><td>Lysimeter</td><td>Direct pore-water sampling from the unsaturated zone (suction lysimetry) or drainage flux</td></tr>
+        <tr><td>Time domain reflectometry (TDR)</td><td>Soil-water content via the propagation velocity of an electromagnetic pulse along an embedded waveguide</td></tr>
+      </table>
+      <p><span class="cite v">Everett, Hoylman &amp; Wilson 1984, <em>Vadose Zone Monitoring for Hazardous Waste Sites</em></span> (preserved, gw-project.org); tensiometers also in <span class="cite v">Freeze &amp; Cherry 1979, Ch.2.6</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.7</div>
+      <h3 class="sub-title">Hydrogeophysical Methods</h3>
+      <p>All geophysical methods detect a <strong>contrast</strong> in some physical property between materials — no contrast, no signal <span class="cite v">USBR Field Manual Vol.2 Ch.13, p.3</span>.</p>
+      <table>
+        <tr><th>Method</th><th>What it measures</th><th>Typical hydrogeologic use</th></tr>
+        <tr><td>Seismic refraction</td><td>P-wave velocity contrast (assumes velocity increases with depth)</td><td>Depth to bedrock/water table</td></tr>
+        <tr><td>Electrical resistivity — profiling</td><td>Lateral resistivity change, constant electrode spacing</td><td>Aquifer/aquitard mapping</td></tr>
+        <tr><td>Electrical resistivity — sounding</td><td>Vertical resistivity change, varying electrode spacing</td><td>Aquifer delineation, bedrock depth</td></tr>
+        <tr><td>Ground-penetrating radar (GPR)</td><td>Very shallow, high resolution</td><td>Buried pipes/objects; blocked by clay, saline water, and the water table itself</td></tr>
+        <tr><td>Borehole geophysics</td><td>In-hole electric/nuclear/acoustic logs</td><td>Correlate strata, infer lithology/porosity/salinity</td></tr>
+      </table>
+      <p><span class="cite v">USBR Field Manual Vol.2 Ch.13, pp.1–19</span>; <span class="cite v">Freeze &amp; Cherry 1979, Ch.8.2</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- F-5: AQUEOUS GEOCHEMISTRY & CONTAMINANT HYDROGEOLOGY -->
+  <!-- ============================================================ -->
+  <section class="category geochem" id="geochem">
+    <div class="cat-header">
+      <div class="cat-label">05 / Aqueous Geochemistry &amp; Contaminant Hydrogeology</div>
+      <h2 class="cat-title">F-5 <span style="font-size:14px;font-weight:400;color:var(--ink-soft);">(F-5.4 remediation is PG-only, excluded)</span></h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.1</div>
+      <h3 class="sub-title">Groundwater Geochemical Parameters</h3>
+      <p>Natural groundwater quality issues Marshak covers directly: <strong>hard water</strong> (dissolved Ca²⁺/Mg²⁺ from limestone/dolomite, causes scale and poor lathering), dissolved iron (rusty staining), hydrogen sulfide (rotten-egg odor), and arsenic (from dissolving As-bearing minerals) <span class="cite v">Marshak p.486</span>.</p>
+      <p>For the underlying chemistry: <strong>pH</strong> as a master variable in equilibrium calculations, and buffer intensity, are treated rigorously in <span class="cite v">Stumm &amp; Morgan 1996, Ch.3, pp.88–144</span>; <strong>alkalinity</strong> and the carbonate system in <span class="cite v">Stumm &amp; Morgan 1996, Ch.4, pp.148–206</span>; <strong>redox potential (Eh)</strong> and pE-pH (Pourbaix-type) diagrams, plus field measurement of redox potential, in <span class="cite v">Stumm &amp; Morgan 1996, Ch.8, esp. §8.4 p.455, §8.5 p.464, §8.7 p.491</span>. General field-index parameter measurement is also covered in <span class="cite v">Freeze &amp; Cherry 1979, Ch.3</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.2</div>
+      <h3 class="sub-title">Groundwater Contaminants</h3>
+      <p>Sources Marshak names directly: agricultural waste (pesticides, fertilizers, animal sewage), industrial waste, landfill/septic effluent (including bacteria and viruses), petroleum products, radioactive waste, and acid mine drainage from sulfide minerals <span class="cite v">Marshak pp.484–486</span>; a fuller sources-of-contamination taxonomy (land disposal, sewage disposal, agriculture, petroleum spills, deep-well injection) is in <span class="cite v">Freeze &amp; Cherry 1979, Ch.9.5</span>.</p>
+      <p>For organic contaminants specifically — the properties that govern their behavior in groundwater (chemical classes, solubility, Henry's Law/air-water partitioning, octanol-water partitioning) — see <span class="cite v">Mackay, Allen-King &amp; Rixey 2024, <em>Properties of Organic Contaminants</em>, Ch.1–11</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.3</div>
+      <h3 class="sub-title">Contaminant Fate &amp; Transport; Breakthrough Curves</h3>
+      <table>
+        <tr><th>Mechanism</th><th>What it is</th></tr>
+        <tr><td>Advection</td><td>Contaminant carried along with the bulk flow of groundwater at the average linear velocity</td></tr>
+        <tr><td>Dispersion</td><td>Mechanical mixing/spreading from variable flow paths and velocities at the pore scale — spreads a plume beyond what advection alone predicts</td></tr>
+        <tr><td>Diffusion</td><td>Molecular-scale movement down a concentration gradient (Fick's Law); significant even without bulk flow, especially in low-permeability media</td></tr>
+        <tr><td>Sorption</td><td>Partitioning of a contaminant between groundwater and solid aquifer material (a "geosorbent"); retards contaminant movement relative to the water itself</td></tr>
+      </table>
+      <p>Transport-process theory: <span class="cite v">Freeze &amp; Cherry 1979, Ch.9.2, 9.4</span>. Diffusion/advection with Fick's Law derivations: <span class="cite v">McWhorter 2021, <em>Flux Equations for Gas Diffusion in Porous Media</em>, pp.2–55</span>. Sorption mechanics and the sorption coefficient (K_d): <span class="cite v">Stumm &amp; Morgan 1996, Ch.9 §9.7–9.9, pp.586–608</span> (§9.9 is titled specifically "Transport of (Ad)sorbable Constituents in Groundwater and Soil Systems"); <span class="cite v">Mackay, Allen-King &amp; Rixey 2024, Ch.12, pp.82–94</span>.</p>
+      <p>A <strong>breakthrough curve</strong> plots contaminant concentration at a fixed point versus time (or pore volumes) as a plume passes — the standard way transport/sorption behavior is visualized and interpreted from column or field tests <span class="cite v">Woessner 2020, pp.95–98, 116</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.5</div>
+      <h3 class="sub-title">Isotopic &amp; Tracer Studies</h3>
+      <p><strong>Radioactive (age-dating) tracers</strong> — parent isotope decays at a known rate; where both parent and a stable daughter can be measured (e.g., ³H decaying to stable ³He), summing them recovers the initial parent concentration for a groundwater age estimate. <strong>Tritium (³H)</strong> indicates recent recharge (decades-scale, half-life 12.3 yr); <strong>carbon-14</strong> indicates older groundwater (thousands-of-years scale, half-life 5,730 yr) <span class="cite v">Cook 2020, <em>Introduction to Isotopes and Environmental Tracers as Indicators of Groundwater Flow</em>, §2.3 "Radioactive Tracers," pp.14, 42, 49, 51</span>.</p>
+      <p><strong>Stable isotopes</strong> — oxygen-18 and deuterium (²H) trace recharge source, elevation, and climate signal rather than providing decay-based dating; <strong>noble gases</strong> (e.g., dissolved Ne/Ar) provide an independent recharge-temperature proxy <span class="cite v">Cook 2020, §2.6–2.7, pp.74–82</span>. Environmental tracers are also used for <strong>groundwater mixing analysis</strong> (end-member concentrations define a straight line for two-source mixing, a triangle for three-source) and for <strong>calibrating numerical groundwater-age models</strong> against measured tracer ages <span class="cite v">Cook 2020, Ch.3 ("Investigating Groundwater Mixing," "Calibrating Groundwater Models")</span>.</p>
+      <p>A dedicated, more mechanistic treatment of stable-isotope behavior — fractionation and distillation theory, meteoric water lines, the deuterium-excess parameter, and isotope-based hydrograph separation and recharge estimation — is in <span class="cite v">Diamond 2022, <em>Stable Isotope Hydrology</em></span>. General environmental-isotope grounding also in <span class="cite v">Freeze &amp; Cherry 1979, Ch.3.8</span>.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite v" style="margin-left:0;">verified</span> Every citation above is spelled out inline (author/source, year, chapter/page) — no separate lookup table needed for what a badge means.</div>
+    <div class="legend-row"><span class="cite gap" style="margin-left:0;">gap</span> Confirmed absent from every source checked (see §1.4).</div>
+    <div class="legend-row"><span class="cite pg" style="margin-left:0;">PG-only</span> Valid Domain F content, but scoped to the PG exam by ASBOG's own Knowledge Base — excluded here (F-1.7, F-4.1, F-5.4, all of F-6).</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">Full source list: Marshak, <em>Essentials of Geology</em> 4th ed.; Freeze &amp; Cherry (1979) <em>Groundwater</em>, Prentice-Hall — freely hosted at fc79.gw-project.org; Bureau of Reclamation <em>Engineering Geology Field Manual</em> Vol.1 &amp; 2; Stumm &amp; Morgan (1996) <em>Aquatic Chemistry</em> 3rd ed., Wiley-Interscience; Theis (1935) and Cooper &amp; Jacob (1946), <em>Trans. AGU</em>; McDonald, Harbaugh &amp; the original authors of MODFLOW (2003), "The History of MODFLOW," <em>Groundwater</em> 41(2); McDonald &amp; Harbaugh (1988), USGS Techniques of Water-Resources Investigations, Book 6 Ch.A1; FHWA-NHI-02-001 (2002) <em>Highway Hydrology</em>; and eight Groundwater Project volumes: Poeter et al. (2020) <em>Groundwater in Our Water Cycle</em>; Woessner &amp; Poeter (2020) <em>Hydrogeologic Properties of Earth Materials and Principles of Groundwater Flow</em>; Cohen &amp; Cherry (2020) <em>Conceptual and Visual Understanding of Hydraulic Head and Groundwater Flow</em>; Poeter &amp; Hsieh (2020) <em>Graphical Construction of Groundwater Flow Nets</em>; Wang (2020) <em>Groundwater Storage in Confined Aquifers</em>; Woessner (2020) <em>Groundwater-Surface Water Exchange</em>; Devlin (2020) <em>Groundwater Velocity</em>; Cook (2020) <em>Introduction to Isotopes and Environmental Tracers</em>; Diamond (2022) <em>Stable Isotope Hydrology</em>; McWhorter (2021) <em>Flux Equations for Gas Diffusion in Porous Media</em>; Everett, Hoylman &amp; Wilson (1984) <em>Vadose Zone Monitoring for Hazardous Waste Sites</em>; Mackay, Allen-King &amp; Rixey (2024) <em>Properties of Organic Contaminants</em>.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Status:</strong> All FG-scope Domain F Knowledge Base items sourced and confirmed, with one flagged exception (§1.4, sublimation). Color slot 5 (rust/terracotta, #a3462c) introduced here for the geochemistry/contamination category — first use of the 5-slot palette; flagged for your confirmation before it becomes the standing convention for future 5-category domains.</p>
+  </div>
+</footer>
+
+</body>
+</html>

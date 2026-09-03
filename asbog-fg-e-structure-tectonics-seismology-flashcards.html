@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Category 5 Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --structural:#5b4a8a;
+    --tectonics:#2f5f7a;
+    --seismology:#a63328;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  /* legend */
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  /* stats bar */
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  /* card */
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .tags{display:flex;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-str{border-color:var(--structural);color:var(--structural);}
+  .tag.cat-tec{border-color:var(--tectonics);color:var(--tectonics);}
+  .tag.cat-sei{border-color:var(--seismology);color:var(--seismology);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+
+  .diagram-reveal svg{width:100%;height:auto;margin-top:10px;}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--tectonics);color:var(--tectonics);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--tectonics);color:#fff;border-color:var(--tectonics);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  /* feedback panel */
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Category 5</div>
+    <h1>Structure, Tectonics &amp; Seismology — Flashcards</h1>
+    <p class="sub">Production and cued recall, weighted heavy per our strategy. No multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty. This is your flagged weak category, so lean on Again/Hard honestly rather than being generous with Good.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--structural);border-radius:50%;"></span>Structural Geology</span>
+    <span><span class="dot" style="background:var(--tectonics);border-radius:50%;"></span>Tectonics</span>
+    <span><span class="dot" style="background:var(--seismology);border-radius:50%;"></span>Seismology</span>
+    <span><span class="cite verified" style="margin:0;">M 00</span>verified page (M=Marshak, Hoek, USBR, Earle, W&amp;S=Waldron&amp;Snyder, White, Andrews)</span>
+    <span><span class="cite asbog" style="margin:0;">ASBOG</span>handbook / official sample Q</span>
+    <span><span class="cite gap" style="margin:0;">Gap</span>not verified — supplement needed</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices — use whichever actually works in your setup. The copy/paste method is the more reliable one if the file picker shows no files, since it doesn't depend on browser download locations or file-type filtering.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request, same as it did in the original discussion.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if you've downloaded this file and opened it standalone in a browser, progress will not persist between sessions — it'll still work for a single sitting, just starting fresh each time you reopen it.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== STRUCTURAL GEOLOGY 1.1 Stress, strain & mechanical behavior =====
+{id:"str-1-1",cat:"str",sub:"1.1 Stress & strain",type:"CUED",
+ front:"Define stress in one sentence.",
+ back:"Stress is force per unit area — the same force concentrated on a small area produces greater stress than the same force spread over a large area.",
+ cites:[{t:"verified",l:"M 269"}]},
+{id:"str-1-2",cat:"str",sub:"1.1 Stress & strain",type:"PRODUCE",
+ front:"List the three stress types and the strain each produces.",
+ back:"Compression → shortening. Tension → stretching. Shear → shear strain (angular distortion). Pressure (equal from all sides) changes volume, not shape.",
+ cites:[{t:"verified",l:"M 269–270"}]},
+{id:"str-1-3",cat:"str",sub:"1.1 Stress & strain",type:"PRODUCE",
+ front:"List the four controls on brittle vs. ductile deformation.",
+ back:"Temperature (warmer → ductile), pressure (higher confining pressure → ductile), strain rate (sudden → brittle, slow/sustained → ductile), composition (some minerals are inherently softer, e.g. halite vs. granite).",
+ cites:[{t:"verified",l:"M 267–268"}]},
+{id:"str-1-4",cat:"str",sub:"1.1 Stress & strain",type:"CUED",
+ front:"At roughly what depth does the brittle-ductile transition occur in typical continental crust, and why does it matter for earthquakes?",
+ back:"~10–15 km. Earthquakes require brittle rupture, so they occur only above this depth.",
+ cites:[{t:"verified",l:"M 268"}]},
+{id:"str-1-5",cat:"str",sub:"1.1 Stress & strain",type:"CUED",
+ front:"Sudden stress application favors ___ deformation; slow, sustained stress favors ___.",
+ back:"Brittle; ductile.",
+ cites:[{t:"verified",l:"M 267"}]},
+
+// ===== STRUCTURAL GEOLOGY 1.2 Rock strength — Mohr circle =====
+{id:"str-2-1",cat:"str",sub:"1.2 Mohr circle",type:"PRODUCE",
+ front:"Write the Mohr-Coulomb failure criterion and define each term.",
+ back:"τ_p = c + σ_n·tan(φ). c = cohesion, the shear strength at zero normal stress. φ = friction angle, the slope of the failure envelope.",
+ cites:[{t:"verified",l:"Hoek Ch.4, Eq.1"}]},
+{id:"str-2-2",cat:"str",sub:"1.2 Mohr circle",type:"CUED",
+ front:"What distinguishes peak strength from residual strength in Hoek's framework?",
+ back:"Peak strength includes true cohesion (from cementing material); after displacement, cohesion drops to zero and residual strength is purely frictional: τ = σ_n·tan(φ_r).",
+ cites:[{t:"verified",l:"Hoek Ch.4"}]},
+{id:"str-2-3",cat:"str",sub:"1.2 Mohr circle",type:"PRODUCE",
+ front:"Given principal stresses σ₁ and σ₃, where is a Mohr circle centered, and what's its radius?",
+ back:"Center = (σ₁+σ₃)/2. Radius = (σ₁−σ₃)/2.",
+ cites:[{t:"verified",l:"standard rock mechanics construction"}]},
+{id:"str-2-4",cat:"str",sub:"1.2 Mohr circle",type:"CUED",
+ front:"Roughly what angle from σ₁ do fractures form, in terms of friction angle φ?",
+ back:"θ ≈ 45° − φ/2 (an acute angle to the maximum principal stress — why conjugate fracture sets form at less than 90° to each other).",
+ cites:[{t:"verified",l:"standard rock mechanics result"}]},
+{id:"str-2-5",cat:"str",sub:"1.2 Mohr circle",type:"CUED",
+ front:"USBR's independent version of the Mohr-Coulomb equation includes a roughness term. Write it.",
+ back:"S = C + N·tan(φ + i), where i is an added roughness angle.",
+ cites:[{t:"verified",l:"USBR Vol.1, Ch.5, p.108"}]},
+
+// ===== STRUCTURAL GEOLOGY 1.3 Brittle structures =====
+{id:"str-3-1",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"Joints vs. faults — what's the defining difference?",
+ back:"Joints: fractures with no measurable offset. Faults: fractures with displacement across them.",
+ cites:[{t:"verified",l:"M 266, 271"}]},
+{id:"str-3-2",cat:"str",sub:"1.3 Brittle structures",type:"PRODUCE",
+ front:"Define strike and dip.",
+ back:"Strike = compass bearing of a horizontal line on the plane, relative to true north. Dip = angle the plane slopes below horizontal, measured perpendicular to strike.",
+ cites:[{t:"verified",l:"M 272, Box 9.1"}]},
+{id:"str-3-3",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"State the right-hand-rule convention for recording strike and dip.",
+ back:"Facing the strike direction, the plane dips downward to your right — equivalently, strike is always 90° counter-clockwise from dip direction.",
+ cites:[{t:"verified",l:"Waldron & Snyder §1.2"},{t:"verified",l:"USBR Vol.1, Ch.5, p.100"}]},
+{id:"str-3-4",cat:"str",sub:"1.3 Brittle structures",type:"PRODUCE",
+ front:"Fill in: for normal, reverse, and strike-slip faults, describe the motion and typical tectonic setting.",
+ back:"Normal: hanging wall down relative to footwall; extension/rifting. Reverse: hanging wall up relative to footwall; compression (gentle-dip reverse = thrust). Strike-slip: sideways motion, no vertical offset; transform boundaries.",
+ cites:[{t:"verified",l:"M 272–274"}]},
+{id:"str-3-5",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"Hanging wall vs. footwall — which sits above the fault surface?",
+ back:"Hanging wall.",
+ cites:[{t:"verified",l:"M 273"}]},
+{id:"str-3-6",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"A gentle-dip reverse fault is specifically called a ___.",
+ back:"Thrust fault.",
+ cites:[{t:"verified",l:"M 273"}]},
+{id:"str-3-7",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"How do you determine left-lateral vs. right-lateral motion on a strike-slip fault?",
+ back:"Face the fault and observe which direction the far (opposite) block moved.",
+ cites:[{t:"verified",l:"M 273"}]},
+{id:"str-3-8",cat:"str",sub:"1.3 Brittle structures",type:"CUED",
+ front:"Name three field indicators used to recognize a fault.",
+ back:"Displacement of offset layers, fault scarps, and slip lineations/striations on the fault surface.",
+ cites:[{t:"verified",l:"M 273"}]},
+{id:"str-3-9",cat:"str",sub:"1.3 Brittle structures",type:"DRAW",
+ front:"Sketch normal and reverse faults in cross section (hanging wall/footwall labeled), and a strike-slip fault in map view.",
+ back:"Compare your sketch to the guide's diagram — normal fault has hanging wall down, reverse has hanging wall up, strike-slip shows a straight offset marker line with no vertical motion.",
+ cites:[{t:"verified",l:"M 273, Fig. 9.8b"}],
+ diagram:"faults"},
+
+// ===== STRUCTURAL GEOLOGY 1.4 Folds & foliation =====
+{id:"str-4-1",cat:"str",sub:"1.4 Folds & foliation",type:"PRODUCE",
+ front:"Define hinge, limb, and axial surface of a fold.",
+ back:"Hinge = line of maximum curvature. Limbs = the two sides of the fold. Axial surface = the surface that bisects the fold.",
+ cites:[{t:"verified",l:"M 275, Fig. 9.11"}]},
+{id:"str-4-2",cat:"str",sub:"1.4 Folds & foliation",type:"CUED",
+ front:"Anticline vs. syncline — how do the limbs dip relative to the hinge in each?",
+ back:"Anticline: limbs dip away from the hinge (arch-shaped). Syncline: limbs dip toward the hinge (trough-shaped).",
+ cites:[{t:"verified",l:"M 275"}]},
+{id:"str-4-3",cat:"str",sub:"1.4 Folds & foliation",type:"CUED",
+ front:"Dome vs. basin — where's the oldest rock, and what outcrop pattern do both share?",
+ back:"Dome: oldest rock in the center. Basin: youngest rock in the center. Both produce a bull's-eye outcrop pattern.",
+ cites:[{t:"verified",l:"M 275–276, 287"}]},
+{id:"str-4-4",cat:"str",sub:"1.4 Folds & foliation",type:"PRODUCE",
+ front:"Name and describe the two fold-formation mechanisms.",
+ back:"Flexural-slip: layers bend and slip past each other, like bending a deck of cards. Passive-flow: rock is soft enough to flow plastically, different parts moving at different rates.",
+ cites:[{t:"verified",l:"M 276"}]},
+{id:"str-4-5",cat:"str",sub:"1.4 Folds & foliation",type:"CUED",
+ front:"What causes tectonic foliation to form?",
+ back:"Deformation-driven alignment of platy or elongate minerals (distinct from bedding).",
+ cites:[{t:"verified",l:"M 276"}]},
+{id:"str-4-6",cat:"str",sub:"1.4 Folds & foliation",type:"PRODUCE",
+ front:"Name the foliation-grade progression from lowest to highest metamorphic grade (ties to Category 2).",
+ back:"Slaty cleavage → schistosity → gneissic banding.",
+ cites:[{t:"verified",l:"M 276"}]},
+
+// ===== STRUCTURAL GEOLOGY 1.5 Fabrics & map/cross-section interpretation =====
+{id:"str-5-1",cat:"str",sub:"1.5 Fabrics & maps",type:"PRODUCE",
+ front:"What is a stereonet, and what are the two common projection types?",
+ back:"A stereonet plots orientation data (strike/dip or trend/plunge) as points on a 2D projection of a sphere, then contours point density to find dominant fabric orientation. Equal-area (Schmidt) and equal-angle (Wulff) are the two common types.",
+ cites:[{t:"verified",l:"USBR Vol.1, Ch.7, p.208–209, Fig. 7-1"}]},
+{id:"str-5-2",cat:"str",sub:"1.5 Fabrics & maps",type:"PRODUCE",
+ front:"Define structure contour.",
+ back:"A line of equal elevation on a buried (or once-present) geologic surface — analogous to a topographic contour, but drawn on a stratigraphic horizon, fault plane, or unconformity. Because they're constant-elevation, structure contours are automatically parallel to strike.",
+ cites:[{t:"verified",l:"Waldron & Snyder §1.2"}]},
+{id:"str-5-3",cat:"str",sub:"1.5 Fabrics & maps",type:"CUED",
+ front:"Write the relationship between dip and structure-contour spacing.",
+ back:"tan(dip) = contour interval ÷ contour spacing. Closely spaced contours = steep dip; widely spaced = gentle dip.",
+ cites:[{t:"verified",l:"Waldron & Snyder §1.2"}]},
+{id:"str-5-4",cat:"str",sub:"1.5 Fabrics & maps",type:"PRODUCE",
+ front:"Outline the three-point-problem method for finding strike and dip.",
+ back:"Rank three known points by elevation: A (high), B (mid), C (low). Connect A–C. Find B′ on that line at B's elevation by linear interpolation: distance AB′ = distance AC × (a−b)/(a−c). Connect B to B′ — this line is a structure contour, and its orientation is the strike. Dip is perpendicular to strike, toward lower elevation.",
+ cites:[{t:"verified",l:"Waldron & Snyder, Lab 2"}]},
+{id:"str-5-5",cat:"str",sub:"1.5 Fabrics & maps",type:"PRODUCE",
+ front:"State the rule of Vs, including the exception case.",
+ back:"The V-shape a trace forms crossing a valley points in the direction of dip. Exception: if dip direction matches the valley's downslope direction but is gentler than the stream gradient, the V points up-dip instead. Horizontal beds: no V, trace parallels topographic contours. Vertical beds: straight trace, ignores topography.",
+ cites:[{t:"verified",l:"Waldron & Snyder §1.2"}]},
+{id:"str-5-6",cat:"str",sub:"1.5 Fabrics & maps",type:"CUED",
+ front:"What is a rose diagram, and what does it portray?",
+ back:"A circular histogram of fracture, lineation, or clast-orientation frequency by azimuthal class — used to identify a dominant structural trend.",
+ cites:[{t:"verified",l:"Andrews 1971, via U. Regina"}]},
+{id:"str-5-7",cat:"str",sub:"1.5 Fabrics & maps",type:"PRODUCE",
+ front:"Name two real caveats when interpreting a rose diagram.",
+ back:"(1) The visual pattern is sensitive to class-interval width and starting azimuth — the same data binned differently can look meaningfully different. (2) For axial data with no directional sense, frequencies are conventionally repeated through 180°, which exaggerates the apparent strength of the fabric.",
+ cites:[{t:"verified",l:"Andrews 1971, via U. Regina"}]},
+{id:"str-5-8",cat:"str",sub:"1.5 Fabrics & maps",type:"CUED",
+ front:"Slip lineations on a fault surface are an example of which type of fabric — linear or planar?",
+ back:"Linear fabric — described by plunge and bearing, recording slip direction.",
+ cites:[{t:"verified",l:"M 273"}]},
+
+// ===== TECTONICS 2.1 Plate tectonics fundamentals =====
+{id:"tec-1-1",cat:"tec",sub:"2.1 Plate fundamentals",type:"PRODUCE",
+ front:"List the three plate boundary types and their key features.",
+ back:"Divergent: plates move apart — mid-ocean ridge, sea-floor spreading, ridge-parallel normal faults. Convergent: plates move together, at least one oceanic — trench, volcanic arc, accretionary prism. Transform: plates slide past each other — large strike-slip fault, no crust created/destroyed.",
+ cites:[{t:"verified",l:"M 51–61, §2.7–2.9"}]},
+{id:"tec-1-2",cat:"tec",sub:"2.1 Plate fundamentals",type:"CUED",
+ front:"Why can't continental crust subduct?",
+ back:"It's too buoyant relative to the mantle — too low density to be dragged down.",
+ cites:[{t:"verified",l:"M 61, §2.11"}]},
+{id:"tec-1-3",cat:"tec",sub:"2.1 Plate fundamentals",type:"PRODUCE",
+ front:"Name and briefly describe the three forces contributing to plate motion.",
+ back:"Mantle convection (drag from below), ridge-push (gravity-driven push away from the elevated mid-ocean ridge), and slab-pull (dense subducting slab pulls the rest of the plate along). Slab-pull is generally the dominant force.",
+ cites:[{t:"verified",l:"M 65–66, §2.12"}]},
+{id:"tec-1-4",cat:"tec",sub:"2.1 Plate fundamentals",type:"CUED",
+ front:"At roughly what plate age does subducting oceanic lithosphere become dense enough for slab-pull to engage?",
+ back:"~10 Ma.",
+ cites:[{t:"verified",l:"M 65–66"}]},
+{id:"tec-1-5",cat:"tec",sub:"2.1 Plate fundamentals",type:"DRAW",
+ front:"Sketch the three plate boundary types in cross section, labeling key features at each.",
+ back:"Compare your sketch to the guide's diagram — divergent shows a mid-ocean ridge with rising magma; convergent shows a subducting slab and an arc volcano; transform shows a vertical strike-slip fault, no volcanism.",
+ cites:[{t:"verified",l:"M 64–65, Geology at a Glance"}],
+ diagram:"boundaries"},
+
+// ===== TECTONICS 2.2 Convergent settings & mountain building =====
+{id:"tec-2-1",cat:"tec",sub:"2.2 Mountain building",type:"CUED",
+ front:"Define accretion in the orogenic sense.",
+ back:"A buoyant crustal fragment (volcanic arc, oceanic plateau, microcontinent) arrives at a trench, is too buoyant to subduct, and instead sutures onto the continental margin.",
+ cites:[{t:"verified",l:"M 279–280"}]},
+{id:"tec-2-2",cat:"tec",sub:"2.2 Mountain building",type:"CUED",
+ front:"Name a real-world example of an accretionary orogen.",
+ back:"The western North American Cordillera.",
+ cites:[{t:"verified",l:"M 279–280"}]},
+{id:"tec-2-3",cat:"tec",sub:"2.2 Mountain building",type:"CUED",
+ front:"Shield vs. platform, within a craton — what's the difference?",
+ back:"Shield: exposed Precambrian basement. Platform: basement covered by a thin veneer of flat-lying sediment.",
+ cites:[{t:"verified",l:"M 287–288"}]},
+{id:"tec-2-4",cat:"tec",sub:"2.2 Mountain building",type:"PRODUCE",
+ front:"Explain isostasy's role in post-collision uplift, including delamination.",
+ back:"Crust floats on the mantle in gravitational equilibrium. Removal of dense lithospheric mantle root material after collision (delamination) lets the crust rise further, analogous to a ship rising as ballast is removed.",
+ cites:[{t:"verified",l:"M 285–287"}]},
+
+// ===== TECTONICS 2.3 Volcanism in tectonic context =====
+{id:"tec-3-1",cat:"tec",sub:"2.3 Volcanism & tectonics",type:"PRODUCE",
+ front:"Match each tectonic setting to its typical volcanic style: mid-ocean ridge, island arc, continental arc, continental rift, hot spot.",
+ back:"MOR: basaltic, effusive, mostly submarine. Island arc: oceanic on both sides, ~50–100 km volcano spacing. Continental arc: often andesitic/rhyolitic, more explosive. Continental rift: fissure eruptions or flood basalts. Hot spot: mantle plume, leaves a track of progressively older extinct volcanoes as the plate moves.",
+ cites:[{t:"verified",l:"M 134–137, §5.4"}]},
+{id:"tec-3-2",cat:"tec",sub:"2.3 Volcanism & tectonics",type:"CUED",
+ front:"Roughly what fraction of the Pacific Ocean is bordered by subduction zones (the Ring of Fire)?",
+ back:"More than 60%.",
+ cites:[{t:"verified",l:"M 134"}]},
+{id:"tec-3-3",cat:"tec",sub:"2.3 Volcanism & tectonics",type:"CUED",
+ front:"Iceland's volcanism reflects a combination of what two tectonic settings?",
+ back:"Mid-ocean ridge (Mid-Atlantic Ridge) superimposed on a hot spot.",
+ cites:[{t:"verified",l:"M 134–137"}]},
+
+// ===== SEISMOLOGY 3.1 Earthquake mechanism =====
+{id:"sei-1-1",cat:"sei",sub:"3.1 Mechanism",type:"PRODUCE",
+ front:"Name Marshak's actual terms for the earthquake generation mechanism (not just \"elastic rebound\").",
+ back:"Elastic-rebound theory and stick-slip behavior — the fault doesn't creep continuously, it moves in sudden increments, each one an earthquake.",
+ cites:[{t:"verified",l:"M 221"}]},
+{id:"sei-1-2",cat:"sei",sub:"3.1 Mechanism",type:"CUED",
+ front:"Focus (hypocenter) vs. epicenter — define each.",
+ back:"Focus/hypocenter = the actual point of rupture at depth. Epicenter = the point on the surface directly above the focus.",
+ cites:[{t:"verified",l:"M 219"}]},
+{id:"sei-1-3",cat:"sei",sub:"3.1 Mechanism",type:"CUED",
+ front:"Foreshocks vs. aftershocks — which comes before, and which after, the main rupture?",
+ back:"Foreshocks precede the main rupture. Aftershocks follow it as the fault zone adjusts.",
+ cites:[{t:"verified",l:"M 221"}]},
+
+// ===== SEISMOLOGY 3.2 Seismic waves & magnitude =====
+{id:"sei-2-1",cat:"sei",sub:"3.2 Waves & magnitude",type:"PRODUCE",
+ front:"List the four seismic wave types (body vs. surface) and their relative speed order.",
+ back:"P-wave (body, fastest — compressional/push-pull). S-wave (body, slower — shear, can't travel through liquid). Love wave (surface — horizontal shear). Rayleigh wave (surface — rolling motion). P > S > surface waves in speed; surface waves have the largest amplitude.",
+ cites:[{t:"verified",l:"M 225–227"}]},
+{id:"sei-2-2",cat:"sei",sub:"3.2 Waves & magnitude",type:"CUED",
+ front:"Which seismic wave type cannot travel through a liquid?",
+ back:"S-wave.",
+ cites:[{t:"verified",l:"M 225–227"}]},
+{id:"sei-2-3",cat:"sei",sub:"3.2 Waves & magnitude",type:"PRODUCE",
+ front:"Explain the fundamental difference between magnitude and (Modified Mercalli) intensity.",
+ back:"Magnitude is an objective, instrument-based measure of energy released — one number per event. Intensity (MMI) is a subjective, damage-based scale that varies by location and local ground conditions.",
+ cites:[{t:"verified",l:"M 228–230"}]},
+{id:"sei-2-4",cat:"sei",sub:"3.2 Waves & magnitude",type:"CUED",
+ front:"Per whole-number magnitude step, how much does ground-motion amplitude increase? Energy?",
+ back:"~10× amplitude; ~32× energy.",
+ cites:[{t:"verified",l:"M 229"}]},
+{id:"sei-2-5",cat:"sei",sub:"3.2 Waves & magnitude",type:"CUED",
+ front:"What's the largest earthquake magnitude ever recorded, and where/when?",
+ back:"Moment magnitude 9.5 — 1960 Chile.",
+ cites:[{t:"verified",l:"M 228–229"}]},
+{id:"sei-2-6",cat:"sei",sub:"3.2 Waves & magnitude",type:"CUED",
+ front:"Why is local magnitude (M_L, \"Richter\") less reliable than moment magnitude (M_W)?",
+ back:"M_L is distance-limited and loses accuracy for large or distant earthquakes; M_W is calculated from wave amplitudes, fault dimensions, and displacement, and is the modern standard.",
+ cites:[{t:"verified",l:"M 228–230"}]},
+{id:"sei-2-7",cat:"sei",sub:"3.2 Waves & magnitude",type:"DRAW",
+ front:"Sketch the relationship between magnitude and energy release — is it linear or logarithmic?",
+ back:"Logarithmic. Compare your sketch's shape to the guide's curve — an M8 releases roughly 1,000,000× the energy of an M4.",
+ cites:[{t:"verified",l:"M 229"}],
+ diagram:"magnitude"},
+
+// ===== SEISMOLOGY 3.3 Distribution, hazard & Earth's interior =====
+{id:"sei-3-1",cat:"sei",sub:"3.3 Distribution & interior",type:"CUED",
+ front:"What is a Wadati-Benioff zone?",
+ back:"The inclined plane of earthquake foci that defines a subducting slab, dipping into the mantle.",
+ cites:[{t:"verified",l:"M 233"}]},
+{id:"sei-3-2",cat:"sei",sub:"3.3 Distribution & interior",type:"PRODUCE",
+ front:"List four major earthquake hazards.",
+ back:"Ground shaking, landslides, sediment liquefaction, and tsunamis (fire is a fifth).",
+ cites:[{t:"verified",l:"M 236–240"}]},
+{id:"sei-3-3",cat:"sei",sub:"3.3 Distribution & interior",type:"PRODUCE",
+ front:"Give the depths of the Moho, the core-mantle boundary, and the inner/outer core boundary.",
+ back:"Moho: 7–70 km (varies by location). Core-mantle boundary: 2,900 km. Inner/outer core boundary: 5,155 km.",
+ cites:[{t:"verified",l:"M 253–259"},{t:"verified",l:"Earle Ch.9, §9.1"}]},
+{id:"sei-3-4",cat:"sei",sub:"3.3 Distribution & interior",type:"CUED",
+ front:"At what angular distance from the epicenter does the P-wave shadow zone occur, and what does it tell us?",
+ back:"103°–143°. It reveals a dense, compositionally distinct core via refraction/absorption of P-waves at the core-mantle boundary.",
+ cites:[{t:"verified",l:"M"}]},
+{id:"sei-3-5",cat:"sei",sub:"3.3 Distribution & interior",type:"CUED",
+ front:"Why is there an S-wave shadow zone, and what does it imply about the outer core?",
+ back:"S-waves don't propagate through liquid, so they're blocked entirely by the outer core — implying the outer core is liquid.",
+ cites:[{t:"verified",l:"M"}]},
+{id:"sei-3-6",cat:"sei",sub:"3.3 Distribution & interior",type:"CUED",
+ front:"Can seismologists precisely predict the time and place of a future earthquake?",
+ back:"No — they can identify more likely zones and estimate recurrence intervals, but not precise timing.",
+ cites:[{t:"verified",l:"M 245"}]},
+
+// ===== SEISMOLOGY 3.4 Paleoseismic history =====
+{id:"sei-4-1",cat:"sei",sub:"3.4 Paleoseismic history",type:"CUED",
+ front:"What is paleoseismology?",
+ back:"The study of prehistoric earthquakes from geologic evidence, used to extend the earthquake record beyond the short instrumental/historical window.",
+ cites:[{t:"gap",l:"Gap — not in any of 5 sources checked"}]},
+{id:"sei-4-2",cat:"sei",sub:"3.4 Paleoseismic history",type:"PRODUCE",
+ front:"Describe the trenching method for paleoseismic investigation.",
+ back:"Excavate a trench across a fault trace to expose offset stratigraphy. Each buried, offset soil horizon or sand blow (liquefaction feature) can represent one prehistoric rupture event. The vertical stack of such events lets you estimate a recurrence interval.",
+ cites:[{t:"gap",l:"Gap — not in any of 5 sources checked"}]},
+{id:"sei-4-3",cat:"sei",sub:"3.4 Paleoseismic history",type:"CUED",
+ front:"What does OSL dating measure, and when is it useful in a fault-trench context?",
+ back:"OSL (optically stimulated luminescence) dates the last time quartz/feldspar sediment grains were exposed to sunlight — useful where no datable organic material is present, common in fault-scarp colluvium and alluvial fan deposits.",
+ cites:[{t:"gap",l:"Gap — confirmed absent from Marshak, USBR, Earle, Waldron & Snyder, and White (full-text search)"}]},
+{id:"sei-4-4",cat:"sei",sub:"3.4 Paleoseismic history",type:"PRODUCE",
+ front:"Explain how ³⁶Cl cosmogenic exposure dating works, and name a real study that used it.",
+ back:"Measures ³⁶Cl built up in a rock surface from cosmic-ray bombardment since exposure; requires knowing the site's production rate (latitude, elevation, and the rock's Cl/K/Ca chemistry). Phillips et al. (1990) dated moraine boulders at Bloody Canyon, eastern Sierra Nevada, this way.",
+ cites:[{t:"verified",l:"White §4.1.5.3"}]},
+{id:"sei-4-5",cat:"sei",sub:"3.4 Paleoseismic history",type:"CUED",
+ front:"What biases affect cosmogenic exposure ages, and in which direction do they push the result?",
+ back:"Inherited nuclides from prior exposure, preferential leaching, surface erosion, and snow/till shielding — all of these bias the age too young, so the oldest age in a scatter of results is generally preferred as most reliable.",
+ cites:[{t:"verified",l:"White §4.1.5.3"}]},
+{id:"sei-4-6",cat:"sei",sub:"3.4 Paleoseismic history",type:"CUED",
+ front:"Why is ¹⁴C dating limited for paleoseismic work on older ruptures?",
+ back:"¹⁴C is only useful to about 60 ka — fine for the most recent rupture(s) in a trench, but older events in the same stack need a different method (e.g., cosmogenic exposure dating or OSL).",
+ cites:[{t:"verified",l:"M 320–322 (Category 2 isotope table cross-reference)"}]},
+];
+
+const DIAGRAMS = {
+  faults: `<svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" style="font-family:'IBM Plex Mono',monospace;">
+    <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Dip-Slip Fault Types (cross section)</text>
+    <g>
+      <text x="120" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Normal fault</text>
+      <line x1="60" y1="180" x2="180" y2="60" stroke="#20241f" stroke-width="2"/>
+      <polygon points="60,180 120,180 180,120 180,60 120,120" fill="#e6e1f0" opacity="0.5"/>
+      <text x="70" y="170" font-size="9.5">footwall</text>
+      <text x="140" y="100" font-size="9.5">hanging wall ↓</text>
+    </g>
+    <g>
+      <text x="350" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Reverse fault</text>
+      <line x1="290" y1="180" x2="410" y2="60" stroke="#20241f" stroke-width="2"/>
+      <polygon points="290,180 350,180 410,120 410,60 350,120" fill="#f4dcd9" opacity="0.5"/>
+      <text x="300" y="170" font-size="9.5">footwall</text>
+      <text x="360" y="100" font-size="9.5">hanging wall ↑</text>
+    </g>
+    <g>
+      <text x="580" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Strike-slip (map view)</text>
+      <line x1="520" y1="120" x2="640" y2="120" stroke="#20241f" stroke-width="2"/>
+      <line x1="520" y1="90" x2="580" y2="120" stroke="#20241f" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="640" y1="150" x2="580" y2="120" stroke="#20241f" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="580" y="175" text-anchor="middle" font-size="9.5">offset marker line — no vertical motion</text>
+    </g>
+  </svg>`,
+  boundaries: `<svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" style="font-family:'IBM Plex Mono',monospace;">
+    <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Three Plate Boundary Types (cross section)</text>
+    <line x1="20" y1="140" x2="680" y2="140" stroke="#c9cdc0" stroke-width="1.5"/>
+    <g>
+      <rect x="40" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+      <rect x="150" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+      <line x1="130" y1="130" x2="150" y2="130" stroke="#2f5f7a" stroke-width="2"/>
+      <polygon points="130,100 150,100 140,60" fill="#f4dcd9" stroke="#a63328"/>
+      <text x="140" y="115" text-anchor="middle" font-size="9">MOR</text>
+      <line x1="90" y1="115" x2="65" y2="115" stroke="#2f5f7a" marker-end="url(#af1)"/>
+      <line x1="190" y1="115" x2="215" y2="115" stroke="#2f5f7a" marker-end="url(#af1)"/>
+      <text x="140" y="175" text-anchor="middle" font-size="10.5">Divergent</text>
+    </g>
+    <g>
+      <rect x="280" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+      <polygon points="370,120 370,140 460,140 460,50" fill="#e6e1f0" stroke="#5b4a8a"/>
+      <polygon points="440,50 460,50 460,90" fill="#f4dcd9" stroke="#a63328"/>
+      <line x1="330" y1="112" x2="400" y2="128" stroke="#2f5f7a" stroke-width="2" marker-end="url(#af1)"/>
+      <text x="330" y="175" text-anchor="middle" font-size="10.5">Convergent</text>
+      <text x="450" y="45" font-size="9">arc volcano</text>
+    </g>
+    <g>
+      <rect x="500" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+      <rect x="610" y="120" width="70" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+      <line x1="590" y1="100" x2="590" y2="140" stroke="#a63328" stroke-width="2.5" stroke-dasharray="5,3"/>
+      <text x="545" y="175" text-anchor="middle" font-size="10.5">Transform</text>
+    </g>
+    <defs><marker id="af1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#2f5f7a"/></marker></defs>
+  </svg>`,
+  magnitude: `<svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" style="font-family:'IBM Plex Mono',monospace;">
+    <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Magnitude Is Logarithmic</text>
+    <line x1="60" y1="150" x2="640" y2="150" stroke="#c9cdc0" stroke-width="1.5"/>
+    <line x1="60" y1="150" x2="60" y2="35" stroke="#c9cdc0" stroke-width="1.5"/>
+    <text x="350" y="175" text-anchor="middle" font-size="10" fill="#4b5148">Magnitude</text>
+    <text x="25" y="95" font-size="9" fill="#4b5148" transform="rotate(-90 25 95)">Energy (relative)</text>
+    <path d="M 100,148 C 250,146 400,120 550,45" fill="none" stroke="#a63328" stroke-width="2.5"/>
+    <g font-size="9.5" fill="#20241f">
+      <circle cx="150" cy="147" r="3" fill="#a63328"/><text x="150" y="162" text-anchor="middle">M4</text>
+      <circle cx="300" cy="140" r="3" fill="#a63328"/><text x="300" y="162" text-anchor="middle">M5</text>
+      <circle cx="450" cy="105" r="3" fill="#a63328"/><text x="450" y="162" text-anchor="middle">M7</text>
+      <circle cx="550" cy="45" r="3" fill="#a63328"/><text x="550" y="35" text-anchor="middle">M8 ≈ 1,000,000× M4</text>
+    </g>
+  </svg>`
+};
+
+const CAT_LABEL = {str:"Structural Geology", tec:"Tectonics", sei:"Seismology"};
+
+let progress = {};       // {cardId: {box, dueOffset}}
+let feedback = {};       // {cardId: {difficulty:bool, foundation:bool, note:string}}
+let queue = [];          // array of {cardId, dueAt} where dueAt is a position counter for in-session scheduling
+let sessionCounter = 0;
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('domE-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('domE-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('domE-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('domE-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  // interleave: shuffle across categories/subsections rather than blocking by topic
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = currentCard.diagram
+    ? `<div class="a-main">${currentCard.back}</div><div class="diagram-reveal">${DIAGRAMS[currentCard.diagram]}</div>`
+    : `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  // reflect existing feedback state for this card
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Category 5 (Structure, Tectonics & Seismology)\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null; // position within current session queue; null = retire from this session
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text); // fallback if clipboard API is blocked
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    // clipboard blocked — fall back to showing it in the textarea so it can be manually selected/copied
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'domE-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

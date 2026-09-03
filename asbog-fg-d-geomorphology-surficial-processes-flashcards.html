@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain D Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --fnd:#2f6b6e;
+    --flw:#93691a;
+    --mar:#6d3f60;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .tags{display:flex;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-fnd{border-color:var(--fnd);color:var(--fnd);}
+  .tag.cat-flw{border-color:var(--flw);color:var(--flw);}
+  .tag.cat-mar{border-color:var(--mar);color:var(--mar);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.other{background:var(--asbog-soft);color:var(--asbog);}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--fnd);color:var(--fnd);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--fnd);color:#fff;border-color:var(--fnd);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Domain D</div>
+    <h1>Geomorphology &amp; Surficial Processes — Flashcards</h1>
+    <p class="sub">Production and cued recall, no multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty. This is your identified weak domain (structure/tectonics aside), so worth full-strength review passes rather than a skim.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--fnd);border-radius:50%;"></span>Foundations</span>
+    <span><span class="dot" style="background:var(--flw);border-radius:50%;"></span>Flow-Driven Processes</span>
+    <span><span class="dot" style="background:var(--mar);border-radius:50%;"></span>Glacial, Coastal &amp; Volcanic</span>
+    <span><span class="cite verified" style="margin:0;">M / U / R90 / etc.</span>verified source — see study guide for full key</span>
+    <span><span class="cite asbog" style="margin:0;">other</span>cross-domain note or Handbook reference</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices. Copy/paste is the more reliable method if the file picker shows no files.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if opened standalone in a browser, progress will not persist between sessions.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== FOUNDATIONS 1.1 Driving & Resisting Forces =====
+{id:"fnd-1-1",cat:"fnd",sub:"1.1 Driving/Resisting Forces",type:"CUED",
+ front:"Name the three driving forces that shape landscapes, per Marshak.",
+ back:"Internal energy (plate tectonics/uplift), external/climatic energy (weathering, erosion, transport), and gravity (drives all downslope movement independent of climate).",
+ cites:[{t:"verified",l:"M Interlude F, p.388"}]},
+{id:"fnd-1-2",cat:"fnd",sub:"1.1 Driving/Resisting Forces",type:"PRODUCE",
+ front:"How does lithology act as a resisting force in landscape development?",
+ back:"Resistant rock (e.g., quartzite, well-cemented sandstone) forms ridges/cliffs; nonresistant rock (e.g., shale) erodes into valleys/lowlands — producing differential erosion and stepped topography.",
+ cites:[{t:"verified",l:"M Interlude F, p.389"}]},
+
+// ===== FOUNDATIONS 1.2 Weathering & Soil =====
+{id:"fnd-2-1",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"Name and briefly define the three chemical weathering processes covered in Marshak.",
+ back:"Oxidation (reaction with O₂, e.g., iron minerals rusting); dissolution (mineral fully dissolves, e.g., calcite in acidic water); hydrolysis (water reacts with silicates, breaking them into clay minerals + dissolved ions — the main feldspar-to-clay pathway).",
+ cites:[{t:"verified",l:"M p.151"}]},
+{id:"fnd-2-2",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"What is laterite, and how does it form?",
+ back:"An iron/aluminum-oxide-rich residual soil formed by intense, prolonged tropical chemical weathering.",
+ cites:[{t:"verified",l:"M p.159"}]},
+{id:"fnd-2-3",cat:"fnd",sub:"1.2 Weathering & Soil",type:"PRODUCE",
+ front:"Contrast frost wedging and sheeting/exfoliation as physical weathering mechanisms.",
+ back:"Frost wedging: water freezes in cracks, expands ~9%, prying rock apart. Sheeting/exfoliation: pressure-release jointing as overlying rock erodes away, producing curved slabs that peel off (common in granite, e.g., Half Dome).",
+ cites:[{t:"verified",l:"M p.150"}]},
+{id:"fnd-2-4",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"What is talus, and what physical weathering process produces it?",
+ back:"An accumulation of angular rock fragments at the base of a cliff/steep slope, produced by rockfall (frost wedging is a common trigger).",
+ cites:[{t:"verified",l:"M p.150"}]},
+{id:"fnd-2-5",cat:"fnd",sub:"1.2 Weathering & Soil",type:"PRODUCE",
+ front:"Define \"grus\" — a term absent from Marshak but standard in geomorphology.",
+ back:"Unconsolidated, arkosic (feldspar-rich) sand-to-gravel residuum formed as granite weathers along mineral-grain boundaries.",
+ cites:[{t:"gap",l:"gap — not in M"}]},
+{id:"fnd-2-6",cat:"fnd",sub:"1.2 Weathering & Soil",type:"PRODUCE",
+ front:"List the soil horizons from top to bottom and what each represents.",
+ back:"O (organic litter) → A (topsoil, leaching/eluviation zone) → E (max-leaching zone, some soils) → B (subsoil, accumulation/illuviation of clay/iron oxide/carbonate) → C (weathered parent material grading to bedrock).",
+ cites:[{t:"verified",l:"M pp.157–158"}]},
+{id:"fnd-2-7",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"Distinguish residual soil from transported soil.",
+ back:"Residual soil forms in place on its parent bedrock; transported soil forms in sediment moved in by another process (alluvial, aeolian, glacial, colluvial, etc.).",
+ cites:[{t:"other",l:"concept in M, term not used"}]},
+{id:"fnd-2-8",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"Name three of the 12 U.S. soil taxonomic orders and one key trait of each.",
+ back:"Any three, e.g.: aridisol (dry-climate, low organic content); alfisol (moderate leaching, clay-rich B horizon); mollisol (grassland, thick dark A horizon, fertile); oxisol (deeply weathered tropical soil); histosol (organic-rich, e.g., peat).",
+ cites:[{t:"verified",l:"M pp.159–160"}]},
+{id:"fnd-2-9",cat:"fnd",sub:"1.2 Weathering & Soil",type:"CUED",
+ front:"What is the correct formal name for the 12-order soil classification system Marshak presents, and what source confirms it?",
+ back:"USDA Soil Taxonomy (Agriculture Handbook No. 436) — confirmed by USBR's Engineering Geology Field Manual, which explicitly names it as the pedologic/Quaternary-stratigraphy system, distinct from USCS.",
+ cites:[{t:"verified",l:"U Vol.1 Ch.3, p.18"}]},
+
+// ===== FOUNDATIONS 1.3 Surficial Material Analysis =====
+{id:"fnd-3-1",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"What size fraction does sieve analysis (USBR 5325) measure, and what size fraction does hydrometer analysis (USBR 5330) measure?",
+ back:"Sieve analysis (5325): gravel-size, +No.4 sieve (≥4.75mm). Hydrometer analysis (5330): sand/fines, −No.4 sieve (silt and clay too fine to sieve, measured via settling).",
+ cites:[{t:"verified",l:"R90 pp.45–56"}]},
+{id:"fnd-3-2",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"PRODUCE",
+ front:"What physical law underlies hydrometer analysis, and how is the dispersing agent used?",
+ back:"Stokes' Law — larger particles settle faster in suspension. Soil is dispersed in 4% sodium hexametaphosphate solution for ≥16 hours before hydrometer readings are taken at fixed time intervals (1, 4, 19, 60 min, plus longer readings for very fine samples).",
+ cites:[{t:"verified",l:"R90 pp.53–56"}]},
+{id:"fnd-3-3",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"In USCS group symbols, what do the letters G, S, M, C, W, P, L, and H each stand for?",
+ back:"G=gravel, S=sand, M=silt, C=clay, W=well-graded, P=poorly-graded, L=low plasticity, H=high plasticity (e.g., GW = well-graded gravel; CH = fat/high-plasticity clay).",
+ cites:[{t:"verified",l:"U Vol.1 Ch.3, pp.18–40"}]},
+{id:"fnd-3-4",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"What determines whether a fine-grained soil classifies as CL vs. CH, or ML vs. MH, on the USCS plasticity chart?",
+ back:"Plasticity index vs. liquid limit, plotted relative to the \"A-line\" — position above/below the A-line and the numeric plasticity-index/liquid-limit values separate the low- (L) from high- (H) plasticity groups.",
+ cites:[{t:"verified",l:"U Vol.1 Ch.3"}]},
+{id:"fnd-3-5",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"USCS vs. USDA Soil Taxonomy — what's each system used for?",
+ back:"USCS: the engineering standard (USBR 5000/5005, ASTM D2487/D2488) for test pits/trenches/drill holes. USDA Soil Taxonomy (Agriculture Handbook 436): the pedologic standard for irrigation suitability, drainage investigations, and Quaternary stratigraphy.",
+ cites:[{t:"verified",l:"U Vol.1 Ch.3, p.18"}]},
+{id:"fnd-3-6",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"PRODUCE",
+ front:"Explain how radiocarbon (¹⁴C) dating works and why raw ages need calibration.",
+ back:"¹⁴C forms in the upper atmosphere via cosmic-ray neutron capture on ¹⁴N, enters organisms via the carbon cycle, and decays after death (half-life 5,730 yr). Raw ages need calibration to calendar years because atmospheric ¹⁴C production has varied over time (solar-driven deVries effects; industrial-era Suess effect) — dendrochronology provides the independent check.",
+ cites:[{t:"verified",l:"W Ch.4 §4.1.2, pp.102–104"}]},
+{id:"fnd-3-7",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"What does \"BP\" mean in a radiocarbon age, and what is the effective dating range of the method?",
+ back:"BP = \"before 1950\" (not literally \"before present\"), by historical convention tied to the first ¹⁴C age determination. Effective range: roughly a few hundred to ~50,000 years.",
+ cites:[{t:"verified",l:"W Ch.4 §4.1.2, p.103"}]},
+{id:"fnd-3-8",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"PRODUCE",
+ front:"What does OSL dating actually date, and what physical process does it measure?",
+ back:"OSL dates the time since sediment grains (quartz/feldspar) were last exposed to sunlight — i.e., time since burial. It's a trapped-charge/dosimetry method, not radioactive decay: buried grains accumulate trapped electrons from ambient ionizing radiation; daylight \"bleaches\" (resets) the signal; lab stimulation with intense light releases the trapped charge as measurable luminescence.",
+ cites:[{t:"verified",l:"RH pp.462–465"}]},
+{id:"fnd-3-9",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"Give the OSL age equation and its effective dating range.",
+ back:"Age (years) = equivalent dose De (Gy) ÷ environmental dose rate (Gy/yr). Effective range: about 1 year to ~200,000 years (rarely to ~1 million).",
+ cites:[{t:"verified",l:"RH p.465"}]},
+{id:"fnd-3-10",cat:"fnd",sub:"1.3 Surficial Material Analysis",type:"CUED",
+ front:"OSL is especially well suited to which depositional environments?",
+ back:"Aeolian (dune, loess), fluvial, glacial-outwash, and beach/coastal deposits — environments where grains get good daylight exposure (\"bleaching\") during transport.",
+ cites:[{t:"verified",l:"RH Table 1, p.475"}]},
+
+// ===== FLOW-DRIVEN 2.1 Fluvial Processes =====
+{id:"flw-1-1",cat:"flw",sub:"2.1 Fluvial Processes",type:"CUED",
+ front:"Distinguish dendritic, trellis, radial, and rectangular drainage patterns.",
+ back:"Dendritic: branching, tree-like, uniform substrate. Trellis: rectangular grid, controlled by folded/tilted alternating-resistance strata. Radial: streams diverge from a central high point (e.g., a volcano). Rectangular: right-angle bends controlled by joints/faults.",
+ cites:[{t:"verified",l:"M p.419"}]},
+{id:"flw-1-2",cat:"flw",sub:"2.1 Fluvial Processes",type:"PRODUCE",
+ front:"Why does a cut bank form on the outside of a meander bend and a point bar on the inside?",
+ back:"Flow is faster on the outside of the bend, eroding a steep cut bank; flow is slower on the inside, depositing sediment as a curved point bar.",
+ cites:[{t:"verified",l:"M p.428"}]},
+{id:"flw-1-3",cat:"flw",sub:"2.1 Fluvial Processes",type:"CUED",
+ front:"What conditions favor a braided channel over a meandering one?",
+ back:"High sediment load and variable discharge (e.g., glacial outwash streams) — producing multiple shifting channels separated by bars, versus a single sinuous low-gradient meandering channel.",
+ cites:[{t:"verified",l:"M pp.427–429"}]},
+{id:"flw-1-4",cat:"flw",sub:"2.1 Fluvial Processes",type:"CUED",
+ front:"Distinguish an alluvial fan from a delta in terms of where each forms.",
+ back:"Alluvial fan: forms where a stream leaves a confined channel (e.g., a mountain front) and spreads sediment in a fan shape. Delta: forms where a stream enters standing water (ocean/lake) and deposits its load as flow expands/slows.",
+ cites:[{t:"verified",l:"M pp.427, 429"}]},
+{id:"flw-1-5",cat:"flw",sub:"2.1 Fluvial Processes",type:"PRODUCE",
+ front:"Define base level and explain what rejuvenation is.",
+ back:"Base level: the lowest elevation to which a stream can erode (ultimately sea level, or a local base level like a lake/resistant layer). Rejuvenation: renewed downcutting triggered by a drop in base level, producing incised meanders and stream terraces.",
+ cites:[{t:"verified",l:"M p.425"}]},
+{id:"flw-1-6",cat:"flw",sub:"2.1 Fluvial Processes",type:"CUED",
+ front:"Marshak's fluvial equilibrium-profile concept uses which term — and how does that differ from \"hydraulic gradient\"?",
+ back:"Marshak uses \"stream gradient\"/\"grade.\" \"Hydraulic gradient\" is a distinct groundwater term (slope of the potentiometric surface driving flow per Darcy's Law) — a Domain F/hydrology concept, not the same as fluvial grade.",
+ cites:[{t:"other",l:"terminology note"}]},
+
+// ===== FLOW-DRIVEN 2.2 Mass Movements =====
+{id:"flw-2-1",cat:"flw",sub:"2.2 Mass Movements",type:"CUED",
+ front:"What is the typical angle-of-repose range for loose granular material, and what factor most commonly triggers failure below that angle?",
+ back:"Typically 30°–37° (up to ~45° for coarse, angular material). Water is the most common trigger below the dry angle of repose — it adds weight and, more importantly, reduces internal friction/cohesion via pore-water pressure.",
+ cites:[{t:"verified",l:"M pp.406–407"}]},
+{id:"flw-2-2",cat:"flw",sub:"2.2 Mass Movements",type:"PRODUCE",
+ front:"Distinguish a slump from a rockslide/debris slide by failure mechanism.",
+ back:"Slump: rotational failure along a curved slip surface, the block tilts backward as it moves. Rockslide/debris slide: translational failure along a planar surface (often bedding, joints, or a weak layer).",
+ cites:[{t:"verified",l:"M pp.399–403"}]},
+{id:"flw-2-3",cat:"flw",sub:"2.2 Mass Movements",type:"CUED",
+ front:"What is a lahar, and does it require an active eruption?",
+ back:"A volcanic mudflow/debris flow — water (from melted snow/ice, crater lakes, or heavy rain) mixed with loose volcanic ash/debris. No — it can travel far and fast down valleys from a volcano even without an active eruption.",
+ cites:[{t:"verified",l:"M pp.399–403"}]},
+{id:"flw-2-4",cat:"flw",sub:"2.2 Mass Movements",type:"PRODUCE",
+ front:"Distinguish an earthflow from a mudflow/debris flow — a term absent from Marshak.",
+ back:"Earthflow: slower-moving, tongue-shaped flow of fine-grained, plastic (clay-rich) material, with a hummocky surface and step-like scarp at the head. Mudflow/debris flow: faster, more water-saturated, behaves more like a viscous fluid.",
+ cites:[{t:"gap",l:"gap — not in M"}]},
+
+// ===== FLOW-DRIVEN 2.3 Aeolian Processes =====
+{id:"flw-3-1",cat:"flw",sub:"2.3 Aeolian Processes",type:"CUED",
+ front:"Define deflation, blowout, and desert pavement, and explain how the three relate.",
+ back:"Deflation: wind removal of loose fine sediment. A blowout is a shallow depression excavated by deflation. Desert pavement is the coarse residual lag of pebbles/gravel left behind (armoring the surface) once deflation strips away the fines.",
+ cites:[{t:"verified",l:"M Ch.17"}]},
+{id:"flw-3-2",cat:"flw",sub:"2.3 Aeolian Processes",type:"CUED",
+ front:"Distinguish a yardang from a ventifact.",
+ back:"Yardang: a streamlined ridge of wind-abraded bedrock. Ventifact: an individual rock fragment faceted/polished by wind-driven sandblasting, typically from a consistent wind direction.",
+ cites:[{t:"verified",l:"M Ch.17"}]},
+{id:"flw-3-3",cat:"flw",sub:"2.3 Aeolian Processes",type:"CUED",
+ front:"What is loess, and where does it typically come from?",
+ back:"A thick, unstratified, wind-blown silt deposit that stands in vertical faces — often derived from glacial outwash sediment.",
+ cites:[{t:"verified",l:"M Ch.17"}]},
+
+// ===== FLOW-DRIVEN 2.4 Karst =====
+{id:"flw-4-1",cat:"flw",sub:"2.4 Karst",type:"CUED",
+ front:"What rock types most commonly host karst topography, and what process forms it?",
+ back:"Most commonly limestone (calcite dissolution); less commonly gypsum or dolomite. Formed by groundwater dissolution of soluble bedrock.",
+ cites:[{t:"verified",l:"M Ch.16.7, pp.488–491"}]},
+{id:"flw-4-2",cat:"flw",sub:"2.4 Karst",type:"CUED",
+ front:"Distinguish a sinkhole from a sinking (disappearing) stream.",
+ back:"Sinkhole: forms by gradual surface dissolution or sudden collapse into an underlying cavity. Sinking stream: a surface stream that flows into a sinkhole/cave opening and continues underground.",
+ cites:[{t:"verified",l:"M pp.488–491"}]},
+{id:"flw-4-3",cat:"flw",sub:"2.4 Karst",type:"PRODUCE",
+ front:"Explain how the transition from phreatic to vadose conditions drives speleothem formation.",
+ back:"Caves enlarge by dissolution in the saturated (phreatic) zone near/below the water table. Once the water table drops (regional uplift or base-level fall), the cave passes into the unsaturated (vadose) zone, and dripping, CO₂-degassing water precipitates calcite as speleothems (stalactites, stalagmites, columns).",
+ cites:[{t:"verified",l:"M pp.491–492"}]},
+
+// ===== GLACIAL/COASTAL/VOLCANIC 3.1 Glacial Processes =====
+{id:"mar-1-1",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"What is the equilibrium line on a glacier, and what does a glacier's mass balance control?",
+ back:"The equilibrium line separates the upper accumulation zone (net snow/ice gain) from the lower ablation zone (net loss). Overall mass balance (positive/negative/steady) controls whether the terminus advances, retreats, or holds steady.",
+ cites:[{t:"verified",l:"M pp.516–522"}]},
+{id:"mar-1-2",cat:"mar",sub:"3.1 Glacial Processes",type:"PRODUCE",
+ front:"Distinguish plucking from abrasion as glacial erosion mechanisms.",
+ back:"Plucking: glacier ice freezes onto and pulls away joint-bounded rock blocks. Abrasion: rock fragments embedded in basal ice grind/scratch underlying bedrock, producing striations and glacial polish.",
+ cites:[{t:"verified",l:"M pp.523–526"}]},
+{id:"mar-1-3",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"Define cirque, arête, and horn, and how a horn forms from the other two.",
+ back:"Cirque: bowl-shaped amphitheater at a glacier's head. Arête: sharp, knife-edge ridge between two cirques. Horn: pyramidal peak formed where three-plus cirques erode a mountain from different sides (e.g., the Matterhorn).",
+ cites:[{t:"verified",l:"M pp.523–526"}]},
+{id:"mar-1-4",cat:"mar",sub:"3.1 Glacial Processes",type:"PRODUCE",
+ front:"What distinguishes till from outwash?",
+ back:"Till: unsorted, unstratified sediment deposited directly by ice (all grain sizes mixed). Outwash: sorted, stratified sediment deposited by glacial meltwater streams.",
+ cites:[{t:"verified",l:"M pp.527–529"}]},
+{id:"mar-1-5",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"Distinguish terminal, recessional, lateral, and medial moraines.",
+ back:"Terminal: marks the farthest ice advance. Recessional: marks a stillstand during retreat. Lateral: along the glacier's sides. Medial: where two glaciers' lateral moraines merge.",
+ cites:[{t:"verified",l:"M pp.527–529"}]},
+{id:"mar-1-6",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"Distinguish a drumlin, an esker, and a kettle.",
+ back:"Drumlin: streamlined, elongated hill of till shaped by moving ice. Esker: sinuous ridge of sorted sediment deposited by meltwater flowing in/under the ice. Kettle: a depression (often lake-filled) formed where a buried ice block melts.",
+ cites:[{t:"verified",l:"M pp.527–529"}]},
+{id:"mar-1-7",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"What are glacial erratics and varves?",
+ back:"Erratics: boulders transported and deposited far from their bedrock source. Varves: alternating light/dark seasonal layer pairs deposited in quiet glacial-lake water, usable for annual counting.",
+ cites:[{t:"verified",l:"M pp.527–529"}]},
+{id:"mar-1-8",cat:"mar",sub:"3.1 Glacial Processes",type:"PRODUCE",
+ front:"Explain glacial (isostatic) rebound and what a peripheral forebulge is.",
+ back:"Thick ice sheets depress the underlying crust; after deglaciation the crust rebounds — still ongoing today in formerly glaciated regions (Scandinavia, Hudson Bay). A peripheral forebulge is a zone around the ice-loaded area that bulged upward during loading and now subsides as the loaded area rebounds.",
+ cites:[{t:"verified",l:"M pp.532–533"}]},
+{id:"mar-1-9",cat:"mar",sub:"3.1 Glacial Processes",type:"CUED",
+ front:"What are Milanković cycles, and how does albedo feedback reinforce glacial/interglacial change?",
+ back:"Milanković cycles: periodic variations in Earth's orbital eccentricity, axial tilt, and precession, altering seasonal/latitudinal solar insolation and pacing glacial-interglacial cycles. Albedo feedback: more ice/snow reflects more sunlight, reinforcing cooling (and less ice reinforces warming).",
+ cites:[{t:"verified",l:"M pp.538–539"}]},
+
+// ===== GLACIAL/COASTAL/VOLCANIC 3.2 Coastal Processes =====
+{id:"mar-2-1",cat:"mar",sub:"3.2 Coastal Processes",type:"CUED",
+ front:"What produces longshore drift, and what large-scale feature does the same wind-driven process also produce offshore?",
+ back:"Waves approaching shore at an angle produce longshore drift via the zig-zag swash/backwash motion of breaking waves. The same wind-driven process, deflected by the Coriolis effect, drives large-scale ocean surface gyres.",
+ cites:[{t:"verified",l:"M pp.448–454"}]},
+{id:"mar-2-2",cat:"mar",sub:"3.2 Coastal Processes",type:"PRODUCE",
+ front:"Distinguish a wave-cut notch, wave-cut platform, sea stack, and sea arch.",
+ back:"Wave-cut notch: undercut at the base of a sea cliff. Wave-cut platform/bench: the flat, erosional rock surface left at wave-base level as the notch widens. Sea stack: an isolated erosional remnant. Sea arch: a roofed passage/opening cut through a headland.",
+ cites:[{t:"verified",l:"M pp.456–457"}]},
+{id:"mar-2-3",cat:"mar",sub:"3.2 Coastal Processes",type:"CUED",
+ front:"Distinguish a spit, a tombolo, and a barrier island.",
+ back:"Spit: a narrow sand ridge extending from shore into open water, often hooked by wave refraction. Tombolo: a sand ridge connecting an island to the mainland or another island. Barrier island: a long, low sand ridge parallel to and separated from the mainland by a lagoon.",
+ cites:[{t:"verified",l:"M pp.456–457"}]},
+{id:"mar-2-4",cat:"mar",sub:"3.2 Coastal Processes",type:"CUED",
+ front:"Name the three zones of a typical beach profile.",
+ back:"Foreshore (intertidal zone, regularly wave-washed), backshore (above normal high tide, reached only by storm waves), and berm (a flat, wave-deposited terrace at the top of the profile).",
+ cites:[{t:"verified",l:"M pp.454–455"}]},
+{id:"mar-2-5",cat:"mar",sub:"3.2 Coastal Processes",type:"PRODUCE",
+ front:"Distinguish relative sea level from eustatic sea level, and explain how a coast can appear to change without any global sea-level change.",
+ back:"Relative sea level is the local, observed shoreline position; eustatic sea level is the global, average ocean-surface elevation. A coastline can appear to rise/fall due to purely local tectonic uplift or subsidence even while eustatic sea level stays constant.",
+ cites:[{t:"verified",l:"M pp.459–461"}]},
+{id:"mar-2-6",cat:"mar",sub:"3.2 Coastal Processes",type:"CUED",
+ front:"Distinguish a submergent from an emergent coastline, with an example landform for each.",
+ back:"Submergent (rising relative sea level or subsiding coast): drowned river valleys/estuaries, fjords. Emergent (falling relative sea level or uplifting coast): raised marine terraces, elevated wave-cut platforms.",
+ cites:[{t:"verified",l:"M pp.459–461"}]},
+
+// ===== GLACIAL/COASTAL/VOLCANIC 3.3 Volcanic Landforms =====
+{id:"mar-3-1",cat:"mar",sub:"3.3 Volcanic Landforms",type:"CUED",
+ front:"Distinguish a crater from a caldera.",
+ back:"Crater: a small, steep-walled depression around a vent, formed by explosive ejection and collapse. Caldera: a much larger, roughly circular depression formed by collapse of a volcano's summit into a partially emptied magma chamber after a major eruption.",
+ cites:[{t:"verified",l:"M p.132"}]},
+{id:"mar-3-2",cat:"mar",sub:"3.3 Volcanic Landforms",type:"CUED",
+ front:"Distinguish a dike from a sill.",
+ back:"Dike: a tabular intrusion cutting across existing rock layers/structure. Sill: a tabular intrusion parallel to existing layering.",
+ cites:[{t:"verified",l:"M p.111"}]},
+{id:"mar-3-3",cat:"mar",sub:"3.3 Volcanic Landforms",type:"PRODUCE",
+ front:"Contrast a shield volcano, a composite (strato)volcano, and a cinder cone by profile and lava/magma type.",
+ back:"Shield: low, broad profile; fluid, low-viscosity basaltic lava flows. Composite/strato: steep-sided, alternating lava/pyroclastic layers; more viscous intermediate-to-felsic magma. Cinder cone: small, steep, built from ejected pyroclastic fragments around a single vent.",
+ cites:[{t:"verified",l:"M p.132"}]},
+{id:"mar-3-4",cat:"mar",sub:"3.3 Volcanic Landforms",type:"CUED",
+ front:"Rank Hawaiian, Strombolian, Vulcanian, and Plinian eruption styles from least to most explosive, and briefly describe each.",
+ back:"Hawaiian (effusive, low-viscosity basaltic flows) → Strombolian (mild, rhythmic explosive bursts) → Vulcanian (more violent, short explosive bursts of denser, viscous magma/ash) → Plinian (most violent — sustained, high, gas-rich columns that can collapse into pyroclastic flows).",
+ cites:[{t:"verified",l:"M p.132"}]},
+{id:"mar-3-5",cat:"mar",sub:"3.3 Volcanic Landforms",type:"CUED",
+ front:"What is a pyroclastic flow, and which eruption style typically generates it?",
+ back:"A fast-moving, hot flow of ash, gas, and rock fragments — typically generated by collapse of a sustained Plinian eruption column.",
+ cites:[{t:"verified",l:"M p.132"}]},
+];
+
+const CAT_LABEL = {fnd:"Foundations", flw:"Flow-Driven Processes", mar:"Glacial, Coastal & Volcanic"};
+
+let progress = {};
+let feedback = {};
+let queue = [];
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('domD-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('domD-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('domD-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('domD-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Domain D (Geomorphology & Surficial Processes)\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null;
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text);
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'domD-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

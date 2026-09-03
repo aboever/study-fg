@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Category 2 Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --mineralogy:#9c6b30;
+    --petrology:#a63d1f;
+    --geochem:#1f6e73;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  /* legend */
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  /* stats bar */
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  /* card */
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .tags{display:flex;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-min{border-color:var(--mineralogy);color:var(--mineralogy);}
+  .tag.cat-pet{border-color:var(--petrology);color:var(--petrology);}
+  .tag.cat-geo{border-color:var(--geochem);color:var(--geochem);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+
+  .diagram-reveal svg{width:100%;height:auto;margin-top:10px;}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--geochem);color:var(--geochem);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--geochem);color:#fff;border-color:var(--geochem);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  /* feedback panel */
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Category 2</div>
+    <h1>Mineralogy, Petrology &amp; Geochemistry — Flashcards</h1>
+    <p class="sub">Production and cued recall, weighted heavy per our strategy. No multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--mineralogy);border-radius:50%;"></span>Mineralogy</span>
+    <span><span class="dot" style="background:var(--petrology);border-radius:50%;"></span>Petrology</span>
+    <span><span class="dot" style="background:var(--geochem);border-radius:50%;"></span>Geochemistry</span>
+    <span><span class="cite verified" style="margin:0;">M 00</span>verified Marshak page</span>
+    <span><span class="cite asbog" style="margin:0;">ASBOG</span>handbook / official sample Q</span>
+    <span><span class="cite gap" style="margin:0;">Gap</span>not in Marshak — supplement needed</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices — use whichever actually works in your setup. The copy/paste method is the more reliable one if the file picker shows no files, since it doesn't depend on browser download locations or file-type filtering.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request, same as it did in the original discussion.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if you've downloaded this file and opened it standalone in a browser, progress will not persist between sessions — it'll still work for a single sitting, just starting fresh each time you reopen it.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== MINERALOGY 1.1 Crystallography =====
+{id:"min-1-1",cat:"min",sub:"1.1 Crystallography",type:"PRODUCE",
+ front:"List the crystal systems, roughly highest to lowest symmetry.",
+ back:"Isometric &gt; Hexagonal/Trigonal &gt; Tetragonal &gt; Orthorhombic &gt; Monoclinic &gt; Triclinic.",
+ cites:[{t:"verified",l:"M 77, Fig. 3.4"},{t:"verified",l:"K 129"}]},
+{id:"min-1-2",cat:"min",sub:"1.1 Crystallography",type:"CUED",
+ front:"Which crystal system has 3 equal axes, all at 90°?",
+ back:"Isometric (cubic) — e.g., pyrite, garnet, halite, magnetite.",
+ cites:[{t:"verified",l:"M 77"},{t:"verified",l:"K 200"}]},
+{id:"min-1-3",cat:"min",sub:"1.1 Crystallography",type:"CUED",
+ front:"Quartz, calcite, and dolomite share which crystal system?",
+ back:"Trigonal (a subdivision of the hexagonal family).",
+ cites:[{t:"verified",l:"M 77"},{t:"verified",l:"K 194"}]},
+{id:"min-1-4",cat:"min",sub:"1.1 Crystallography",type:"VISUAL",
+ front:"A mineral splits into thin, flexible sheets along a single plane. What silicate structure — and typically what crystal system — produces this habit?",
+ back:"Phyllosilicate structure (sheet-linked tetrahedra) → one perfect cleavage. Usually monoclinic (e.g., biotite, muscovite).",
+ cites:[{t:"verified",l:"M 81–83"},{t:"verified",l:"K 456, 186"}]},
+{id:"min-1-5",cat:"min",sub:"1.1 Crystallography",type:"CUED",
+ front:"Name two Tier-1 minerals that crystallize in the monoclinic system.",
+ back:"Micas (biotite, muscovite), orthoclase, pyroxenes (augite) — any two.",
+ cites:[{t:"verified",l:"M 77"},{t:"verified",l:"K 186"}]},
+{id:"min-1-6",cat:"min",sub:"1.1 Crystallography",type:"DRAW",
+ front:"Sketch, from memory: the isometric, monoclinic, and triclinic axial systems (relative axis lengths and angles).",
+ back:"Isometric: 3 equal axes, all 90°. Monoclinic: 3 unequal axes, one oblique angle. Triclinic: 3 unequal axes, all oblique. Compare your sketch to the guide's crystal-system table and diagram.",
+ cites:[{t:"verified",l:"M 77"},{t:"verified",l:"K 129, 185–200"}]},
+
+// ===== MINERALOGY 1.2 Classification =====
+{id:"min-2-1",cat:"min",sub:"1.2 Classification",type:"PRODUCE",
+ front:"List the 7 silicate structural classes, least to most polymerized.",
+ back:"Nesosilicate → Sorosilicate → Cyclosilicate → single-chain inosilicate → double-chain inosilicate → phyllosilicate → tectosilicate.",
+ cites:[{t:"verified",l:"M 83, Fig. 3.9"},{t:"verified",l:"K 434, Ch.18"}]},
+{id:"min-2-2",cat:"min",sub:"1.2 Classification",type:"CUED",
+ front:"Pyroxene cleaves at approximately __° and __°.",
+ back:"~87° and 93° (two directions, nearly at right angles).",
+ cites:[{t:"verified",l:"M 82"},{t:"verified",l:"K 447"}]},
+{id:"min-2-3",cat:"min",sub:"1.2 Classification",type:"CUED",
+ front:"Amphibole cleaves at approximately __° and __°.",
+ back:"~56° and 124° — the classic pyroxene-vs-amphibole discriminator.",
+ cites:[{t:"verified",l:"M 82"},{t:"verified",l:"K 452"}]},
+{id:"min-2-4",cat:"min",sub:"1.2 Classification",type:"PRODUCE",
+ front:"Explain structurally why quartz has no cleavage.",
+ back:"Tectosilicate — every oxygen is shared between tetrahedra in a fully 3D framework, so there's no plane of consistently weaker bonding to break along.",
+ cites:[{t:"verified",l:"M 83"},{t:"verified",l:"K 467"}]},
+{id:"min-2-5",cat:"min",sub:"1.2 Classification",type:"DRAW",
+ front:"Draw the silicate-structure table from memory: 7 rows, with cleavage behavior for each.",
+ back:"Check against: nesosilicate (none), sorosilicate (variable), cyclosilicate (poor), single-chain (2 @ 87/93), double-chain (2 @ 56/124), phyllosilicate (1 perfect), tectosilicate (2 @ ~90 or none).",
+ cites:[{t:"verified",l:"M 83"},{t:"verified",l:"K 434–467"}]},
+{id:"min-2-6",cat:"min",sub:"1.2 Classification",type:"PRODUCE",
+ front:"Recite the Mohs hardness scale, mineral and number, 1 through 10.",
+ back:"Talc(1), Gypsum(2), Calcite(3), Fluorite(4), Apatite(5), Orthoclase(6), Quartz(7), Topaz(8), Corundum(9), Diamond(10).",
+ cites:[{t:"verified",l:"M 81, Table 3.1"},{t:"verified",l:"K 30"}]},
+{id:"min-2-7",cat:"min",sub:"1.2 Classification",type:"VISUAL",
+ front:"Mohs hardness is an ordinal (ranked) scale, not a linear one. What does that mean for the jump from corundum (9) to diamond (10)?",
+ back:"The absolute-hardness gap from 9→10 is far larger than from 1→9 combined — diamond is roughly 4x harder than corundum despite being adjacent on the ranked scale. Don't treat Mohs numbers as evenly spaced.",
+ cites:[{t:"gap",l:"Not in either textbook — general mineralogical knowledge, now diagrammed in the guide §1.2"}]},
+{id:"min-2-8",cat:"min",sub:"1.2 Classification",type:"CUED",
+ front:"Calcite fizzes readily in dilute HCl. Under what condition does dolomite fizz?",
+ back:"Only when powdered/scratched — a classic field discriminator between the two carbonates.",
+ cites:[{t:"verified",l:"M — general text, Ch.3"},{t:"verified",l:"K 399"}]},
+
+// ===== MINERALOGY 1.3 Priority mineral list =====
+{id:"min-3-1",cat:"min",sub:"1.3 Priority list",type:"PRODUCE",
+ front:"List all 11 Tier-1 minerals.",
+ back:"Quartz, K-feldspar, plagioclase, muscovite, biotite, amphibole, pyroxene, olivine, calcite, dolomite, clay minerals.",
+ cites:[{t:"verified",l:"M 71–96"}]},
+{id:"min-3-2",cat:"min",sub:"1.3 Priority list",type:"CUED",
+ front:"Name the three minerals in the Al₂SiO₅ polymorph trio.",
+ back:"Kyanite, andalusite, sillimanite — same formula, different structure.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+{id:"min-3-3",cat:"min",sub:"1.3 Priority list",type:"PRODUCE",
+ front:"Kyanite indicates high __, andalusite indicates low __, sillimanite indicates high __.",
+ back:"Kyanite = high pressure. Andalusite = low pressure (moderate T). Sillimanite = high temperature.",
+ cites:[{t:"verified",l:"M 200"}]},
+{id:"min-3-4",cat:"min",sub:"1.3 Priority list",type:"VISUAL",
+ front:"A specimen shows high specific gravity (~7.5), gray metallic luster, and perfect cubic cleavage. Identify it.",
+ back:"Galena (PbS).",
+ cites:[{t:"verified",l:"M — Ch.3/Ch.12 ore minerals"}]},
+{id:"min-3-5",cat:"min",sub:"1.3 Priority list",type:"CUED",
+ front:"Name two identifying properties each for pyrite and magnetite.",
+ back:"Pyrite: brassy-gold, cubic crystals/striated faces, not magnetic. Magnetite: black, strongly magnetic, no cleavage.",
+ cites:[{t:"verified",l:"M 72, Fig. 3.1"}]},
+
+// ===== MINERALOGY 1.4 Hazardous minerals & lab methods =====
+{id:"min-4-1",cat:"min",sub:"1.4 Hazards & methods",type:"PRODUCE",
+ front:"Name the six regulated asbestiform mineral varieties, by group.",
+ back:"Serpentine group: chrysotile (the most heavily mined). Amphibole group: amosite, crocidolite, tremolite, actinolite, anthophyllite.",
+ cites:[{t:"verified",l:"K 527, Box 19.2"}]},
+{id:"min-4-2",cat:"min",sub:"1.4 Hazards & methods",type:"CUED",
+ front:"Name three health effects of inhaled asbestos fibers.",
+ back:"Asbestosis (lung scarring), lung cancer, and mesothelioma (cancer of the lung/abdominal lining).",
+ cites:[{t:"verified",l:"K 531"}]},
+{id:"min-4-3",cat:"min",sub:"1.4 Hazards & methods",type:"CUED",
+ front:"What causes silicosis, and who is at occupational risk?",
+ back:"Inhaling fine crystalline silica (quartz) dust — occupational hazard for miners, quarry workers, and stone-cutters.",
+ cites:[{t:"gap",l:"Gap — general occupational-health knowledge"}]},
+{id:"min-4-4",cat:"min",sub:"1.4 Hazards & methods",type:"CUED",
+ front:"What does XRD (X-ray Diffraction) tell you about a mineral sample, and what does XRF tell you?",
+ back:"XRD identifies the mineral species/structure from its diffraction pattern. XRF gives bulk elemental (chemical) composition — different question, different technique.",
+ cites:[{t:"verified",l:"K 307, Ch.14"},{t:"verified",l:"K 321 (XRF)"}]},
+{id:"min-4-5",cat:"min",sub:"1.4 Hazards & methods",type:"CUED",
+ front:"What's the difference between fluorescence and phosphorescence?",
+ back:"Fluorescence: mineral glows under UV, stops immediately when the UV source is removed. Phosphorescence: the glow persists briefly after the source is removed.",
+ cites:[{t:"verified",l:"K 26"}]},
+{id:"min-4-6",cat:"min",sub:"1.4 Hazards & methods",type:"VISUAL",
+ front:"Why are isometric minerals optically isotropic while every other crystal system is anisotropic?",
+ back:"Optical properties (like refractive index) depend on crystal structure direction. Isometric minerals have identical structure along all three axes, so properties don't vary with direction. Any lower-symmetry system has unequal axes, so properties vary — this is the physical basis of polarized-light mineral ID.",
+ cites:[{t:"verified",l:"K 26"}]},
+
+// ===== PETROLOGY 2.1 Igneous =====
+{id:"pet-1-1",cat:"pet",sub:"2.1 Igneous",type:"PRODUCE",
+ front:"Fill in all 8 cells of the igneous classification grid (4 compositions × 2 textures).",
+ back:"Felsic: Granite/Rhyolite. Intermediate: Diorite/Andesite. Mafic: Gabbro/Basalt. Ultramafic: Peridotite/Komatiite.",
+ cites:[{t:"verified",l:"M 113, Fig. 4.13"}]},
+{id:"pet-1-2",cat:"pet",sub:"2.1 Igneous",type:"CUED",
+ front:"What's the intrusive equivalent of basalt?",
+ back:"Gabbro.",
+ cites:[{t:"verified",l:"M 113"}]},
+{id:"pet-1-3",cat:"pet",sub:"2.1 Igneous",type:"CUED",
+ front:"What's the extrusive equivalent of granite?",
+ back:"Rhyolite.",
+ cites:[{t:"verified",l:"M 113"}]},
+{id:"pet-1-4",cat:"pet",sub:"2.1 Igneous",type:"PRODUCE",
+ front:"List Bowen's discontinuous branch, in crystallization order.",
+ back:"Olivine → pyroxene → amphibole → biotite.",
+ cites:[{t:"verified",l:"M 105, Box 4.1"}]},
+{id:"pet-1-5",cat:"pet",sub:"2.1 Igneous",type:"PRODUCE",
+ front:"Describe Bowen's continuous branch.",
+ back:"Plagioclase feldspar shifting smoothly from Ca-rich to Na-rich as temperature drops.",
+ cites:[{t:"verified",l:"M 105"}]},
+{id:"pet-1-6",cat:"pet",sub:"2.1 Igneous",type:"CUED",
+ front:"Between olivine and quartz, which crystallizes first from a cooling mafic magma — and which weathers faster at the surface?",
+ back:"Olivine crystallizes first (highest T) — and olivine also weathers fastest. Same order, both ends of the mineral's life.",
+ cites:[{t:"verified",l:"M 105"}]},
+{id:"pet-1-7",cat:"pet",sub:"2.1 Igneous",type:"DRAW",
+ front:"Draw Bowen's Reaction Series from memory: both branches, plus the point where they converge.",
+ back:"", diagram:"bowen",
+ cites:[{t:"verified",l:"M 105, Box 4.1"}]},
+{id:"pet-1-8",cat:"pet",sub:"2.1 Igneous",type:"PRODUCE",
+ front:"Name four processes that can change magma composition en route to the surface.",
+ back:"Fractional crystallization, partial melting, assimilation, magma mixing (crystal settling is a fifth, related mechanism).",
+ cites:[{t:"verified",l:"M 99–104, §4.2–4.3"}]},
+{id:"pet-1-9",cat:"pet",sub:"2.1 Igneous",type:"CUED",
+ front:"What is exsolution, and what's the classic mineralogical example?",
+ back:"A single homogeneous mineral, stable at high T, 'unmixes' into two distinct phases as it cools and solubility drops. Classic example: perthite — exsolved intergrowths of K-feldspar and Na-plagioclase.",
+ cites:[{t:"verified",l:"K 276"}]},
+
+// ===== PETROLOGY 2.2 Igneous petrogenesis, tectonic settings & volcanism =====
+{id:"pet-tec-1",cat:"pet",sub:"2.2 Tectonics & volcanism",type:"PRODUCE",
+ front:"Name the typical magma composition produced at: mid-ocean ridges, continental-arc subduction zones, and hotspots.",
+ back:"Mid-ocean ridges: mafic (basalt/gabbro) from decompression melting of peridotite. Continental-arc subduction: intermediate (andesite/diorite) from flux melting. Hotspots: mafic (basalt) from a stationary mantle plume, independent of plate boundaries.",
+ cites:[{t:"verified",l:"M 135"}]},
+{id:"pet-tec-2",cat:"pet",sub:"2.2 Tectonics & volcanism",type:"CUED",
+ front:"Why does subduction-zone magma tend to be more silica-rich than mid-ocean-ridge magma?",
+ back:"Subduction introduces water from the subducted slab, which lowers the melting point and drives flux melting of the mantle wedge/crust — producing more evolved, intermediate-to-felsic magma rather than direct mantle-derived basalt.",
+ cites:[{t:"verified",l:"M 135"}]},
+{id:"pet-tec-3",cat:"pet",sub:"2.2 Tectonics & volcanism",type:"PRODUCE",
+ front:"Describe the three main volcano types by shape, eruption style, and give an example of each.",
+ back:"Shield volcano: broad, gentle slopes, effusive low-viscosity basaltic flows (Mauna Loa). Cinder cone: small, steep, single-eruption basaltic fountaining. Stratovolcano (composite): large, steep, alternating lava/pyroclastic layers, viscous intermediate-felsic magma, most explosive/hazardous (Mt. St. Helens).",
+ cites:[{t:"verified",l:"M 126"}]},
+{id:"pet-tec-4",cat:"pet",sub:"2.2 Tectonics & volcanism",type:"CUED",
+ front:"What does the Volcanic Explosivity Index (VEI) measure, and what's its range?",
+ back:"Eruption magnitude on a logarithmic 0–8 scale, based on ejecta volume, plume height, and duration. Devised by Newhall & Self (USGS, 1982).",
+ cites:[{t:"verified",l:"Newhall & Self (1982), J. Geophys. Res."}]},
+{id:"pet-tec-5",cat:"pet",sub:"2.2 Tectonics & volcanism",type:"CUED",
+ front:"What is a Plinian eruption?",
+ back:"The most violently explosive eruption style — a tall column of hot ash and gas reaching the stratosphere. The qualitative top end of what VEI measures numerically.",
+ cites:[{t:"verified",l:"E Ch.4, Volcanism"}]},
+
+// ===== PETROLOGY 2.3 Sedimentary =====
+{id:"pet-2-1",cat:"pet",sub:"2.3 Sedimentary",type:"PRODUCE",
+ front:"List clastic grain-size classes, coarsest to finest, with rock names.",
+ back:"Gravel→Conglomerate/Breccia. Sand→Sandstone. Silt→Siltstone. Clay→Claystone/Shale.",
+ cites:[{t:"verified",l:"M 167–168, Table 6.1"}]},
+{id:"pet-2-2",cat:"pet",sub:"2.3 Sedimentary",type:"CUED",
+ front:"What's the sandstone variety with abundant feldspar?",
+ back:"Arkose.",
+ cites:[{t:"verified",l:"M 167–168"}]},
+{id:"pet-2-3",cat:"pet",sub:"2.3 Sedimentary",type:"CUED",
+ front:"What's the sandstone variety that's lithic- and mud-matrix-rich?",
+ back:"Graywacke.",
+ cites:[{t:"verified",l:"M 167–168"}]},
+{id:"pet-2-4",cat:"pet",sub:"2.3 Sedimentary",type:"PRODUCE",
+ front:"Name four chemical/biochemical sedimentary rocks and each one's dominant composition.",
+ back:"Limestone (calcite), dolostone (dolomite), chert (SiO₂), evaporites (gypsum/halite).",
+ cites:[{t:"verified",l:"M 164–172, §6.2"}]},
+{id:"pet-2-5",cat:"pet",sub:"2.3 Sedimentary",type:"VISUAL",
+ front:"What sedimentary structure signals a mixed sand-mud tidal environment with alternating current strength?",
+ back:"Flaser / wavy / lenticular bedding.",
+ cites:[{t:"verified",l:"M — sedimentary structures, §6.3"}]},
+{id:"pet-2-6",cat:"pet",sub:"2.3 Sedimentary",type:"PRODUCE",
+ front:"Describe the 5-step process of clastic sedimentary rock formation.",
+ back:"Weathering → erosion → transport → deposition → lithification (compaction + cementation).",
+ cites:[{t:"verified",l:"M 165, Fig. 6.2"}]},
+{id:"pet-2-7",cat:"pet",sub:"2.3 Sedimentary",type:"CUED",
+ front:"What are redoximorphic features, and what do they indicate?",
+ back:"Mottling, color banding, and Fe/Mn concentration or depletion zones recording alternating oxidizing/reducing conditions during diagenesis or soil formation — a diagnostic of fluctuating water table or drainage conditions.",
+ cites:[{t:"gap",l:"Gap — general soil-science/diagenesis knowledge, not in Marshak"}]},
+{id:"pet-2-8",cat:"pet",sub:"2.3 Sedimentary",type:"VISUAL",
+ front:"A sandstone is dominated by heavy, chemically resistant minerals (zircon, magnetite, garnet). What does that suggest about the depositional environment?",
+ back:"A high-energy setting — beach or placer deposit — where lighter/less-resistant minerals have been winnowed away, concentrating dense, durable grains.",
+ cites:[{t:"gap",l:"Gap — this environment-mineralogy link isn't unified as one concept in Marshak"}]},
+
+// ===== PETROLOGY 2.4 Metamorphic =====
+{id:"pet-3-1",cat:"pet",sub:"2.4 Metamorphic",type:"PRODUCE",
+ front:"List the foliated metamorphic grade progression, shale to gneiss.",
+ back:"Shale → slate → phyllite → schist → gneiss.",
+ cites:[{t:"verified",l:"M 199, Fig. 7.8"}]},
+{id:"pet-3-2",cat:"pet",sub:"2.4 Metamorphic",type:"CUED",
+ front:"What texturally distinguishes phyllite from slate?",
+ back:"Phyllite has a silky sheen from visible-but-fine mica; slate has dull, flat slaty cleavage without that sheen.",
+ cites:[{t:"verified",l:"M 194, Fig. 7.4"}]},
+{id:"pet-3-3",cat:"pet",sub:"2.4 Metamorphic",type:"PRODUCE",
+ front:"List the Barrovian index-mineral sequence, low to high grade.",
+ back:"Chlorite → biotite → garnet → staurolite → kyanite → sillimanite.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+{id:"pet-3-4",cat:"pet",sub:"2.4 Metamorphic",type:"CUED",
+ front:"Name the non-foliated metamorphic rocks formed from pure limestone and from quartz sandstone.",
+ back:"Limestone → marble. Quartz sandstone → quartzite.",
+ cites:[{t:"verified",l:"M 198–207"}]},
+{id:"pet-3-5",cat:"pet",sub:"2.4 Metamorphic",type:"CUED",
+ front:"Name the two facies typical of subduction settings (high P, relatively low T).",
+ back:"Blueschist and eclogite.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+{id:"pet-3-6",cat:"pet",sub:"2.4 Metamorphic",type:"VISUAL",
+ front:"Zeolite → greenschist → amphibolite → granulite is a facies progression along what kind of setting?",
+ back:"A normal (regional) geothermal gradient — increasing T and P together, not the anomalously high-P/low-T subduction path.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+{id:"pet-3-7",cat:"pet",sub:"2.4 Metamorphic",type:"DRAW",
+ front:"Draw the foliated grade-progression bar from memory, with the texture cue for each stage.",
+ back:"", diagram:"grade",
+ cites:[{t:"verified",l:"M 199, Fig. 7.8"}]},
+
+// ===== GEOCHEMISTRY 3.1 Earth composition, elements & stability diagrams =====
+{id:"geo-comp-1",cat:"geo",sub:"3.1 Composition & diagrams",type:"PRODUCE",
+ front:"Contrast whole-Earth composition with crust-only composition — which element dominates each, and why do they differ?",
+ back:"Whole Earth: iron dominates (~32%) because the dense, iron-rich core is included. Crust only: oxygen dominates — the crust is depleted in the iron that sank to form the core during differentiation.",
+ cites:[{t:"verified",l:"M 27, Fig.1.12"},{t:"verified",l:"M 31, Fig.1.16"}]},
+{id:"geo-comp-2",cat:"geo",sub:"3.1 Composition & diagrams",type:"CUED",
+ front:"What is the core's approximate composition, and how do we know it since we can't sample it directly?",
+ back:"~85% Fe, ~5% Ni, ~10% of a lighter element (O, Si, and/or S) — inferred from meteorite composition (fragments of differentiated planetesimals) plus seismic wave behavior, not direct sampling.",
+ cites:[{t:"verified",l:"M 258, Interlude D"}]},
+{id:"geo-comp-3",cat:"geo",sub:"3.1 Composition & diagrams",type:"PRODUCE",
+ front:"Give one geochemical reason each why halides, transition elements, and noble gases behave distinctly.",
+ back:"Halides (Group 17): halogen anion, form ionic salts — basis of evaporite minerals like halite/fluorite. Transition elements: variable oxidation states make them geochemically mobile, central to ore deposits/redox chemistry. Noble gases: full outer electron shell, no bonding tendency — exactly why trapped radiogenic Ar makes K-Ar dating work.",
+ cites:[{t:"verified",l:"E §2.1, §2.3 (halides, noble gases)"},{t:"verified",l:"L 237, Ch.8 (transition metals)"}]},
+{id:"geo-comp-4",cat:"geo",sub:"3.1 Composition & diagrams",type:"CUED",
+ front:"What does an Eh-pH (Pourbaix) diagram show, and what's it used for in practice?",
+ back:"Plots redox potential (Eh) against pH to show which mineral/ionic species is stable under given water-chemistry conditions — used to predict mineral stability in weathering, acid mine drainage, and groundwater geochemistry.",
+ cites:[{t:"verified",l:"K 262"}]},
+{id:"geo-comp-5",cat:"geo",sub:"3.1 Composition & diagrams",type:"VISUAL",
+ front:"Bowen's Reaction Series and the metamorphic-facies/Al₂SiO₅-polymorph logic are both, formally, what kind of stability diagram?",
+ back:"Bowen's series is a T-X (temperature-composition) diagram. The polymorph triangle/facies logic is a P-T (pressure-temperature) diagram. Both are specific cases of the general stability-diagram concept.",
+ cites:[{t:"verified",l:"K 249, Ch.11"}]},
+
+// ===== GEOCHEMISTRY 3.2 Fundamentals =====
+{id:"geo-1-1",cat:"geo",sub:"3.2 Fundamentals",type:"PRODUCE",
+ front:"What happens chemically when water contacts pyrite at Earth's surface? (This is an official ASBOG sample question.)",
+ back:"Pyrite oxidizes, producing sulfuric acid — runoff becomes acidic. This is the acid mine drainage mechanism.",
+ cites:[{t:"asbog",l:"ASBOG Handbook, Appendix 3, Q1"}]},
+{id:"geo-1-2",cat:"geo",sub:"3.2 Fundamentals",type:"CUED",
+ front:"Distinguish congruent from incongruent mineral dissolution.",
+ back:"Congruent: the mineral dissolves completely into solution (e.g., halite, calcite in acid). Incongruent: partial dissolution leaves a new solid residue (e.g., feldspar → clay).",
+ cites:[{t:"gap",l:"Gap — terminology not in Marshak"}]},
+{id:"geo-1-3",cat:"geo",sub:"3.2 Fundamentals",type:"PRODUCE",
+ front:"What is the dominant silicate weathering reaction, in general terms?",
+ back:"Feldspar + H₂O/CO₂ → clay mineral + dissolved cations + dissolved silica. Incongruent weathering.",
+ cites:[{t:"verified",l:"M 148–162, Interlude B"}]},
+{id:"geo-1-4",cat:"geo",sub:"3.2 Fundamentals",type:"CUED",
+ front:"In the Goldich weathering series, does olivine or quartz weather faster at the surface — and why?",
+ back:"Olivine — it crystallizes at the highest temperature (least stable at surface conditions), same logic as Bowen's series read in reverse. Named for S.S. Goldich (1938).",
+ cites:[{t:"verified",l:"LT — Mineralogy (Perkins et al.), §7.1.3"}]},
+{id:"geo-1-5",cat:"geo",sub:"3.2 Fundamentals",type:"PRODUCE",
+ front:"List the clay-mineral weathering-intensity sequence, least to most weathered.",
+ back:"Smectite → illite → kaolinite (kaolinite = most leached/weathered end-member).",
+ cites:[{t:"verified",l:"M 150, §B.2"}]},
+
+// ===== GEOCHEMISTRY 3.3 Isotope geochemistry =====
+{id:"geo-2-1",cat:"geo",sub:"3.3 Isotopes",type:"PRODUCE",
+ front:"Which radiometric system best dates a Miocene volcanic ash bed, and why? (Official ASBOG sample question scenario.)",
+ back:"K-Ar or Ar-Ar — well suited to K-bearing volcanic minerals (feldspar, biotite, hornblende) at that age range.",
+ cites:[{t:"asbog",l:"ASBOG Handbook, Appendix 3"},{t:"verified",l:"M 320–322, §10.7"},{t:"verified",l:"W 33"}]},
+{id:"geo-2-2",cat:"geo",sub:"3.3 Isotopes",type:"CUED",
+ front:"Why is Carbon-14 the wrong tool for dating a Miocene-age rock?",
+ back:"Its half-life (5,730 yr) makes it useless beyond ~50,000 years — a classic wrong-answer trap on 'old rock' dating questions.",
+ cites:[{t:"verified",l:"M 320–322"},{t:"verified",l:"W 102"}]},
+{id:"geo-2-3",cat:"geo",sub:"3.3 Isotopes",type:"PRODUCE",
+ front:"Order these by increasing half-life: K-Ar, C-14, U-Pb (238), Rb-Sr.",
+ back:"C-14 (5,730 yr) &lt; K-Ar (1.28 Ga) &lt; U-Pb (4.47 Ga) &lt; Rb-Sr (48.8 Ga). Values now verified against White's own decay-constant table, not just general recall.",
+ cites:[{t:"verified",l:"W 33"}]},
+{id:"geo-2-3b",cat:"geo",sub:"3.3 Isotopes",type:"PRODUCE",
+ front:"Add Sm-Nd and Lu-Hf to the half-life ordering — where do they fall relative to Rb-Sr (48.8 Ga)?",
+ back:"Lu-Hf (36 Ga) is shorter-lived than Rb-Sr; Sm-Nd (106 Ga) is longer-lived than Rb-Sr. Full order: K-Ar &lt; U-Pb &lt; Lu-Hf &lt; Rb-Sr &lt; Sm-Nd.",
+ cites:[{t:"verified",l:"W 33"}]},
+{id:"geo-2-4",cat:"geo",sub:"3.3 Isotopes",type:"CUED",
+ front:"Which stable isotope ratio is commonly used for paleoclimate/paleotemperature reconstruction?",
+ back:"δ¹⁸O (oxygen-18 to oxygen-16 ratio), measured against the SMOW standard.",
+ cites:[{t:"verified",l:"W 246, §8.2.1"}]},
+{id:"geo-2-5",cat:"geo",sub:"3.3 Isotopes",type:"PRODUCE",
+ front:"Write the general form of the δ notation (using δ¹⁸O as the example) and state what SMOW stands for.",
+ back:"δ¹⁸O = [(¹⁸O/¹⁶O)sample − (¹⁸O/¹⁶O)SMOW] / (¹⁸O/¹⁶O)SMOW × 1000, reported in permil (‰). SMOW = Standard Mean Ocean Water.",
+ cites:[{t:"verified",l:"W 246, §8.2.1"}]},
+{id:"geo-2-6",cat:"geo",sub:"3.3 Isotopes",type:"CUED",
+ front:"What does Optically Stimulated Luminescence (OSL) date, and how is it fundamentally different from radiometric methods?",
+ back:"Dates the last time buried sediment grains were exposed to sunlight (roughly 0–150 kyr range). It's not radiometric at all — it measures a trapped-electron signal that resets on light exposure and rebuilds during burial, not isotope decay.",
+ cites:[{t:"gap",l:"Gap — not in Marshak or White; explicitly named in ASBOG's B-5.5"}]},
+
+// ===== GEOCHEMISTRY 3.4 Alteration/models =====
+{id:"geo-3-1",cat:"geo",sub:"3.4 Alteration",type:"PRODUCE",
+ front:"Name the four porphyry-system alteration zones, core to margin.",
+ back:"Potassic → phyllic → argillic → propylitic.",
+ cites:[{t:"gap",l:"Gap — not in Marshak; standard economic geology content"}]},
+{id:"geo-3-2",cat:"geo",sub:"3.4 Alteration",type:"CUED",
+ front:"What mineral assemblage characterizes propylitic alteration?",
+ back:"Chlorite, epidote, calcite — lower-temperature, distal to the intrusion.",
+ cites:[{t:"gap",l:"Gap — not in Marshak"}]},
+{id:"geo-3-3",cat:"geo",sub:"3.4 Alteration",type:"PRODUCE",
+ front:"What does the QAPF diagram classify, and on what basis?",
+ back:"Igneous rocks, classified by mineralogy — relative proportions of quartz, alkali feldspar, plagioclase, and feldspathoid.",
+ cites:[{t:"gap",l:"Gap — not in Marshak"}]},
+{id:"geo-3-4",cat:"geo",sub:"3.4 Alteration",type:"CUED",
+ front:"What does the TAS diagram classify by, instead of mineralogy — and why does that matter?",
+ back:"Whole-rock chemistry (total alkalis vs. silica) — useful when minerals can't be identified visually, e.g., fine-grained or glassy volcanic rocks.",
+ cites:[{t:"gap",l:"Gap — not in Marshak"}]},
+];
+
+const DIAGRAMS = {
+  bowen: `<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:'IBM Plex Mono',monospace;">
+    <line x1="70" y1="30" x2="70" y2="220" stroke="#c9cdc0" stroke-width="2"/>
+    <text x="40" y="26" font-size="10" fill="#4b5148">High T</text>
+    <text x="40" y="230" font-size="10" fill="#4b5148">Low T</text>
+    <text x="180" y="20" font-size="10.5" fill="#a63d1f" text-anchor="middle">discontinuous</text>
+    <g font-size="12" fill="#20241f">
+      <rect x="120" y="30" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/><text x="180" y="47" text-anchor="middle">Olivine</text>
+      <line x1="180" y1="56" x2="180" y2="70" stroke="#a63d1f"/>
+      <rect x="120" y="70" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/><text x="180" y="87" text-anchor="middle">Pyroxene</text>
+      <line x1="180" y1="96" x2="180" y2="110" stroke="#a63d1f"/>
+      <rect x="120" y="110" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/><text x="180" y="127" text-anchor="middle">Amphibole</text>
+      <line x1="180" y1="136" x2="180" y2="150" stroke="#a63d1f"/>
+      <rect x="120" y="150" width="120" height="26" rx="4" fill="#f4ded6" stroke="#a63d1f"/><text x="180" y="167" text-anchor="middle">Biotite</text>
+    </g>
+    <text x="425" y="20" font-size="10.5" fill="#9c6b30" text-anchor="middle">continuous</text>
+    <g font-size="12" fill="#20241f">
+      <rect x="360" y="30" width="130" height="26" rx="4" fill="#f1e6d3" stroke="#9c6b30"/><text x="425" y="47" text-anchor="middle">Ca-plagioclase</text>
+      <line x1="425" y1="56" x2="425" y2="110" stroke="#9c6b30"/>
+      <rect x="360" y="110" width="130" height="26" rx="4" fill="#f1e6d3" stroke="#9c6b30"/><text x="425" y="127" text-anchor="middle">Na-plagioclase</text>
+    </g>
+    <line x1="180" y1="176" x2="300" y2="195" stroke="#8a8f83"/>
+    <line x1="425" y1="136" x2="300" y2="195" stroke="#8a8f83"/>
+    <rect x="240" y="195" width="120" height="26" rx="4" fill="#eef0ea" stroke="#8a8f83"/><text x="300" y="212" text-anchor="middle" font-size="12">K-feldspar</text>
+    <line x1="300" y1="221" x2="300" y2="233" stroke="#8a8f83"/>
+    <rect x="240" y="233" width="120" height="26" rx="4" fill="#eef0ea" stroke="#8a8f83"/><text x="300" y="250" text-anchor="middle" font-size="12">Quartz</text>
+  </svg>`,
+  grade: `<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="font-family:'IBM Plex Mono',monospace;">
+    <line x1="50" y1="60" x2="650" y2="60" stroke="#a63d1f" stroke-width="2" marker-end="url(#a3)"/>
+    <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#a63d1f"/></marker></defs>
+    <g font-size="12" fill="#20241f" text-anchor="middle">
+      <text x="90" y="50">Shale</text><text x="230" y="50">Slate</text><text x="370" y="50">Phyllite</text><text x="510" y="50">Schist</text><text x="620" y="50">Gneiss</text>
+    </g>
+    <g font-size="10" fill="#4b5148" text-anchor="middle">
+      <text x="90" y="85">protolith</text><text x="230" y="85">slaty cleavage</text><text x="370" y="85">silky sheen</text><text x="510" y="85">visible mica</text><text x="620" y="85">coarse banding</text>
+    </g>
+  </svg>`
+};
+
+const CAT_LABEL = {min:"Mineralogy", pet:"Petrology", geo:"Geochemistry"};
+
+let progress = {};       // {cardId: {box, dueOffset}}
+let feedback = {};       // {cardId: {difficulty:bool, foundation:bool, note:string}}
+let queue = [];          // array of {cardId, dueAt} where dueAt is a position counter for in-session scheduling
+let sessionCounter = 0;
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('domB-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('domB-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('domB-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('domB-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  // interleave: shuffle across categories/subsections rather than blocking by topic
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = currentCard.diagram
+    ? `<div class="diagram-reveal">${DIAGRAMS[currentCard.diagram]}</div>`
+    : `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  // reflect existing feedback state for this card
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Category 2 (Mineralogy, Petrology, Geochemistry)\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null; // position within current session queue; null = retire from this session
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text); // fallback if clipboard API is blocked
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    // clipboard blocked — fall back to showing it in the textarea so it can be manually selected/copied
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'domB-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

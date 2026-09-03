@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain D: Geomorphology &amp; Surficial Processes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --fnd:#2f6b6e;
+    --fnd-soft:#dcebea;
+    --flw:#93691a;
+    --flw-soft:#f0e6d2;
+    --mar:#6d3f60;
+    --mar-soft:#ecdfe9;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.fnd .cat{color:var(--fnd);}
+  nav.toc a.flw .cat{color:var(--flw);}
+  nav.toc a.mar .cat{color:var(--mar);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.fnd::before{background:var(--fnd);}
+  .category.flw::before{background:var(--flw);}
+  .category.mar::before{background:var(--mar);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.fnd .cat-label{color:var(--fnd);}
+  .category.flw .cat-label{color:var(--flw);}
+  .category.mar .cat-label{color:var(--mar);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.m, .cite.u, .cite.r90, .cite.w, .cite.rh, .cite.om, .cite.gen{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.asbog{background:#e4e4de;color:#54574d;}
+  .cite.other-domain{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .diagram-frame{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:18px 18px 8px;
+    margin:18px 0 24px;
+  }
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    padding-bottom:10px;
+  }
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  .note-box{
+    background:#eceeea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+    color:var(--ink-soft);
+  }
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain D: Geomorphology<br>&amp; Surficial Processes</h1>
+    <p class="subtitle">14% of the FG exam (~19–20 of 140 questions), 8% of PG. Ten FG-relevant subtopics (D-1 through D-10); D-11 (project planning/hazard analysis) is PG-only and excluded here. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. first; gaps closed against the Bureau of Reclamation <em>Engineering Geology Field Manual</em> and <em>Earth Manual</em> test-procedure reports, White's <em>Isotope Geochemistry</em>, and a peer-reviewed <em>Annual Review of Earth and Planetary Sciences</em> paper on OSL dating.</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain D, 14% FG / 8% PG</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite m" style="margin-left:0;">M</span> Marshak &nbsp; <span class="cite u">U</span> USBR &nbsp; <span class="cite gap">Gap</span> not verified</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain D Knowledge Base</h2>
+    <p style="margin-bottom:10px;">Paraphrased from the official domain document: basic geomorphic processes (driving and resisting forces); weathering and soil development (chemical/physical weathering, soil profile development); analysis of surficial materials (grain size analysis, soil classification, age dating techniques); fluvial processes (erosion, deposition, channel patterns, gradient/equilibrium, external influences); mass movements (initiating factors, classification); aeolian processes (erosion, deposition); glacial processes (formation/movement/mass balance, erosion, deposition, sediment characteristics, isostatic effects, climatic controls); karst (erosion, hydrology/drainage, cave development); coastal processes (erosion, deposition, waves/tides/currents, sea-level change, beaches/shorelines); volcanic landforms (general features, intrusive/extrusive forms, eruption types and deposits).</p>
+    <div class="src">Sources: ASBOG Candidate Handbook (Jan 2024); ASBOG Domain D Knowledge Base (asbog.org/candidates/candidates.html).</div>
+  </div>
+
+  <div class="gap-box">
+    <strong>Read this before the rest of the guide.</strong> Marshak covers almost all of Domain D directly and in good depth — geomorphology is a core physical-geology topic. The one real hole is D-3 (analysis of surficial materials): sieve/hydrometer grain size analysis and the USCS classification system are engineering-geology content Marshak doesn't cover at all, and radiocarbon/OSL dating techniques as named methods aren't in an intro textbook either. All three are now closed against USBR and peer-reviewed sources — see §1.3. A handful of smaller items are Marshak-concept-present-but-term-absent (grus, earthflow, "hydraulic gradient," "residual/transported soil," "isostasy" used verbatim in the glacial chapter) — flagged inline with note boxes rather than treated as full gaps, since the underlying knowledge is there even where Marshak's exact wording differs from the KB's.
+  </div>
+
+  <nav class="toc">
+    <a class="fnd" href="#foundations"><span class="cat">Foundations</span>Driving/resisting forces · Weathering · Soil · Surficial-material analysis</a>
+    <a class="flw" href="#flowdriven"><span class="cat">Flow-Driven Processes</span>Fluvial · Mass movement · Aeolian · Karst</a>
+    <a class="mar" href="#marine"><span class="cat">Glacial, Coastal &amp; Volcanic</span>Glacial · Coastal · Volcanic landforms</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- FOUNDATIONS -->
+  <!-- ============================================================ -->
+  <section class="category fnd" id="foundations">
+    <div class="cat-header">
+      <div class="cat-label">01 / Foundations — Processes, Weathering &amp; Material Analysis</div>
+      <h2 class="cat-title">D-1 through D-3</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Basic Geomorphic Processes — Driving &amp; Resisting Forces</h3>
+      <p><strong>Driving forces</strong> that shape landscapes <span class="cite m">M Interlude F, p.388</span>: internal energy (plate tectonics and uplift, ultimately from planetary heat plus radioactive decay), external/climatic energy (solar-driven weathering, erosion, and transport), and gravity (drives all downslope movement of material, independent of climate).</p>
+      <p><strong>Resisting forces</strong> that oppose landscape change <span class="cite m">M Interlude F, p.389</span>: <strong>lithology</strong> is explicit in Marshak — resistant rock (e.g., quartzite, well-cemented sandstone) forms ridges and cliffs; nonresistant rock (e.g., shale) erodes into valleys and lowlands, producing differential erosion and stepped topography.</p>
+      <div class="note-box">"Structure" (bedding/joint/fold orientation controlling erosion resistance) and "friction" as resisting-force vocabulary aren't used together with lithology in Interlude F specifically, but both ideas appear elsewhere in the text — structural control on landform development throughout the structural geology chapters, and friction/angle of repose explicitly in the mass-movement chapter (§2.2, D-5.1). Nothing here is a real gap, just split across chapters rather than unified in one driving/resisting-forces section the way the KB frames it.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Weathering &amp; Soil Development</h3>
+      <p><strong>Chemical weathering</strong> <span class="cite m">M Interlude B, p.151</span>: <strong>oxidation</strong> (reaction with O₂, e.g., iron minerals rusting to hematite/limonite), <strong>dissolution</strong> (mineral fully dissolves into solution, e.g., calcite in mildly acidic water), and <strong>hydrolysis</strong> (water reacts with silicate minerals, breaking them down into clay minerals plus dissolved ions — the dominant process converting feldspar to clay). A major chemical-weathering product under intense, prolonged tropical weathering is <strong>laterite</strong>, an iron/aluminum-oxide-rich residual soil <span class="cite m">M p.159</span>.</p>
+      <p><strong>Physical (mechanical) weathering</strong> <span class="cite m">M p.150</span>: <strong>frost wedging</strong> (water freezes in cracks, expands ~9%, and pries rock apart) and <strong>sheeting/exfoliation</strong> (pressure-release jointing as overlying rock is eroded away, producing curved slabs that peel off, especially in granite/plutonic rock — domal exfoliation produces features like Half Dome). A characteristic physical-weathering deposit is <strong>talus</strong> — angular rock-fragment piles accumulating at the base of a cliff or steep slope by rockfall.</p>
+      <div class="note-box">"Grus" (the granular, sand-sized disintegration product of physically/chemically weathered granite) is a standard geomorphology term the KB may test, but it does not appear anywhere in Marshak — treat this as a small vocabulary gap to know independently: grus is unconsolidated, arkosic (feldspar-rich) sand-to-gravel residuum formed as granite weathers along mineral-grain boundaries.</div>
+      <p><strong>Soil profile development</strong> <span class="cite m">M pp.157–158</span>: a mature soil develops distinct horizons — <strong>O</strong> (organic litter), <strong>A</strong> (topsoil, organic-mineral mix, zone of leaching/eluviation), <strong>E</strong> (light-colored zone of maximum leaching, present in some soils), <strong>B</strong> (subsoil, zone of accumulation/illuviation — clay, iron oxides, and carbonate wash down and accumulate here), and <strong>C</strong> (weathered parent material grading into unweathered bedrock/regolith below).</p>
+      <div class="note-box">The KB's "residual vs. transported soil" distinction (soil that formed in place on its parent bedrock, vs. soil formed in sediment that was transported in — alluvial, aeolian, glacial, colluvial) isn't labeled with those exact terms in Marshak, but the concept is implicit throughout: a soil's parent material can be either the underlying weathered bedrock (residual) or deposited sediment of any of the transport types covered elsewhere in this domain (transported).</div>
+      <p><strong>Soil classification</strong> <span class="cite m">M pp.159–160</span>: Marshak presents the 12-order U.S. soil taxonomic system in detail — e.g., <strong>aridisol</strong> (dry-climate, low organic content), <strong>alfisol</strong> (moderate leaching, clay-rich B horizon), <strong>mollisol</strong> (grassland, thick dark A horizon, highly fertile), <strong>oxisol</strong> (deeply weathered tropical soil), <strong>histosol</strong> (organic-rich, e.g., peat/bog soils) — without naming the system "USDA Soil Taxonomy" outright. <span class="cite u">U Vol.1 Ch.3, p.18</span> confirms this is the correct label: USBR's own field manual explicitly cites "U.S. Department of Agriculture terminology... (Soil Taxonomy), Agriculture Handbook No. 436" as the system used for pedologic and Quaternary-stratigraphy work — as distinct from USCS, which is the engineering classification system (see §1.3).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Analysis of Surficial Materials</h3>
+      <p><strong>Grain size analysis — sieve and hydrometer methods</strong> <span class="cite r90">R90 pp.45–56</span>. Not covered in Marshak; this is standard geotechnical/engineering-geology procedure per the Bureau of Reclamation <em>Earth Manual</em>, 3rd ed.:</p>
+      <ul>
+        <li><strong>USBR 5325 — sieve analysis, gravel-size fraction</strong> (+No.4 sieve material, i.e., particles ≥4.75mm): soil is passed through a nested stack of sieves of progressively smaller opening size (3", 1½", ¾", ⅜", No.4); the mass retained on each sieve is weighed, and percent-passing-each-sieve is calculated from the dry mass. Minimum specimen mass scales with maximum particle size (e.g., 10lbm/4.5kg minimum for the typical lab setup). Sieving continues until an additional minute of shaking changes no sieve's retained mass by more than 1.0%.</li>
+        <li><strong>USBR 5330 — hydrometer analysis, sand/fines fraction</strong> (−No.4 sieve material, i.e., silt and clay too fine to sieve): soil is dispersed in a 4% sodium hexametaphosphate solution for ≥16 hours, then suspended in a 1000mL cylinder. As particles settle under gravity per <strong>Stokes' Law</strong> (larger particles settle faster), a hydrometer measures the suspension's changing density at fixed time intervals — 1, 4, 19, and 60 minutes, with 7hr15min and 25hr45min readings added if ≥40% of the sample is finer than 0.005mm. This indirectly derives the grain-size distribution of particles too small to sieve.</li>
+        <li><strong>USBR 1405 — hydrometer calibration</strong>: a required companion procedure, since the dispersing agent and temperature both shift the hydrometer's zero reading.</li>
+      </ul>
+      <p><strong>Soil classification — USCS and USDA</strong> <span class="cite u">U Vol.1 Ch.3, pp.18–40</span>. Two parallel classification systems serve different purposes:</p>
+      <ul>
+        <li><strong>USCS (Unified Soil Classification System)</strong> — the engineering standard (USBR 5000/5005; consistent with ASTM D2487/D2488). Two-letter group symbols combine a primary constituent (G=gravel, S=sand, M=silt, C=clay, O=organic, Pt=peat) with a modifier (W=well-graded, P=poorly-graded, M=silty, C=clayey, L=low plasticity, H=high plasticity) — e.g., GW = well-graded gravel, CL = lean (low-plasticity) clay, CH = fat (high-plasticity) clay. Classification of fine-grained soils uses a <strong>plasticity chart</strong> (plasticity index vs. liquid limit, relative to the "A-line") plus field manual tests for dry strength, dilatancy, and toughness.</li>
+        <li><strong>USDA Soil Taxonomy</strong> — the pedologic/land-classification standard (Agriculture Handbook No. 436), used for irrigation suitability, drainage investigations, and Quaternary stratigraphy rather than engineering design. See §1.2 for the 12 soil orders.</li>
+      </ul>
+      <p><strong>Age dating techniques — relative vs. absolute</strong> <span class="cite m">M Ch.10, p.306</span>: relative dating establishes sequence only (older/younger) via superposition, cross-cutting relations, and unconformities (see Domain A materials); absolute (numerical) dating assigns an actual age. Isotopic/radiometric dating in general is covered thoroughly <span class="cite m">M pp.320–321</span>, but two specific surficial-dating techniques the KB names require outside sourcing:</p>
+      <ul>
+        <li><strong>Radiocarbon (¹⁴C) dating</strong> <span class="cite w">W Ch.4 §4.1.2, pp.102–104</span>: ¹⁴C is produced in the upper atmosphere by cosmic-ray neutron capture on ¹⁴N, incorporated into living organisms via the carbon cycle, and decays (half-life 5,730 years; historically reported using 5,568 years by convention) after death. Measured by beta counting (gas proportional or liquid scintillation) or, increasingly, accelerator mass spectrometry (AMS), which needs only milligrams of carbon. Ages are reported in years <strong>BP</strong> ("before 1950," not "before present" literally). Raw radiocarbon ages require calibration to calendar years because atmospheric ¹⁴C production has varied over time (solar-activity-driven deVries effects; industrial-era Suess effect from fossil-fuel CO₂ dilution); dendrochronology (tree-ring counting) provides the independent check used to build the calibration curve. Effective range: a few hundred to ~50,000 years.</li>
+        <li><strong>Optically stimulated luminescence (OSL) dating</strong> <span class="cite rh">RH pp.462–465</span>: dates the last time quartz or feldspar sediment grains were exposed to sunlight (i.e., time since burial) — not a radioactive-decay method, but a trapped-charge/dosimetry method. Buried grains accumulate trapped electrons in crystal-lattice defects from ambient ionizing radiation (from surrounding ²³⁸U/²³⁵U/²³²Th/⁴⁰K decay plus cosmic rays); daylight exposure during transport "bleaches" (resets) the signal. In the lab, stimulating the grains with intense light releases the trapped charge as a measurable luminescence signal, compared against a lab-induced dose-response curve (the single-aliquot regenerative-dose, or SAR, protocol) to calculate age = equivalent dose (De, in Gray) ÷ environmental dose rate. Effective range: about 1 year to ~200,000 years (rarely to ~1 million years). Well suited to aeolian (dune, loess), fluvial, glacial-outwash, and beach/coastal deposits — i.e., directly relevant to D-4, D-6, D-7, and D-9 of this same domain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FLOW-DRIVEN PROCESSES -->
+  <!-- ============================================================ -->
+  <section class="category flw" id="flowdriven">
+    <div class="cat-header">
+      <div class="cat-label">02 / Flow-Driven Landscape Processes</div>
+      <h2 class="cat-title">D-4, D-5, D-6, D-8</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Fluvial Processes</h3>
+      <p><strong>Channel patterns</strong> <span class="cite m">M p.419</span>: drainage networks reflect underlying geology/topography — <strong>dendritic</strong> (branching, tree-like; uniform, non-resistant substrate), <strong>trellis</strong> (rectangular grid of parallel main streams and perpendicular tributaries; controlled by alternating resistant/nonresistant folded or tilted strata), <strong>radial</strong> (streams diverge from a central high point, e.g., a volcano), and <strong>rectangular</strong> (right-angle bends controlled by joint/fault sets).</p>
+      <p><strong>Erosional vs. depositional landforms</strong> <span class="cite m">M pp.427–429</span>: on the outside of a meander bend, faster flow erodes a steep <strong>cut bank</strong>; on the inside, slower flow deposits a curved <strong>point bar</strong>. <strong>Meandering</strong> channels (single, sinuous, low-gradient) contrast with <strong>braided</strong> channels (multiple shifting channels separated by bars, typical of high sediment load and variable discharge — e.g., glacial outwash streams). Depositional landforms: an <strong>alluvial fan</strong> forms where a stream leaves a confined channel (e.g., a mountain front) and spreads/deposits sediment in a fan shape; a <strong>delta</strong> forms where a stream enters standing water (ocean/lake) and deposits its sediment load as flow expands and slows.</p>
+      <p><strong>Gradient and equilibrium</strong> <span class="cite m">M p.425</span>: a stream's longitudinal profile is normally concave-up, steep near the source and shallow near the mouth. <strong>Base level</strong> is the lowest elevation to which a stream can erode (ultimately sea level, or a local base level like a lake or resistant rock layer). A stream at <strong>grade</strong> (equilibrium) has a profile balanced between erosion and deposition; a drop in base level triggers <strong>rejuvenation</strong> — renewed downcutting, producing features like incised meanders and stream terraces.</p>
+      <div class="note-box">Marshak's own term for this equilibrium concept is "stream gradient" / "grade," not "hydraulic gradient" — the KB's phrasing likely borrows from groundwater terminology (where "hydraulic gradient" has a specific, different technical meaning: the slope of the potentiometric surface driving groundwater flow, per Darcy's Law). Know both: the fluvial equilibrium-profile concept above, and that "hydraulic gradient" as a term of art belongs to Domain F (hydrology/groundwater).</div>
+      <p><strong>External influences on fluvial systems</strong> <span class="cite m">M Interlude F</span>: climate change alters discharge and sediment supply; urbanization (impervious surfaces) increases peak discharge and flood frequency by reducing infiltration; base-level change (tectonic uplift/subsidence, sea-level change, dam construction/removal) drives rejuvenation or aggradation.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Mass Movements</h3>
+      <p><strong>Factors initiating movement</strong> <span class="cite m">M pp.406–407</span>: the <strong>angle of repose</strong> — the steepest slope angle at which loose granular material remains stable, typically 30°–37° (up to ~45° for some coarse, angular material) — sets the baseline stability limit. Water plays a dual destabilizing role: it adds weight, and more importantly it reduces internal friction/cohesion between grains (pore-water pressure), often triggering failure well below the dry angle of repose.</p>
+      <p><strong>Classification of mass movements</strong> <span class="cite m">M pp.399–403</span>:</p>
+      <table>
+        <tr><th>Type</th><th>Description</th></tr>
+        <tr><td>Slump</td><td>Rotational failure along a curved slip surface; the slumped block tilts backward as it moves</td></tr>
+        <tr><td>Rockslide / debris slide</td><td>Translational failure of rock or debris sliding along a planar surface (often bedding, joints, or a weak layer)</td></tr>
+        <tr><td>Debris flow / mudflow</td><td>Water-saturated rock/soil debris flowing rapidly downslope, behaving like a viscous fluid; mudflow refers to a finer-grained, more water-rich variant</td></tr>
+        <tr><td>Lahar</td><td>A volcanic mudflow/debris flow — water (from melted snow/ice, crater lakes, or heavy rain) mixed with loose volcanic ash and debris; can travel far and fast down valleys from a volcano even without an active eruption</td></tr>
+      </table>
+      <div class="note-box">"Earthflow" — a slower-moving, tongue-shaped flow of fine-grained, plastic (clay-rich) material, distinguished from a faster, more fluid mudflow — is a standard mass-movement term the KB lists that does not appear by name in Marshak (the text uses mudflow/debris flow throughout). Know it as: earthflow = slower, more viscous, clay-dominated flow with a distinctive hummocky surface and a step-like scarp at the head, as opposed to the faster, wetter mudflow/debris flow.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Aeolian Processes</h3>
+      <p><strong>Wind erosion</strong> <span class="cite m">M Ch.17</span>: <strong>deflation</strong> is the removal of loose, fine sediment by wind, which can excavate a shallow depression called a <strong>blowout</strong>; as fine material is stripped away, a coarse residual lag of pebbles/gravel left behind armors the surface as <strong>desert pavement</strong>. Wind-abraded bedrock forms streamlined ridges called <strong>yardangs</strong>; wind-abraded, faceted individual rock fragments (sandblasted by wind-driven grains, typically from a consistent direction) are called <strong>ventifacts</strong>.</p>
+      <p><strong>Wind deposition</strong> <span class="cite m">M Ch.17</span>: <strong>loess</strong> is a thick, unstratified, wind-blown silt deposit (often glacial-outwash-derived) that stands in vertical faces; <strong>dunes</strong> are mounds/ridges of wind-deposited sand, with form controlled by sand supply, vegetation, and wind directional consistency (e.g., barchan dunes from unidirectional wind and limited sand supply, versus more complex forms under variable wind or abundant sand).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Karst</h3>
+      <p><strong>Karst erosion and hydrology</strong> <span class="cite m">M Ch.16.7, pp.488–491</span>: karst topography develops where groundwater dissolves soluble bedrock — typically limestone (calcite) or, less commonly, gypsum/dolomite. A <strong>sinkhole</strong> forms either by gradual surface dissolution or by sudden collapse into an underlying cavity; a <strong>sinking (disappearing) stream</strong> is a surface stream that flows into a sinkhole or cave opening and continues underground. Karst drainage is closely tied to the water table: caves form in the zone where groundwater actively dissolves rock, generally near and below the water table.</p>
+      <p><strong>Cave development</strong> <span class="cite m">M pp.491–492</span>: caves enlarge along fractures/bedding planes by dissolution in the phreatic (saturated) zone; once the water table drops (e.g., due to regional uplift or base-level fall), the cave passes into the vadose (unsaturated) zone and dripping, CO₂-degassing water precipitates calcite as <strong>speleothems</strong> — stalactites (hang from the ceiling), stalagmites (build up from the floor), and columns (where the two meet).</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- GLACIAL, COASTAL & VOLCANIC -->
+  <!-- ============================================================ -->
+  <section class="category mar" id="marine">
+    <div class="cat-header">
+      <div class="cat-label">03 / Glacial, Coastal &amp; Volcanic Landscapes</div>
+      <h2 class="cat-title">D-7, D-9, D-10</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Glacial Processes</h3>
+      <p><strong>Formation, movement &amp; mass balance</strong> <span class="cite m">M pp.516–522</span>: glacier ice forms where annual snow accumulation exceeds ablation (melting/sublimation/calving) long enough for compacted snow (firn) to recrystallize into glacial ice. The <strong>equilibrium line</strong> separates the upper accumulation zone (net gain) from the lower ablation zone (net loss); a glacier's overall mass balance (positive, negative, or steady) controls whether its terminus advances, retreats, or holds steady.</p>
+      <p><strong>Erosional processes &amp; landforms</strong> <span class="cite m">M pp.523–526</span>: <strong>plucking</strong> (glacier ice freezes onto and pulls away joint-bounded rock blocks) and <strong>abrasion</strong> (rock fragments embedded in basal ice grind and scratch the underlying bedrock, producing striations and glacial polish) are the two primary erosion mechanisms. Alpine glacial erosion produces a <strong>cirque</strong> (bowl-shaped amphitheater at a glacier's head), an <strong>arête</strong> (sharp, knife-edge ridge between two cirques), and a <strong>horn</strong> (pyramidal peak formed where three or more cirques erode a mountain from different sides, e.g., the Matterhorn).</p>
+      <p><strong>Depositional processes, landforms &amp; sediment character</strong> <span class="cite m">M pp.527–529</span>: <strong>till</strong> is unsorted, unstratified glacial sediment deposited directly by ice (all grain sizes mixed together, distinguishing it from sorted, stratified <strong>outwash</strong> deposited by glacial meltwater streams). Depositional landforms include <strong>moraines</strong> (ridges of till — terminal at the farthest ice advance, recessional marking a stillstand during retreat, lateral along the glacier's sides, medial where two glaciers' lateral moraines merge), <strong>drumlins</strong> (streamlined, elongated hills of till, shaped by moving ice), <strong>eskers</strong> (sinuous ridges of sorted sediment deposited by meltwater streams flowing in or under the ice), <strong>kettles</strong> (depressions, often lake-filled, formed where a buried block of ice melts), and glacial <strong>erratics</strong> (boulders transported and deposited far from their bedrock source). Fine-grained sediment settling in quiet glacial-lake water forms <strong>varves</strong> — alternating light/dark seasonal layer pairs usable for annual counting.</p>
+      <p><strong>Isostatic effects</strong> <span class="cite m">M pp.532–533</span>: the mass of a thick ice sheet depresses the underlying crust; after deglaciation, the crust rebounds (glacial rebound/isostatic rebound) — still ongoing today in formerly glaciated regions like Scandinavia and Hudson Bay, sometimes accompanied by a peripheral <strong>forebulge</strong> that subsides as the ice-loaded area rebounds.</p>
+      <p><strong>Effects of changing variables</strong> <span class="cite m">M pp.538–539</span>: glacial-interglacial cycles are paced by <strong>Milanković cycles</strong> (periodic variations in Earth's orbital eccentricity, axial tilt, and precession, altering the seasonal/latitudinal distribution of solar insolation); <strong>albedo</strong> feedback amplifies change (more ice/snow reflects more sunlight, reinforcing cooling, and vice versa); and atmospheric CO₂ concentration tracks and reinforces the glacial/interglacial temperature cycle.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Coastal Processes</h3>
+      <p><strong>Waves, tides &amp; currents</strong> <span class="cite m">M pp.448–454</span>: wind-driven waves approaching shore at an angle produce <strong>longshore drift</strong> — a net alongshore transport of sediment via the zig-zag swash/backwash motion of breaking waves — and drive large-scale ocean surface <strong>gyres</strong>, deflected by the Coriolis effect. Tides result from the gravitational pull of the Moon (and, to a lesser extent, the Sun) producing tidal bulges; as Earth rotates beneath these bulges, coastal water levels rise and fall (typically semidiurnal — two highs and two lows daily — in most locations).</p>
+      <p><strong>Erosional and depositional landforms</strong> <span class="cite m">M pp.456–457</span>: wave erosion of a rocky coast cuts a <strong>wave-cut notch</strong> (undercut at the base of a sea cliff) that can widen into a <strong>wave-cut platform/bench</strong> (a flat, erosional rock surface at wave-base level); isolated erosional remnants form <strong>sea stacks</strong>, and roofed passages/openings form <strong>sea arches</strong>. Longshore drift builds depositional features: a <strong>spit</strong> (a narrow sand ridge extending from shore into open water, often hooked at the end by wave refraction), a <strong>tombolo</strong> (a sand ridge connecting an island to the mainland or to another island), and a <strong>barrier island</strong> (a long, low, sand ridge running parallel to and separated from the mainland by a lagoon).</p>
+      <p><strong>Beaches and shorelines</strong> <span class="cite m">M pp.454–455</span>: a typical beach profile includes the <strong>foreshore</strong> (intertidal zone, regularly wave-washed), <strong>backshore</strong> (above normal high tide, reached only by storm waves), and a <strong>berm</strong> (a flat, wave-deposited terrace at the top of the beach profile).</p>
+      <p><strong>Sea-level change — drivers and effects</strong> <span class="cite m">M pp.459–461</span>: <strong>relative sea level</strong> (the local, observed shoreline position) differs from <strong>eustatic sea level</strong> (the global, average ocean-surface elevation) — a coastline can appear to rise or fall due to purely local tectonic uplift/subsidence even while eustatic (global) sea level stays constant, or vice versa. A rising relative sea level (or subsiding coast) produces a <strong>submergent</strong> coastline (drowned river valleys/estuaries, fjords); a falling relative sea level (or rising/uplifting coast) produces an <strong>emergent</strong> coastline (raised marine terraces, elevated wave-cut platforms). Drivers of eustatic change include glacial-interglacial ice-volume cycling (dominant on 10⁴–10⁵-year timescales) and, presently, thermal expansion of ocean water plus contemporary ice-sheet/glacier melt.</p>
+      <div class="note-box">Your Wefer et al. (2002) <em>Ocean Margin Systems</em> volume is a legitimate, deeper research-level reference on continental-margin sediment transport (shelf, slope, turbidite, and contourite processes) — useful if you want to go beyond intro-textbook depth on D-9's depositional side, but it wasn't needed to close any actual FG-level gap here; Marshak's coastal-process coverage is already complete for exam purposes.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Volcanic Landforms</h3>
+      <p><strong>General features</strong> <span class="cite m">M p.132</span>: a <strong>vent</strong> is the opening through which magma/gas erupts; a <strong>crater</strong> is the small, steep-walled depression around a vent formed by explosive ejection and collapse; a <strong>caldera</strong> is a much larger, roughly circular depression formed by collapse of a volcano's summit into a partially emptied magma chamber following a major eruption.</p>
+      <p><strong>Intrusive and extrusive forms</strong> <span class="cite m">M pp.111, 132</span>: intrusive (below-surface) bodies include a <strong>dike</strong> (a tabular intrusion cutting across existing rock layers/structure) and a <strong>sill</strong> (a tabular intrusion parallel to existing layering), both minor intrusions, versus a <strong>batholith</strong> (a very large, composite plutonic body, typically granitic). Extrusive (surface) landforms, distinguished mainly by eruption style and lava viscosity: a <strong>shield volcano</strong> (low, broad profile; fluid, low-viscosity basaltic lava flows), a <strong>composite (strato)volcano</strong> (steep-sided, alternating lava flows and pyroclastic layers; more viscous, intermediate-to-felsic magma), and a <strong>cinder cone</strong> (small, steep, built from ejected pyroclastic fragments around a single vent).</p>
+      <p><strong>Eruption types and deposits</strong> <span class="cite m">M p.132</span>: <strong>Hawaiian</strong> (effusive, low-viscosity basaltic lava flows, minimal explosivity), <strong>Strombolian</strong> (mild, rhythmic explosive bursts of gas and lava fragments), <strong>Vulcanian</strong> (more violent, short explosive bursts ejecting denser, viscous magma fragments and ash), and <strong>Plinian</strong> (the most violent type — sustained, high, gas-rich eruption columns that can collapse to generate fast-moving, hot <strong>pyroclastic flows</strong> of ash, gas, and rock fragments).</p>
+      <div class="note-box">This edition of Marshak spells the term "Plinean" rather than the far more common "Plinian" — same eruption style (named for Pliny the Younger's account of Vesuvius, 79 CE), just be aware of the spelling variant if you're cross-referencing other sources or the ASBOG exam itself.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite m">M</span> Marshak, <em>Essentials of Geology</em> 4th ed. — verified page from your uploaded copy</div>
+    <div class="legend-row"><span class="cite u">U</span> Bureau of Reclamation, <em>Engineering Geology Field Manual</em>, 2nd ed. (1998, reprinted 2001), Vol. 1, Ch. 3 — verified chapter/page</div>
+    <div class="legend-row"><span class="cite r90">R90</span> Howard, A.K., <em>Gradation Analysis of Soils: Test Procedures</em>, Bureau of Reclamation Report R-90-04 (March 1990) — verified, full procedure text</div>
+    <div class="legend-row"><span class="cite w">W</span> White, W.M., <em>Isotope Geochemistry</em> (Wiley, 2013), Ch. 4 §4.1.2 — verified from your uploaded copy</div>
+    <div class="legend-row"><span class="cite rh">RH</span> Rhodes, E.J., "Optically Stimulated Luminescence Dating of Sediments over the Past 200,000 Years," <em>Annual Review of Earth and Planetary Sciences</em> 39:461–488 (2011) — peer-reviewed</div>
+    <div class="legend-row"><span class="cite om">OM</span> Wefer, G. et al. (eds.), <em>Ocean Margin Systems</em> (Springer, 2002) — supplemental depth reference, not gap-filling</div>
+    <div class="legend-row"><span class="cite gen">gen</span> General/uncontested definitional content, corroborated across multiple independent sources</div>
+    <div class="legend-row"><span class="cite asbog">ASBOG</span> ASBOG Candidate Handbook (Jan 2024) or Domain D Knowledge Base — official scope/blueprint</div>
+    <div class="legend-row"><span class="cite gap">Gap</span> Valid ASBOG Domain D content confirmed absent from all sources checked so far</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">This guide is intentionally lean, matching the Domain A/B/C template — reference layer, not practice layer. The Domain D Knowledge Base (asbog.org/candidates/candidates.html) is meaningfully more granular than the Handbook's one-paragraph summary.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Final status:</strong> All originally identified Domain D gaps (grain size analysis methods, USCS classification, radiocarbon and OSL dating) are resolved against real, verified sources. A handful of smaller vocabulary items (grus, earthflow, "hydraulic gradient" vs. "stream gradient," "residual/transported soil," "isostasy" used verbatim in the glacial chapter) are flagged inline as concept-present-term-absent notes rather than true gaps — the underlying knowledge is confirmed present in Marshak even where its exact wording departs from the KB's.</p>
+  </div>
+</footer>
+
+</body>
+</html>

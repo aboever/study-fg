@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain C Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --strat:#2f6b6e;
+    --facies:#93691a;
+    --foss:#6d3f60;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .tags{display:flex;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-strat{border-color:var(--strat);color:var(--strat);}
+  .tag.cat-facies{border-color:var(--facies);color:var(--facies);}
+  .tag.cat-foss{border-color:var(--foss);color:var(--foss);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.other{background:var(--asbog-soft);color:var(--asbog);}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--strat);color:var(--strat);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--strat);color:#fff;border-color:var(--strat);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Domain C</div>
+    <h1>Sedimentology, Stratigraphy &amp; Paleontology — Flashcards</h1>
+    <p class="sub">Production and cued recall, no multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty. 11% of the FG exam (~15 of 140 questions). Companion to the Domain C study guide — full citations there; card citations here are shortened to author/year/page.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--strat);border-radius:50%;"></span>Stratigraphic Principles, Structures &amp; Diagenesis</span>
+    <span><span class="dot" style="background:var(--facies);border-radius:50%;"></span>Facies &amp; Depositional Environments</span>
+    <span><span class="dot" style="background:var(--foss);border-radius:50%;"></span>Fossil Record &amp; Basin Analysis</span>
+    <span><span class="cite verified" style="margin:0;">Author Year</span>verified source — full citation in the study guide</span>
+    <span><span class="cite asbog" style="margin:0;">other</span>cross-domain note or generic/uncontested definition</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices. Copy/paste is the more reliable method if the file picker shows no files.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if opened standalone in a browser, progress will not persist between sessions.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== STRAT 1.1 Naming Conventions =====
+{id:"strat-1-1",cat:"strat",sub:"1.1 Naming Conventions",type:"PRODUCE",
+ front:"Name the hierarchy of stratigraphic units from smallest to largest, and define the two smallest.",
+ back:"Bed (single layer, recognizable top/bottom) → strata (beds together) → formation (distinctive sequence traceable across a region) → group (several related formations). A bedding plane is the boundary between two beds.",
+ cites:[{t:"verified",l:"Marshak p.173, 312"}]},
+{id:"strat-1-2",cat:"strat",sub:"1.1 Naming Conventions",type:"CUED",
+ front:"When does a formation's name include the rock type directly vs. the word \"Formation\"?",
+ back:"Single rock type → name includes the rock type (e.g., Kaibab Limestone). Multiple rock types → name includes the word \"Formation\" (e.g., Toroweap Formation).",
+ cites:[{t:"verified",l:"Marshak p.312"}]},
+{id:"strat-1-3",cat:"strat",sub:"1.1 Naming Conventions",type:"CUED",
+ front:"Is engineering-geology rock-unit naming normally formal or informal, and why?",
+ back:"Informal (lower case) per the North American Stratigraphic Code — stratigraphic names aren't always consistent between localities and don't necessarily convey engineering properties or rock type.",
+ cites:[{t:"verified",l:"USBR Ch.2 p.4"}]},
+
+// ===== STRAT 1.2 Fundamental Rules =====
+{id:"strat-2-1",cat:"strat",sub:"1.2 Fundamental Rules",type:"PRODUCE",
+ front:"State the principle of lateral continuity.",
+ back:"Sediment layers accumulate as continuous sheets within a region — if you find a layer cut by a canyon, the layer once spanned the area later eroded away.",
+ cites:[{t:"verified",l:"Marshak p.307"}]},
+{id:"strat-2-2",cat:"strat",sub:"1.2 Fundamental Rules",type:"CUED",
+ front:"Baked contacts vs. inclusions — how do you tell relative age from each?",
+ back:"Baked contacts: the \"baked\" (metamorphosed) rock is older than the intrusion causing it. Inclusions: a rock fragment enclosed in another rock is older than the rock enclosing it.",
+ cites:[{t:"verified",l:"Marshak p.307"}]},
+{id:"strat-2-3",cat:"strat",sub:"1.2 Fundamental Rules",type:"PRODUCE",
+ front:"State the principle of fossil succession and who discovered it.",
+ back:"A given fossil species occurs only within a limited stratigraphic interval and never reappears higher in the sequence once extinct. Discovered by William Smith while surveying English canal excavations in the 1790s.",
+ cites:[{t:"verified",l:"Marshak p.308"}]},
+
+// ===== STRAT 1.3 Unconformities =====
+{id:"strat-3-1",cat:"strat",sub:"1.3 Unconformities",type:"PRODUCE",
+ front:"Define unconformity and hiatus.",
+ back:"Unconformity = a surface representing a period of nondeposition and possibly erosion. Hiatus = the time gap the unconformity represents.",
+ cites:[{t:"verified",l:"Marshak p.309"}]},
+{id:"strat-3-2",cat:"strat",sub:"1.3 Unconformities",type:"CUED",
+ front:"Angular unconformity vs. nonconformity vs. disconformity — one-line distinction for each.",
+ back:"Angular: underlying rocks tilted/folded before the unconformity. Nonconformity: sedimentary rock over igneous/metamorphic basement. Disconformity: parallel sedimentary sequences separated by an erosion surface.",
+ cites:[{t:"verified",l:"Marshak pp.309-311"}]},
+{id:"strat-3-3",cat:"strat",sub:"1.3 Unconformities",type:"PRODUCE",
+ front:"What distinguishes a paraconformity from an ordinary disconformity, and how is it actually recognized in the field?",
+ back:"Beds above and below are parallel with NO visible erosional relief — it looks like a normal bedding plane. Recognized only via a missing fossil zone or age gap, not by field appearance. Short paraconformities = diastems.",
+ cites:[{t:"other",l:"generic/uncontested"}]},
+
+// ===== STRAT 1.4 Columns, Cross Sections & Fence Diagrams =====
+{id:"strat-4-1",cat:"strat",sub:"1.4 Columns & Diagrams",type:"CUED",
+ front:"What does a geologic map show, vs. a stratigraphic column?",
+ back:"A stratigraphic column summarizes the vertical sequence of strata at ONE location. A geologic map shows the spatial (horizontal) distribution of formations and structures across a region.",
+ cites:[{t:"verified",l:"Marshak pp.312-315"}]},
+{id:"strat-4-2",cat:"strat",sub:"1.4 Columns & Diagrams",type:"PRODUCE",
+ front:"What is a fence diagram, and what is it used to show?",
+ back:"Several stratigraphic columns/cross sections drawn in their true relative geographic positions, with correlated units joined between them — a 3D \"fence\" of panels showing how strata thicken, thin, or pinch out across a region.",
+ cites:[{t:"other",l:"generic/uncontested — not illustrated in Marshak"}]},
+
+// ===== STRAT 1.5 Geochronology =====
+{id:"strat-5-1",cat:"strat",sub:"1.5 Geochronology",type:"PRODUCE",
+ front:"List the four Eons of the geologic column in order, oldest to youngest, and state which three make up the Precambrian.",
+ back:"Hadean → Archean → Proterozoic → Phanerozoic. Hadean + Archean + Proterozoic = the Precambrian.",
+ cites:[{t:"verified",l:"Marshak p.315"}]},
+{id:"strat-5-2",cat:"strat",sub:"1.5 Geochronology",type:"CUED",
+ front:"Why are the geologic periods (Devonian, Carboniferous, etc.) all of unequal duration?",
+ back:"They were named between 1760-1845, before numerical dating existed — boundaries were set by observed fossil/rock changes at type localities, not by equal time intervals.",
+ cites:[{t:"verified",l:"Marshak pp.315-316"}]},
+{id:"strat-5-3",cat:"strat",sub:"1.5 Geochronology",type:"PRODUCE",
+ front:"What makes isotopic dating possible — i.e., why is a mineral's parent:daughter isotope ratio a clock?",
+ back:"Radioactive decay proceeds at a constant rate for a given isotope (the half-life), so measuring the parent:daughter ratio in a mineral lets you calculate how much time has passed since it formed.",
+ cites:[{t:"verified",l:"Marshak pp.320-323"}]},
+
+// ===== STRAT 1.6 Correlation =====
+{id:"strat-6-1",cat:"strat",sub:"1.6 Correlation",type:"PRODUCE",
+ front:"Lithologic correlation vs. fossil correlation — when do you need the latter?",
+ back:"Lithologic correlation matches rock type between nearby columns. Fossil correlation (matching fossils of the same relative age) is needed over broader areas, where depositional environment — and therefore rock type — changes from place to place.",
+ cites:[{t:"verified",l:"Marshak pp.312-314"}]},
+{id:"strat-6-2",cat:"strat",sub:"1.6 Correlation",type:"CUED",
+ front:"What two properties make a fossil species useful as an index fossil?",
+ back:"Widespread geographic distribution + a short stratigraphic (time) range.",
+ cites:[{t:"verified",l:"Marshak p.309"}]},
+{id:"strat-6-3",cat:"strat",sub:"1.6 Correlation",type:"PRODUCE",
+ front:"Define \"chron,\" and name the method used to build a magnetic-reversal chronology for correlation.",
+ back:"A chron is the time interval between successive magnetic-field reversals. The chronology is built by isotopically dating rock layers at their measured paleomagnetic polarity (normal vs. reversed), then correlating that record worldwide.",
+ cites:[{t:"verified",l:"Marshak Ch.2, pp.46-47"}]},
+
+// ===== STRAT 1.7 Sedimentary Structures =====
+{id:"strat-7-1",cat:"strat",sub:"1.7 Sedimentary Structures",type:"PRODUCE",
+ front:"Name five primary sedimentary structures and what each indicates about the depositional setting.",
+ back:"Cross-bedding (current direction); ripple marks/dunes (current); graded bedding/turbidite (turbidity current, fines upward); mud cracks (drying/subaerial exposure); scour marks (current flow, parallel troughs).",
+ cites:[{t:"verified",l:"Marshak pp.173-177"}]},
+{id:"strat-7-2",cat:"strat",sub:"1.7 Sedimentary Structures",type:"CUED",
+ front:"Flute cast vs. tool mark/groove cast — both are sole marks, but how do you distinguish them?",
+ back:"Flute cast: asymmetric, spoon-shaped scour with a bulbous up-current end — reliable paleocurrent indicator. Tool mark/groove cast: a linear groove gouged by an object dragged along; the object itself is rarely preserved.",
+ cites:[{t:"other",l:"SEPM Strata; Britannica \"sole marking\""}]},
+{id:"strat-7-3",cat:"strat",sub:"1.7 Sedimentary Structures",type:"PRODUCE",
+ front:"Concretion vs. nodule — what's the actual mechanistic difference?",
+ back:"A concretion forms by mineral CEMENT PRECIPITATING around a nucleus within already-deposited sediment. A nodule forms by REPLACEMENT of existing material. USBR notes both as useful correlation/interpretation markers.",
+ cites:[{t:"verified",l:"USBR Ch.4 p.70"}]},
+{id:"strat-7-4",cat:"strat",sub:"1.7 Sedimentary Structures",type:"CUED",
+ front:"What process forms a stylolite?",
+ back:"Pressure dissolution — mineral matter is dissolved under differential stress, reducing rock volume, leaving a serrated suture surface marked by insoluble residue (clay, oxides). Common in limestones.",
+ cites:[{t:"other",l:"AGI Glossary of Geology (Jackson 1997)"}]},
+{id:"strat-7-5",cat:"strat",sub:"1.7 Sedimentary Structures",type:"CUED",
+ front:"Liesegang banding looks like primary layering but isn't. What actually forms it?",
+ back:"A diffusion-reaction (supersaturation-nucleation-depletion) process — rhythmic, often iron-oxide precipitation bands that CUT ACROSS bedding, with band spacing increasing geometrically outward from the diffusion front.",
+ cites:[{t:"other",l:"AGI Glossary of Geology (Jackson 1997)"}]},
+{id:"strat-7-6",cat:"strat",sub:"1.7 Sedimentary Structures",type:"PRODUCE",
+ front:"Stromatolites — what builds them, and how old is the oldest confirmed Archean example?",
+ back:"Cyanobacteria secrete a mucus-like mat that traps sediment; new colonization on top builds the mound upward. Confirmed Archean stromatolites date to roughly 3.2 Ga.",
+ cites:[{t:"verified",l:"Marshak p.331"}]},
+
+// ===== STRAT 1.8 Diagenesis =====
+{id:"strat-8-1",cat:"strat",sub:"1.8 Diagenesis",type:"PRODUCE",
+ front:"List the main diagenetic processes and give one example each of recrystallization and replacement.",
+ back:"Compaction, cementation, lithification, recrystallization, dissolution, replacement. Recrystallization: new crystal growth at old crystals' expense. Replacement: dolomite replacing calcite (dolostone); silica replacing calcite (replacement chert).",
+ cites:[{t:"verified",l:"Marshak pp.165-166, 185"}]},
+{id:"strat-8-2",cat:"strat",sub:"1.8 Diagenesis",type:"CUED",
+ front:"At roughly what temperature range does diagenesis transition into true metamorphism?",
+ back:"150°C to 300°C.",
+ cites:[{t:"verified",l:"Marshak p.185"}]},
+{id:"strat-8-3",cat:"strat",sub:"1.8 Diagenesis",type:"PRODUCE",
+ front:"List the sequence of electron acceptors used in organic matter remineralization during diagenesis, in the order they're consumed.",
+ back:"Aerobic respiration (O₂) → denitrification (NO₃⁻) → manganese reduction (Mn⁴⁺) → iron reduction (Fe³⁺) → sulfate reduction (SO₄²⁻) → methanogenesis. Order follows decreasing free-energy yield per mole of organic carbon oxidized.",
+ cites:[{t:"verified",l:"Burdige 2006 pp.99-102"}]},
+{id:"strat-8-4",cat:"strat",sub:"1.8 Diagenesis",type:"CUED",
+ front:"What pore-water signature would you expect with depth as the redox cascade proceeds?",
+ back:"O₂ and NO₃⁻ depleted near the surface; dissolved Mn²⁺ appears first, then Fe²⁺, then sulfide accumulating with increasing depth — mirroring the electron-acceptor consumption order.",
+ cites:[{t:"verified",l:"Burdige 2006 p.101, Fig.7.1; corroborated Schulz & Zabel 2006 Ch.3"}]},
+
+// ===== FACIES 2.1 Facies Concept, Fabric & Walther's Law =====
+{id:"facies-1-1",cat:"facies",sub:"2.1 Facies & Walther's Law",type:"PRODUCE",
+ front:"Define (sedimentary) facies.",
+ back:"A group of rocks and primary structures indicative of a given depositional environment.",
+ cites:[{t:"verified",l:"Marshak glossary"}]},
+{id:"facies-1-2",cat:"facies",sub:"2.1 Facies & Walther's Law",type:"PRODUCE",
+ front:"State Walther's Law of Facies, and who formulated it.",
+ back:"Johannes Walther (1894): facies observed in vertical succession must represent depositional environments that were once laterally adjacent — a conformable vertical sequence records environments migrating past a point through time.",
+ cites:[{t:"verified",l:"Walther 1894, trans. Middleton 1973"}]},
+{id:"facies-1-3",cat:"facies",sub:"2.1 Facies & Walther's Law",type:"CUED",
+ front:"Porosity vs. permeability — define both.",
+ back:"Porosity = the fraction of a material's volume that is empty (pore) space. Permeability = the degree to which a material allows fluid to pass through its interconnected pores.",
+ cites:[{t:"verified",l:"Marshak Ch.16 pp.474-479"}]},
+{id:"facies-1-4",cat:"facies",sub:"2.1 Facies & Walther's Law",type:"PRODUCE",
+ front:"What features give a rock body anisotropic (vs. isotropic) properties, and why?",
+ back:"Bedding and foliation — because they represent potential failure surfaces and cause properties (strength, permeability) to vary with orientation, rather than being uniform in all directions (isotropic).",
+ cites:[{t:"verified",l:"USBR Ch.4 pp.73-74"}]},
+
+// ===== FACIES 2.2 Facies Changes & Sea-Level =====
+{id:"facies-2-1",cat:"facies",sub:"2.2 Facies Changes & Sea Level",type:"PRODUCE",
+ front:"Define transgression and regression.",
+ back:"Transgression: relative sea level RISES, shoreline migrates INLAND, coastal/marine facies overlap terrestrial ones. Regression: relative sea level FALLS, shoreline migrates SEAWARD.",
+ cites:[{t:"verified",l:"Marshak pp.184-185"}]},
+{id:"facies-2-2",cat:"facies",sub:"2.2 Facies Changes & Sea Level",type:"CUED",
+ front:"A transgressive vertical sequence — is it fining-upward or coarsening-upward, and why?",
+ back:"Fining/deepening-upward (e.g., redbeds → sandstone → shale → coal) — this is Walther's Law applied to a real dataset: as the shore migrates inland, progressively deeper/finer-grained environments come to overlie the site.",
+ cites:[{t:"verified",l:"Marshak p.185, Fig.6.22"}]},
+
+// ===== FACIES 2.3 Clastic Environments =====
+{id:"facies-3-1",cat:"facies",sub:"2.3 Clastic Environments",type:"PRODUCE",
+ front:"List the four textural indicators used to characterize clastic sediment, and state how each changes with transport distance.",
+ back:"Clast size (decreases downstream); angularity (angular → rounded with distance); sphericity; sorting (improves — becomes more uniform — with transport distance and reworking).",
+ cites:[{t:"verified",l:"Marshak pp.166-167"}]},
+{id:"facies-3-2",cat:"facies",sub:"2.3 Clastic Environments",type:"CUED",
+ front:"What's diagnostic about glacial till, and why?",
+ back:"Unsorted and unstratified — clay to boulder size all mixed together — because solid ice can transport any grain size regardless of how slowly it moves.",
+ cites:[{t:"verified",l:"Marshak p.178"}]},
+{id:"facies-3-3",cat:"facies",sub:"2.3 Clastic Environments",type:"CUED",
+ front:"Why does arkose (feldspar-rich sandstone) form specifically in alluvial-fan settings?",
+ back:"Transport distance from source is short, so feldspar grains haven't had time to weather into clay yet — unlike sand that's traveled all the way to a beach or desert dune, which is feldspar-poor.",
+ cites:[{t:"verified",l:"Marshak p.179"}]},
+{id:"facies-3-4",cat:"facies",sub:"2.3 Clastic Environments",type:"PRODUCE",
+ front:"Why do fluvial channel deposits have a lens-shaped geometry in cross section?",
+ back:"Coarser channel sediments are surrounded/flanked by finer-grained floodplain deposits, so the channel body pinches out laterally into fine sediment — producing a lens shape.",
+ cites:[{t:"verified",l:"Marshak p.179"}]},
+{id:"facies-3-5",cat:"facies",sub:"2.3 Clastic Environments",type:"CUED",
+ front:"Barrier island / tidal-flat facies belt — where does it sit within a coastal depositional profile?",
+ back:"The barrier/strand-plain sits on the shallow, wave-dominated part of the profile; the lagoonal-tidal-flat zone sits landward of it, in the protected back-barrier area.",
+ cites:[{t:"verified",l:"McCave 2002, in Wefer et al., p.1-14"}]},
+
+// ===== FACIES 2.4 Marine Clastic — Shelf/Slope/Rise =====
+{id:"facies-4-1",cat:"facies",sub:"2.4 Shelf, Slope, Rise",type:"PRODUCE",
+ front:"Give the approximate water depth of the shelf break, and what defines it.",
+ back:"Averages ~130 m, but can be as deep as 500 m — defined by a sharp increase in sea-floor slope (not by a fixed depth).",
+ cites:[{t:"verified",l:"Burdige 2006 p.25"}]},
+{id:"facies-4-2",cat:"facies",sub:"2.4 Shelf, Slope, Rise",type:"CUED",
+ front:"At roughly what depth does the continental slope/rise boundary occur, and what marks the transition to the abyssal plain?",
+ back:"Slope/rise boundary: 1,500-3,500 m (~2,000 m average). Ocean-basin-floor (abyssal plain) transition: typically 3,000-5,000 m.",
+ cites:[{t:"verified",l:"Burdige 2006 pp.25-26"}]},
+{id:"facies-4-3",cat:"facies",sub:"2.4 Shelf, Slope, Rise",type:"PRODUCE",
+ front:"Pelagic vs. hemipelagic sediment — define both.",
+ back:"Pelagic: essentially synonymous with deep-sea sediment, settling out of the water column. Hemipelagic: found along the lower continental margin in shallower water, with more material contributed by lateral transport (e.g., turbidity currents).",
+ cites:[{t:"verified",l:"Burdige 2006 p.25"}]},
+
+// ===== FACIES 2.5 Carbonate Platform, Ramp & Pelagic =====
+{id:"facies-5-1",cat:"facies",sub:"2.5 Carbonate Platform & Ramp",type:"PRODUCE",
+ front:"Rimmed shelf/platform vs. carbonate ramp — what's the defining geometric difference?",
+ back:"Rimmed shelf: flat top with a MARKED BREAK in slope at a high-energy (often reef-rimmed) shelf edge, protected lagoon behind it. Ramp: LOW-ANGLE profile with no major break in slope (or only a distal one).",
+ cites:[{t:"verified",l:"Read 1985, AAPG Bulletin 69"}]},
+{id:"facies-5-2",cat:"facies",sub:"2.5 Carbonate Platform & Ramp",type:"CUED",
+ front:"Homoclinal ramp vs. distally steepened ramp — distinguish them.",
+ back:"Homoclinal: passes seaward into deep water with NO major slope break, no deep-water breccias. Distally steepened: low-angle proximally, but has an offshore slope break, with slope-derived breccias possible.",
+ cites:[{t:"verified",l:"Read 1985, AAPG Bulletin 69"}]},
+{id:"facies-5-3",cat:"facies",sub:"2.5 Carbonate Platform & Ramp",type:"CUED",
+ front:"What three zones does a carbonate ramp subdivide into, and what bounds them?",
+ back:"Inner-, mid-, and outer-ramp, bounded by fair-weather wave base and storm wave base.",
+ cites:[{t:"verified",l:"Read 1985, AAPG Bulletin 69"}]},
+{id:"facies-5-4",cat:"facies",sub:"2.5 Carbonate Platform & Ramp",type:"PRODUCE",
+ front:"What is pelagic carbonate made of, and what's it called as a rock?",
+ back:"Plankton shells (calcite) settling like snow through open water far from clastic/shelf influence, lithifying to chalk.",
+ cites:[{t:"verified",l:"Marshak p.183"}]},
+
+// ===== FACIES 2.6 Evaporite Environments =====
+{id:"facies-6-1",cat:"facies",sub:"2.6 Evaporite Environments",type:"PRODUCE",
+ front:"At what percentage of water evaporated does gypsum precipitate, vs. halite?",
+ back:"Gypsum forms once ~80% of the water has evaporated; halite forms once ~90% has evaporated.",
+ cites:[{t:"verified",l:"Marshak pp.169-171"}]},
+{id:"facies-6-2",cat:"facies",sub:"2.6 Evaporite Environments",type:"CUED",
+ front:"What two settings produce thick evaporite deposits, and what do they have in common?",
+ back:"Desert lakes and restricted seas — both are settings where evaporation removes water faster than new water enters, driving supersaturation.",
+ cites:[{t:"verified",l:"Marshak pp.169-171"}]},
+
+// ===== FOSS 3.1 Fossil Record & Evolution =====
+{id:"foss-1-1",cat:"foss",sub:"3.1 Fossil Record & Evolution",type:"PRODUCE",
+ front:"Name the three conditions that make fossilization more likely.",
+ back:"(1) Anoxic (oxygen-poor) burial environment — slows decay; (2) rapid burial — pre-empts rotting/scavenging; (3) presence of durable hard parts (shell/bone/skeleton).",
+ cites:[{t:"verified",l:"Marshak pp.293-294"}]},
+{id:"foss-1-2",cat:"foss",sub:"3.1 Fossil Record & Evolution",type:"CUED",
+ front:"Give the taxonomic hierarchy from broadest to narrowest, starting below Kingdom.",
+ back:"Kingdom → phylum → class → order → family → genus → species.",
+ cites:[{t:"verified",l:"Marshak pp.297-298"}]},
+{id:"foss-1-3",cat:"foss",sub:"3.1 Fossil Record & Evolution",type:"PRODUCE",
+ front:"Gradualism vs. punctuated equilibrium — distinguish the two models of evolutionary rate.",
+ back:"Gradualism: evolution proceeds at a constant, slow rate. Punctuated equilibrium: long periods of stasis (equilibrium) punctuated by short bursts of rapid change.",
+ cites:[{t:"verified",l:"Marshak p.301"}]},
+{id:"foss-1-4",cat:"foss",sub:"3.1 Fossil Record & Evolution",type:"CUED",
+ front:"What event defines the Precambrian-Cambrian boundary?",
+ back:"The Cambrian explosion (~530 Ma) — the sudden diversification/appearance of shelled invertebrates.",
+ cites:[{t:"verified",l:"Marshak pp.316-317"}]},
+
+// ===== FOSS 3.2 Index Fossils & Biostratigraphy =====
+{id:"foss-2-1",cat:"foss",sub:"3.2 Biostratigraphy",type:"PRODUCE",
+ front:"Give the formal definition of biostratigraphy.",
+ back:"The element of stratigraphy that deals with the distribution of fossils in the stratigraphic record and the organization of strata into units on the basis of their contained fossils.",
+ cites:[{t:"verified",l:"NASC Glossary of Stratigraphic Terms"}]},
+{id:"foss-2-2",cat:"foss",sub:"3.2 Biostratigraphy",type:"CUED",
+ front:"Is \"biostratigraphy\" a term Marshak uses? What does he teach instead that means the same thing?",
+ back:"No — Marshak never uses the term, but he thoroughly teaches the same concept as \"fossil succession\" and \"fossil correlation.\"",
+ cites:[{t:"verified",l:"Marshak pp.308, 312-314; cf. NASC Glossary"}]},
+
+// ===== FOSS 3.3 Sequence Stratigraphy =====
+{id:"foss-3-1",cat:"foss",sub:"3.3 Sequence Stratigraphy",type:"PRODUCE",
+ front:"Define a depositional sequence, and name the four systems tracts in order.",
+ back:"A sequence is bounded above/below by unconformities (subaerial unconformities + correlative conformities). Systems tracts, in order: lowstand (LST) → transgressive (TST) → highstand (HST) → falling-stage (FSST).",
+ cites:[{t:"verified",l:"Van Wagoner et al. 1988/1990 (AAPG)"}]},
+{id:"foss-3-2",cat:"foss",sub:"3.3 Sequence Stratigraphy",type:"CUED",
+ front:"What surface separates the transgressive systems tract from the highstand systems tract?",
+ back:"The maximum flooding surface.",
+ cites:[{t:"verified",l:"Van Wagoner et al. 1988"}]},
+{id:"foss-3-3",cat:"foss",sub:"3.3 Sequence Stratigraphy",type:"PRODUCE",
+ front:"Define a parasequence.",
+ back:"A relatively conformable succession of beds or bedsets bounded by marine-flooding surfaces — the basic building block within a systems tract.",
+ cites:[{t:"verified",l:"Van Wagoner et al. 1988"}]},
+{id:"foss-3-4",cat:"foss",sub:"3.3 Sequence Stratigraphy",type:"CUED",
+ front:"Where does sequence stratigraphy originate as a discipline, and who founded it?",
+ back:"Peter Vail, Robert Mitchum, and colleagues at Exxon, published in AAPG Memoir 26 (1977).",
+ cites:[{t:"verified",l:"AAPG Memoir 26, 1977"}]},
+
+// ===== FOSS 3.4 Seismic Stratigraphy =====
+{id:"foss-4-1",cat:"foss",sub:"3.4 Seismic Stratigraphy",type:"PRODUCE",
+ front:"Define the four seismic reflection termination types.",
+ back:"Onlap: terminates updip against a steeper underlying surface. Downlap: terminates basinward against a flatter underlying surface. Toplap: low-angle, non-erosional termination against an overlying surface. Truncation: erosional termination against an overlying surface.",
+ cites:[{t:"verified",l:"Mitchum, Vail & Thompson 1977 (AAPG Mem.26)"}]},
+{id:"foss-4-2",cat:"foss",sub:"3.4 Seismic Stratigraphy",type:"CUED",
+ front:"Which termination type is the most reliable indicator of a sequence boundary, and why?",
+ back:"Truncation — because it's specifically erosional, unlike toplap (which is non-erosional, just a deposition stop) or onlap/downlap (which terminate against the surface from below).",
+ cites:[{t:"verified",l:"Mitchum, Vail & Thompson 1977"}]},
+{id:"foss-4-3",cat:"foss",sub:"3.4 Seismic Stratigraphy",type:"CUED",
+ front:"What seismic reflection pattern marks a maximum flooding surface?",
+ back:"Regional downlap.",
+ cites:[{t:"verified",l:"Mitchum, Vail & Thompson 1977"}]},
+
+// ===== FOSS 3.5 Depositional Systems & Facies Architecture =====
+{id:"foss-5-1",cat:"foss",sub:"3.5 Depositional Systems", type:"PRODUCE",
+ front:"Define a depositional system, with an example.",
+ back:"A 3D assemblage of genetically related facies acting together — e.g., a fluvial system = channel + point bar + floodplain + crevasse-splay facies. The organizing concept between an individual facies and a full basin fill.",
+ cites:[{t:"verified",l:"Fisher, Brown, Scott & McGowen; cross-ref Miall 1985"}]},
+{id:"foss-5-2",cat:"foss",sub:"3.5 Depositional Systems",type:"CUED",
+ front:"What is \"architectural-element analysis,\" and who developed it?",
+ back:"Andrew Miall's method (1985) subdividing deposits into a hierarchy of internal bounding surfaces and recurring 3D facies assemblages (\"architectural elements\": channels, bars, bedforms, macroforms, overbank deposits) — originally for fluvial systems.",
+ cites:[{t:"verified",l:"Miall 1985, Earth-Science Reviews 22"}]},
+
+// ===== FOSS 3.6 Milankovitch Cycles =====
+{id:"foss-6-1",cat:"foss",sub:"3.6 Milankovitch Cycles",type:"PRODUCE",
+ front:"Name the three Milankovitch orbital parameters and roughly what each does.",
+ back:"Eccentricity (orbital shape cycles circular↔elliptical, ~100,000-yr period); obliquity (axial tilt varies, changes seasonal contrast); precession (axis wobbles like a top, ~23,000-yr period, changes which season occurs at perihelion).",
+ cites:[{t:"verified",l:"Marshak pp.538-540"}]},
+{id:"foss-6-2",cat:"foss",sub:"3.6 Milankovitch Cycles",type:"CUED",
+ front:"What do Milankovitch cycles ultimately pace, geologically?",
+ back:"Glacial-interglacial cycles, by driving cyclical changes in the seasonal/latitudinal distribution of solar insolation.",
+ cites:[{t:"verified",l:"Marshak pp.538-540"}]},
+
+// ===== FOSS 3.7 Provenance =====
+{id:"foss-7-1",cat:"foss",sub:"3.7 Provenance",type:"PRODUCE",
+ front:"What are the three poles of a QFL diagram, and what is it used for?",
+ back:"Quartz (Q), Feldspar (F), Lithic fragments (L) — a ternary plot of sandstone composition used to infer the tectonic setting of the source terrane (provenance).",
+ cites:[{t:"verified",l:"Dickinson & Suczek 1979, AAPG Bulletin 63"}]},
+{id:"foss-7-2",cat:"foss",sub:"3.7 Provenance",type:"CUED",
+ front:"Name the three main tectonic provenance categories on a QFL diagram.",
+ back:"Continental block (craton interior/quartz-rich to transitional-arkosic), magmatic arc (volcanic-lithic-rich), recycled orogen (chert/sedimentary-lithic-rich, from uplifted fold-thrust belts).",
+ cites:[{t:"verified",l:"Dickinson & Suczek 1979, AAPG Bulletin 63"}]}
+];
+
+const CAT_LABEL = {strat:"Stratigraphic Principles, Structures & Diagenesis", facies:"Facies & Depositional Environments", foss:"Fossil Record & Basin Analysis"};
+
+let progress = {};
+let feedback = {};
+let queue = [];
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('domC-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('domC-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('domC-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('domC-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Domain C (Sedimentology, Stratigraphy & Paleontology)\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null;
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text);
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'domC-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

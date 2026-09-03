@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain A: General Geology &amp; Field Methods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --sys:#5b4a8a;
+    --sys-soft:#e6e1f0;
+    --fld:#2f5f7a;
+    --fld-soft:#dbe6ec;
+    --map:#a63328;
+    --map-soft:#f4dcd9;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.sys .cat{color:var(--sys);}
+  nav.toc a.fld .cat{color:var(--fld);}
+  nav.toc a.map .cat{color:var(--map);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.sys::before{background:var(--sys);}
+  .category.fld::before{background:var(--fld);}
+  .category.map::before{background:var(--map);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.sys .cat-label{color:var(--sys);}
+  .category.fld .cat-label{color:var(--fld);}
+  .category.map .cat-label{color:var(--map);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.m, .cite.u, .cite.f, .cite.uofr, .cite.uds, .cite.cs, .cite.w, .cite.gen{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.asbog{background:#e4e4de;color:#54574d;}
+  .cite.other-domain{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .diagram-frame{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:18px 18px 8px;
+    margin:18px 0 24px;
+  }
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    padding-bottom:10px;
+  }
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  .note-box{
+    background:#eceeea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+    color:var(--ink-soft);
+  }
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain A: General Geology<br>&amp; Field Methods</h1>
+    <p class="subtitle">17% of the FG exam (~24 of 140 questions) — the single largest FG domain. ASBOG itself frames this domain as foundational: the other seven domains implicitly include its knowledge base. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. (your uploaded text) first; gaps closed against the Bureau of Reclamation <em>Engineering Geology Field Manual</em> (USBR), a USGS Open-File Report and Data Series, a peer-reviewed <em>Frontiers in Earth Science</em> review, an open GIS textbook, and general well-corroborated definitional sources. Cross-checked against the official ASBOG Domain A Knowledge Base (more granular than the Candidate Handbook's summary table).</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain A, 17% FG / 17% PG</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite m" style="margin-left:0;">M</span> Marshak &nbsp; <span class="cite u">U</span> USBR &nbsp; <span class="cite gap">Gap</span> not verified</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain A Knowledge Base (not just the Handbook summary)</h2>
+    <p style="margin-bottom:10px;">Paraphrased from the official domain document (a numbered outline, not flowing prose): earth systems and processes (history, geosphere/hydrosphere/atmosphere/biosphere, geologic cycle, plate tectonics, hydrologic cycle, energy sources, carbon cycle); sources of geological information (government agencies, scientific literature); geological/geophysical tools and techniques (subsurface investigation, rock/soil logging, surface and borehole geophysics); field notes, documentation, and record-keeping; GPS, coordinate systems, and datums; scale and scale analysis; surface/subsurface mapping and applications (topographic maps, geologic maps, strike/dip/apparent dip, isopach/isoconcentration maps); remote sensing, image analysis, and GIS; and analysis/interpretation of geologic sections and sequences (cross sections, boring logs, relative geologic time).</p>
+    <p style="margin-bottom:6px;">Tasks assessed (1–5): plan geological investigations (public health/safety, environment, regulations, QA/QC) · compile/organize available information · collect, describe, and record new geological/geophysical data · determine positions/scales/distances/elevations from remote sensing, imagery, surveys, maps, GIS · prepare, analyze, and interpret logs, sections, maps, and other graphics.</p>
+    <div class="src">Sources: ASBOG Candidate Handbook (Jan 2024), Appendix 2, p.41; ASBOG Domain A Knowledge Base (asbog.org/candidates/kb.html).</div>
+  </div>
+
+  <div class="gap-box">
+    <strong>Read this before the rest of the guide.</strong> Marshak — a physical-geology textbook, not a field-methods manual — covers Earth systems and relative dating well but is thin-to-absent on the practical field-methods content that dominates this domain (A-2 through A-8). Every confirmed gap has since been closed against a real source: surface/borehole geophysics, field documentation, GPS/datums, drilling, core/soil logging, LiDAR, and GIS all against USBR, USGS, and peer-reviewed sources below; apparent dip against the same open textbook (Waldron &amp; Snyder) that closed the parallel gap in your Domain E deck. Two items are deliberately <strong>out of scope here</strong> rather than unresolved — see the note box in §2.2.
+  </div>
+
+  <nav class="toc">
+    <a class="sys" href="#systems"><span class="cat">Earth Systems &amp; Sources</span>Spheres · Energy · Carbon cycle · Agencies</a>
+    <a class="fld" href="#field"><span class="cat">Field Tools &amp; Measurement</span>Drilling · Logging · Geophysics · GPS · Scale</a>
+    <a class="map" href="#mapping"><span class="cat">Mapping &amp; Interpretation</span>Maps · Remote sensing · GIS · Relative dating</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- EARTH SYSTEMS & SOURCES -->
+  <!-- ============================================================ -->
+  <section class="category sys" id="systems">
+    <div class="cat-header">
+      <div class="cat-label">01 / Earth Systems &amp; Information Sources</div>
+      <h2 class="cat-title">A-1 &amp; A-2</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Earth Systems and Processes</h3>
+      <p>Earth's five interacting components that make up the "Earth System" <span class="cite m">M p.21</span>: <strong>atmosphere</strong> (gaseous envelope), <strong>hydrosphere</strong> (surface/near-surface water), <strong>biosphere</strong> (life), <strong>lithosphere</strong> (outer rigid shell), and the <strong>interior</strong>. Two energy sources drive the system: internal heat (from planetary formation plus radioactive decay) powers plate tectonics and lithospheric motion; solar heat drives atmosphere/hydrosphere circulation.</p>
+      <p><strong>Carbon cycle</strong> <span class="cite m">M p.550–551</span>: carbon transfers among reservoirs — atmosphere, ocean, biosphere, and rock (as carbonate minerals and organic carbon) — over timescales from short-term biological exchange to long-term burial and weathering.</p>
+      <p><strong>Energy sources</strong> <span class="cite m">M Ch.12</span>: solar energy (direct, plus indirect via wind/biomass/hydropower) versus geothermal energy (Earth's internal heat, exploited where hot groundwater is accessible near the surface).</p>
+      <div class="note-box">A-1.1 (Earth history) and hydrologic-cycle detail beyond the topographic-mapping content in §3.1 were confirmed present in Marshak (Ch.10–11, Interlude F) but not extracted in granular detail during source-checking — the material exists in your textbook if you want to build this section out further.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Sources of Geological Information</h3>
+      <table>
+        <tr><th>Source</th><th>What it provides</th></tr>
+        <tr><td>USGS</td><td>National-scale geologic mapping (National Geologic Map Database), geochemical/mineralogical soil surveys, geospatial data (The National Map, 3DEP lidar)</td></tr>
+        <tr><td>USDA-NRCS<br><span style="font-size:12px;color:var(--ink-soft);">(formerly Soil Conservation Service)</span></td><td>Soil surveys — systematic description, classification, and mapping of soils — at scales 1:12,000–1:63,360, via SSURGO/gNATSGO databases</td></tr>
+        <tr><td>State geological surveys</td><td>State-scale bedrock/surficial geologic maps (1:24,000–1:1,000,000) — the primary source underlying national compilations</td></tr>
+        <tr><td>Scientific literature</td><td>Peer-reviewed journals, geological field-trip guidebooks, graduate theses (per ASBOG's own KB wording)</td></tr>
+      </table>
+      <p class="cite gen" style="display:inline;margin-left:0;">gen</p> <span style="font-size:13.5px;color:var(--ink-soft);">— agency roles corroborated across USGS's own FAQ pages and NRCS's own documentation.</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FIELD TOOLS & MEASUREMENT -->
+  <!-- ============================================================ -->
+  <section class="category fld" id="field">
+    <div class="cat-header">
+      <div class="cat-label">02 / Field Tools, Techniques &amp; Measurement</div>
+      <h2 class="cat-title">A-3 through A-6</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Subsurface Investigation — Drilling</h3>
+      <p>Exploration drilling method selection depends on ground conditions and site sensitivity <span class="cite u">U Vol.1 Ch.8</span>. Named methods: <strong>cable tool</strong> (percussion), <strong>direct rotary</strong> (with mud, water, or air-foam circulation), <strong>downhole hammer with reverse circulation</strong>, and <strong>augering</strong> (solid-stem or hollow-stem).</p>
+      <p>Worth knowing as a discrete fact: <strong>augering is the preferred method in the impervious core of an embankment dam</strong> specifically because it doesn't pressurize the borehole — the other methods all carry a real risk of <strong>hydraulic fracturing</strong> the embankment core if not carefully controlled. A hollow-stem auger also functions as its own casing, permitting sampling through the stem.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Rock and Soil Logging</h3>
+      <p><strong>Soil logging</strong> uses the Unified Soil Classification System (USCS) — per USBR 5000/5005, consistent with ASTM D2488 — as the standard descriptive framework for test pits, trenches, and drill holes <span class="cite u">U Vol.1 Ch.11</span>. A separate system, USDA Soil Taxonomy, is used specifically for land-classification/irrigation-suitability work rather than general engineering logging.</p>
+      <p><strong>Core logging</strong> centers on two standard quantitative metrics, computed for each core run:</p>
+      <ul>
+        <li><strong>Core recovery (CR)</strong> = (total length of core recovered ÷ total core run length) × 100</li>
+        <li><strong>Rock Quality Designation (RQD)</strong> = (sum of length of intact core pieces ≥100&nbsp;mm [4&nbsp;in], measured along centerline ÷ total core run length) × 100 — a modified recovery percentage counting only sound, unbroken pieces, developed by D.U. Deere (1963). RQD &gt;75% = good/high quality; &lt;50% = poor quality (fractured/weathered). <span class="cite gen">gen</span></li>
+      </ul>
+      <div class="note-box"><strong>Scope note, not a gap:</strong> USCS letter-codes (what "CH" or "SW-SM" actually decode to) and the plasticity-chart mechanics behind fine-grained soil classification are confirmed by ASBOG's own consolidated knowledge base to sit under <strong>Domain G (Engineering Geology), item G-2.2</strong> — not this domain. RQD as a rock-mass classification tool is similarly G-3.2. This guide only covers the field-logging <em>practice</em> (A-3.2); the classification schemes themselves are being built out as a dedicated deck in the Domain G materials.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Surface Geophysics</h3>
+      <p>All methods detect a <strong>contrast</strong> in a physical property between materials — no contrast, no signal <span class="cite u">U Vol.2 Ch.13</span>.</p>
+      <table>
+        <tr><th>Method</th><th>What it measures</th><th>Typical use</th></tr>
+        <tr><td>Seismic refraction</td><td>P-wave velocity contrast; assumes velocity increases with depth</td><td>Depth to bedrock</td></tr>
+        <tr><td>Seismic reflection</td><td>Subsurface layer geometry/structure</td><td>Faults, buried channels</td></tr>
+        <tr><td>Electrical resistivity<br><span style="font-size:12px;color:var(--ink-soft);">profiling = lateral, constant spacing<br>sounding = vertical, varying spacing</span></td><td>Resistivity — controlled by porosity + pore-water salinity</td><td>Bedrock depth, aquifers, contamination plumes</td></tr>
+        <tr><td>EM conductivity</td><td>Reciprocal of resistivity; no ground contact needed</td><td>Hazardous waste sites, buried metal</td></tr>
+        <tr><td>Ground-penetrating radar</td><td>Very shallow, high-resolution</td><td>Buried pipes/objects; blocked by clay/saline water/water table</td></tr>
+        <tr><td>Self-potential (SP)</td><td>Natural earth currents</td><td>Seepage paths from dams/canals</td></tr>
+        <tr><td>Magnetic</td><td>Magnetic susceptibility contrast</td><td>Buried pipelines/drums, archaeology</td></tr>
+        <tr><td>Gravity</td><td>Density contrast</td><td>Regional structure, bedrock depth</td></tr>
+      </table>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Borehole / Wireline Geophysics</h3>
+      <ul>
+        <li><strong>Electric logs</strong> (SP, resistivity) — uncased, fluid-filled holes only; correlate strata, infer lithology/porosity/salinity <span class="cite u">U Vol.2 Ch.14</span></li>
+        <li><strong>Nuclear logs</strong> (gamma-ray, gamma-gamma/density, neutron) — work in <em>cased</em> holes, unlike electric logs. High natural gamma count = shale/clay (K-40 source) <span class="cite u">U Vol.2 Ch.14</span></li>
+        <li><strong>Acoustic borehole imaging (televiewer)</strong> — 360° acoustic image of the borehole wall; open discontinuities show as characteristic sinusoidal traces, from which strike and dip can be read directly <span class="cite u">U Vol.2 Ch.14</span></li>
+        <li><strong>Caliper log</strong> — continuous borehole-diameter record; identifies washouts/fracture zones; corrects other logs for hole-diameter effects <span class="cite u">U Vol.2 Ch.14</span></li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.5</div>
+      <h3 class="sub-title">Field Notes, Documentation &amp; Record-Keeping</h3>
+      <p>Base-map control, ranked most to least accurate <span class="cite u">U Vol.1 Ch.6</span>: survey control/controlled photogrammetry → existing topographic maps → uncontrolled aerial photogrammetry → Brunton/tape survey → sketch mapping. Standard field equipment: Brunton compass, rock hammer, maps, aerial photos, field notebook, GPS, hand lens, tape measure.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.6</div>
+      <h3 class="sub-title">GPS, Coordinate Systems &amp; Datums</h3>
+      <p>A <strong>datum</strong> is the reference surface for a coordinate system <span class="cite u">U Vol.1 Ch.6</span>. USGS topographic maps historically used <strong>NAD 27</strong>; most modern surveys use <strong>NAD 83</strong>. Converting between them is not a simple coordinate transform — mixing datums without proper conversion produces real location errors, up to several hundred feet or meters.</p>
+      <p>GPS receiver accuracy varies enormously by equipment and method — from roughly 300&nbsp;ft down to centimeters. Match the accuracy specified to the project's actual need, not to "what would be nice."</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.7</div>
+      <h3 class="sub-title">Scale and Scale Analysis</h3>
+      <p>Map scale selection depends on project needs; USBR example ranges <span class="cite u">U Vol.1 Ch.6</span>: regional reconnaissance mapping 1:24,000–1:62,500; detailed site mapping 1:250–1:12,000. Cross sections should generally use a <strong>natural scale</strong> (equal horizontal and vertical) — exaggerated vertical scale distorts geologic interpretation and is generally unsuited for structural analysis.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- MAPPING & INTERPRETATION -->
+  <!-- ============================================================ -->
+  <section class="category map" id="mapping">
+    <div class="cat-header">
+      <div class="cat-label">03 / Mapping, Remote Sensing &amp; Interpretation</div>
+      <h2 class="cat-title">A-7 through A-9</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Topographic &amp; Geologic Maps — Strike, Dip &amp; Apparent Dip</h3>
+      <p><strong>Topographic maps &amp; profiles</strong> <span class="cite m">M Box F.1, p.389</span>: contour lines connect points of equal elevation; the contour interval is constant on a given map — tightly spaced contours mean a steep slope, widely spaced means gentle. A topographic profile is the ground-surface trace along a vertical slice; add subsurface geology and it becomes a <strong>geologic cross section</strong>.</p>
+      <p><strong>Strike and dip</strong> <span class="cite m">M Box 9.1, p.271</span>: strike is the compass bearing of a horizontal line on a plane; dip is the angle of steepest descent, measured perpendicular to strike, from 0° (horizontal) to 90° (vertical).</p>
+      <p><strong>Apparent dip</strong>: the dip of a surface as measured on a cross-section that is <em>not</em> perpendicular to strike. Apparent dip is always less than true dip; a section cut exactly perpendicular to strike shows true dip, and any oblique section shows a reduced, apparent value <span class="cite w">Waldron &amp; Snyder, Lab 2</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Isopach &amp; Isoconcentration Maps</h3>
+      <p><strong>Isopach map</strong>: a contour map connecting points of equal <em>true stratigraphic thickness</em> of a rock unit — thickness measured perpendicular to bedding, not straight down. A common point of confusion: an <strong>isochore map</strong> looks similar but measures <em>true vertical thickness</em> instead; the two are identical only when the unit is horizontal. Isopach maps are used to identify hydrocarbon reservoir volumes, basin geometry, and depocenters. <span class="cite gen">gen</span></p>
+      <p><strong>Isoconcentration map</strong>: a contour map connecting points of equal analyte concentration, built from lab data at monitoring-well locations — used to define the extent and shape of a groundwater contaminant plume. Contours are typically constructed so that regulatory-standard exceedance boundaries can be closed by interpolating between data points above and below the standard. <span class="cite gen">gen</span></p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Aerial Photography &amp; Traditional Remote Sensing</h3>
+      <p><strong>Aerial photography</strong> <span class="cite u">U Vol.1 Ch.6</span>: panchromatic (full visible spectrum), natural color, false-color infrared (arbitrary colors, less haze-affected), and multispectral (multiple simultaneous bands). Photogrammetric mapping uses stereophotography to determine strike/dip and discontinuity geometry from photo pairs.</p>
+      <p><strong>Other imaging systems</strong> <span class="cite u">U Vol.2 Ch.15</span>:</p>
+      <ul>
+        <li><strong>Thermal infrared</strong> — images radiant surface temperature</li>
+        <li><strong>Multispectral / hyperspectral scanners</strong> — capture many spectral bands simultaneously, used to identify mineral/rock spectral signatures</li>
+        <li><strong>Satellite imagery</strong> (Landsat, SPOT) — regional-scale, synoptic coverage</li>
+        <li><strong>Radar (SLAR)</strong> — active, weather/lighting-independent; radar interferometry can detect small topographic change remotely (e.g., landslide movement)</li>
+        <li><strong>Sonar</strong> (side-scan, single/multi-beam) — underwater equivalent, used for reservoir/dam-bottom surveys</li>
+      </ul>
+      <p>Two resolution types apply across all of these: <strong>spatial</strong> (sharpness / minimum detectable object size) and <strong>spectral</strong> (wavelength range and number of channels recorded).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">LiDAR</h3>
+      <p>Basic range equation <span class="cite f">F</span>: R&nbsp;=&nbsp;c·(Δt/2), where c is the speed of light and Δt is the round-trip pulse time. Raw output is a 3D point cloud (elevation + return intensity); classifying that cloud yields a <strong>DSM</strong> (Digital Surface Model — everything the laser hit) or, after filtering, a <strong>bare-earth DEM</strong> (vegetation and structures stripped out) <span class="cite uofr">UOFR</span>.</p>
+      <p>Three advantages over conventional photogrammetry <span class="cite f">F</span>: (1) direct 3D measurement, versus photogrammetry's indirect derivation; (2) partial vegetation-canopy penetration, revealing bare-earth topography directly; (3) as an active sensor, largely independent of lighting and weather conditions.</p>
+      <p>Geologic payoff: bare-earth LiDAR reveals fault scarps, landslides, and alluvial fans that are invisible under vegetation in conventional aerial photography — directly relevant to Domain E paleoseismology as well as this domain's remote-sensing content.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.5</div>
+      <h3 class="sub-title">Geographic Information Systems (GIS)</h3>
+      <p><strong>Vector vs. raster data models</strong> <span class="cite cs">CS</span>: vector represents discrete features — points, lines, polygons — with attribute data linked via an ID field to a separate table (e.g., a fault as a polyline, a sample site as a point). Raster represents space as a grid of cells, each holding one value; better suited to continuous data like elevation or spectral imagery.</p>
+      <p><strong>Applied structure</strong>, from a real national geologic-mapping geodatabase <span class="cite uds">UDS</span>: feature classes by geometry type (polygons for geologic units, polylines for structures like faults/folds/dikes, points for sample sites) are linked to relational tables (Age, Lithology, References) via a shared key field. This is what enables an <strong>attribute-based spatial query</strong> — e.g., select all polygons where lithology = carbonate and rank = major — with the GIS automatically highlighting the matching map features.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.6</div>
+      <h3 class="sub-title">Relative Dating &amp; Sequence Interpretation</h3>
+      <table>
+        <tr><th>Principle</th><th>Statement</th></tr>
+        <tr><td>Superposition</td><td>In an undisturbed sedimentary sequence, each layer is younger than the layer beneath it <span class="cite m">M p.28191</span></td></tr>
+        <tr><td>Cross-cutting relations</td><td>A feature that cuts across another feature is younger than the feature it cuts <span class="cite m">M p.28201</span></td></tr>
+        <tr><td>Unconformity</td><td>A gap in the rock record (the gap itself is a <strong>hiatus</strong>). Angular unconformity = tilted, eroded older rocks overlain by younger, differently-oriented layers <span class="cite m">M p.28558</span></td></tr>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite m">M</span> Marshak, <em>Essentials of Geology</em> 4th ed. — verified page from your uploaded copy</div>
+    <div class="legend-row"><span class="cite u">U Vol.x Ch.y</span> Bureau of Reclamation, <em>Engineering Geology Field Manual</em> — verified chapter/page</div>
+    <div class="legend-row"><span class="cite f">F</span> Sun, Wei, Sun &amp; He, "Review on the Application of Airborne LiDAR in Active Tectonics of China," <em>Frontiers in Earth Science</em> 2022 — peer-reviewed</div>
+    <div class="legend-row"><span class="cite uofr">UOFR</span> Roberts, "Feature Extraction from High-Resolution Lidar," USGS Open-File Report 2010-1335 — verified</div>
+    <div class="legend-row"><span class="cite uds">UDS</span> Horton, San Juan &amp; Stoeser, "The State Geologic Map Compilation (SGMC) Geodatabase," USGS Data Series 1052 (2017) — verified</div>
+    <div class="legend-row"><span class="cite cs">CS</span> Campbell &amp; Shin, <em>Essentials of Geographic Information Systems</em> (Saylor Academy, open textbook) — verified</div>
+    <div class="legend-row"><span class="cite w">Waldron &amp; Snyder</span> John Waldron &amp; Morgan Snyder, <em>Geological Structures: A Practical Introduction</em> (University of Alberta / Open Education Alberta, CC BY-NC) — same source that resolved the parallel gap in your Domain E deck</div>
+    <div class="legend-row"><span class="cite gen">gen</span> General/uncontested definitional content, corroborated across multiple independent sources (e.g., EPA/ITRC for isoconcentration maps, ASTM D6032/Deere 1963 for RQD)</div>
+    <div class="legend-row"><span class="cite asbog">ASBOG</span> ASBOG Candidate Handbook (Jan 2024) or Domain A Knowledge Base — official scope/blueprint</div>
+    <div class="legend-row"><span class="cite gap">Gap</span> Valid ASBOG Domain A content confirmed absent from all sources checked so far</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">This guide is intentionally lean, matching the Domain B/E template — reference layer, not practice layer. The Domain A Knowledge Base (asbog.org/candidates/kb.html) is meaningfully more granular than the Handbook's one-paragraph summary.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Final status:</strong> All originally identified Domain A gaps are resolved against real sources. USCS classification codes and RQD-as-rock-mass-classification (as opposed to the core-logging metric itself, covered in §2.2) are intentionally out of scope here — ASBOG's own knowledge base places them under Domain G (G-2.2, G-3.2), where a dedicated deck is being built.</p>
+  </div>
+</footer>
+
+</body>
+</html>

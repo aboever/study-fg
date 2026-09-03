@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Priority Minerals & Rock Names Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --mineralogy:#9c6b30;
+    --petrology:#a63d1f;
+    --geochem:#1f6e73;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --asbog:#54574d;
+    --asbog-soft:#e4e4de;
+    --gap:#a63333;
+    --gap-soft:#f6e2e2;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{margin-bottom:22px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+
+  /* legend */
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin:20px 0 8px;
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  /* stats bar */
+  .statbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:18px 0 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .statbar strong{color:var(--ink);}
+  .progress-track{
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
+  }
+  .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
+  button.textbtn{
+    background:none;border:none;font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  /* card */
+  .card-shell{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .tags{display:flex;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:3px 9px;
+    border-radius:10px;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+  }
+  .tag.cat-min{border-color:var(--mineralogy);color:var(--mineralogy);}
+  .tag.cat-pet{border-color:var(--petrology);color:var(--petrology);}
+  .tag.cat-geo{border-color:var(--geochem);color:var(--geochem);}
+  .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .prompt{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.4;
+    flex:1;
+  }
+  .divider{border:none;border-top:1px dashed var(--rule);margin:18px 0;}
+  .answer{
+    font-size:15px;
+    line-height:1.55;
+    display:none;
+  }
+  .answer.show{display:block;}
+  .answer .a-main{margin-bottom:10px;}
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    padding:2px 8px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-right:6px;
+    margin-top:4px;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+
+  .diagram-reveal svg{width:100%;height:auto;margin-top:10px;}
+
+  .reveal-btn{
+    align-self:flex-start;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:auto;
+  }
+  .reveal-btn:hover{opacity:.88;}
+
+  .rate-row{
+    display:none;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .rate-row.show{display:flex;}
+  .rate-row button{
+    flex:1;
+    min-width:110px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:center;
+  }
+  .rate-row button small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+  .rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .rate-row button.easy{border-color:var(--geochem);color:var(--geochem);}
+  .rate-row button:hover{filter:brightness(0.97);}
+
+  .feedback-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .flag-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 11px;
+    border-radius:14px;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .flag-btn:hover{border-color:var(--ink-soft);}
+  .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .flag-btn.note-active{background:var(--geochem);color:#fff;border-color:var(--geochem);}
+  .note-box{
+    width:100%;
+    margin-top:10px;
+    display:none;
+  }
+  .note-box.show{display:block;}
+  .note-box textarea{
+    width:100%;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    resize:vertical;
+    min-height:60px;
+    background:#fff;
+  }
+  .note-box button{
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:6px 12px;
+    border-radius:12px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  /* feedback panel */
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(32,36,31,0.45);
+    z-index:50;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.show{display:flex;}
+  .panel{
+    background:var(--paper);
+    border-radius:8px;
+    max-width:640px;
+    width:100%;
+    padding:26px 28px 28px;
+  }
+  .panel h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+  .panel .panel-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .panel-item{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    font-size:13.5px;
+  }
+  .panel-item .pi-prompt{font-weight:600;margin-bottom:4px;}
+  .panel-item .pi-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+  .panel-item .pi-flags span{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    background:var(--asbog-soft);color:var(--asbog);
+    padding:2px 7px;border-radius:8px;
+  }
+  .panel-item .pi-note{color:var(--ink-soft);font-style:italic;}
+  .panel-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .panel-actions button, .panel-close{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:9px 16px;
+    border-radius:18px;
+    border:1px solid var(--rule);
+    background:#fff;
+    cursor:pointer;
+  }
+  .panel-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:20px 0;text-align:center;}
+
+  .done-panel{
+    text-align:center;
+    padding:60px 20px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:8px;
+  }
+  .done-panel h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px;}
+  .done-panel p{color:var(--ink-soft);font-size:14px;}
+  .done-panel button{
+    margin-top:18px;
+    background:var(--ink);color:#fff;border:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;padding:10px 20px;border-radius:20px;cursor:pointer;
+  }
+
+  footer{
+    max-width:760px;margin:36px auto 0;padding:0 20px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .box{
+    background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:16px 20px;
+  }
+
+  @media(max-width:520px){
+    .rate-row button{min-width:45%;}
+    .card{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; FG — Category 2 side-deck</div>
+    <h1>Priority Minerals &amp; Rock Names — Flashcards</h1>
+    <p class="sub">Quick-reference recall deck: formula/crystal system/occurrence for every Tier 1–3 mineral, and mineral content/formation/setting for every rock name in the guide. Companion to the main Category 2 deck, not a replacement — use both.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--mineralogy);border-radius:50%;"></span>Minerals (35 cards)</span>
+    <span><span class="dot" style="background:var(--petrology);border-radius:50%;"></span>Rock names (25 cards)</span>
+    <span><span class="cite verified" style="margin:0;">K 00</span>Klein &amp; Dutrow / Marshak page — verified</span>
+    <span><span class="cite asbog" style="margin:0;">ASBOG</span>handbook / official sample Q</span>
+    <span><span class="cite gap" style="margin:0;">Gap</span>not verified in either source</span>
+  </div>
+
+  <div class="statbar">
+    <div class="stats">
+      <span><strong id="statRemaining">–</strong> remaining</span>
+      <span><strong id="statMastered">–</strong> mastered</span>
+      <span><strong id="statTotal">–</strong> total</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;gap:14px;">
+      <button class="textbtn" id="flaggedBtn">flagged (<span id="flagCount">0</span>)</button>
+      <button class="textbtn" id="syncBtn">sync progress</button>
+      <button class="textbtn" id="resetBtn">reset progress</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json,text/plain,text/json" style="display:none;">
+  </div>
+
+  <div id="deckArea"></div>
+
+  <div class="overlay" id="syncOverlay">
+    <div class="panel">
+      <h2>Sync progress</h2>
+      <p class="panel-sub">Two ways to move progress between sessions/devices — use whichever actually works in your setup. The copy/paste method is the more reliable one if the file picker shows no files, since it doesn't depend on browser download locations or file-type filtering.</p>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button class="primary" id="copyProgressBtn">Copy progress to clipboard</button>
+        </div>
+        <textarea id="pasteImportBox" placeholder="Paste exported progress JSON here to import it..." style="width:100%;min-height:70px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:10px;border:1px solid var(--rule);border-radius:6px;"></textarea>
+        <div class="panel-actions" style="margin-top:8px;">
+          <button id="pasteImportBtn">Import from pasted text</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);padding-top:16px;">
+        <strong style="font-size:13.5px;">File download / picker</strong>
+        <p style="font-size:12px;color:var(--ink-soft);margin:4px 0 8px;">If your file picker shows nothing after exporting, it's very likely filtering the file out — use copy/paste above instead.</p>
+        <div class="panel-actions">
+          <button id="exportBtn">Download as .json</button>
+          <button id="importBtn">Choose file to import</button>
+        </div>
+      </div>
+
+      <div class="panel-actions" style="margin-top:18px;">
+        <button class="panel-close" id="closeSyncBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="feedbackOverlay">
+    <div class="panel">
+      <h2>Flagged cards</h2>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request, same as it did in the original discussion.</p>
+      <div id="panelList"></div>
+      <div class="panel-actions">
+        <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
+        <button id="clearFeedbackBtn">Clear all flags</button>
+        <button class="panel-close" id="closePanelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if you've downloaded this file and opened it standalone in a browser, progress will not persist between sessions — it'll still work for a single sitting, just starting fresh each time you reopen it.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const CARDS = [
+// ===== TIER 1 MINERALS — know cold =====
+{id:"m-quartz",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Quartz",
+ back:"SiO&#8322; &middot; tectosilicate, trigonal &middot; no cleavage, conchoidal fracture, H=7. Common in granite, rhyolite, quartz sandstone/quartzite — the most weathering-resistant common rock-forming mineral (last to crystallize in Bowen's series, first to survive weathering).",
+ cites:[{t:"verified",l:"K 542"}]},
+{id:"m-kfeldspar",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"K-feldspar (orthoclase / microcline)",
+ back:"KAlSi&#8323;O&#8328; &middot; tectosilicate, monoclinic (orthoclase) / triclinic (microcline) &middot; 2 cleavages ~90°, H=6. Diagnostic of granite and rhyolite; microcline typical of pegmatites.",
+ cites:[{t:"verified",l:"K 545"}]},
+{id:"m-plagioclase",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Plagioclase feldspar",
+ back:"NaAlSi&#8323;O&#8328; (albite) – CaAl&#8322;Si&#8322;O&#8328; (anorthite) solid-solution series &middot; tectosilicate, triclinic &middot; 2 cleavages ~90°, H=6. Ca-rich varieties in gabbro/basalt; Na-rich in diorite/andesite and granite.",
+ cites:[{t:"verified",l:"K 545"}]},
+{id:"m-muscovite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Muscovite",
+ back:"KAl&#8322;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2–2.5, colorless/pale in sheets. Common in granite, schist, and phyllite; a light-colored (\"white\") mica.",
+ cites:[{t:"verified",l:"K 530"}]},
+{id:"m-biotite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Biotite",
+ back:"K(Mg,Fe)&#8323;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2.5–3, dark brown/black sheets. Common in granite, diorite, schist, and gneiss; the \"dark\" mica.",
+ cites:[{t:"verified",l:"K 530"}]},
+{id:"m-amphibole",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Amphibole (hornblende)",
+ back:"Ca&#8322;(Mg,Fe,Al)&#8325;(Si,Al)&#8328;O&#8322;&#8322;(OH)&#8322; &middot; double-chain inosilicate, monoclinic &middot; 2 cleavages ~56°/124°, H=5–6, dark green/black. Common in diorite, andesite, and amphibolite (its namesake metamorphic rock).",
+ cites:[{t:"verified",l:"K 525"}]},
+{id:"m-pyroxene",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Pyroxene (augite)",
+ back:"(Ca,Na)(Mg,Fe,Al)(Si,Al)&#8322;O&#8326; &middot; single-chain inosilicate, monoclinic &middot; 2 cleavages ~87°/93°, H=5.5–6, dark green/black, stubby crystals. Diagnostic of gabbro and basalt — a defining mafic mineral.",
+ cites:[{t:"verified",l:"K 516"}]},
+{id:"m-olivine",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Olivine",
+ back:"(Mg,Fe)&#8322;SiO&#8324; &middot; nesosilicate, orthorhombic &middot; no cleavage (conchoidal fracture), H=6.5–7, olive-green, glassy. Diagnostic of peridotite (essentially defines it) and common in basalt/gabbro; first mineral to crystallize in Bowen's series, first to weather away.",
+ cites:[{t:"verified",l:"K 483"}]},
+{id:"m-calcite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Calcite",
+ back:"CaCO&#8323; &middot; trigonal &middot; 3 perfect rhombohedral cleavages, H=3, fizzes readily in dilute HCl. The essential mineral of limestone and marble.",
+ cites:[{t:"verified",l:"K 399"}]},
+{id:"m-dolomite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Dolomite",
+ back:"CaMg(CO&#8323;)&#8322; &middot; trigonal &middot; 3 perfect rhombohedral cleavages, H=3.5–4, fizzes in HCl only when powdered. The essential mineral of dolostone, usually formed by diagenetic replacement of limestone.",
+ cites:[{t:"verified",l:"K 399"}]},
+{id:"m-kaolinite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Clay minerals (kaolinite)",
+ back:"Al&#8322;Si&#8322;O&#8325;(OH)&#8324; &middot; phyllosilicate, triclinic &middot; 1 perfect cleavage (rarely visible, earthy masses), H=2. The most-weathered clay end-member; found in shale, claystone, and residual soils over feldspar-rich rocks.",
+ cites:[{t:"verified",l:"K 530"}]},
+
+// ===== TIER 2 MINERALS — know well =====
+{id:"m-garnet",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Garnet (general group)",
+ back:"A&#8323;B&#8322;(SiO&#8324;)&#8323; (A=Ca,Mg,Fe,Mn; B=Al,Fe,Cr) &middot; nesosilicate, isometric &middot; no cleavage, H=6.5–7.5. Diagnostic index mineral of medium-grade regional metamorphism (schist, gneiss); also occurs in some granites/pegmatites.",
+ cites:[{t:"verified",l:"K 483"}]},
+{id:"m-chlorite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Chlorite",
+ back:"(Mg,Fe,Al)&#8326;(Si,Al)&#8324;O&#8321;&#8320;(OH)&#8328; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2–2.5, green. Index mineral of the lowest metamorphic grade (chlorite zone, greenschist facies); gives greenschist and phyllite their color.",
+ cites:[{t:"verified",l:"K 530"}]},
+{id:"m-serpentine",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Serpentine",
+ back:"Mg&#8323;Si&#8322;O&#8325;(OH)&#8324; &middot; phyllosilicate &middot; H=2.5–4, greasy/waxy green. Forms by hydrothermal alteration of olivine/pyroxene in ultramafic rocks — diagnostic of serpentinite.",
+ cites:[{t:"verified",l:"K 530"}]},
+{id:"m-talc",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Talc",
+ back:"Mg&#8323;Si&#8324;O&#8321;&#8320;(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=1 (softest mineral, greasy feel). Forms by alteration of ultramafic rocks (with serpentine); found in low-grade metamorphosed ultramafics (soapstone).",
+ cites:[{t:"verified",l:"K 530"}]},
+{id:"m-gypsum",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Gypsum",
+ back:"CaSO&#8324;&middot;2H&#8322;O &middot; monoclinic &middot; 1 perfect cleavage, H=2. Precipitates from evaporating restricted seawater/lake water — the essential mineral of gypsum rock (an evaporite).",
+ cites:[{t:"verified",l:"K 419"}]},
+{id:"m-anhydrite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Anhydrite",
+ back:"CaSO&#8324; &middot; orthorhombic &middot; H=3–3.5. The dehydrated form of gypsum; occurs in evaporite sequences, often interbedded with or below gypsum/halite.",
+ cites:[{t:"verified",l:"K 419"}]},
+{id:"m-halite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Halite",
+ back:"NaCl &middot; isometric &middot; 3 perfect cubic cleavages, H=2.5, salty taste. Precipitates last (most soluble) in an evaporating sequence — the essential mineral of rock salt.",
+ cites:[{t:"verified",l:"K 392"}]},
+{id:"m-kyanite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Kyanite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, triclinic &middot; blue, bladed crystals, H varies by direction (5 along blade, 7 across — unusual diagnostic trait). Al&#8322;SiO&#8325; polymorph indicating <strong>high pressure</strong> regional metamorphism (found in kyanite-schist/gneiss).",
+ cites:[{t:"verified",l:"K 491"}]},
+{id:"m-andalusite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Andalusite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, orthorhombic &middot; H=6.5–7.5, often pink/reddish, square cross-section. Al&#8322;SiO&#8325; polymorph indicating <strong>low pressure, moderate temperature</strong> (contact metamorphic aureoles around plutons).",
+ cites:[{t:"verified",l:"K 491"}]},
+{id:"m-sillimanite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Sillimanite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, orthorhombic &middot; H=6.5–7.5, fibrous/needle habit. Al&#8322;SiO&#8325; polymorph indicating <strong>high temperature</strong> — highest-grade regional metamorphism (gneiss/migmatite).",
+ cites:[{t:"verified",l:"K 491"}]},
+{id:"m-staurolite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Staurolite",
+ back:"Fe&#8322;Al&#8329;Si&#8324;O&#8322;&#8323;(OH)&#8322; &middot; nesosilicate, monoclinic &middot; H=7–7.5, reddish-brown, famous for cross-shaped twins. Index mineral of mid-grade regional metamorphism, between garnet and kyanite zones.",
+ cites:[{t:"verified",l:"K 483"}]},
+{id:"m-epidote",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Epidote",
+ back:"Ca&#8322;(Al,Fe)&#8323;Si&#8323;O&#8321;&#8322;(OH) &middot; sorosilicate, monoclinic &middot; H=6–7, distinctive pistachio-green. Typical of greenschist-facies metamorphism and propylitic hydrothermal alteration.",
+ cites:[{t:"verified",l:"K 509"}]},
+{id:"m-tourmaline",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Tourmaline",
+ back:"(Na,Ca)(Al,Fe,Li,Mg)&#8323;Al&#8326;(BO&#8323;)&#8323;Si&#8326;O&#8321;&#8328;(OH)&#8324; &middot; cyclosilicate, trigonal &middot; H=7–7.5, striated prisms, many colors. Common accessory in granite and especially pegmatites (boron-rich late-stage fluids).",
+ cites:[{t:"verified",l:"K 513"}]},
+
+// ===== TIER 3 MINERALS — ID / economic relevance =====
+{id:"m-pyrite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Pyrite",
+ back:"FeS&#8322; &middot; isometric &middot; cubic crystals with striated faces, brassy gold, H=6–6.5, not magnetic ('fool's gold'). Common accessory in many rock types and in hydrothermal veins; oxidizes to produce acid mine drainage.",
+ cites:[{t:"verified",l:"K 354"}]},
+{id:"m-galena",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Galena",
+ back:"PbS &middot; isometric &middot; 3 perfect cubic cleavages, gray metallic, H=2.5, high specific gravity (~7.5). Primary ore of lead, typically in hydrothermal veins with sphalerite.",
+ cites:[{t:"verified",l:"K 339"}]},
+{id:"m-sphalerite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Sphalerite",
+ back:"ZnS &middot; isometric &middot; 6 cleavage directions, resinous luster, variable color (yellow-brown-black), H=3.5–4. Primary ore of zinc, typically in hydrothermal veins with galena.",
+ cites:[{t:"verified",l:"K 339"}]},
+{id:"m-chalcopyrite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Chalcopyrite",
+ back:"CuFeS&#8322; &middot; tetragonal &middot; brassy yellow (darker/more golden than pyrite), H=3.5–4, softer than pyrite. The most important copper ore mineral, especially in porphyry copper deposits.",
+ cites:[{t:"verified",l:"K 339"}]},
+{id:"m-magnetite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Magnetite",
+ back:"Fe&#8323;O&#8324; &middot; isometric &middot; black, strongly magnetic, H=5.5–6.5, no cleavage. Common accessory in igneous/metamorphic rocks; major iron ore, especially in banded iron formations.",
+ cites:[{t:"verified",l:"K 368"}]},
+{id:"m-hematite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Hematite",
+ back:"Fe&#8322;O&#8323; &middot; trigonal &middot; red-brown streak regardless of specimen color/luster, H=5–6. Major iron ore (banded iron formations); gives red color to many sedimentary rocks and soils.",
+ cites:[{t:"verified",l:"K 368"}]},
+{id:"m-limonite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Limonite / goethite",
+ back:"FeO(OH)&middot;nH&#8322;O &middot; \"Limonite\" is a field term for undifferentiated Fe-oxyhydroxide mixtures, not a true species — goethite is the actual mineral usually meant. Yellow-brown, earthy, forms by weathering of Fe-bearing minerals (pyrite, magnetite, olivine).",
+ cites:[{t:"verified",l:"K 372"}]},
+{id:"m-fluorite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Fluorite",
+ back:"CaF&#8322; &middot; isometric &middot; 4 perfect octahedral cleavages, H=4 (defines Mohs 4), often purple/green/colorless, fluoresces under UV. Common hydrothermal vein mineral, often with galena/sphalerite.",
+ cites:[{t:"verified",l:"K 370"}]},
+{id:"m-apatite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Apatite",
+ back:"Ca&#8325;(PO&#8324;)&#8323;(F,Cl,OH) &middot; hexagonal &middot; H=5 (defines Mohs 5), variable color. Common accessory mineral in almost all rock types; the mineral component of bone and teeth; phosphate ore.",
+ cites:[{t:"verified",l:"K 426"}]},
+{id:"m-corundum",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Corundum",
+ back:"Al&#8322;O&#8323; &middot; trigonal &middot; H=9 (defines Mohs 9), no cleavage. Ruby (red, Cr-bearing) and sapphire (blue, Fe/Ti-bearing) varieties; forms in Al-rich, Si-poor metamorphic rocks and some syenites.",
+ cites:[{t:"verified",l:"K 375"}]},
+{id:"m-graphite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Graphite",
+ back:"C &middot; hexagonal &middot; 1 perfect cleavage, black, greasy feel, H=1–2, marks paper. Forms by metamorphism of carbon-rich sedimentary rocks (organic-rich shale/coal) under regional metamorphism.",
+ cites:[{t:"verified",l:"K 332"}]},
+
+// ===== HAZARDOUS MINERALS =====
+{id:"m-chrysotile",cat:"min",sub:"Hazardous mineral",type:"CUED",
+ front:"Chrysotile",
+ back:"Mg&#8323;Si&#8322;O&#8325;(OH)&#8324; &middot; serpentine-group phyllosilicate, fibrous (asbestiform) habit &middot; the most heavily mined form of asbestos — historically &gt;90% of world asbestos production. Forms by hydrothermal alteration of ultramafic rocks (same origin as ordinary serpentine).",
+ cites:[{t:"verified",l:"K 527, Box 19.2"}]},
+{id:"m-amphibole-asbestos",cat:"min",sub:"Hazardous mineral",type:"CUED",
+ front:"Amphibole asbestos (5 regulated varieties)",
+ back:"Amosite (asbestiform grunerite), crocidolite (asbestiform riebeckite, \"blue asbestos\" — most hazardous), tremolite, actinolite, anthophyllite. All are fibrous habits of amphibole minerals that also occur in ordinary, non-hazardous forms. Health effects: asbestosis, lung cancer, mesothelioma.",
+ cites:[{t:"verified",l:"K 527, Box 19.2"},{t:"verified",l:"K 531 (health effects)"}]},
+
+// ===== IGNEOUS ROCKS =====
+{id:"r-granite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Granite",
+ back:"<strong>Minerals:</strong> quartz, K-feldspar, plagioclase, biotite/muscovite &middot; <strong>Texture:</strong> phaneritic (coarse), felsic &middot; <strong>Forms:</strong> slow crystallization of felsic magma at depth (intrusive) &middot; <strong>Found:</strong> cores of continental mountain belts, batholiths.",
+ cites:[{t:"verified",l:"K 578–583, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-rhyolite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Rhyolite",
+ back:"<strong>Minerals:</strong> same as granite (quartz, K-feldspar, plagioclase) but too fine-grained to see individual crystals &middot; <strong>Texture:</strong> aphanitic, felsic, often porphyritic &middot; <strong>Forms:</strong> rapid cooling of felsic lava at the surface (extrusive) &middot; <strong>Found:</strong> continental volcanic settings, often explosive eruptions.",
+ cites:[{t:"verified",l:"K 583, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-diorite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Diorite",
+ back:"<strong>Minerals:</strong> plagioclase (Na-rich), amphibole, some biotite/pyroxene, little/no quartz &middot; <strong>Texture:</strong> phaneritic, intermediate &middot; <strong>Forms:</strong> intrusive crystallization of intermediate magma &middot; <strong>Found:</strong> continental arc plutons above subduction zones.",
+ cites:[{t:"verified",l:"K 580, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-andesite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Andesite",
+ back:"<strong>Minerals:</strong> same as diorite (plagioclase, amphibole/pyroxene) but fine-grained &middot; <strong>Texture:</strong> aphanitic, intermediate, often porphyritic &middot; <strong>Forms:</strong> extrusive intermediate lava &middot; <strong>Found:</strong> classic continental arc volcano rock (Andes, Cascades) — the largest volumes of andesite occur where oceanic lithosphere subducts beneath continental crust.",
+ cites:[{t:"verified",l:"K 583, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-gabbro",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Gabbro",
+ back:"<strong>Minerals:</strong> Ca-plagioclase, pyroxene, some olivine — no quartz &middot; <strong>Texture:</strong> phaneritic, mafic &middot; <strong>Forms:</strong> slow crystallization of mafic magma at depth &middot; <strong>Found:</strong> lower oceanic crust, layered mafic intrusions.",
+ cites:[{t:"verified",l:"K 580, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-basalt",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Basalt",
+ back:"<strong>Minerals:</strong> same as gabbro (Ca-plagioclase, pyroxene, olivine) but fine-grained &middot; <strong>Texture:</strong> aphanitic, mafic, often vesicular &middot; <strong>Forms:</strong> extrusive mafic lava &middot; <strong>Found:</strong> the most common volcanic rock on Earth — ocean floor (mid-ocean ridges), flood basalt provinces, oceanic islands.",
+ cites:[{t:"verified",l:"K 583, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-peridotite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Peridotite",
+ back:"<strong>Minerals:</strong> dominantly olivine + pyroxene, essentially no feldspar &middot; <strong>Texture:</strong> phaneritic, ultramafic &middot; <strong>Forms:</strong> represents mantle rock directly, or cumulate crystal settling in mafic magma chambers &middot; <strong>Found:</strong> the mantle itself; ophiolite sequences (obducted oceanic mantle); source rock for serpentinite when hydrothermally altered.",
+ cites:[{t:"verified",l:"K 580, Ch.21"},{t:"verified",l:"M 113"}]},
+{id:"r-pegmatite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Pegmatite",
+ back:"<strong>Minerals:</strong> same broad composition as granite (usually) but exceptionally coarse; concentrates rare accessory minerals (tourmaline, beryl, mica books) &middot; <strong>Texture:</strong> extremely coarse-grained (crystals often &gt;a few cm) &middot; <strong>Forms:</strong> crystallizes from water-rich, slow-diffusing residual melt late in a magma chamber's cooling history &middot; <strong>Found:</strong> dikes/veins at the margins of granite plutons — the classic source for large gem crystals.",
+ cites:[{t:"verified",l:"K 585, Ch.21"}]},
+
+// ===== SEDIMENTARY ROCKS =====
+{id:"r-conglomerate",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Conglomerate / Breccia",
+ back:"<strong>Minerals:</strong> variable — whatever clasts were locally available (often quartz-rich) &middot; <strong>Texture:</strong> gravel-sized (&gt;2mm) clasts; conglomerate = rounded, breccia = angular &middot; <strong>Forms:</strong> high-energy deposition (rivers, alluvial fans, talus for breccia) with minimal transport distance (breccia) or significant transport/rounding (conglomerate).",
+ cites:[{t:"verified",l:"M 167–168"}]},
+{id:"r-sandstone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Sandstone (quartz arenite / arkose / graywacke)",
+ back:"<strong>Minerals:</strong> quartz arenite = &gt;90% quartz (mature); arkose = abundant feldspar (immature, near-source); graywacke = lithic fragments + clay matrix (poorly sorted, often turbidite) &middot; <strong>Texture:</strong> sand-sized (1/16–2mm) &middot; <strong>Forms:</strong> beach/dune/fluvial/deltaic/turbidite deposition depending on variety.",
+ cites:[{t:"verified",l:"M 167–168"}]},
+{id:"r-shale",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Shale",
+ back:"<strong>Minerals:</strong> clay minerals (illite, kaolinite, smectite) + fine quartz/mica &middot; <strong>Texture:</strong> clay-sized (&lt;1/256mm), fissile (splits along bedding) &middot; <strong>Forms:</strong> low-energy settling of fine mud in quiet water (lakes, deep marine, floodplains); the protolith for slate.",
+ cites:[{t:"verified",l:"M 167–168"}]},
+{id:"r-limestone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Limestone",
+ back:"<strong>Minerals:</strong> calcite (dominant), sometimes aragonite &middot; <strong>Texture:</strong> variable — micritic (fine), bioclastic (fossil fragments), oolitic &middot; <strong>Forms:</strong> biochemical/chemical precipitation in warm, shallow marine environments — reefs, carbonate platforms; the protolith for marble.",
+ cites:[{t:"verified",l:"M 164–172"},{t:"verified",l:"K 590, Ch.21"}]},
+{id:"r-dolostone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Dolostone",
+ back:"<strong>Minerals:</strong> dolomite &middot; <strong>Texture:</strong> similar to limestone, often more crystalline/sugary &middot; <strong>Forms:</strong> diagenetic replacement of limestone by Mg-rich fluids (dolomitization) — rarely a primary precipitate.",
+ cites:[{t:"verified",l:"M 164–172"}]},
+{id:"r-chert",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Chert",
+ back:"<strong>Minerals:</strong> cryptocrystalline quartz (SiO&#8322;) &middot; <strong>Texture:</strong> dense, glassy to dull, conchoidal fracture &middot; <strong>Forms:</strong> biogenic (accumulation of radiolarian/diatom silica skeletons on deep ocean floor) or chemical precipitation/nodule replacement in limestone.",
+ cites:[{t:"verified",l:"M 164–172"}]},
+{id:"r-evaporite",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Evaporite (rock gypsum / rock salt)",
+ back:"<strong>Minerals:</strong> gypsum/anhydrite or halite, precipitating in that solubility order &middot; <strong>Texture:</strong> crystalline, often bedded/laminated &middot; <strong>Forms:</strong> evaporation of restricted seawater or saline lake water in arid climates (e.g., silled basins, playas).",
+ cites:[{t:"verified",l:"M 164–172"}]},
+{id:"r-coal",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Coal",
+ back:"<strong>Minerals:</strong> not mineral-based — organic carbon (plant material) with minor mineral impurities &middot; <strong>Texture:</strong> banded, low density &middot; <strong>Forms:</strong> accumulation and burial of plant material in low-oxygen swamp/peat environments, progressively compacted and matured (peat &#8594; lignite &#8594; bituminous &#8594; anthracite).",
+ cites:[{t:"verified",l:"M 164–172"}]},
+
+// ===== METAMORPHIC ROCKS =====
+{id:"r-slate",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Slate",
+ back:"<strong>Minerals:</strong> fine mica + chlorite (too fine to see) &middot; <strong>Texture:</strong> slaty cleavage — splits into flat sheets &middot; <strong>Forms:</strong> lowest-grade regional metamorphism of shale &middot; <strong>Found:</strong> low-grade metamorphic belts; classic roofing/flagstone material.",
+ cites:[{t:"verified",l:"M 194, Fig.7.4"}]},
+{id:"r-phyllite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Phyllite",
+ back:"<strong>Minerals:</strong> fine mica (visible sheen), chlorite &middot; <strong>Texture:</strong> silky luster from aligned fine mica, more crystalline than slate &middot; <strong>Forms:</strong> low-to-moderate grade regional metamorphism, between slate and schist.",
+ cites:[{t:"verified",l:"M 199, Fig.7.8"}]},
+{id:"r-schist",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Schist",
+ back:"<strong>Minerals:</strong> visible mica (muscovite/biotite), often garnet/staurolite/kyanite as index minerals &middot; <strong>Texture:</strong> schistosity — visible, wavy mica flakes &middot; <strong>Forms:</strong> medium-grade regional metamorphism &middot; <strong>Found:</strong> the most common regional metamorphic rock type in mountain belts.",
+ cites:[{t:"verified",l:"M 199, Fig.7.8"}]},
+{id:"r-gneiss",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Gneiss",
+ back:"<strong>Minerals:</strong> quartz, feldspar, biotite, often sillimanite/garnet — segregated into light and dark bands &middot; <strong>Texture:</strong> coarse gneissic banding, may lack continuous foliation planes &middot; <strong>Forms:</strong> highest-grade regional metamorphism, approaching partial melting (migmatite) &middot; <strong>Found:</strong> cores of orogenic belts, Precambrian shields.",
+ cites:[{t:"verified",l:"M 199, Fig.7.8"}]},
+{id:"r-marble",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Marble",
+ back:"<strong>Minerals:</strong> coarse recrystallized calcite (or dolomite) &middot; <strong>Texture:</strong> interlocking crystalline, non-foliated &middot; <strong>Forms:</strong> contact or regional metamorphism of limestone/dolostone &middot; <strong>Found:</strong> contact aureoles around plutons; regionally metamorphosed carbonate sequences.",
+ cites:[{t:"verified",l:"M 198–207"}]},
+{id:"r-quartzite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Quartzite",
+ back:"<strong>Minerals:</strong> interlocking recrystallized quartz &middot; <strong>Texture:</strong> hard, dense, non-foliated, breaks across grains (not around them, unlike sandstone) &middot; <strong>Forms:</strong> contact or regional metamorphism of quartz sandstone.",
+ cites:[{t:"verified",l:"M 198–207"}]},
+{id:"r-hornfels",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Hornfels",
+ back:"<strong>Minerals:</strong> variable, fine-grained recrystallized minerals depending on protolith (often mica + quartz + new index minerals like andalusite) &middot; <strong>Texture:</strong> fine-grained, hard, non-foliated (no directed pressure) &middot; <strong>Forms:</strong> contact metamorphism — baked zone immediately around an igneous intrusion.",
+ cites:[{t:"verified",l:"M 198–207"}]},
+{id:"r-amphibolite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Amphibolite",
+ back:"<strong>Minerals:</strong> amphibole (hornblende) + plagioclase, dark colored &middot; <strong>Texture:</strong> weakly to moderately foliated &middot; <strong>Forms:</strong> medium-to-high grade regional metamorphism of mafic protoliths (basalt/gabbro) — amphibolite facies.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+{id:"r-blueschist-eclogite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Blueschist / Eclogite",
+ back:"<strong>Minerals:</strong> blueschist = glaucophane (blue amphibole) + lawsonite; eclogite = garnet + omphacite (Na-pyroxene) &middot; <strong>Texture:</strong> blueschist foliated, eclogite often granular/non-foliated &middot; <strong>Forms:</strong> unusually high-pressure, relatively low-temperature metamorphism — the signature of subduction zones, not a normal geothermal gradient.",
+ cites:[{t:"verified",l:"M 200, Box 7.1"}]},
+];
+
+const DIAGRAMS = {};
+
+const CAT_LABEL = {min:"Mineral", pet:"Rock"};
+
+
+let progress = {};       // {cardId: {box, dueOffset}}
+let feedback = {};       // {cardId: {difficulty:bool, foundation:bool, note:string}}
+let queue = [];          // array of {cardId, dueAt} where dueAt is a position counter for in-session scheduling
+let sessionCounter = 0;
+let currentCard = null;
+const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
+const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get('minrock-flashcard-progress');
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
+  try{
+    const res2 = await window.storage.get('minrock-flashcard-feedback');
+    if(res2 && res2.value){ feedback = JSON.parse(res2.value); }
+  }catch(e){ /* none yet */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set('minrock-flashcard-progress', JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+async function saveFeedback(){
+  try{ await window.storage.set('minrock-flashcard-feedback', JSON.stringify(feedback)); }
+  catch(e){ /* storage unavailable outside Claude — session-only, that's fine */ }
+}
+
+function cardHasFeedback(id){
+  const f = feedback[id];
+  return !!(f && (f.difficulty || f.foundation || (f.note && f.note.trim().length>0)));
+}
+function flaggedCount(){
+  return Object.keys(feedback).filter(cardHasFeedback).length;
+}
+
+function initQueue(){
+  const ids = CARDS.map(c=>c.id);
+  // interleave: shuffle across categories/subsections rather than blocking by topic
+  for(let i=ids.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  queue = ids.filter(id => {
+    const p = progress[id];
+    return !p || !p.dueDate || p.dueDate <= Date.now();
+  }).map(id => ({id}));
+}
+
+function cardById(id){ return CARDS.find(c=>c.id===id); }
+
+function renderStats(){
+  const total = CARDS.length;
+  const mastered = Object.values(progress).filter(p=>p.box>=4).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statMastered').textContent = mastered;
+  document.getElementById('statRemaining').textContent = queue.length;
+  document.getElementById('progressFill').style.width = ((total-queue.length)/total*100).toFixed(0)+'%';
+  document.getElementById('flagCount').textContent = flaggedCount();
+}
+
+function nextCard(){
+  const area = document.getElementById('deckArea');
+  if(queue.length===0){
+    area.innerHTML = `<div class="done-panel">
+      <h2>Session complete</h2>
+      <p>You worked through the deck. Cards you rated Again/Hard will resurface sooner next time; Good/Easy cards are spaced further out.</p>
+      <button id="restartBtn">Start another pass</button>
+    </div>`;
+    document.getElementById('restartBtn').onclick = ()=>{ initQueue(); renderStats(); nextCard(); };
+    renderStats();
+    return;
+  }
+  const entry = queue.shift();
+  currentCard = cardById(entry.id);
+  renderStats();
+
+  const catClass = 'cat-'+currentCard.cat;
+  let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
+  let answerBody = currentCard.diagram
+    ? `<div class="diagram-reveal">${DIAGRAMS[currentCard.diagram]}</div>`
+    : `<div class="a-main">${currentCard.back}</div>`;
+
+  area.innerHTML = `
+    <div class="card-shell">
+      <div class="card">
+        <div class="tag-row">
+          <div class="tags">
+            <span class="tag ${catClass}">${CAT_LABEL[currentCard.cat]}</span>
+            <span class="tag">${currentCard.sub}</span>
+            <span class="tag type">${currentCard.type}</span>
+          </div>
+          <span class="card-index">${CARDS.length - queue.length} / ${CARDS.length}</span>
+        </div>
+        <div class="prompt">${currentCard.front}</div>
+        <div class="answer" id="answerBlock">
+          <hr class="divider">
+          ${answerBody}
+          <div>${citesHtml}</div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">Show answer</button>
+        <div class="rate-row" id="rateRow">
+          <button class="again" id="rateAgain">Again<small>didn't recall it</small></button>
+          <button class="hard" id="rateHard">Hard<small>recalled with effort</small></button>
+          <button class="good" id="rateGood">Good<small>recalled cleanly</small></button>
+          <button class="easy" id="rateEasy">Easy<small>instant, confident</small></button>
+        </div>
+        <div class="feedback-row" id="feedbackRow">
+          <button class="flag-btn" id="flagDifficulty">difficulty not representative</button>
+          <button class="flag-btn" id="flagFoundation">base knowledge lacking</button>
+          <button class="flag-btn" id="flagNoteToggle">leave feedback</button>
+        </div>
+        <div class="note-box" id="noteBox">
+          <textarea id="noteText" placeholder="What's off about this card?"></textarea><br>
+          <button id="noteSaveBtn">Save note</button>
+        </div>
+      </div>
+    </div>`;
+
+  // reflect existing feedback state for this card
+  const fb = feedback[currentCard.id] || {};
+  setTimeout(()=>{
+    document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
+    document.getElementById('flagFoundation').classList.toggle('active', !!fb.foundation);
+    if(fb.note){
+      document.getElementById('flagNoteToggle').classList.add('note-active');
+      document.getElementById('noteText').value = fb.note;
+    }
+  },0);
+
+  document.getElementById('revealBtn').onclick = ()=>{
+    document.getElementById('answerBlock').classList.add('show');
+    document.getElementById('revealBtn').style.display='none';
+    document.getElementById('rateRow').classList.add('show');
+  };
+  document.getElementById('rateAgain').onclick = ()=>rate('again');
+  document.getElementById('rateHard').onclick = ()=>rate('hard');
+  document.getElementById('rateGood').onclick = ()=>rate('good');
+  document.getElementById('rateEasy').onclick = ()=>rate('easy');
+
+  document.getElementById('flagDifficulty').onclick = (e)=>toggleFlag('difficulty', e.currentTarget);
+  document.getElementById('flagFoundation').onclick = (e)=>toggleFlag('foundation', e.currentTarget);
+  document.getElementById('flagNoteToggle').onclick = ()=>{
+    document.getElementById('noteBox').classList.toggle('show');
+  };
+  document.getElementById('noteSaveBtn').onclick = ()=>{
+    const id = currentCard.id;
+    const text = document.getElementById('noteText').value.trim();
+    feedback[id] = feedback[id] || {};
+    feedback[id].note = text;
+    saveFeedback();
+    document.getElementById('flagNoteToggle').classList.toggle('note-active', text.length>0);
+    document.getElementById('noteBox').classList.remove('show');
+    renderStats();
+  };
+}
+
+function toggleFlag(kind, btn){
+  const id = currentCard.id;
+  feedback[id] = feedback[id] || {};
+  feedback[id][kind] = !feedback[id][kind];
+  btn.classList.toggle('active', feedback[id][kind]);
+  saveFeedback();
+  renderStats();
+}
+
+function openFeedbackPanel(){
+  const list = document.getElementById('panelList');
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0){
+    list.innerHTML = `<div class="empty-note">No cards flagged yet — flags you leave during review will collect here.</div>`;
+  } else {
+    list.innerHTML = flaggedIds.map(id=>{
+      const c = cardById(id);
+      const f = feedback[id];
+      const tags = [];
+      if(f.difficulty) tags.push('difficulty not representative');
+      if(f.foundation) tags.push('base knowledge lacking');
+      return `<div class="panel-item">
+        <div class="pi-prompt">${c ? c.front : id}</div>
+        <div class="pi-flags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${f.note ? `<div class="pi-note">"${f.note}"</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('feedbackOverlay').classList.add('show');
+}
+
+function feedbackAsText(){
+  const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
+  if(flaggedIds.length===0) return 'No flagged cards.';
+  let out = 'Flagged flashcards — Priority Minerals & Rock Names\n';
+  out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
+  flaggedIds.forEach(id=>{
+    const c = cardById(id);
+    const f = feedback[id];
+    out += `Card: ${id}\n`;
+    out += `Prompt: ${c ? c.front : '(card not found)'}\n`;
+    const tags = [];
+    if(f.difficulty) tags.push('difficulty not representative');
+    if(f.foundation) tags.push('base knowledge lacking');
+    if(tags.length) out += `Flags: ${tags.join(', ')}\n`;
+    if(f.note) out += `Note: ${f.note}\n`;
+    out += '\n';
+  });
+  return out;
+}
+
+function rate(level){
+  const id = currentCard.id;
+  const p = progress[id] || {box:1};
+  let requeueWithin = null; // position within current session queue; null = retire from this session
+
+  if(level==='again'){ p.box = 1; requeueWithin = 4; }
+  else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
+  else if(level==='good'){ p.box = Math.min(5, p.box+1); requeueWithin = (p.box<3)?18:null; }
+  else if(level==='easy'){ p.box = Math.min(5, p.box+2); requeueWithin = null; }
+
+  p.dueDate = Math.min(Date.now() + BOX_INTERVAL_DAYS[p.box]*24*60*60*1000, EXAM_DATE);
+  progress[id] = p;
+  saveProgress();
+
+  if(requeueWithin!==null){
+    const pos = Math.min(queue.length, requeueWithin);
+    queue.splice(pos, 0, {id});
+  }
+  nextCard();
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Reset all spaced-repetition progress? Flagged feedback is kept separately and will not be cleared.')) return;
+  progress = {};
+  await saveProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+};
+
+document.getElementById('flaggedBtn').onclick = openFeedbackPanel;
+document.getElementById('closePanelBtn').onclick = ()=>{
+  document.getElementById('feedbackOverlay').classList.remove('show');
+};
+document.getElementById('copyFeedbackBtn').onclick = async ()=>{
+  const text = feedbackAsText();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
+  }catch(e){
+    alert(text); // fallback if clipboard API is blocked
+  }
+};
+document.getElementById('clearFeedbackBtn').onclick = async ()=>{
+  if(!confirm('Clear all flags and notes? This cannot be undone.')) return;
+  feedback = {};
+  await saveFeedback();
+  renderStats();
+  openFeedbackPanel();
+};
+
+function progressAsJSON(){
+  return JSON.stringify({progress, feedback, exportedAt: new Date().toISOString()}, null, 2);
+}
+async function applyImportedData(text){
+  const data = JSON.parse(text);
+  progress = data.progress || {};
+  feedback = data.feedback || {};
+  await saveProgress();
+  await saveFeedback();
+  initQueue();
+  renderStats();
+  nextCard();
+}
+
+document.getElementById('syncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.add('show');
+};
+document.getElementById('closeSyncBtn').onclick = ()=>{
+  document.getElementById('syncOverlay').classList.remove('show');
+};
+
+document.getElementById('copyProgressBtn').onclick = async ()=>{
+  const text = progressAsJSON();
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById('copyProgressBtn').textContent = 'Copied ✓ — paste it somewhere safe';
+    setTimeout(()=>{ document.getElementById('copyProgressBtn').textContent = 'Copy progress to clipboard'; }, 2000);
+  }catch(e){
+    document.getElementById('pasteImportBox').value = text;
+    alert('Clipboard access was blocked here — the JSON is now in the text box below; select it manually and copy.');
+  }
+};
+document.getElementById('pasteImportBtn').onclick = async ()=>{
+  const text = document.getElementById('pasteImportBox').value.trim();
+  if(!text){ alert('Paste your exported progress JSON into the box first.'); return; }
+  try{
+    await applyImportedData(text);
+    alert('Progress imported from pasted text.');
+    document.getElementById('syncOverlay').classList.remove('show');
+  }catch(err){
+    alert('That didn\'t parse as valid progress JSON — make sure you pasted the whole exported block.');
+  }
+};
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob = new Blob([progressAsJSON()], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'minrock-flashcard-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importFile').click();
+};
+document.getElementById('importFile').onchange = (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (evt)=>{
+    try{
+      await applyImportedData(evt.target.result);
+      alert('Progress imported.');
+      document.getElementById('syncOverlay').classList.remove('show');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a progress export from this deck.');
+    }
+  };
+  reader.readAsText(file);
+};
+(function removeOldImportHandlerTail(){ /* no-op marker to keep structure clear */ })();
+
+(async function init(){
+  await loadProgress();
+  initQueue();
+  renderStats();
+  nextCard();
+})();
+</script>
+</body>
+</html>

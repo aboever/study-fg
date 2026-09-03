@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Study Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
+    --verified:#2f7a4d; --verified-soft:#dcefe1;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;line-height:1.5;}
+  .wrap{max-width:980px;margin:0 auto;padding:40px 20px 100px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:32px;margin:0 0 8px;letter-spacing:-.01em;}
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:620px;margin-bottom:8px;}
+  .exam-note{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:8px 12px;display:inline-block;margin-top:6px;}
+
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin:0 0 4px;}
+  .section{margin-top:44px;}
+  .section-sub{color:var(--ink-soft);font-size:13.5px;margin-bottom:16px;}
+
+  /* --- domain ribbon --- */
+  .ribbon{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;margin-top:18px;}
+  .domain-col{display:flex;flex-direction:column;gap:6px;}
+  .domain-head{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--ink);text-align:center;padding:6px 4px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);min-height:52px;display:flex;align-items:center;justify-content:center;line-height:1.3;}
+  .domain-col a, .domain-col .placeholder-btn{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:center;padding:8px 4px;
+    border-radius:var(--radius);border:1px solid var(--rule);text-decoration:none;color:var(--ink);
+    background:#fff;
+  }
+  .domain-col a:hover{background:var(--verified-soft);border-color:var(--verified);}
+  .domain-col a.guide{font-weight:600;}
+  .domain-col a.supp{color:var(--ink-soft);}
+
+  /* --- placeholder cards --- */
+  .placeholder-card{
+    background:var(--paper);border:1px dashed var(--rule);border-radius:8px;
+    padding:20px 22px;color:var(--ink-soft);font-size:13.5px;
+  }
+  .placeholder-tag{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;
+    letter-spacing:.05em;background:var(--rule);color:var(--ink);padding:2px 8px;border-radius:10px;margin-bottom:8px;
+  }
+  .gen-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;}
+  .gen-btn{
+    flex:1;min-width:220px;background:#fff;border:1px dashed var(--rule);border-radius:6px;
+    padding:16px 18px;cursor:not-allowed;opacity:.75;
+  }
+  .gen-btn strong{display:block;font-family:'Fraunces',serif;font-size:16px;margin-bottom:4px;}
+  .gen-btn span{font-size:12.5px;color:var(--ink-soft);}
+
+  /* --- tips --- */
+  .tips-list{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:8px 24px;}
+  .tips-list li{margin:14px 0;font-size:14px;line-height:1.6;}
+  .tips-list li strong{color:var(--ink);}
+
+  /* --- study plan --- */
+  .plan-grid{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .plan-week{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 20px;}
+  .plan-week .wk-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;}
+  .plan-week h3{font-family:'Fraunces',serif;font-size:16px;margin:4px 0 6px;}
+  .plan-week p{font-size:13.5px;color:var(--ink-soft);margin:0;}
+  .plan-week.taper{border-color:#a67a2e;}
+  .plan-week.examday{border-color:var(--verified);}
+
+  footer{max-width:980px;margin:44px auto 0;padding:0 20px;font-size:12.5px;color:var(--ink-soft);}
+  footer .box{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:16px 20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology</div>
+    <h1>Study Hub</h1>
+    <p class="sub">One index into all eight FG domains — study guides, flashcard decks, and (soon) glossary and weighted mixed-domain review.</p>
+    <div class="exam-note">Exam: Thursday, October 1, 2026 — 12:45 PM</div>
+  </header>
+
+  <div class="section">
+    <h2>Domains</h2>
+    <p class="section-sub">Each column: study guide, then main flashcard deck, then supplemental deck where one exists (Domains B and G).</p>
+    <div class="ribbon">
+
+      <div class="domain-col">
+        <div class="domain-head">A — General Field Geology</div>
+        <a class="guide" href="asbog-fg-a-general-field-geology-study-guide.html">Guide</a>
+        <a href="asbog-fg-a-general-field-geology-flashcards.html">Flashcards</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">B — Mineralogy, Petrology &amp; Geochemistry</div>
+        <a class="guide" href="asbog-fg-b-mineralogy-petrology-geochemistry-study-guide.html">Guide</a>
+        <a href="asbog-fg-b-mineralogy-petrology-geochemistry-flashcards.html">Flashcards</a>
+        <a class="supp" href="asbog-fg-b-priority-minerals-and-rock-names-flashcards.html">+ Priority Minerals</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">C — Sed/Strat/Paleontology</div>
+        <a class="guide" href="asbog-fg-c-sedimentology-stratigraphy-paleontology-study-guide.html">Guide</a>
+        <a href="asbog-fg-c-sedimentology-stratigraphy-paleontology-flashcards.html">Flashcards</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">D — Geomorphology &amp; Surficial Processes</div>
+        <a class="guide" href="asbog-fg-d-geomorphology-surficial-processes-study-guide.html">Guide</a>
+        <a href="asbog-fg-d-geomorphology-surficial-processes-flashcards.html">Flashcards</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">E — Structure, Tectonics &amp; Seismology</div>
+        <a class="guide" href="asbog-fg-e-structure-tectonics-seismology-study-guide.html">Guide</a>
+        <a href="asbog-fg-e-structure-tectonics-seismology-flashcards.html">Flashcards</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">F — Hydrogeology</div>
+        <a class="guide" href="asbog-fg-f-hydrogeology-study-guide.html">Guide</a>
+        <a href="asbog-fg-f-hydrogeology-flashcards.html">Flashcards</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">G — Engineering Geology</div>
+        <a class="guide" href="asbog-fg-g-engineering-geology-study-guide.html">Guide</a>
+        <a href="asbog-fg-g-engineering-geology-flashcards.html">Flashcards</a>
+        <a class="supp" href="asbog-fg-g-uscs-plasticity-flashcards.html">+ USCS Plasticity</a>
+      </div>
+
+      <div class="domain-col">
+        <div class="domain-head">H — Mineral &amp; Energy Resources</div>
+        <a class="guide" href="asbog-fg-h-mineral-energy-resources-study-guide.html">Guide</a>
+        <a href="asbog-fg-h-mineral-energy-resources-flashcards.html">Flashcards</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Glossary</h2>
+    <a class="guide" style="display:inline-block;max-width:160px;" href="asbog-fg-glossary.html">Glossary <span style="color:var(--ink-soft);font-weight:400;">(not yet built)</span></a>
+  </div>
+
+  <div class="section">
+    <h2>Mixed-Domain Review</h2>
+    <p class="section-sub">Weighted random draw across all domains, proportional to the official ASBOG FG blueprint. Requires embedding all ten decks' card data into this hub — not wired yet.</p>
+    <div class="gen-row">
+      <div class="gen-btn">
+        <strong>Quick review — 10&ndash;15 cards</strong>
+        <span>Placeholder — coming after card-pool integration</span>
+      </div>
+      <div class="gen-btn">
+        <strong>Full review — 20&ndash;30 cards</strong>
+        <span>Placeholder — coming after card-pool integration</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Tips for Studying</h2>
+    <ul class="tips-list">
+      <li><strong>Self-grade honestly on the flashcards.</strong> The spaced-repetition scheduling only works if Again/Hard/Good/Easy reflect real recall difficulty — rating something "Good" that you half-guessed just hides a weak spot until the exam.</li>
+      <li><strong>Interleave domains rather than blocking one at a time.</strong> Studying Domain E for three straight hours feels productive but tests recognition, not recall under mixed conditions — closer to what the actual exam will ask of you. Once the mixed-domain generator is built, use it daily rather than only working single-domain decks.</li>
+      <li><strong>Weight your time toward Structure, Tectonics &amp; Seismology (Domain E) and toward Mineralogy, Petrology &amp; Geochemistry (Domain B).</strong> You flagged E as your weakest and B as borderline; both are also 12% of the blueprint each, so time there has real payoff. Hydrogeology (Domain F) is 13% but already your strength — a lighter maintenance pass there frees up hours for E and B.</li>
+      <li><strong>Use the flagged-card panel weekly, not passively.</strong> Flag a card the moment something feels off, but actually revisit the flagged list on a fixed weekly cadence rather than letting it accumulate untouched until the end.</li>
+      <li><strong>Cross-check flashcard recall against the official sample items.</strong> ASBOG publishes sample FG questions in the Candidate Handbook — cued recall (flashcards) and four-option multiple-choice under time pressure are different skills, and the exam only tests the second one.</li>
+      <li><strong>Taper, don't cram, in the final 48 hours.</strong> The last two days are built into the plan below as review-only, no new material — the exam-date cap in the flashcard scheduling already guarantees nothing gets buried until after test day.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4-Week Study Plan</h2>
+    <p class="section-sub">Sept 2 through Oct 1, 29 days. Monday&ndash;Friday = 2+ hours (guide + deck work). Saturday&ndash;Sunday = 20&ndash;30 minutes (flashcard-only maintenance or timed practice, no new guide reading). Domain E doubles up early since it's your stated gap; Domain F is compressed since it's your background strength — bank whatever time that frees up for E and B.</p>
+    <div class="plan-grid">
+
+      <div class="plan-week">
+        <div class="wk-label">Week 1 &middot; Sept 2&ndash;8</div>
+        <h3>First pass: A, B, C, D, E</h3>
+        <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
+          <li>Wed 9/2 &mdash; Domain A: guide + full deck</li>
+          <li>Thu 9/3 &mdash; Domain B: guide + main deck</li>
+          <li>Fri 9/4 &mdash; Domain C: guide + deck</li>
+          <li>Sat 9/5 (light) &mdash; flashcards only, A + B</li>
+          <li>Sun 9/6 (light) &mdash; flashcards only, C</li>
+          <li>Mon 9/7 &mdash; Domain D: guide + deck</li>
+          <li>Tue 9/8 &mdash; Domain E: guide + deck (first full pass, deliberately early)</li>
+        </ul>
+      </div>
+
+      <div class="plan-week">
+        <div class="wk-label">Week 2 &middot; Sept 9&ndash;15</div>
+        <h3>Complete first pass; E and B repeat</h3>
+        <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
+          <li>Wed 9/9 &mdash; Domain E: second full pass</li>
+          <li>Thu 9/10 &mdash; Domain F: guide + deck (expect this to move fast)</li>
+          <li>Fri 9/11 &mdash; Domain G: guide + main deck</li>
+          <li>Sat 9/12 (light) &mdash; flashcards only, D + E</li>
+          <li>Sun 9/13 (light) &mdash; flashcards only, F + G</li>
+          <li>Mon 9/14 &mdash; Domain H: guide + deck (all 8 domains now covered once)</li>
+          <li>Tue 9/15 &mdash; Domain B: second pass + Priority Minerals supplemental deck</li>
+        </ul>
+      </div>
+
+      <div class="plan-week">
+        <div class="wk-label">Week 3 &middot; Sept 16&ndash;22</div>
+        <h3>Deep dive E/B, begin interleaving</h3>
+        <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
+          <li>Wed 9/16 &mdash; Domain E: third pass, focus cross-sections/structural interpretation over vocabulary</li>
+          <li>Thu 9/17 &mdash; Domain B: third pass, focus hand-specimen/optical ID and geochemical models</li>
+          <li>Fri 9/18 &mdash; Mixed maintenance: A + C + D, flashcards only</li>
+          <li>Sat 9/19 (light) &mdash; flagged-card review, E + B specifically</li>
+          <li>Sun 9/20 (light) &mdash; ASBOG official sample items, timed, domains covered so far</li>
+          <li>Mon 9/21 &mdash; Domain G: repeat pass + USCS Plasticity supplemental deck</li>
+          <li>Tue 9/22 &mdash; Domain H: repeat pass</li>
+        </ul>
+      </div>
+
+      <div class="plan-week">
+        <div class="wk-label">Week 4 &middot; Sept 23&ndash;29</div>
+        <h3>Integrated, blueprint-weighted review</h3>
+        <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
+          <li>Wed 9/23 &mdash; Mixed-domain generator (if built) or manual rotation weighted toward E/B</li>
+          <li>Thu 9/24 &mdash; Second integrated review pass</li>
+          <li>Fri 9/25 &mdash; Flagged-card cleanup, all ten decks, plus one more E block</li>
+          <li>Sat 9/26 (light) &mdash; mixed-domain generator, quick pull</li>
+          <li>Sun 9/27 (light) &mdash; mixed-domain generator, quick pull</li>
+          <li>Mon 9/28 &mdash; full timed ASBOG sample set + review misses</li>
+          <li>Tue 9/29 &mdash; final full-spectrum flashcard pass, all domains</li>
+        </ul>
+      </div>
+
+      <div class="plan-week taper">
+        <div class="wk-label">Sept 30 &middot; Taper</div>
+        <h3>Light review only, 20&ndash;30 minutes</h3>
+        <p>Flagged cards and Domain E/B only. No new material, no full decks.</p>
+      </div>
+
+      <div class="plan-week examday">
+        <div class="wk-label">Oct 1 &middot; Exam Day</div>
+        <h3>12:45 PM</h3>
+        <p>&mdash;</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="box">
+      <strong>Status:</strong> ribbon and file links are live and functional. Glossary and mixed-domain generator are placeholders pending further build steps. Study plan is a skeleton pending a full day-by-day pass. Color/citation conformance across domains remains deprioritized per prior discussion.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

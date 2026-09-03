@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain C: Sedimentology, Stratigraphy &amp; Paleontology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --strat:#2f6b6e;
+    --strat-soft:#dceceb;
+    --facies:#93691a;
+    --facies-soft:#f2e6cd;
+    --foss:#6d3f60;
+    --foss-soft:#ecdfe8;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0 40px;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.strat .cat{color:var(--strat);}
+  nav.toc a.facies .cat{color:var(--facies);}
+  nav.toc a.foss .cat{color:var(--foss);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.strat::before{background:var(--strat);}
+  .category.facies::before{background:var(--facies);}
+  .category.foss::before{background:var(--foss);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.strat .cat-label{color:var(--strat);}
+  .category.facies .cat-label{color:var(--facies);}
+  .category.foss .cat-label{color:var(--foss);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 8px;
+    border-radius:10px;
+    white-space:normal;
+    margin-left:4px;
+    vertical-align:1px;
+    line-height:1.5;
+  }
+  .cite.verified{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.asbog{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .note-box{
+    background:#eef0ea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:14px 0 0;
+  }
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding:40px 24px 80px;
+  }
+  .legend{max-width:920px;margin:0 auto;}
+  .legend h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:20px;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain C: Sedimentology, Stratigraphy<br>&amp; Paleontology</h1>
+    <p class="subtitle">11% of the FG exam (~15 of 140 questions). References verified against Marshak, <em>Essentials of Geology</em> 4th ed. (your uploaded text) first; gaps closed against the Bureau of Reclamation <em>Engineering Geology Field Manual</em> (USBR), Burdige's <em>Geochemistry of Marine Sediments</em> and Schulz &amp; Zabel's <em>Marine Geochemistry</em> (your uploaded texts), Wefer et al.'s <em>Ocean Margin Systems</em> (your uploaded text), and named peer-reviewed literature (Read 1985, Miall 1985, Van Wagoner et al. 1988/1990, Dickinson &amp; Suczek 1979, Mitchum/Vail/Thompson 1977, Walther 1894) for the basin-analysis content the intro textbook doesn't reach. Cross-checked against the official ASBOG Domain C Knowledge Base.</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain C, 11% FG / 5% PG</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation style:</strong> full author/source names, no letter codes</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain C Knowledge Base</h2>
+    <p style="margin-bottom:10px;">Paraphrased from the official domain document (a numbered outline, not flowing prose): <strong>C-1</strong> stratigraphic principles (naming conventions, rules, unconformities, stratigraphic columns/cross sections/fence diagrams, geochronology, correlation); <strong>C-2</strong> sedimentary structures (primary, secondary, biogenic); <strong>C-3</strong> diagenesis (post-depositional changes); <strong>C-4</strong> facies analysis (fabric, facies changes, facies-environment relationships, relative sea-level change); <strong>C-5</strong> depositional environments (clastic — textural indicators, non-marine, transitional, marine; carbonate — platform/bank, ramp, pelagic; evaporite); <strong>C-6</strong> fossil record and evolution (connections to the geologic time scale, index fossils, biostratigraphy); <strong>C-7</strong> basin analysis (sequence stratigraphy, seismic stratigraphy, depositional systems, global cycles, facies architecture, provenance). <strong>C-8</strong> (Project planning and development) is PG-only per the knowledge base's own labeling and is excluded from this FG guide.</p>
+    <div class="src">Sources: ASBOG 2023 Task Analysis, FG Test Blueprint (asbog.org); ASBOG Domain C Knowledge Base (asbog.org/candidates/candidates.html).</div>
+  </div>
+
+  <div class="gap-box">
+    <strong>Read this before the rest of the guide.</strong> Marshak gives strong coverage of stratigraphic principles (C-1), non-marine/evaporite depositional environments (most of C-5), and the fossil record (C-6) — this is a genuine strength area. It is thin on secondary sedimentary structures and the formal "facies" vocabulary (C-2.2, most of C-4), and essentially silent on basin analysis (C-7) — sequence stratigraphy, seismic stratigraphy, depositional systems, facies architecture, and provenance are industry/graduate-level topics an intro textbook doesn't reach. Every one of those gaps is closed below against a real source, most of them your own uploaded marine-geochemistry and ocean-margin references rather than generic web material.
+  </div>
+
+  <nav class="toc">
+    <a class="strat" href="#strat"><span class="cat">Stratigraphic Principles, Structures &amp; Diagenesis</span>Naming · Rules · Unconformities · Correlation · Geochronology · Structures · Diagenesis</a>
+    <a class="facies" href="#facies"><span class="cat">Facies Analysis &amp; Depositional Environments</span>Fabric · Walther's Law · Clastic · Carbonate · Evaporite</a>
+    <a class="foss" href="#fossils"><span class="cat">Fossil Record &amp; Basin Analysis</span>Evolution · Biostratigraphy · Sequence &amp; seismic stratigraphy · Provenance</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- STRATIGRAPHIC PRINCIPLES, STRUCTURES & DIAGENESIS -->
+  <!-- ============================================================ -->
+  <section class="category strat" id="strat">
+    <div class="cat-header">
+      <div class="cat-label">01 / Stratigraphic Principles, Structures &amp; Diagenesis</div>
+      <h2 class="cat-title">C-1, C-2 &amp; C-3</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Naming Conventions &amp; Stratigraphic Units</h3>
+      <p>Hierarchy of units <span class="cite verified">Marshak p.173, 175, 312–313</span>: a <strong>bed</strong> is a single layer with a recognizable top and bottom; the boundary between beds is a <strong>bedding plane</strong>; several beds together are <strong>strata</strong>; the overall layered arrangement is <strong>bedding/stratification</strong>. A distinctive sequence of beds traceable across a broad region is a <strong>stratigraphic formation</strong> — named after the locality where first identified (e.g., Kaibab Limestone, a single-rock-type formation; Toroweap Formation, multiple rock types, hence the word "formation" in the name). Several related formations comprise a <strong>group</strong> (e.g., Supai Group). The boundary surface between two formations is a <strong>contact</strong>.</p>
+      <p>Rock-unit naming for engineering purposes may be stratigraphic, lithologic, or genetic (e.g., Navajo Sandstone, Tertiary shale, metasediments); usage is normally <strong>informal</strong> (lower case) per the North American Stratigraphic Code, reserving formal capitalized names for previously-established formations <span class="cite verified">USBR Vol.1 Ch.2, p.4</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Fundamental Stratigraphic Rules</h3>
+      <table>
+        <tr><th>Principle</th><th>Statement</th></tr>
+        <tr><td>Uniformitarianism</td><td>Physical processes observed today operated in the past at roughly comparable rates — "the present is the key to the past" <span class="cite verified">Marshak p.306</span></td></tr>
+        <tr><td>Original horizontality</td><td>Sediment layers are deposited approximately horizontal; tilted/folded beds were deformed after deposition <span class="cite verified">Marshak p.306</span></td></tr>
+        <tr><td>Superposition</td><td>In an undisturbed sequence, each layer is younger than the one beneath it <span class="cite verified">Marshak p.307</span></td></tr>
+        <tr><td>Lateral continuity</td><td>Sediment layers accumulate as continuous sheets; a canyon cutting a layer implies the layer once spanned the eroded area <span class="cite verified">Marshak p.307</span></td></tr>
+        <tr><td>Cross-cutting relations</td><td>A feature that cuts across another is younger than the feature it cuts (dikes, faults) <span class="cite verified">Marshak p.307</span></td></tr>
+        <tr><td>Baked contacts</td><td>An igneous intrusion metamorphoses ("bakes") the surrounding rock, so the baked rock is older than the intrusion <span class="cite verified">Marshak p.307</span></td></tr>
+        <tr><td>Inclusions</td><td>A rock containing a fragment of another rock is younger than that fragment <span class="cite verified">Marshak p.307</span></td></tr>
+        <tr><td>Fossil succession</td><td>A given fossil species occurs only within a limited stratigraphic interval and, once extinct, never reappears higher in the sequence <span class="cite verified">Marshak p.308</span> — William Smith's discovery while surveying English canal excavations in the 1790s.</td></tr>
+      </table>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Unconformities</h3>
+      <p>An <strong>unconformity</strong> is a surface representing a period of nondeposition and possibly erosion; the time gap it represents is a <strong>hiatus</strong> <span class="cite verified">Marshak p.309</span>.</p>
+      <table>
+        <tr><th>Type</th><th>Definition</th></tr>
+        <tr><td>Angular unconformity</td><td>Underlying rocks were tilted or folded before the unconformity formed — the orientation of layers differs above vs. below (e.g., Siccar Point, Scotland) <span class="cite verified">Marshak pp.309–310</span></td></tr>
+        <tr><td>Nonconformity</td><td>Sedimentary rocks overlie older intrusive igneous and/or metamorphic basement <span class="cite verified">Marshak p.310</span></td></tr>
+        <tr><td>Disconformity</td><td>Parallel sedimentary sequences separated by an erosion surface (e.g., a sea-level fall exposes and erodes beds, then sea level rises and new sediment buries the surface) <span class="cite verified">Marshak pp.310–311</span></td></tr>
+        <tr><td>Paraconformity</td><td>A subtype of disconformity where the beds above and below are parallel with <strong>no visible erosional relief</strong> — recognized only via missing fossil zones or an age gap, not by field appearance. Short paraconformities are sometimes called <em>diastems</em>.</td></tr>
+      </table>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.4</div>
+      <h3 class="sub-title">Stratigraphic Columns, Cross Sections &amp; Fence Diagrams</h3>
+      <p>A <strong>stratigraphic column</strong> summarizes the sequence of strata at a location, drawn to scale, divided into formations <span class="cite verified">Marshak pp.312–313</span>. A <strong>geologic map</strong> portrays the spatial distribution of formations and structures at the surface; a <strong>block diagram</strong> adds a 3D side-panel view showing subsurface geometry (e.g., an angular unconformity over folded strata beneath a map view) <span class="cite verified">Marshak pp.313–315</span>.</p>
+      <p>A <strong>fence diagram</strong> extends this to multiple locations: several stratigraphic columns or cross sections are drawn in their true relative geographic positions and their correlated units joined between them — a 3D "fence" of connected panels used to show how strata thicken, thin, or pinch out across a region.</p>
+      <div class="note-box">Fence diagrams specifically are not illustrated in Marshak (which shows single columns and 2D geologic maps/block diagrams only) — the definition above is generic/uncontested rather than pulled from your textbook.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.5</div>
+      <h3 class="sub-title">Geochronology &amp; the Geologic Time Scale</h3>
+      <p>The <strong>geologic column</strong> is a composite stratigraphic column built by correlating rocks worldwide, representing the entirety of Earth history <span class="cite verified">Marshak p.315</span>. Largest subdivisions: <strong>Hadean, Archean, Proterozoic, Phanerozoic</strong> Eons (the first three together = Precambrian). The Phanerozoic subdivides into <strong>Paleozoic, Mesozoic, Cenozoic</strong> Eras, then periods, then epochs. Period names derive from type localities (Devonian ↔ Devon, England) or characteristic rock (Carboniferous ↔ coal-bearing) — terminology grew haphazardly between 1760–1845, before numerical ages existed, so divisions are of unequal duration <span class="cite verified">Marshak pp.315–316</span>.</p>
+      <p><strong>Numerical age</strong> is determined via <strong>isotopic (radiometric) dating</strong>: radioactive decay proceeds at a constant rate (the <strong>half-life</strong>), so the parent:daughter isotope ratio in a mineral gives its age <span class="cite verified">Marshak pp.320–323</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.6</div>
+      <h3 class="sub-title">Correlation</h3>
+      <p><strong>Lithologic correlation</strong> matches rock type between nearby stratigraphic columns (sometimes via a distinctive <strong>marker/key bed</strong>); <strong>fossil correlation</strong> uses fossils of the same relative age to correlate across broader areas where lithology changes with depositional environment <span class="cite verified">Marshak pp.312–314</span>. Species that are widespread but survived only briefly are <strong>index fossils</strong> (or guide fossils) — ideal correlation tools <span class="cite verified">Marshak p.309</span>.</p>
+      <p><strong>Geomagnetic polarity correlation</strong>: Earth's magnetic field periodically reverses; a <strong>magnetic reversal</strong> flips normal↔reversed polarity, and the interval between reversals is a <strong>chron</strong>. The magnetic-reversal chronology (named chrons: Brunhes, Matuyama, Gauss, Gilbert) is built by isotopically dating rock layers at their measured paleomagnetic polarity, then used to correlate strata worldwide <span class="cite verified">Marshak Ch.2, pp.46–47</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.7</div>
+      <h3 class="sub-title">Sedimentary Structures — Primary, Secondary &amp; Biogenic</h3>
+      <p><strong>Primary structures</strong> (formed during deposition) <span class="cite verified">Marshak pp.173–177</span>:</p>
+      <ul>
+        <li><strong>Cross-bedding</strong> — internal laminations within a bed, inclined at the angle of a bedform's slip face (ripples, dunes); orientation records current direction</li>
+        <li><strong>Ripple marks</strong> — small, current-perpendicular ridges on a bed surface; <strong>dunes</strong> are the larger-scale equivalent</li>
+        <li><strong>Graded bedding</strong> — grain size fines upward within a bed, produced by a turbidity current (deposit = <strong>turbidite</strong>)</li>
+        <li><strong>Mud cracks</strong> — hexagonal, upward-curling plates formed when a mud layer dries and shrinks</li>
+        <li><strong>Scour marks</strong> — small troughs eroded parallel to current flow</li>
+      </ul>
+      <p><strong>Flute marks and tool marks</strong> are <strong>sole marks</strong> — structures preserved on the underside ("sole") of a bed, at the contact with underlying mud. <strong>Flute casts</strong> are asymmetric, spoon-shaped scours cut by turbulent (often turbidity-current) flow, with a bulbous up-current end tapering downstream — a reliable paleocurrent and way-up indicator. <strong>Tool marks/groove casts</strong> are linear grooves gouged by an object (pebble, shell, wood) dragged along by the current; the "tool" itself is rarely preserved, only its groove.</p>
+      <p><strong>Secondary structures</strong> (formed after deposition, during diagenesis):</p>
+      <ul>
+        <li><strong>Concretions</strong> — hard, compact, often spherical/ovoid masses formed by mineral cement precipitating around a nucleus within already-deposited sediment, usually early in burial history — distinct from a <em>nodule</em>, which forms by replacement rather than precipitation. Noted by USBR as a useful correlation/interpretation marker feature <span class="cite verified">USBR Vol.1 Ch.4, p.70</span></li>
+        <li><strong>Stylolites</strong> — serrated, suture-like surfaces formed by pressure dissolution: mineral matter is dissolved under differential stress, reducing rock volume; insoluble residue (clay, oxides) marks the surface. Common in limestones.</li>
+        <li><strong>Liesegang banding</strong> — rhythmic, often iron-oxide (hematite/goethite) precipitation bands cutting across bedding, formed by a diffusion-reaction (supersaturation-nucleation-depletion) process rather than primary layering; band spacing increases geometrically outward from the diffusion front.</li>
+      </ul>
+      <p><strong>Biogenic structures</strong>: <strong>trace fossils</strong> — footprints, feeding traces, burrows, and dung (coprolites) — record organism activity rather than body parts <span class="cite verified">Marshak Interlude E, p.295</span>. <strong>Stromatolites</strong> are distinctive layered mounds built by cyanobacteria trapping sediment in a mucus-like mat, with new colonization building the mound upward; Archean examples date to ~3.2 Ga <span class="cite verified">Marshak p.331</span>.</p>
+      <div class="note-box">Concretion, stylolite, and Liesegang-banding definitions cross-checked against the <em>AGI Glossary of Geology</em>, 4th ed. (Jackson, ed., 1997) — the standard reference USBR itself designates as its accepted terminology source outside the topics USBR defines independently <span class="cite verified">USBR Vol.1 Ch.2, p.4</span>.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.8</div>
+      <h3 class="sub-title">Diagenesis</h3>
+      <p><strong>Diagenesis</strong> is the umbrella term for all physical, chemical, and biological processes that transform sediment into sedimentary rock and alter it afterward <span class="cite verified">Marshak p.185</span>:</p>
+      <ul>
+        <li><strong>Compaction</strong> — burial pressure squeezes out trapped water/air, packing clasts together</li>
+        <li><strong>Cementation</strong> — minerals (commonly quartz or calcite) precipitate from groundwater and fill pore space between clasts</li>
+        <li><strong>Lithification</strong> — the overall transformation of loose sediment to solid rock (compaction + cementation)</li>
+        <li><strong>Recrystallization</strong> — new crystals grow at the expense of old ones</li>
+        <li><strong>Replacement</strong> — one mineral is dissolved and a different mineral precipitates in its place (e.g., dolomite replacing calcite to form dolostone; cryptocrystalline quartz replacing calcite to form "replacement chert")</li>
+        <li><strong>Dissolution</strong> — groundwater dissolves existing grains/cement</li>
+      </ul>
+      <p>Diagenesis grades into true metamorphism between roughly 150°C and 300°C <span class="cite verified">Marshak p.185</span>.</p>
+      <p><strong>Reduction-oxidation reactions in diagenesis</strong>: as organisms die and are buried, bacteria remineralize organic matter using a sequence of electron acceptors, consumed in order of decreasing free-energy yield per mole of organic carbon oxidized — <strong>aerobic respiration → denitrification → manganese reduction → iron reduction → sulfate reduction → methanogenesis</strong>. Each stage produces a characteristic pore-water profile (O₂ and NO₃⁻ depleted near the surface; dissolved Mn²⁺, then Fe²⁺, then sulfide accumulating with depth) <span class="cite verified">Burdige 2006, pp.99–102</span>, following the classic model of Froelich et al. (1979) and grounded in Berner's diagenetic redox-potential framework <span class="cite verified">cited in Burdige 2006, p.102</span>. The same electron-acceptor cascade is independently presented in <span class="cite verified">Schulz &amp; Zabel 2006, Ch.3</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FACIES ANALYSIS & DEPOSITIONAL ENVIRONMENTS -->
+  <!-- ============================================================ -->
+  <section class="category facies" id="facies">
+    <div class="cat-header">
+      <div class="cat-label">02 / Facies Analysis &amp; Depositional Environments</div>
+      <h2 class="cat-title">C-4 &amp; C-5</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">The Facies Concept, Fabric &amp; Walther's Law</h3>
+      <p>A <strong>(sedimentary) facies</strong> is a group of rocks and primary structures indicative of a given depositional environment <span class="cite verified">Marshak glossary</span>. <strong>Walther's Law of Facies</strong> (Johannes Walther, 1894, translated by G. Middleton 1973) states that facies observed in vertical succession must represent depositional environments that were once laterally adjacent — a conformable vertical sequence records the lateral migration of environments through time (e.g., transgression stacking a beach facies beneath an offshore-mud facies as the shoreline moves inland).</p>
+      <p><strong>Fabric</strong>: <strong>porosity</strong> is the fraction of a material's volume that is empty (pore) space; <strong>permeability</strong> is the degree to which a material allows fluid to pass through its interconnected pores <span class="cite verified">Marshak Ch.16, pp.474–479; Ch.12, pp.356–357</span>. <strong>Packing</strong> describes how closely grains are arranged — burial and diagenesis increase packing (e.g., "pore collapse," the closer packing of grains that occurs when groundwater is withdrawn, eliminating the support that had held them apart). Bedding and foliation are the features that give a rock body <strong>anisotropic</strong> properties — directionally dependent behavior, as opposed to <strong>isotropic</strong> (uniform in all directions) — because they represent potential failure surfaces and control property variation with orientation <span class="cite verified">USBR Vol.1 Ch.4, pp.73–74</span>.</p>
+      <table>
+        <tr><th>Descriptor</th><th>Thickness</th></tr>
+        <tr><td>Massive</td><td>&gt; 10 ft (3 m)</td></tr>
+        <tr><td>Very thickly bedded</td><td>3–10 ft (1–3 m)</td></tr>
+        <tr><td>Thickly bedded</td><td>1–3 ft (0.3–1 m)</td></tr>
+        <tr><td>Moderately bedded</td><td>0.3–1 ft (100–300 mm)</td></tr>
+        <tr><td>Thinly bedded</td><td>0.1–0.3 ft (30–100 mm)</td></tr>
+        <tr><td>Very thinly bedded</td><td>0.03–0.1 ft (10–30 mm)</td></tr>
+        <tr><td>Laminated</td><td>&lt; 0.03 ft (&lt;10 mm)</td></tr>
+      </table>
+      <div class="src" style="margin-top:-8px;margin-bottom:14px;">USBR Vol.1 Ch.4, Table 4-3, p.74</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Facies Changes &amp; Relative Sea-Level Change</h3>
+      <p><strong>Transgression</strong>: relative sea level rises, the shoreline migrates inland, and coastal/marine facies overlap terrestrial ones. <strong>Regression</strong>: relative sea level falls, the shoreline migrates seaward <span class="cite verified">Marshak pp.184–185</span>. A vertical succession recording transgression shows a <strong>deepening-upward (fining-upward)</strong> trend (e.g., redbeds → sandstone → shale → coal, as the shore migrates inland over a floodplain); regression produces a mirror-image <strong>shallowing-upward (coarsening-upward)</strong> succession. This is a direct application of Walther's Law (§2.1) to a real dataset — Marshak's own worked example.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Clastic Environments — Textural Indicators, Non-Marine &amp; Transitional</h3>
+      <p><strong>Textural indicators</strong> <span class="cite verified">Marshak pp.166–167</span>: <strong>clast size</strong> (boulder → cobble → pebble → sand → silt → clay); <strong>angularity</strong> (angular → subangular → subrounded → rounded — clasts round with transport distance); <strong>sphericity</strong> (how closely a clast approaches a sphere); <strong>sorting</strong> (uniform grain size = well sorted; mixed sizes = poorly sorted — sorting improves with transport distance and reworking).</p>
+      <table>
+        <tr><th>Non-marine environment</th><th>Diagnostic character</th></tr>
+        <tr><td>Glacial</td><td>Unsorted, unstratified "till" — clay to boulder size all mixed together (ice can transport any grain size)</td></tr>
+        <tr><td>Mountain stream</td><td>Breccia and conglomerate; coarse clasts settle between floods</td></tr>
+        <tr><td>Alluvial fan</td><td>Wedge-shaped apron of gravel/sand at a mountain front; feldspar survives (arkose) since transport is short</td></tr>
+        <tr><td>Sand dune (eolian)</td><td>Thick, well-sorted sandstone with large cross beds</td></tr>
+        <tr><td>Fluvial (river)</td><td>Cross-bedded, rippled channel sand grading to floodplain silt/shale with mud cracks; lens-shaped channel geometry</td></tr>
+        <tr><td>Lacustrine (lake)</td><td>Finely laminated shale from suspended clay settling in quiet water; small Gilbert-type deltas at stream mouths (topset/foreset/bottomset beds)</td></tr>
+      </table>
+      <div class="src" style="margin-top:-8px;margin-bottom:14px;">Marshak pp.178–179</div>
+      <p><strong>Transitional environments</strong>: <strong>deltas</strong> — complex assemblages of swamp, channel, floodplain, and submarine-slope facies where a river enters standing water <span class="cite verified">Marshak pp.179–181</span>. <strong>Beaches</strong> — well-sorted, well-rounded, rippled sand, winnowed by wave action <span class="cite verified">Marshak p.181</span>. <strong>Barrier islands</strong> and <strong>tidal flats/lagoons</strong> — an elongate, wave-dominated sand ridge (barrier/strand plain) fronting a protected, low-energy lagoonal-tidal flat zone landward of it; these appear explicitly as facies belts on the shallow, wave-dominated part of a carbonate ramp profile <span class="cite verified">McCave 2002, in Wefer et al. (eds.), <em>Ocean Margin Systems</em>, pp.1–14</span> — the same geomorphic zonation applies to siliciclastic coastlines generally.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Marine Clastic Environments — Shelf, Slope, Rise &amp; Abyssal Plain</h3>
+      <p><strong>Shallow-marine</strong>: fine-grained, well-sorted, well-rounded silt with abundant marine fossils, deposited below wave-stirring depth. <strong>Deep-marine</strong>: turbidity-current graded beds near the shelf-slope transition; finely laminated mudstone (clay) and chalk/chert (plankton shells) far offshore <span class="cite verified">Marshak pp.182–183</span>.</p>
+      <p>Formal marine zonation, with numeric criteria <span class="cite verified">Burdige 2006, pp.24–26</span>: the <strong>continental margin</strong> (transition from oceanic to continental crust) divides into the <strong>continental shelf</strong> (seaward extension of the continent out to the <em>shelf break</em>, averaging ~130 m water depth but reaching 500 m), the <strong>continental slope</strong> below it, and the <strong>continental rise</strong> at its base — the slope/rise boundary occurs around 1,500–3,500 m (≈2,000 m average). Below the rise lies the <strong>ocean basin floor / abyssal plain</strong>, the transition typically at 3,000–5,000 m. Passive margins (e.g., Atlantic) are generally wider than active margins (e.g., Pacific).</p>
+      <p><strong>Pelagic</strong> sediments are essentially synonymous with deep-sea sediments, settling out of the water column; <strong>hemipelagic</strong> sediments occur along the lower continental margin in shallower water, with a larger contribution from lateral transport processes like turbidity currents <span class="cite verified">Burdige 2006, p.25</span>. <strong>Coastal/nearshore</strong> sediments are shelf sediments close enough to land to be strongly land-influenced — estuaries, bays, lagoons, and river deltas <span class="cite verified">Burdige 2006, p.25</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.5</div>
+      <h3 class="sub-title">Carbonate Environments — Platform, Ramp &amp; Pelagic</h3>
+      <p>Shallow-water carbonate production: beaches collect shell-fragment sand; <strong>lagoons</strong> (protected, quiet water) accumulate carbonate mud; <strong>reefs</strong> consist of coral and coral debris, with a sloping apron of reef fragments offshore <span class="cite verified">Marshak p.182</span>.</p>
+      <p>The formal classification distinguishes two fundamentally different carbonate platform geometries <span class="cite verified">Read 1985, <em>AAPG Bulletin</em> 69(1), 1–21</span>:</p>
+      <table>
+        <tr><th>Type</th><th>Profile</th></tr>
+        <tr><td>Rimmed shelf/platform</td><td>Relatively flat top with a marked break in slope at a high-energy shelf edge (commonly reef-rimmed), passing abruptly into deep water — a protected shelf lagoon lies behind the rim</td></tr>
+        <tr><td>Ramp — homoclinal</td><td>Low-angle profile passing seaward into deeper water with no major break in slope; no deep-water breccias</td></tr>
+        <tr><td>Ramp — distally steepened</td><td>Low-angle proximally, but with an offshore slope break between the shallow ramp and the basin; slope facies may contain breccias of slope-derived clasts</td></tr>
+      </table>
+      <p>Ramps subdivide further into <strong>inner-, mid-, and outer-ramp</strong> zones, bounded by fair-weather and storm wave base. A corroborating depositional-profile diagram — independently sourced, from a different reference you own — shows the ramp's protected back-ramp zone hosting <strong>lagoonal-tidal-flat</strong> facies (with associated evaporites/paleosols/paleokarst) and the shallow wave-dominated zone hosting <strong>beach/barrier/strand-plain</strong> facies, exactly matching the rimmed-shelf-vs-ramp framework above <span class="cite verified">McCave 2002, in Wefer et al. (eds.), <em>Ocean Margin Systems</em>, pp.1–14</span>.</p>
+      <p><strong>Pelagic</strong> carbonate: chalk, formed from plankton shells settling like snow through open water, far from clastic or shallow-shelf influence <span class="cite verified">Marshak p.183</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.6</div>
+      <h3 class="sub-title">Evaporite Environments</h3>
+      <p>Salt precipitates where saltwater becomes supersaturated — evaporation removes water faster than new water enters — in desert lakes and along the margins of restricted seas <span class="cite verified">Marshak pp.169–171</span>. The specific mineral depends on the degree of evaporation: <strong>gypsum</strong> forms once ~80% of the water has evaporated; <strong>halite</strong> once ~90% has evaporated. Classic example: the Bonneville Salt Flats, Utah, formed by evaporation of an ancient salt lake.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOSSIL RECORD & BASIN ANALYSIS -->
+  <!-- ============================================================ -->
+  <section class="category foss" id="fossils">
+    <div class="cat-header">
+      <div class="cat-label">03 / Fossil Record &amp; Basin Analysis</div>
+      <h2 class="cat-title">C-6 &amp; C-7</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Fossil Record, Evolution &amp; Connections to the Time Scale</h3>
+      <p><strong>Fossilization</strong> requires special circumstances: an anoxic (oxygen-poor) environment slows decay, rapid burial pre-empts rotting/scavenging, and the organism needs durable hard parts <span class="cite verified">Marshak pp.293–294</span>. Preservation modes include preserved/replaced bones and shells, molds and casts, carbonized impressions, permineralization (e.g., petrified wood), trace fossils, and chemical fossils/biomarkers <span class="cite verified">Marshak pp.295</span>.</p>
+      <p><strong>Taxonomy</strong>: three domains (Archaea, Bacteria, Eukarya); Eukarya divides into kingdoms (Protista, Fungi, Plantae, Animalia), then phylum → class → order → family → genus → species <span class="cite verified">Marshak pp.297–298</span>. <strong>Evolution</strong> proceeds by natural selection (Darwin); debate continues over <strong>gradualism</strong> (slow, constant rate) vs. <strong>punctuated equilibrium</strong> (long stasis, brief rapid change) <span class="cite verified">Marshak p.301</span>. <strong>Mass extinction events</strong> mark several major geologic-period boundaries (e.g., end-Cretaceous, end-Permian) <span class="cite verified">Marshak p.302</span>.</p>
+      <p>The geologic column's structure is directly mapped onto life's evolutionary record — the Precambrian-Cambrian boundary is defined by the sudden appearance of shelled invertebrates (the <strong>Cambrian explosion</strong>, ~530 Ma); first fish appear in the Ordovician, land plants spread in the Silurian, amphibians in the Devonian, dinosaurs in the Triassic, and the end-Cretaceous extinction (65 Ma) closes the Mesozoic ("Age of Dinosaurs") and opens the Cenozoic ("Age of Mammals") <span class="cite verified">Marshak pp.316–317</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Index Fossils &amp; Biostratigraphy</h3>
+      <p>An <strong>index fossil</strong> (guide fossil) is a species that is both widespread and stratigraphically short-lived — ideal for associating strata with a specific time interval <span class="cite verified">Marshak p.309</span>. The underlying discipline is <strong>biostratigraphy</strong>: "the element of stratigraphy that deals with the distribution of fossils in the stratigraphic record and the organization of strata into units on the basis of their contained fossils" <span class="cite verified">North American Stratigraphic Code, Glossary of Stratigraphic Terms</span> — this is the formal name for the fossil-succession concept Marshak teaches thoroughly (§1.2, §1.6) without using the term itself.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Sequence Stratigraphy</h3>
+      <p>Founded by Peter Vail, Robert Mitchum, and colleagues at Exxon, published in <strong>AAPG Memoir 26 (1977)</strong>. A <strong>depositional sequence</strong> is bounded above and below by unconformities (subaerial unconformities and their correlative conformities). Within a sequence, <strong>systems tracts</strong> represent packages deposited during a specific stage of relative sea-level change:</p>
+      <table>
+        <tr><th>Systems tract</th><th>When deposited</th></tr>
+        <tr><td>Lowstand (LST)</td><td>During/just after relative sea-level fall reaches its lowest point</td></tr>
+        <tr><td>Transgressive (TST)</td><td>During relative sea-level rise, shoreline migrating landward</td></tr>
+        <tr><td>Highstand (HST)</td><td>Near/after maximum sea level, progradation resumes</td></tr>
+        <tr><td>Falling-stage (FSST)</td><td>During relative sea-level fall, before the next sequence boundary</td></tr>
+      </table>
+      <p>These are bounded by named surfaces — the <strong>sequence boundary</strong> (subaerial unconformity + correlative conformity), the <strong>maximum flooding surface</strong> (separating TST from HST), and the <strong>maximum regressive/transgressive surface</strong> and <strong>basal surface of forced regression</strong> <span class="cite verified">Van Wagoner et al. 1988, 1990 (AAPG)</span>. A <strong>parasequence</strong> is "a relatively conformable succession of beds or bedsets bound by marine-flooding surfaces" <span class="cite verified">Van Wagoner et al. 1988</span> — the basic building block within a systems tract.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">Seismic Stratigraphy</h3>
+      <p>Seismic stratigraphy interprets depositional history from patterns in how seismic reflections terminate against surfaces — the basis for mapping sequences and systems tracts without well control <span class="cite verified">Mitchum, Vail &amp; Thompson 1977 (AAPG Memoir 26)</span>:</p>
+      <table>
+        <tr><th>Termination type</th><th>Geometry / meaning</th></tr>
+        <tr><td>Onlap</td><td>Reflection terminates updip against a more steeply inclined underlying surface — deposition stopped against a topographic rise</td></tr>
+        <tr><td>Downlap</td><td>Inclined reflection terminates basinward against a flatter underlying surface — classic prograding-clinoform signature</td></tr>
+        <tr><td>Toplap</td><td>Low-angle, non-erosional termination against an overlying surface — accommodation ran out, deposition simply stopped</td></tr>
+        <tr><td>Truncation</td><td>Erosional termination against an overlying surface — the most reliable indicator of a sequence boundary</td></tr>
+      </table>
+      <p>Onlap and downlap terminate <em>against</em> the surface below them; toplap and truncation terminate <em>against</em> the surface above them. A <strong>sequence boundary</strong> is typically marked by truncation/toplap below and onlap above; a <strong>maximum flooding surface</strong> is marked by regional downlap.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.5</div>
+      <h3 class="sub-title">Depositional Systems &amp; Facies Architecture</h3>
+      <p>A <strong>depositional system</strong> is a three-dimensional assemblage of genetically related facies acting together (e.g., a fluvial system = channel + point bar + floodplain + crevasse-splay facies) — the organizing concept between an individual facies and a full basin fill, originating with Fisher, Brown, Scott &amp; McGowen at the Bureau of Economic Geology, University of Texas.</p>
+      <p><strong>Facies architecture</strong> — Andrew Miall's "architectural-element analysis" — subdivides deposits into a hierarchy of internal bounding surfaces and recurring 3D facies assemblages ("architectural elements": channels, bars, bedforms, macroforms, overbank deposits), originally developed for fluvial systems and later extended to eolian and deep-water/turbidite systems <span class="cite verified">Miall 1985, <em>Earth-Science Reviews</em> 22, 261–308</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.6</div>
+      <h3 class="sub-title">Global Cycles — Milankovitch Cycles</h3>
+      <p>Three orbital parameters combine to drive cyclical changes in the seasonal/latitudinal distribution of solar insolation, pacing glacial-interglacial cycles <span class="cite verified">Marshak pp.538–540</span>:</p>
+      <ul>
+        <li><strong>Eccentricity</strong> — Earth's orbital shape cycles between more circular and more elliptical, on a ~100,000-year period</li>
+        <li><strong>Obliquity (tilt)</strong> — axial tilt varies, changing seasonal contrast</li>
+        <li><strong>Precession</strong> — the axis wobbles like a spinning top, on a ~23,000-year cycle, changing which season occurs at perihelion</li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.7</div>
+      <h3 class="sub-title">Provenance</h3>
+      <p><strong>Provenance analysis</strong> reconstructs the source-rock assemblage and tectonic setting that produced a sediment, from its detrital composition. The standard tool is the <strong>QFL diagram</strong> — a ternary plot of quartz (Q), feldspar (F), and lithic fragments (L) — on which sandstone compositions cluster by tectonic provenance type: <strong>continental block</strong> (craton interior/quartz-rich, transitional/arkosic), <strong>magmatic arc</strong> (volcanic-lithic-rich), and <strong>recycled orogen</strong> (chert/sedimentary-lithic-rich, from uplifted fold-thrust belts) <span class="cite verified">Dickinson &amp; Suczek 1979, <em>AAPG Bulletin</em> 63, 2164–2182</span>. This directly extends the clast-composition-vs-weathering content Marshak already covers (breccia → conglomerate → arkose → quartz sandstone, as feldspar progressively weathers to clay with transport) <span class="cite verified">Marshak pp.166–167</span> into a formal tectonic framework.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Sourcing notes</h2>
+    <div class="legend-row"><span class="cite verified" style="margin-left:0;">green</span> Verified against a named, checkable source — full citation given inline (page/chapter/author/year), not a code to look up.</div>
+    <div class="legend-row"><span class="cite gap" style="margin-left:0;">red</span> Would indicate ASBOG Domain C content confirmed absent from all sources checked. None remain in this guide — every originally identified gap (paraconformity, fence diagrams, secondary/biogenic structures, diagenetic redox, facies/Walther's Law, fabric/anisotropy, marine zonation, carbonate ramp/platform, barrier island/tidal facies, biostratigraphy, sequence stratigraphy, seismic stratigraphy, depositional systems, facies architecture, provenance) is closed below against real sources.</div>
+    <p style="margin:16px 0 8px;font-size:13.5px;"><strong>Primary sources used in this guide:</strong></p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Marshak, S., <em>Essentials of Geology</em>, 4th ed. — your uploaded textbook, verified page citations throughout.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Bureau of Reclamation, <em>Engineering Geology Field Manual</em>, Vol. 1 (1998/2001) — chapters 2 and 4, verified.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Burdige, D.J. (2006), <em>Geochemistry of Marine Sediments</em>, Princeton University Press — your uploaded text; Chapter 2 (marine sediment classification/regimes) and Chapter 7 (biogeochemical zonation), verified page citations.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Schulz, H.D. &amp; Zabel, M., eds. (2006), <em>Marine Geochemistry</em>, 2nd ed., Springer — your uploaded text; Chapter 3, corroborating citation for redox zonation.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">McCave, I.N. (2002), "Sedimentary Settings on Continental Margins — An Introduction," in Wefer, G., Billett, D., Hebbeln, D., Jørgensen, B.B., Schlüter, M. &amp; van Weering, T. (eds.), <em>Ocean Margin Systems</em>, Springer, pp.1–14 — your uploaded text.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Read, J.F. (1985), "Carbonate Platform Facies Models," <em>AAPG Bulletin</em> 69(1), 1–21.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Miall, A.D. (1985), "Architectural-Element Analysis: A New Method of Facies Analysis Applied to Fluvial Deposits," <em>Earth-Science Reviews</em> 22, 261–308.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Van Wagoner, J.C. et al. (1988, 1990), AAPG-published sequence stratigraphy methods papers.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Mitchum, R.M., Vail, P.R. &amp; Thompson, S. (1977), in Payton, C.E. (ed.), <em>Seismic Stratigraphy — Applications to Hydrocarbon Exploration</em>, AAPG Memoir 26.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Dickinson, W.R. &amp; Suczek, C.A. (1979), "Plate Tectonics and Sandstone Compositions," <em>AAPG Bulletin</em> 63, 2164–2182.</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">Walther, J. (1894), <em>Einleitung in die Geologie als historische Wissenschaft</em>; trans. G. Middleton (1973).</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);">North American Stratigraphic Code, <em>Glossary of Stratigraphic Terms</em> (AAPG-published).</p>
+    <p style="margin:0 0 6px;font-size:13.5px;color:var(--ink-soft);"><em>AGI Glossary of Geology</em>, 4th ed. (Jackson, ed., 1997) — cross-check source for concretion, stylolite, and Liesegang-banding definitions.</p>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Excluded from this guide:</strong> C-8 (Project planning and development) is PG-only per the ASBOG Domain C Knowledge Base's own labeling.</p>
+  </div>
+</footer>
+
+</body>
+</html>

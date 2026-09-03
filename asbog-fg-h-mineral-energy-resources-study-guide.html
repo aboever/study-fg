@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain H: Mineral and Energy Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --h1:#2f6b6e; --h1-soft:#dcebea;
+    --h2:#93691a; --h2-soft:#f0e6d2;
+    --h3:#6d3f60; --h3-soft:#ecdfe8;
+    --h4:#3b5b7a; --h4-soft:#dde6ee;
+    --h5:#a3462c; --h5-soft:#f4ded6;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.ore .cat{color:var(--h1);}
+  nav.toc a.energy .cat{color:var(--h2);}
+  nav.toc a.explore .cat{color:var(--h3);}
+  nav.toc a.develop .cat{color:var(--h4);}
+  nav.toc a.enviro .cat{color:var(--h5);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.ore::before{background:var(--h1);}
+  .category.energy::before{background:var(--h2);}
+  .category.explore::before{background:var(--h3);}
+  .category.develop::before{background:var(--h4);}
+  .category.enviro::before{background:var(--h5);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.ore .cat-label{color:var(--h1);}
+  .category.energy .cat-label{color:var(--h2);}
+  .category.explore .cat-label{color:var(--h3);}
+  .category.develop .cat-label{color:var(--h4);}
+  .category.enviro .cat-label{color:var(--h5);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.v{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.pg{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .note-box{
+    background:#eceeea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+    color:var(--ink-soft);
+  }
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain H: Mineral and Energy Resources</h1>
+    <p class="subtitle">This domain sits outside your core strengths — you know many ore/deposit names from general exposure, but the exploration-technique and mining-economics vocabulary (H-3, H-4) is genuinely new territory. Treat this as a first-pass build, not a review. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. first; gaps closed primarily against USGS deposit-model literature (Bulletin 1693; the SIR 2010&ndash;5070 series), USGS exploration-methods reports, and two current peer-reviewed sources for phosphorite.</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain H is FG-scope with two PG-only exclusions: H-3.7 (geostatistical analysis) and all of H-7 (project planning)</span>
+      <span><strong>Built:</strong> Sept 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain H Knowledge Base (FG items only)</h2>
+    <p>H-1 Ore/mineral systems and principles &middot; H-2 Geologic energy resources &middot; H-3 Prospecting/exploration techniques (H-3.1&ndash;H-3.6 only) &middot; H-4 Development techniques &middot; H-5 Environmental, health, safety, and security &middot; H-6 Reclamation and restoration.</p>
+    <p class="src">Source: ASBOG Domain H Knowledge Base, asbog.org/candidates/candidates.html</p>
+  </div>
+
+  <nav class="toc">
+    <a class="ore" href="#ore"><span class="cat">H-1</span>Ore &amp; Mineral Systems</a>
+    <a class="energy" href="#energy"><span class="cat">H-2</span>Geologic Energy Resources</a>
+    <a class="explore" href="#explore"><span class="cat">H-3</span>Prospecting &amp; Exploration</a>
+    <a class="develop" href="#develop"><span class="cat">H-4</span>Development &amp; Mining Methods</a>
+    <a class="enviro" href="#enviro"><span class="cat">H-5/H-6</span>Environmental, Safety &amp; Reclamation</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- H-1: ORE & MINERAL SYSTEMS -->
+  <!-- ============================================================ -->
+  <section class="category ore" id="ore">
+    <div class="cat-header">
+      <div class="cat-label">01 / Ore &amp; Mineral Systems</div>
+      <h2 class="cat-title">H-1</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Ore Minerals &amp; Economic Use</h3>
+      <p>An <strong>ore mineral</strong> (economic mineral) contains a metal in high enough concentration, in an easily extractable form, to be worth mining <span class="cite v">Marshak p.376</span>. <strong>Ore</strong> is rock containing native metals or a sufficient concentration of ore minerals to profitably mine; the <strong>grade</strong> of an ore is the concentration of the useful metal, and whether a given grade is worth mining depends on current metal price <span class="cite v">Marshak p.376</span>. Galena (PbS) is ~50% lead and is the principal lead ore mineral; iron is obtained mainly from hematite and magnetite; copper comes from a variety of sulfide and carbonate minerals (chalcopyrite, azurite, malachite), none of which look metallic <span class="cite v">Marshak pp.375&ndash;376</span>. Many ore minerals are sulfides (metal + sulfur) or oxides (metal + oxygen).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Magmatic Deposits</h3>
+      <p>When magma cools, dense sulfide minerals crystallize early and settle to the floor of the magma chamber, concentrating as a <strong>magmatic deposit</strong> — often called a <strong>massive sulfide deposit</strong> once the magma solidifies around it <span class="cite v">Marshak pp.376&ndash;377</span>. Where ore minerals instead fill fractures in pre-existing rock, the result is a <strong>vein deposit</strong>; where they disperse through an intrusion itself, it is a <strong>disseminated deposit</strong> — both typically hydrothermal in origin (see 1.3) <span class="cite v">Marshak p.377</span>.</p>
+      <p><strong>Pegmatites</strong> are very coarse-grained igneous rocks that crystallize from water-rich residual melt late in cooling; many gemstones (emerald, beryl) form this way, and pegmatites are also a major lithium/rare-element ore type <span class="cite v">Marshak p.85</span>. <strong>Kimberlites</strong> are ultramafic igneous rocks that carry diamonds up from ~150 km depth during rapid, rifting-related ascent from the mantle; named for Kimberley, South Africa, where the type locality was identified <span class="cite v">Marshak pp.84&ndash;85</span>.</p>
+      <p><strong>Carbonatites</strong> are intrusive, carbonate-mineral-rich igneous rocks (commonly with apatite, magnetite, barite, fluorite) that host economic or anomalous concentrations of rare earth elements, phosphorus, niobium, uranium, thorium, and other incompatible elements; they occur as central plugs in zoned alkalic intrusive complexes or as dikes, sills, breccias, and veins. Type examples include Mountain Pass, California (a major U.S. REE mine) and Oka, Quebec.</p>
+      <div class="note-box"><strong>Note:</strong> H-1.2.1 groups pegmatites, kimberlites, and carbonatites under "magmatic," though all three are more precisely late- or post-magmatic (residual-melt or carbonate-melt) processes rather than simple crystal settling — worth knowing the distinction if a question probes mechanism rather than just naming the deposit type.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Hydrothermal Deposits</h3>
+      <p><strong>Hydrothermal activity</strong> — circulation of hot-water solutions through or around a cooling intrusion — dissolves metal ions, which precipitate as ore minerals when the fluid hits lower pressure, lower temperature, or a different chemistry, filling fractures (vein deposits) or dispersing through the host rock (disseminated deposits) <span class="cite v">Marshak p.377</span>.</p>
+      <p><strong>Porphyry copper deposits</strong> are large, low-grade (commonly ~0.4&ndash;1% Cu) deposits of disseminated and stockwork-hosted copper (with Mo, Au, Ag) associated with felsic-to-intermediate porphyritic intrusions at convergent margins; they supply roughly 60% of world copper production despite their low grade, because of their enormous size (hundreds of millions to billions of tonnes) — Bingham Canyon, Utah, is the classic North American example <span class="cite v">USGS SIR 2010&ndash;5070&ndash;B</span>. <strong>Epithermal deposits</strong> form at shallow crustal levels from the same magmatic-hydrothermal systems that produce porphyry deposits, typically as gold- and silver-bearing quartz veins.</p>
+      <p><strong>Volcanogenic massive sulfide (VMS)</strong> deposits form where hydrothermal fluids venting from submarine volcanoes along mid-ocean ridges meet cold seawater; dissolved metals and sulfur precipitate instantly as a plume of fine sulfide crystals ("black smokers"), which settle to build a mound of massive sulfide ore around the vent <span class="cite v">Marshak pp.377&ndash;378</span>. Modern VMS deposits are actively forming today at spreading centers and back-arc basins; ancient examples (Cyprus-type, Kuroko-type) supply much of the world's Cu-Zn-Pb-Au-Ag from volcanic-hosted sulfide sources.</p>
+      <div class="gap-box"><strong>Gap:</strong> "epigenic/epigenetic" as a formal deposit-type label (as opposed to "epithermal") is not independently defined in any source checked; treat it as the general term for any deposit formed after its host rock, distinct from "syngenetic" (formed with the host) — a definitional distinction rather than a named deposit type. Similarly, geothermal brines as an <em>ore-forming</em> process (vs. an energy source, see H-2.3) are noted in the KB but not treated in depth here; the mechanism is essentially the same hydrothermal precipitation described above, applied to actively circulating geothermal systems (e.g., Salton Sea brines, a known source of dissolved Li, Zn, Mn).</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.4</div>
+      <h3 class="sub-title">Sedimentary Ore Deposits</h3>
+      <p><strong>Placer deposits</strong> form where erosion of a native-metal-bearing rock produces a mix of sand and metal grains; moving water winnows away the lighter quartz/feldspar grains while dense metal grains (gold, platinum, cassiterite) concentrate in stream sediment — the mechanism behind gold panning <span class="cite v">Marshak pp.378&ndash;379</span>.</p>
+      <p><strong>Banded iron formations (BIF)</strong> are Precambrian (mostly 2.4&ndash;1.8 Ga) chemical sedimentary deposits of alternating iron-oxide (magnetite/hematite) and iron-poor chert (jasper) layers. They record the rise of atmospheric/oceanic oxygen from early photosynthesis: as free oxygen appeared, dissolved ferrous iron oxidized to insoluble ferric iron and precipitated on the sea floor; once the ocean's dissolved iron was drawn down (~1.8 Ga), BIF deposition essentially stopped <span class="cite v">Marshak p.378</span>.</p>
+      <p><strong>Residual mineral deposits (laterites)</strong> form by extreme chemical weathering in warm, wet climates: rainwater leaches soluble elements out of soil, leaving behind insoluble residues concentrated in iron or aluminum. Most mined aluminum ore is <strong>bauxite</strong>, a laterite formed by intense leaching of aluminum-silicate rocks such as granite <span class="cite v">Marshak p.378</span>; the same leaching process, described generally in the soil-formation literature, produces the hard, brick-red laterite soil horizon <span class="cite v">Marshak p.157</span>.</p>
+      <p><strong>Evaporite</strong> deposits (gypsum, halite, sylvite/potash) precipitate as restricted seawater or saline lake water evaporates and successive minerals reach saturation; treated in this guide primarily as nonmetallic resources (see 4.2), though evaporite basins are also the classic host for MVT-type metal deposits (see 1.6) <span class="cite v">Marshak p.381</span>.</p>
+      <p><strong>Phosphorites</strong> are sedimentary rocks whose main mineral is <strong>francolite</strong> (carbonate-fluorapatite); P&#8322;O&#8325; content exceeds 18% (commonly reaching values as high as 37%), versus under 1% in ordinary sedimentary rock <span class="cite v">Kolodny 2009, pp.775&ndash;776</span>. Formation follows the Kazakov (1937) model, still the basis of modern theory: oceanic <strong>upwelling</strong> brings cold, phosphate-rich deep water onto the continental shelf; as it warms, CO&#8322; is released and francolite precipitates interstitially in the sediment, a few centimeters below the sediment&ndash;water interface. High-grade deposits additionally require mechanical reworking/winnowing to concentrate the francolite <span class="cite v">Kolodny 2009, p.778</span>. Phosphorites are commonly associated with chert and black shale (the "P&ndash;Si&ndash;C" trinity) and occur as bedded, bioclastic, nodular, or pebble-bed textures; the Permian Phosphoria Formation (western U.S.) and the Cretaceous&ndash;Eocene southern Tethys belt are classic examples <span class="cite v">Kolodny 2009, p.776</span>. Phosphorites supply about 85% of world phosphate consumption, mostly for fertilizer, and are increasingly studied as an unconventional rare-earth-element resource <span class="cite v">Kolodny 2009, p.779; Dar et al. 2025</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.5</div>
+      <h3 class="sub-title">Metamorphic Deposits: Skarn</h3>
+      <p>A <strong>skarn</strong> deposit forms where a felsic to intermediate pluton intrudes carbonate rock (limestone or dolostone); heat and hydrothermal fluids from the intrusion drive contact metamorphism and metasomatism, replacing the carbonate with calc-silicate minerals (garnet, pyroxene) and precipitating ore minerals within this altered zone <span class="cite v">USGS Bulletin 1693 (Cox &amp; Theodore 1986)</span>. Copper skarns are the most common economically; the mineralogy is typically chalcopyrite + pyrite &plusmn; magnetite &plusmn; bornite, with coarse granoblastic texture and bladed pyroxenes. Skarns commonly occur genetically alongside porphyry copper systems, since both derive from the same intrusion-driven hydrothermal system — one hosted in the intrusion/its halo (porphyry), the other in adjacent carbonate country rock (skarn) <span class="cite v">USGS Bulletin 1693</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.6</div>
+      <h3 class="sub-title">Meteoric/Groundwater Deposits</h3>
+      <p><strong>Mississippi Valley-type (MVT) deposits</strong> form when rainwater entering one margin of a large sedimentary basin flows as groundwater down to the basin's hottest, deepest part — dissolving lead and zinc along the way — then flows back up and out at the opposite margin, precipitating Pb-Zn sulfide ore minerals in dolomite as it cools; named for classic occurrences in the Mississippi Valley region of the central U.S. <span class="cite v">Marshak p.379</span>.</p>
+      <p><strong>Roll-front uranium deposits</strong> form by the same basic groundwater-redox mechanism described (without the "roll front" name) in Marshak's treatment of uranium ore genesis: oxidizing, uranium-bearing groundwater moves through a permeable sandstone aquifer until it reaches a reducing environment (organic matter, pyrite, or hydrocarbon-derived H&#8322;S), where U(VI) is reduced to insoluble U(IV) and precipitates <span class="cite v">Marshak pp.367&ndash;368</span>. In cross-section the ore body forms a crescent- or roll-shaped front at the oxidation&ndash;reduction boundary within the sandstone — the industry-standard model for locating sandstone-hosted uranium, first recognized in Wyoming in the early 1960s <span class="cite v">Wyoming State Geological Survey</span>. A comparable system in the South Texas Uranium Region shows deposits forming at the margin of altered (oxidized) sandstone tongues encroaching into pyrite-bearing reduced sandstone, with reductant commonly supplied by H&#8322;S migrating up-fault from deeper hydrocarbon accumulations <span class="cite v">USGS Texas Coastal Plain roll-front model</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- H-2: GEOLOGIC ENERGY RESOURCES -->
+  <!-- ============================================================ -->
+  <section class="category energy" id="energy">
+    <div class="cat-header">
+      <div class="cat-label">02 / Geologic Energy Resources</div>
+      <h2 class="cat-title">H-2</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Coal Deposits</h3>
+      <p><strong>Coal</strong> forms from plant debris deposited and buried in oxygen-poor swamp environments, which prevents decay; compaction converts the debris to <strong>peat</strong> (~50% carbon). Deep burial (4&ndash;10 km) heats the peat, driving off hydrogen, nitrogen, and sulfur as gas and progressively concentrating carbon: peat &rarr; <strong>lignite</strong> (~50% C) &rarr; <strong>bituminous</strong> (~70% C, ~100&ndash;200&deg;C) &rarr; <strong>anthracite</strong> (~90% C, ~200&ndash;300&deg;C) <span class="cite v">Marshak pp.364&ndash;365</span>. Rising carbon concentration with burial/temperature is called increasing <strong>coal rank</strong>. Anthracite requires unusually high temperature, typically reached only near mountain belts where thrust faulting buries coal-bearing strata to 8&ndash;10 km <span class="cite v">Marshak p.365</span>. Coal occurs as beds interlayered with other sedimentary rock; near-surface seams (within ~100 m) are strip-mined, deeper seams require underground mining <span class="cite v">Marshak pp.365&ndash;366</span>. <strong>Coalbed methane</strong> is natural gas generated during coalification and trapped within the coal; it is produced by drilling and pumping down groundwater to release pressure, rather than by mining <span class="cite v">Marshak p.367</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Oil &amp; Gas — Traditional Systems</h3>
+      <p>A complete <strong>hydrocarbon system</strong> requires a <strong>source rock</strong> (organic-rich black shale formed from buried plankton in oxygen-poor water), sufficient burial temperature (the <strong>oil window</strong>, roughly 90&ndash;160&deg;C, above which oil cracks to gas and above ~225&ndash;250&deg;C all hydrogen is lost to graphite), a <strong>reservoir rock</strong> with adequate porosity and permeability for oil/gas to migrate into and be extracted, and a <strong>trap</strong> — a seal rock (shale, salt, unfractured limestone) arranged in a geometry that concentrates the buoyantly rising hydrocarbons <span class="cite v">Marshak pp.355&ndash;357</span>. Four classic trap geometries: <strong>anticline</strong> (oil collects at the crest of an upward fold), <strong>fault trap</strong> (impermeable fault gouge or juxtaposed impermeable rock blocks migration), <strong>salt-dome trap</strong> (buoyant salt rising through strata bends up adjacent reservoir beds), and <strong>stratigraphic trap</strong> (a tilted reservoir bed pinches out between impermeable layers) <span class="cite v">Marshak p.359</span>. Exploration uses geologic mapping plus <strong>seismic-reflection profiling</strong> (a vibrating truck or explosive source generates seismic waves that reflect off rock-layer contacts, imaging subsurface structure) <span class="cite v">Marshak pp.357&ndash;358</span>. Standard rotary drilling with circulating drilling mud (which cools the bit and counters formation pressure to prevent blowouts) accesses the reservoir; directional drilling can steer the drill bit to hit a target only ~15 cm wide from kilometers away <span class="cite v">Marshak pp.360&ndash;361</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Oil &amp; Gas — Unconventional Systems</h3>
+      <p><strong>Shale gas</strong> is extracted directly from low-permeability source rock (rather than a separate reservoir rock) using directional drilling combined with <strong>hydraulic fracturing ("fracking")</strong> — pumping a high-pressure water/chemical/sand mixture to create and prop open new fractures, dramatically increasing permeability; the Marcellus Shale of the northeastern U.S. is the flagship example <span class="cite v">Marshak pp.361&ndash;363</span>. <strong>Tar sand (oil sand)</strong> contains very viscous bitumen ("heavy oil") that cannot be pumped; near-surface deposits are strip-mined and heated to extract the oil (Alberta, Canada, is the largest deposit). <strong>Oil shale</strong> is organic shale that never reached oil-window temperatures and still contains kerogen (15&ndash;30% by weight defines "oil shale"); producing liquid oil requires heating the rock to ~500&deg;C to break down the kerogen <span class="cite v">Marshak pp.362&ndash;363</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4</div>
+      <h3 class="sub-title">Geothermal Energy</h3>
+      <p>Geothermal energy exploits Earth's internal heat (partly primordial, partly from radioactive decay), which heats groundwater; where the geothermal gradient is steep, high temperatures occur at shallow depth. Hot groundwater can be pumped directly for heating, or — where it flashes to steam on decompression at the surface — used to drive turbines for electricity (major applications in volcanically active areas like Iceland and New Zealand) <span class="cite v">Marshak p.369</span>. Shallow <strong>geothermal heat pumps</strong>, which exploit the near-constant temperature of ground at ~6 m depth for heating/cooling, are feasible almost anywhere, unlike deep hydrothermal systems.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.5</div>
+      <h3 class="sub-title">Nuclear Energy / Uranium Mineral Systems</h3>
+      <p>Nuclear power plants generate heat via controlled <strong>fission</strong> of &#178;&#179;&#8309;U fuel rods; released neutrons trigger a self-sustaining chain reaction, and control rods (which absorb neutrons) regulate the reaction rate to prevent meltdown <span class="cite v">Marshak p.367</span>. Because natural uranium is only ~0.7% &#178;&#179;&#8309;U (the rest &#178;&#179;&#8312;U), reactor fuel requires <strong>enrichment</strong>.</p>
+      <p>Uranium originates from supernova nucleosynthesis and rises in granitic magma; hot hydrothermal water circulating through a cooled pluton dissolves uranium and precipitates it as <strong>pitchblende (UO&#8322;)</strong> in veins. Weathering and erosion of uranium-bearing plutons can concentrate uranium further as placer deposits, or groundwater can dissolve and re-precipitate uranium in sedimentary host rock as it moves and encounters a reducing environment — the mechanism underlying roll-front deposits (see 1.6) <span class="cite v">Marshak pp.367&ndash;368</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- H-3: PROSPECTING & EXPLORATION TECHNIQUES -->
+  <!-- ============================================================ -->
+  <section class="category explore" id="explore">
+    <div class="cat-header">
+      <div class="cat-label">03 / Prospecting &amp; Exploration Techniques</div>
+      <h2 class="cat-title">H-3</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Geophysical Methods</h3>
+      <p><strong>Gravity method:</strong> ground-based gravimeters detect anomalies from subsurface density contrasts; high-density ore (chromite, hematite, barite) yields gravity highs, low-density targets (halite, weathered kimberlite) yield gravity lows. Gravity and magnetic methods detect only lateral density/magnetization contrasts, whereas electrical and seismic methods can also resolve vertical contrasts <span class="cite v">USGS OFR 95-831, pp.19&ndash;20</span>.</p>
+      <p><strong>Magnetic method (including aeromagnetic surveys):</strong> exploits variation in magnetic mineralogy (magnetite, titanomagnetite, pyrrhotite); surveys can be ground-based or airborne (aeromagnetic). Magnetic anomalies often mark zones of hydrothermal alteration around ore deposits, and can directly detect iron ore (magnetite, BIF) <span class="cite v">USGS OFR 95-831, pp.20&ndash;21</span>.</p>
+      <p><strong>Gamma-ray (radiometric) methods:</strong> scintillometry/spectrometry detects natural potassium, uranium, and thorium; direct-detection method of choice for uranium exploration <span class="cite v">USGS OFR 95-831, p.21</span>.</p>
+      <p><strong>Seismic methods:</strong> <strong>reflection</strong> profiling provides fine structural detail (the standard method in oil/gas exploration, see 2.2); <strong>refraction</strong> provides precise depth-to-contact estimates and has been used to map low-velocity alluvial deposits (e.g., placer gold, tin, sand/gravel) <span class="cite v">USGS OFR 95-831, p.22</span>.</p>
+      <p><strong>Electrical methods</strong> comprise five classes: <strong>direct-current resistivity</strong> (rock resistivity reflects pore-water content; massive sulfide is a direct low-resistivity target); <strong>electromagnetic (EM)</strong> methods (induce current via alternating magnetic fields, traditionally used to find low-resistivity massive sulfide, airborne EM screens large areas); <strong>mise-a-la-masse</strong> (maps a known conductive body's extent by energizing it directly); <strong>induced polarization (IP)</strong> (detects disseminated sulfide/clay minerals via polarizable pore-surface response — IP is the standard method for disseminated ore, where DC resistivity works better on massive sulfide); and <strong>self-potential</strong> (detects natural electrical fields from ongoing sulfide oxidation or fluid/heat flow) <span class="cite v">USGS OFR 95-831, pp.22&ndash;24</span>.</p>
+      <p><strong>Remote sensing</strong> as a geophysical tool compares surface spectral reflectance to known mineral signatures, mapping iron-oxide, silica, and clay alteration zones over broad areas — the low-resolution ancestor of the airborne hyperspectral techniques in 3.4 <span class="cite v">USGS OFR 95-831, p.25</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Geochemical Methods</h3>
+      <p><strong>Soil and rock sampling</strong> for anomalous metal content, plus analysis of plants (which absorb metals through roots), are standard reconnaissance techniques once a geologically favorable region has been identified <span class="cite v">Marshak p.379</span>. <strong>Stream-sediment sampling</strong> is the most widely used and most successful geochemical exploration technique, since a single sample integrates the weathering/erosion signal of an entire upstream catchment; sample media also include glacial till, soil gas (useful in arid terrain, sampling mercury vapor, H&#8322;S, and other gases related to base-metal deposits), and <strong>hydrogeochemical</strong> sampling of spring, lake, stream, and well waters and their precipitates <span class="cite v">USGS PP 907-B</span>. Orientation studies — determining the best sample medium and soil horizon for a given area before committing to a full survey — are standard practice <span class="cite v">USGS PP 907-B</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Drilling Techniques</h3>
+      <p><strong>Rotary drilling</strong> with circulating drilling mud is standard for oil/gas and can also be directional (steerable to hit a specific target) <span class="cite v">Marshak pp.360&ndash;361</span>. In mineral exploration specifically, three techniques dominate:</p>
+      <table>
+        <tr><th>Method</th><th>Mechanism</th><th>Best use</th></tr>
+        <tr><td>Air/rotary air-blast (RAB)</td><td>Piston-driven hammer fragments rock; compressed air lifts chips to surface</td><td>Cheap, shallow reconnaissance and rapid geochemical sampling</td></tr>
+        <tr><td>Reverse circulation (RC)</td><td>Dual-wall drill rods; air drives fragmented rock chips up the inner tube, keeping samples uncontaminated</td><td>Fast, moderate-cost resource-definition drilling; most common exploration method worldwide</td></tr>
+        <tr><td>Diamond core</td><td>Diamond-tipped bit cuts a continuous, intact cylindrical rock core</td><td>Slow and expensive but the only method giving a physical, structurally-oriented sample for detailed logging and precise assay</td></tr>
+      </table>
+      <div class="gap-box"><strong>Gap:</strong> unlike nearly everything else in this domain, RC-vs-diamond-vs-air/mud-rotary distinctions have no single federal or peer-reviewed anchor source — this content is drawn from consistent industry-technical descriptions (equipment manufacturers, standard mining-engineering terminology) rather than a citable USGS or journal source. The underlying facts are not contested, but flag this table as the weakest-sourced item in the guide if you want a second source before the exam.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">Remote Sensing &amp; GIS</h3>
+      <p>Geologic maps are the foundational data layer for any exploration program (see 2.2 for their oil-exploration use) <span class="cite v">Marshak p.357</span>. <strong>LiDAR</strong> produces a 3D point cloud by timing laser-pulse round trips (R = c&middot;&Delta;t/2); filtering the "highest-hit" surface (first return — canopy, structures) down to the "bare-earth" surface (last return — ground only) reveals subtle terrain features — historic channels, landslides, alluvial fans — invisible under vegetation in conventional aerial photography <span class="cite v">USGS OFR 2010-1335 (Roberts)</span>. Airborne LiDAR offers three advantages over photogrammetry: it is a direct 3D measurement rather than an indirect derivation, it partially penetrates vegetation canopy, and as an active sensor it is largely independent of lighting/weather <span class="cite v">Sun et al. 2022, <em>Frontiers in Earth Science</em></span>.</p>
+      <p><strong>Hyperspectral and multispectral imaging</strong> (airborne sensors with hundreds of narrow spectral bands, e.g. AVIRIS) discriminate rock and alteration minerals by comparing pixel spectra against reference mineral libraries, mapping hydrothermal alteration zones (kaolinite, chlorite, hematite, etc.) over broad, often inaccessible terrain — used in USGS mineral-exploration surveys of Alaska among other applications.</p>
+      <div class="note-box"><strong>Note:</strong> GIS itself (vector/raster data models, geodatabases linking spatial features to attribute tables) is treated in your Domain A materials and is not duplicated here — the KB lists it under this same H-3.4 item alongside remote sensing.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.5</div>
+      <h3 class="sub-title">Petrophysical Methods</h3>
+      <p><strong>Petrophysical properties</strong> — bulk density, grain density, porosity, magnetic susceptibility, permeability — are measured directly on rock specimens to calibrate and interpret geophysical surveys (3.1). A USGS compilation of 182 igneous, sedimentary, and metamorphic rock specimens measured dry bulk density and grain density (by both direct measurement and the Archimedes method), calculated total, water-accessible, and helium-accessible porosity from the density data, and measured magnetic susceptibility, permeability, and streaming potential on most samples — finding, for example, that sedimentary rocks had the highest percentage of occluded porosity per rock volume, while metamorphic rocks had the highest percentage of occluded porosity relative to total porosity <span class="cite v">USGS OFR 83-736 (Johnson 1983)</span>. Ore and gangue minerals themselves have distinctive physical-property signatures (density, magnetic susceptibility, electrical conductivity) that geophysical surveys are tuned to detect — e.g., massive sulfide minerals have specific gravity of 4.0&ndash;7.5 g/cm&sup3;, sharply contrasting with typical country rock <span class="cite v">USGS SIR 2010&ndash;5070&ndash;C, Table 7-2</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.6</div>
+      <h3 class="sub-title">Analytical Methods</h3>
+      <p><strong>Fire assay</strong> is the classical total-decomposition method for determining precious-metal content: a pulverized sample is fused with lead-oxide flux at high temperature, collecting gold/silver/platinum-group metals into a lead button, which is then cupelled (oxidized in a porous cup) to leave a doré bead of the precious metals for weighing or further instrumental analysis <span class="cite v">USGS Bulletin 1445</span>. <strong>Atomic absorption spectroscopy (AAS)</strong> dissolves the sample (commonly in hot nitric acid, with other acid combinations for specific elements) and measures light absorption by free atoms of the target element in a flame or graphite furnace <span class="cite v">USGS Bulletin 1289</span>. <strong>Inductively coupled plasma (ICP)</strong> methods (ICP-AES/ICP-MS) ionize a dissolved sample in an argon plasma for simultaneous multi-element analysis, offering much lower detection limits than AAS. <strong>X-ray fluorescence (XRF)</strong> excites a solid or powdered sample with X-rays and measures the characteristic fluorescent X-rays emitted by each element, allowing rapid, largely non-destructive multi-element analysis without full dissolution. The <strong>electron microprobe</strong> focuses a beam of electrons on a small part of a mineral grain (in polished thin section) to determine its precise chemical composition in place, without destroying grain-scale textural context <span class="cite v">Marshak Interlude A, p.93</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- H-4: DEVELOPMENT & MINING METHODS -->
+  <!-- ============================================================ -->
+  <section class="category develop" id="develop">
+    <div class="cat-header">
+      <div class="cat-label">04 / Development &amp; Mining Methods</div>
+      <h2 class="cat-title">H-4</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.1</div>
+      <h3 class="sub-title">Resource &amp; Reserve Assessment</h3>
+      <p>The U.S. Bureau of Mines/USGS classification system (the "McKelvey diagram") divides total mineral endowment into <strong>identified resources</strong> (location, grade, and quality known or estimable from geologic evidence and engineering measurement) and <strong>undiscovered resources</strong> (surmised to exist from broad geologic evidence only), each further subdivided by economic feasibility. A <strong>reserve</strong> is the portion of an identified resource that can be economically and legally extracted at the time of determination — reserves are therefore not fixed: they shrink as ore is mined and grow as new deposits are found or as price/technology changes make previously uneconomic material minable <span class="cite v">USGS Bulletin 1450-A</span>. Within identified resources, <strong>measured</strong> tonnage/grade is computed from closely spaced sample data with high confidence; <strong>indicated</strong> and <strong>inferred</strong> categories represent progressively lower sampling density and confidence <span class="cite v">USGS Bulletin 1450-A</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.2</div>
+      <h3 class="sub-title">Quality &amp; Quantity Evaluation</h3>
+      <p><strong>Grade</strong> is the concentration of a useful metal or mineral in ore; the higher the grade, the higher-quality the ore. Whether a given grade is worth mining is a function of current market price, not a fixed geologic threshold — the same deposit can move from waste to ore (or back) purely because of price change, without any change in the rock itself <span class="cite v">Marshak p.376</span>. Quantity is expressed as tonnage of ore and is central to both the McKelvey classification (4.1) and to economic evaluation (4.3).</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.3</div>
+      <h3 class="sub-title">Economic Evaluation &amp; Cutoff Grade</h3>
+      <p>The <strong>cutoff grade</strong> is the minimum grade of mineralization, set by reference to current economic factors (metal price, mining/processing cost), above which material is classed as ore and included in reserve calculations, and below which it is treated as waste. An <strong>internal cutoff grade</strong> applies to blocks of mineralization within the confines of a planned pit; an <strong>external cutoff grade</strong> controls the outer design limits of the pit or underground workings <span class="cite v">general mining-economics terminology, cross-checked across standard industry definitions</span>. Cutoff grade is not fixed: it rises when metal prices fall or costs increase, and falls when prices rise — directly linking the economic-evaluation concept in this item to the grade/tonnage relationship in 4.1&ndash;4.2.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.4</div>
+      <h3 class="sub-title">Surface Mining Methods</h3>
+      <p><strong>Open-pit mining</strong> is used where ore lies within roughly 100 m of the surface: workers drill and blast the bedrock into manageable blocks, front-end loaders move ore to a crusher and waste rock ("tailings") to a tailings pile; benched, stepped pit walls maintain slope stability <span class="cite v">Marshak pp.379&ndash;380</span>. <strong>Strip mining</strong> is the coal-specific surface method: a dragline shovel strips overburden to expose a shallow (within ~100 m) coal seam, smaller shovels then extract the coal <span class="cite v">Marshak pp.365&ndash;366</span>. <strong>Quarrying</strong> produces dimension stone (cut in intact blocks/slabs using wire saws, thermal lances, or abrasive water jets) or crushed stone (blasted and mechanically crushed for aggregate/cement) — note that a quarry provides stone, while a mine provides ore <span class="cite v">Marshak pp.380&ndash;381</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.5</div>
+      <h3 class="sub-title">Underground Mining Methods</h3>
+      <p>Where ore lies deeper than ~100 m, miners sink a vertical shaft (with elevator/hoist) or drive a horizontal tunnel (<strong>adit</strong>) into a mountainside, then excavate a maze of tunnels into the ore body by drilling and blasting, leaving rock pillars to support the roof <span class="cite v">Marshak p.379</span>. Underground coal mining uses large grinding machines to chew coal from the seam onto a conveyor; hazards include roof collapse and methane accumulation from coalification, which can trigger explosions <span class="cite v">Marshak p.366</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- H-5/H-6: ENVIRONMENTAL, HEALTH/SAFETY & RECLAMATION -->
+  <!-- ============================================================ -->
+  <section class="category enviro" id="enviro">
+    <div class="cat-header">
+      <div class="cat-label">05 / Environmental, Health/Safety &amp; Reclamation</div>
+      <h2 class="cat-title">H-5 / H-6</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.1</div>
+      <h3 class="sub-title">Geological Aspects Affecting Human Health &amp; Environment</h3>
+      <p>Underground coal mining exposes workers to methane-explosion risk and, without filtered breathing protection, to <strong>black lung disease</strong> from coal-dust inhalation <span class="cite v">Marshak p.366</span>. Sulfide-mineral oxidation (mining or coal waste containing pyrite) produces <strong>acid mine drainage/acid rock drainage</strong> — dilute sulfuric acid that mobilizes toxic metals (copper, zinc, lead) into surface water, harming aquatic life <span class="cite v">Marshak pp.372&ndash;373, 382&ndash;383</span>. Burning coal releases sulfur (as SO&#8322;, forming acid rain) and, universally, CO&#8322; <span class="cite v">Marshak p.373</span>.</p>
+      <p>The same geophysical techniques used in exploration (3.1) apply directly to geoenvironmental site characterization: gamma-ray spectrometry assesses radiation dose/radon potential where U/K are enriched near ore or waste; direct-current resistivity and electromagnetic surveys trace acid-mine-drainage plumes (which become less conductive as they are buffered/neutralized downstream); induced polarization identifies disseminated sulfide oxidation in waste dumps; and magnetometer surveys can trace burned-out, pyrite-bearing coal seams, since pyrite oxidizes to magnetic magnetite during combustion <span class="cite v">USGS OFR 95-831, pp.21, 24&ndash;25</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.2</div>
+      <h3 class="sub-title">Extraction Techniques</h3>
+      <p>Extraction-technique content overlaps directly with the surface and underground mining methods described in 4.4&ndash;4.5; the KB separates this item to emphasize the environmental/safety lens on the same physical operations rather than introducing new techniques.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.3</div>
+      <h3 class="sub-title">Waste Management</h3>
+      <p><strong>Tailings</strong> (waste rock without economic ore-mineral content) accumulate in tailings piles that can grow to 200 m high and kilometers long; lacking soil, they resist revegetation and, since ore minerals are commonly sulfides, generate acid mine runoff when exposed to rain and oxygen — sometimes deliberately doused with acidic solution by operators to leach out residual metal, which can then escape into the environment <span class="cite v">Marshak pp.382&ndash;383</span>. <strong>Nuclear waste</strong> requires far longer-term management: some radioactive material decays within decades, but some remains dangerous for thousands of years or more, and hot waste must be actively cooled; ideal disposal seals waste in containers designed to outlast the decay period, in a location isolated from groundwater and surface contact — a genuinely difficult siting problem <span class="cite v">Marshak p.369</span>. Waste-pile thickness and structures that channel contaminated groundwater flow can themselves be characterized geophysically (electromagnetic/DC resistivity soundings, seismic refraction/reflection, ground-penetrating radar) <span class="cite v">USGS OFR 95-831, p.25</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.4</div>
+      <h3 class="sub-title">Reclamation &amp; Restoration</h3>
+      <p>Modern strip-mine practice separates and preserves topsoil ahead of the dragline; once coal is removed, the pit is backfilled with the stripped overburden and capped with the saved soil to allow revegetation — though in hilly terrain, "mountaintop removal" (dumping blasted overburden into adjacent valleys) causes more permanent landscape disruption <span class="cite v">Marshak p.366</span>. More broadly, "efforts to reclaim mining spoils" and new, less environmentally damaging extraction technologies are ongoing industry and regulatory priorities <span class="cite v">Marshak p.383</span>.</p>
+      <p>The one substantial <em>federal</em> reclamation framework is the <strong>Surface Mining Control and Reclamation Act of 1977 (SMCRA)</strong>, administered by the Office of Surface Mining Reclamation and Enforcement (OSMRE), Dept. of the Interior. SMCRA requires a reclamation plan and a bond (sufficient to cover reclamation cost) before permitting, mandates restoring mined land to a condition capable of supporting its prior (or better) use, and funds an Abandoned Mine Land program — via a per-ton fee on coal production — to remediate pre-1977 mine sites with no other legal responsible party.</p>
+      <div class="gap-box"><strong>Gap/scope flag:</strong> SMCRA applies specifically to <strong>coal</strong> mining. Hardrock/metal-mine reclamation in the U.S. has no directly equivalent comprehensive federal statute — it is regulated mainly at the state level, supplemented by BLM regulations (43 CFR 3809) on federal land and by general environmental statutes (Clean Water Act, RCRA) where applicable. If a question specifies a metal mine rather than a coal mine, do not assume SMCRA governs it.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite v">v</span> Verified — full source and page/section cited inline in each specimen; sources include Marshak, <em>Essentials of Geology</em> 4th ed. (uploaded copy) and USGS publications listed by number/author in text (Bulletin 1693, 1445, 1289, 1450-A; SIR 2010&ndash;5070 series letters B/C/J; Open-File Reports 95-831, 83-736, 2010-1335; Professional Paper 907-B), Kolodny (2009) <em>Encyclopedia of Paleoclimatology and Ancient Environments</em> (uploaded chapter), Dar et al. (2025) <em>Geoscience Frontiers</em>, Sun et al. (2022) <em>Frontiers in Earth Science</em>, and the Wyoming State Geological Survey.</div>
+    <div class="legend-row"><span class="cite gap">gap</span> Confirmed absent from all sources checked, or sourced only to non-federal/industry-consensus material — flagged inline where it occurs (drilling techniques, 3.3; SMCRA's coal-only scope, 5.4; epigenic terminology and geothermal-brine ore genesis, 1.3).</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">This guide follows the Domain F template exactly: reference layer, not practice layer. H-3.7 (geostatistical analysis) and all of H-7 (project planning) are excluded as PG-only per the ASBOG Domain H Knowledge Base.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Status:</strong> all originally identified Domain H gaps are resolved against real sources, with two items (3.3 drilling techniques, 5.4 SMCRA scope) explicitly flagged as non-federal or scope-limited rather than silently smoothed over.</p>
+  </div>
+</footer>
+
+</body>
+</html>

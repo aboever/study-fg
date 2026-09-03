@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Domain G: Engineering Geology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --f1:#2f6b6e; --f1-soft:#dcebea;
+    --f2:#93691a; --f2-soft:#f0e6d2;
+    --f3:#6d3f60; --f3-soft:#ecdfe8;
+    --f4:#3b5b7a; --f4-soft:#dde6ee;
+    --f5:#a3462c; --f5-soft:#f4ded6;
+    --f6:#5c6b2e; --f6-soft:#e7e9d9;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.origins .cat{color:var(--f1);}
+  nav.toc a.soil .cat{color:var(--f2);}
+  nav.toc a.rock .cat{color:var(--f3);}
+  nav.toc a.hazards .cat{color:var(--f4);}
+  nav.toc a.methods .cat{color:var(--f5);}
+  nav.toc a.testing .cat{color:var(--f6);}
+
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.origins::before{background:var(--f1);}
+  .category.soil::before{background:var(--f2);}
+  .category.rock::before{background:var(--f3);}
+  .category.hazards::before{background:var(--f4);}
+  .category.methods::before{background:var(--f5);}
+  .category.testing::before{background:var(--f6);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.origins .cat-label{color:var(--f1);}
+  .category.soil .cat-label{color:var(--f2);}
+  .category.rock .cat-label{color:var(--f3);}
+  .category.hazards .cat-label{color:var(--f4);}
+  .category.methods .cat-label{color:var(--f5);}
+  .category.testing .cat-label{color:var(--f6);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.v{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.pg{background:#e4e4de;color:#54574d;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .note-box{
+    background:#eceeea;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+    color:var(--ink-soft);
+  }
+
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Domain G: Engineering Geology</h1>
+    <p class="subtitle">A mixed domain for your background: G-1 (groundwater) and G-4 (hazards) are close to a refresher given your hydrology base, but G-2 (soil mechanics) and G-3 (rock mechanics) are almost entirely applied geotechnical engineering — quantitative content Marshak doesn't cover at all. Treat those two categories as genuinely new material, not review. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. first; gaps closed against the Bureau of Reclamation <em>Engineering Geology Field Manual</em> (Vol. 1 &amp; 2), ASTM standards, FHWA-NHI-11-032, and peer-reviewed rock-mechanics literature (Hoek &amp; Brown; Hoek &amp; Bray).</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain G is FG-scope; G-7 (Project Planning &amp; Development) is PG-only and excluded here</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite v" style="margin-left:0;">verified</span> <span class="cite gap">gap</span> not resolved in any source checked <span class="cite pg">PG-only</span> excluded from FG scope</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain G Knowledge Base (FG items only)</h2>
+    <p class="src">G-1 Geologic properties, soil origins, groundwater · G-2 Soil mechanics (2.1–2.6) · G-3 Rock mechanics (3.1–3.7) · G-4 Geologic hazards · G-5 Investigation methods (5.1–5.3) · G-6 In-situ &amp; lab testing (6.1–6.2). G-7 excluded — marked PG-only in the official ASBOG Domain G Engineering Geology Knowledge Base.</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#origins" class="origins"><span class="cat">01 / Origins &amp; Groundwater</span>G-1</a>
+    <a href="#soil" class="soil"><span class="cat">02 / Soil Mechanics</span>G-2</a>
+    <a href="#rock" class="rock"><span class="cat">03 / Rock Mechanics</span>G-3</a>
+    <a href="#hazards" class="hazards"><span class="cat">04 / Geologic Hazards</span>G-4</a>
+    <a href="#methods" class="methods"><span class="cat">05 / Investigation Methods</span>G-5</a>
+    <a href="#testing" class="testing"><span class="cat">06 / In-Situ &amp; Lab Testing</span>G-6</a>
+  </nav>
+
+  <section class="category origins" id="origins">
+    <div class="cat-header">
+      <div class="cat-label">01 / Geologic Properties, Soil Origins &amp; Groundwater</div>
+      <h2 class="cat-title">G-1</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Soil Origin: Residual vs. Transported</h3>
+      <p>Soil forms in place by weathering of underlying bedrock (<strong>residual soil</strong>) or is moved and deposited elsewhere by an agent — ice (till), water (alluvium), gravity (colluvium/talus), or wind (loess) <span class="cite v">Marshak Interlude B, pp.155–161</span>; transported-category terminology (till, alluvium, glacial drift) individually confirmed in <span class="cite v">Marshak Ch.6, Ch.18</span>.</p>
+      <div class="gap-box"><strong>Partial gap:</strong> "colluvium" as a specific term did not surface in any search of the text — the concept (gravity-transported slope debris) is present under regolith/talus but not that label. Know the concept regardless of which term a question uses.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Terminology Trap: Two Unrelated "Soil Classification" Systems</h3>
+      <p>Marshak's "Soil Classification" (Table B.2, p.159) is the <strong>U.S. Comprehensive Soil Classification System</strong> — a pedogenic/agronomic scheme (aridisol, mollisol, oxisol, etc.) describing soil formation environment for agricultural purposes. This is entirely unrelated to the <strong>engineering USCS</strong> (ASTM D2487/D2488 — GW, CL, CH, etc.) tested under G-2.2/2.3. FG questions on "soil classification" mean engineering USCS unless the context is explicitly pedologic.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Groundwater Fundamentals</h3>
+      <p>Marshak's strongest chapter for this domain — full Darcy's Law derivation and terminology <span class="cite v">Marshak Ch.16, pp.473–494, Box 16.1</span>; precise engineering-grade aquitard/aquiclude distinction from <span class="cite v">USBR Field Manual Vol.1 Ch.9, "Definitions"</span>.</p>
+      <table>
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Porosity</td><td>% void space — independent of permeability (e.g., clay: high porosity, low permeability)</td></tr>
+        <tr><td>Permeability / hydraulic conductivity (K)</td><td>Ease with which water moves through a material</td></tr>
+        <tr><td>Aquifer</td><td>Body of soil/rock sufficiently permeable to yield usable water to wells/springs</td></tr>
+        <tr><td>Aquitard</td><td>Confining bed that retards but does not <em>prevent</em> flow — "leaky" confining bed</td></tr>
+        <tr><td>Aquiclude</td><td>Relatively impermeable body; does not transmit significant groundwater</td></tr>
+        <tr><td>Water table</td><td>Top of the zone of saturation; pressure = atmospheric</td></tr>
+        <tr><td>Potentiometric surface</td><td>Level water rises to in a well tapping a confined aquifer — can lie above ground (artesian)</td></tr>
+      </table>
+      <p><strong>Darcy's Law:</strong> Q = K&middot;A&middot;(h&#8321;&minus;h&#8322;)/L, where K = hydraulic conductivity, A = cross-sectional area, (h&#8321;&minus;h&#8322;)/L = hydraulic gradient <span class="cite v">Marshak Box 16.1, p.479</span>.</p>
+    </div>
+  </section>
+
+  <section class="category soil" id="soil">
+    <div class="cat-header">
+      <div class="cat-label">02 / Soil Mechanics</div>
+      <h2 class="cat-title">G-2</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Particle Size Boundaries &amp; Index Properties</h3>
+      <table>
+        <tr><th>Fraction</th><th>Size range</th></tr>
+        <tr><td>Boulders</td><td>Retained on 12-in (300 mm)</td></tr>
+        <tr><td>Cobbles</td><td>Passes 12-in, retained on 3-in (75 mm)</td></tr>
+        <tr><td>Gravel</td><td>Passes 3-in, retained on No. 4 (4.75 mm)</td></tr>
+        <tr><td>Sand</td><td>Passes No. 4, retained on No. 200 (0.075 mm)</td></tr>
+        <tr><td>Fines (silt/clay)</td><td>Passes No. 200</td></tr>
+      </table>
+      <p>Coarse-grained soil = &lt;50% fines by weight; fine-grained soil = &ge;50% fines <span class="cite v">USBR Field Manual Vol.1 Ch.3, aligned to ASTM D2487</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2/2.3</div>
+      <h3 class="sub-title">USCS Group Symbols &amp; the Plasticity Chart</h3>
+      <p>Two-letter USCS group symbol: first letter = dominant fraction (G-gravel, S-sand, M-silt, C-clay, O-organic, PT-peat); second = gradation/plasticity modifier (W-well graded, P-poorly graded, M-silty, C-clayey, L-low plasticity, H-high plasticity) <span class="cite v">USBR Field Manual Vol.1 Ch.3; ASTM D2487</span>.</p>
+      <p><strong>Plasticity chart (Casagrande chart)</strong> — directly confirmed tested: official ASBOG Candidate Handbook, Appendix 3, Q27 (a CH/LL/PI question).</p>
+      <ul>
+        <li>X-axis: Liquid Limit (LL); Y-axis: Plasticity Index (PI = LL &minus; PL)</li>
+        <li>"A"-line separates clays (on/above) from silts (below)</li>
+        <li><strong>CL</strong> (lean clay): LL &lt; 50, above A-line; <strong>CH</strong> (fat clay): LL &ge; 50, above A-line</li>
+        <li><strong>ML</strong> (silt): below A-line, lower LL; <strong>MH</strong> (elastic silt): below A-line, high LL</li>
+        <li>Organic (OL/OH): oven-dried LL &lt; 75% of not-oven-dried LL</li>
+      </ul>
+      <p><strong>Field identification tests</strong> (ASTM D2488): dry strength (crush a dried ball), dilatancy (shake a wet pat, watch water appear/disappear), toughness (roll a 1/8" thread near the plastic limit). Dilatancy is <em>inversely</em> related to plasticity — high dry strength + no dilatancy + high toughness &rarr; CH; low/no dry strength + rapid dilatancy + low toughness &rarr; ML. <span class="cite v">USBR Field Manual Vol.1 Ch.3; ASTM D2488</span></p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.4/2.5</div>
+      <h3 class="sub-title">Compaction, Consolidation &amp; Shear Strength</h3>
+      <p><strong>Mohr-Coulomb shear strength:</strong> &tau; = c + &sigma;&#8345;&middot;tan(&phi;), where c = cohesion, &sigma;&#8345; = normal stress, &phi; = angle of internal friction <span class="cite v">FHWA-NHI-11-032, "Soils and Foundations" reference manual</span>.</p>
+      <ul>
+        <li><strong>Compaction</strong> — mechanical densification (reducing air voids), typically for engineered fill</li>
+        <li><strong>Consolidation</strong> — time-dependent settlement from expulsion of pore water under load; most significant in saturated fine-grained (clay) soils</li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.6</div>
+      <h3 class="sub-title">Soil Slope Stability</h3>
+      <p>Strong qualitative grounding: downslope vs. resistance force, angle of repose (30–37&deg; typical, up to 45&deg; for large angular grains), weak failure surfaces (wet clay, unconsolidated wet sand, joints, bedding, foliation) <span class="cite v">Marshak Ch.13, pp.406–413</span>. Remediation techniques — terracing, drainage/lowering water table, retaining walls, riprap, rock bolts, revegetation — are Marshak-sourced directly <span class="cite v">Marshak Fig.13.17</span>.</p>
+      <p><strong>Factor of safety:</strong> FS = resisting forces / driving forces; FS &lt; 1 indicates failure <span class="cite v">FHWA-NHI-11-032</span>.</p>
+    </div>
+  </section>
+
+  <section class="category rock" id="rock">
+    <div class="cat-header">
+      <div class="cat-label">03 / Rock Mechanics</div>
+      <h2 class="cat-title">G-3</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Rock Classification &amp; Index Properties</h3>
+      <p>Basic classification (igneous/sedimentary/metamorphic, texture, mineralogy) is core Marshak content <span class="cite v">Marshak Ch.4–7</span> and needs no supplement. Index properties relevant to engineering behavior (hardness, density, weathering grade) from <span class="cite v">USBR Field Manual Vol.1 Ch.4</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Discontinuities &amp; Rock Quality Designation (RQD)</h3>
+      <p>Marshak's "Joints" section explicitly notes geotechnical engineers pay close attention to jointing, and gives strike/dip terminology <span class="cite v">Marshak Ch.9, pp.268–271, Box 9.1</span>. RQD and formal discontinuity description are a confirmed gap, fully supplemented from <span class="cite v">USBR Field Manual Vol.1 Ch.5, "Terminology and Descriptions for Discontinuities"</span>.</p>
+      <p><strong>Discontinuity</strong> = umbrella term for structural breaks with zero-to-low tensile strength: <strong>fracture</strong> (joint, bedding-plane separation, random fracture — no significant displacement) vs. <strong>shear/fault</strong> (displacement occurred; evidence includes gouge, breccia, slickensides).</p>
+      <p><strong>RQD calculation:</strong> sum lengths of intact core pieces &ge; 4 inches (100 mm) long, divide by total run length, &times;100%. Mechanical breaks (drilling/handling artifacts) don't count — fit pieces back together and count as one if &ge; 4 in combined. Outcrop estimate (no core): RQD = 115 &minus; 3.3&middot;J&#7651;, where J&#7651; = joints per cubic meter.</p>
+      <table>
+        <tr><th>RQD (%)</th><th>Rock quality</th></tr>
+        <tr><td>&lt;25</td><td>Very poor</td></tr>
+        <tr><td>25–50</td><td>Poor</td></tr>
+        <tr><td>50–75</td><td>Fair</td></tr>
+        <tr><td>75–90</td><td>Good</td></tr>
+        <tr><td>90–100</td><td>Excellent</td></tr>
+      </table>
+      <p class="src" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);">Deere (1964) five-band scale, per USBR Ch.5 / Deere &amp; Deere 1989.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2/3.5</div>
+      <h3 class="sub-title">Discontinuity Description &amp; the Shear-Strength Bridge</h3>
+      <p><strong>Description parameters:</strong> orientation, spacing (SP1 &gt;10 ft to SP6 &lt;0.1 ft), continuity/persistence, openness/aperture, filling (soil fillings classified by USCS), roughness (stepped&rarr;polished) and waviness, healing <span class="cite v">USBR Field Manual Vol.1 Ch.5</span>.</p>
+      <p><strong>Coulomb's equation for a discontinuity surface:</strong> S = C + N&middot;tan(&phi; + i), where i is the roughness/waviness angle. A rough or wavy joint surface has higher effective shear resistance than a smooth one at the same normal stress — the direct mechanical link between discontinuity description (G-3.2) and strength (G-3.3) <span class="cite v">USBR Field Manual Vol.1 Ch.5</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3/3.6</div>
+      <h3 class="sub-title">Strength, Failure Criteria &amp; Deformability</h3>
+      <p>Marshak covers stress/strain fundamentals conceptually but no quantitative strength testing — confirmed gap, supplemented from peer-reviewed originals, appropriately, since these are specific named criteria still periodically revised.</p>
+      <ul>
+        <li><strong>UCS (uniaxial compressive strength)</strong> — ASTM D7012, axial load-to-failure, unconfined</li>
+        <li><strong>Point load test</strong> — ASTM D5731, field-expedient index; correlates to UCS (UCS &asymp; 20–25 &times; I&#8347;&#8325;&#8320;, rock-type dependent, not a fixed constant)</li>
+        <li><strong>Hoek-Brown failure criterion</strong> — empirical, nonlinear rock-mass strength envelope, the rock-mass analog to Mohr-Coulomb for jointed rock <span class="cite v">Hoek &amp; Brown 1980, 1988, 1997</span></li>
+        <li><strong>GSI (Geological Strength Index)</strong> — the field-observation input to Hoek-Brown, especially for weak/heterogeneous rock; estimated visually from rock-mass structure (blockiness) and discontinuity surface condition via a reference chart, not calculated <span class="cite v">Hoek, Carranza-Torres &amp; Corkum 2002</span></li>
+        <li><strong>Schmidt hammer</strong> — rebound hardness estimating UCS indirectly; average the 5 highest of 10 readings, discard the 5 lowest <span class="cite v">USBR Field Manual Vol.1 Ch.5</span></li>
+      </ul>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4/3.7</div>
+      <h3 class="sub-title">Failure Modes &amp; Kinematic Analysis</h3>
+      <p>Planar-failure concept only partially present in Marshak (Fig.13.12); wedge and toppling not addressed. Supplemented from the canonical source <span class="cite v">Hoek &amp; Bray, <em>Rock Slope Engineering</em>, 1981; Goodman 1989 for toppling</span>.</p>
+      <table>
+        <tr><th>Mode</th><th>Kinematic condition</th></tr>
+        <tr><td>Planar</td><td>Discontinuity dips out of slope face (within ~20&deg; of slope dip direction); &phi; &lt; dip of plane &lt; dip of slope</td></tr>
+        <tr><td>Wedge</td><td>Two discontinuity sets intersect; line of intersection plunges out of slope face, gentler than slope but steeper than &phi;</td></tr>
+        <tr><td>Toppling</td><td>Discontinuities dip steeply <em>into</em> the slope (opposite direction); Goodman's criterion: (90&deg; &minus; dip) + &phi; &lt; slope angle</td></tr>
+      </table>
+      <p><strong>Markland's test</strong> = stereonet procedure plotting the slope face as a great circle and the friction angle as a circle to check whether discontinuity poles/intersections fall within the sliding envelope.</p>
+    </div>
+  </section>
+
+  <section class="category hazards" id="hazards">
+    <div class="cat-header">
+      <div class="cat-label">04 / Geologic Hazards</div>
+      <h2 class="cat-title">G-4</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">4.1</div>
+      <h3 class="sub-title">Hazard &amp; Risk Analysis</h3>
+      <p>This is Marshak's home turf — landslides <span class="cite v">Marshak Ch.13</span>, floods <span class="cite v">Marshak Ch.14</span>, earthquakes <span class="cite v">Marshak Ch.8</span>, karst/subsidence <span class="cite v">Marshak Ch.16</span>. FG-sufficient as-is; no supplementation required.</p>
+    </div>
+  </section>
+
+  <section class="category methods" id="methods">
+    <div class="cat-header">
+      <div class="cat-label">05 / Investigation Methods</div>
+      <h2 class="cat-title">G-5</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.1</div>
+      <h3 class="sub-title">Well / Exploration Drilling Methods</h3>
+      <p>Confirmed gap in Marshak, supplemented from <span class="cite v">USBR Field Manual Vol.1 Ch.8, "Exploration Drilling Programs"</span>.</p>
+      <ul>
+        <li><strong>Hollow-stem auger</strong> — preferred in soil/embankment work; doesn't pressurize the borehole (no hydrofracturing risk); hollow stem acts as casing for sampling</li>
+        <li><strong>Direct rotary</strong> — mud, water, or air-foam circulation; standard for deeper/harder formations</li>
+        <li><strong>Cable tool</strong> — percussion drilling, used where mud circulation is undesirable</li>
+        <li><strong>Down-hole hammer w/ reverse circulation</strong> — hard rock, fast penetration + good recovery</li>
+        <li><strong>Direct push</strong> — static force advance, fast, minimal disturbance, shallow/soft soils only</li>
+        <li><strong>Sonic</strong> — high-frequency vibration, continuous core, works through mixed soil/rock/cobbles</li>
+      </ul>
+      <div class="note-box"><strong>Exam-relevant specific fact:</strong> augering is explicitly the preferred method for drilling in the impervious core of an embankment dam, because other rotary methods risk hydraulically fracturing the embankment.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.2</div>
+      <h3 class="sub-title">Geophysical Methods</h3>
+      <p>Reflection/refraction wave physics is covered in Marshak but framed around deep-earth exploration, not shallow site investigation <span class="cite v">Marshak Interlude D</span>.</p>
+      <table>
+        <tr><th>Method</th><th>What it measures</th><th>Typical use</th></tr>
+        <tr><td>Seismic refraction</td><td>P-wave velocity contrast (requires velocity to increase with depth)</td><td>Depth to bedrock/water table; a low-velocity layer under a high-velocity layer is a classic blind spot</td></tr>
+        <tr><td>Electrical resistivity</td><td>Resistivity contrasts (clay/saturated = low; bedrock/dry coarse = high)</td><td>Water table depth, contamination plumes, stratigraphy</td></tr>
+        <tr><td>Ground-penetrating radar (GPR)</td><td>Very shallow, high resolution (&lt;10–15 m, less in clay)</td><td>Utilities, voids, shallow stratigraphy; poor in saturated clay (signal attenuation)</td></tr>
+        <tr><td>Borehole geophysics</td><td>In-hole logging (natural gamma, resistivity, caliper)</td><td>Correlate strata between widely spaced borings</td></tr>
+      </table>
+      <div class="note-box">Sourced at chapter-scope confidence, not full-text verified: <span class="cite v" style="margin-left:0;">USBR Field Manual Vol.2 Ch.13/14, "Surface and Borehole Geophysical Investigations"</span> — chapter scope and title confirmed against the USBR TOC; full chapter text not yet pulled. Flag if you want this closed to full-text verification before relying on it for exact wording.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">5.3</div>
+      <h3 class="sub-title">Image Analysis / Remote Sensing</h3>
+      <p>Confirmed gap — Marshak uses Google Earth pedagogically but never teaches image analysis as an investigative method. Aerial photograph interpretation, satellite imagery, LiDAR/UAV digital outcrop mapping — used for regional structural mapping, landslide inventory, and lineament (fracture/fault trace) analysis.</p>
+      <div class="note-box">Sourced at chapter-scope confidence, not full-text verified: <span class="cite v" style="margin-left:0;">USBR Field Manual Vol.2 Ch.15, "Remote Sensing Techniques"</span> — scope confirmed, full text not pulled.</div>
+    </div>
+  </section>
+
+  <section class="category testing" id="testing">
+    <div class="cat-header">
+      <div class="cat-label">06 / In-Situ &amp; Lab Testing</div>
+      <h2 class="cat-title">G-6</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">6.1</div>
+      <h3 class="sub-title">In-Situ Testing: SPT &amp; CPT</h3>
+      <p>Confirmed gap, supplemented from <span class="cite v">ASTM D1586 (SPT); ASTM D5778 (CPT); USBR 7015 (Reclamation's own SPT procedure)</span>.</p>
+      <p><strong>Standard Penetration Test (SPT)</strong> — the single most-tested in-situ method at FG level:</p>
+      <ul>
+        <li>Drive a standard split-spoon sampler 18 in using a 140-lb hammer falling 30 in</li>
+        <li>Record blow counts per 6-in increment</li>
+        <li><strong>N-value</strong> = sum of blows for the second and third 6-in increments (first 6 in — the "seating drive" — is discarded)</li>
+        <li>N correlates empirically to relative density (granular soils) and approximate undrained shear strength (cohesive soils)</li>
+        <li>Reclamation uses SPT data for dam liquefaction-hazard evaluation — direct tie to G-4</li>
+      </ul>
+      <p><strong>Cone Penetration Test (CPT)</strong> — continuously pushed at controlled rate (1.5–2.5 cm/s); measures tip resistance and sleeve friction continuously with depth; no physical sample recovered (key CPT-vs-SPT distinction); piezocone (CPTu) variants add pore-pressure measurement.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">6.1</div>
+      <h3 class="sub-title">Groundwater / Aquifer Tests</h3>
+      <p><span class="cite v">USBR Field Manual Vol.1 Ch.9</span> covers instrumentation thoroughly (piezometer/observation-well design, water-level measurement — electric sounder, airline/gauge, popper, continuous recorders) but not pumping-test/slug-test analysis theory.</p>
+      <div class="gap-box"><strong>Confirmed gap:</strong> pumping-test/slug-test analytical theory (Theis, Cooper-Jacob) beyond definitional recognition is not sourced from anything pulled this session. At FG level: a <strong>pumping test</strong> estimates transmissivity/storativity by pumping a well at constant rate and observing drawdown in nearby observation wells; a <strong>slug test</strong> instantaneously changes water level in a single well and observes recovery for a localized permeability estimate.</div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">6.2</div>
+      <h3 class="sub-title">Laboratory Testing</h3>
+      <p>Confirmed gap, supplemented from <span class="cite v">FHWA-NHI-11-032; ASTM D2850/D4767 (scope only, standards paywalled); USBR Field Manual Vol.1 Ch.5 (tilt-test friction-angle estimation)</span>.</p>
+      <ul>
+        <li><strong>Triaxial test</strong> — confining pressure + axial load on a cylindrical sample; drained or undrained, with/without pore-pressure measurement; determines c and &phi;</li>
+        <li><strong>Unconfined compression (UCS)</strong> — no confining pressure; simplest strength test, cohesive soils and intact rock</li>
+        <li><strong>Direct shear test</strong> — shears a sample along a fixed plane under a range of normal stresses; builds a Mohr-Coulomb envelope directly. USBR Ch.5's "tilt test" is a field-expedient version for discontinuity-surface friction angle.</li>
+        <li><strong>Drained vs. undrained</strong> — drained allows pore pressure to dissipate (slow loading, effective-stress c'/&phi;', long-term stability); undrained prevents drainage (rapid loading, total-stress parameters, short-term/construction-stage stability in saturated clays)</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite v" style="margin-left:0;">verified</span> Every citation above is spelled out inline (author/source, year, chapter/page) — no separate lookup table needed for what a badge means.</div>
+    <div class="legend-row"><span class="cite gap" style="margin-left:0;">gap</span> Confirmed absent from every source checked.</div>
+    <div class="legend-row"><span class="cite pg" style="margin-left:0;">PG-only</span> Valid Domain G content, but scoped to the PG exam by ASBOG's own Knowledge Base — excluded here (all of G-7).</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">Full source list: Marshak, <em>Essentials of Geology</em> 4th ed.; Bureau of Reclamation <em>Engineering Geology Field Manual</em> Vol.1 &amp; 2; ASTM D2487, D2488, D6032, D7012, D5731, D1586, D5778, D2850, D4767; FHWA-NHI-11-032 (<em>Soils and Foundations</em>); Hoek &amp; Brown (1980, 1988, 1997); Hoek, Carranza-Torres &amp; Corkum (2002); Hoek &amp; Bray (1981) <em>Rock Slope Engineering</em>; Goodman (1989); USBR 7015.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Status:</strong> All FG-scope Domain G Knowledge Base items sourced, with two flagged exceptions: G-5.2/5.3 (geophysics, remote sensing) sourced at chapter-scope confidence rather than full-text verification, and G-6.1 pumping/slug-test analytical theory unsourced beyond definitional recognition. Color slot 6 (olive/moss, #5c6b2e) introduced here for the in-situ/lab testing category — first use of a 6th slot; confirmed with you before building.</p>
+  </div>
+</footer>
+
+</body>
+</html>

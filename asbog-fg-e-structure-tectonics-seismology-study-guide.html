@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASBOG FG — Category 5: Structure, Tectonics &amp; Seismology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea;
+    --paper:#fbfaf6;
+    --ink:#20241f;
+    --ink-soft:#4b5148;
+    --rule:#c9cdc0;
+    --structural:#5b4a8a;
+    --structural-soft:#e6e1f0;
+    --tectonics:#2f5f7a;
+    --tectonics-soft:#dbe6ec;
+    --seismology:#a63328;
+    --seismology-soft:#f4dcd9;
+    --verified:#2f7a4d;
+    --verified-soft:#dcefe1;
+    --gap:#8a3b3b;
+    --gap-soft:#f6e2e2;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+  /* ===== Header ===== */
+  header.masthead{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  header.masthead .inner{max-width:920px;margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-row strong{color:var(--ink);font-weight:600;}
+
+  /* ===== Scope box ===== */
+  .scope-box{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    margin:32px 0 40px;
+    font-size:14.5px;
+  }
+  .scope-box h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 12px;
+    color:var(--ink-soft);
+  }
+  .scope-box blockquote{
+    margin:0 0 14px;
+    padding-left:16px;
+    border-left:2px solid var(--rule);
+    font-style:italic;
+    color:var(--ink-soft);
+  }
+  .scope-box .src{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* ===== Section nav ===== */
+  nav.toc{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 0 48px;
+  }
+  nav.toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  nav.toc a .cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  nav.toc a.str .cat{color:var(--structural);}
+  nav.toc a.tec .cat{color:var(--tectonics);}
+  nav.toc a.sei .cat{color:var(--seismology);}
+
+  /* ===== Category sections with stratum spine ===== */
+  .category{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:64px;
+  }
+  .category::before{
+    content:"";
+    position:absolute;
+    left:0;top:6px;bottom:6px;
+    width:6px;
+    border-radius:3px;
+  }
+  .category.str::before{background:var(--structural);}
+  .category.tec::before{background:var(--tectonics);}
+  .category.sei::before{background:var(--seismology);}
+
+  .cat-header{margin-bottom:28px;}
+  .cat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .category.str .cat-label{color:var(--structural);}
+  .category.tec .cat-label{color:var(--tectonics);}
+  .category.sei .cat-label{color:var(--seismology);}
+
+  h2.cat-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:6px 0 0;
+  }
+
+  h3.sub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 4px;
+    padding-top:4px;
+  }
+  .sub-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .specimen{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:22px 26px 26px;
+    margin:16px 0 32px;
+  }
+
+  p{margin:0 0 14px;}
+  ul, ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:600;}
+
+  /* ===== Citation tags ===== */
+  .cite{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    padding:1px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+    margin-left:4px;
+    vertical-align:1px;
+  }
+  .cite.m, .cite.h, .cite.u, .cite.e, .cite.w, .cite.r, .cite.wh{background:var(--verified-soft);color:var(--verified);}
+  .cite.gap{background:var(--gap-soft);color:var(--gap);}
+  .cite.asbog{background:#e4e4de;color:#54574d;}
+
+  /* ===== Tables ===== */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 18px;
+    font-size:14.5px;
+  }
+  th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink);
+    padding:6px 10px 8px 0;
+  }
+  td{
+    padding:9px 10px 9px 0;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  /* ===== Diagram frames ===== */
+  .diagram-frame{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:18px 18px 8px;
+    margin:18px 0 24px;
+  }
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    padding-bottom:10px;
+  }
+
+  /* ===== Gap callout ===== */
+  .gap-box{
+    background:var(--gap-soft);
+    border:1px solid #dcb9b9;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:13.5px;
+    margin:14px 0;
+  }
+  .gap-box strong{color:var(--gap);}
+
+  /* ===== Footer / legend ===== */
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .legend{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    padding:24px 28px;
+  }
+  .legend h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin:0 0 16px;
+    color:var(--ink-soft);
+  }
+  .legend-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:13.5px;}
+
+  @media (max-width:640px){
+    nav.toc{grid-template-columns:1fr;}
+    .category{padding-left:18px;}
+    .specimen{padding:18px 18px 20px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .category::before{background:#999 !important;}
+    .specimen, .scope-box, .legend{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">ASBOG&reg; Fundamentals of Geology — Study Guide</div>
+    <h1 class="title">Category 5: Structure,<br>Tectonics &amp; Seismology</h1>
+    <p class="subtitle">12% of the FG exam (~17 of 140 questions) — your flagged weak category on the Udemy diagnostic. References verified against Marshak, <em>Essentials of Geology</em> 4th ed. (M); Hoek, <em>Practical Rock Engineering</em> (Rocscience Hoek's Corner); and the Bureau of Reclamation <em>Engineering Geology Field Manual</em> (USBR) — the latter two are ASBOG-recommended supplemental sources used specifically to close gaps Marshak doesn't cover. Cross-checked against the official ASBOG Domain E Knowledge Base (more granular than the Candidate Handbook's summary table).</p>
+    <div class="meta-row">
+      <span><strong>Weighting:</strong> Domain E, 12% FG / 9% PG</span>
+      <span><strong>Format:</strong> FG tests recall, not applied reasoning</span>
+      <span><strong>Citation key:</strong> <span class="cite m" style="margin-left:0;">M 266</span> Marshak &nbsp; <span class="cite h">Hoek</span> &nbsp; <span class="cite u">USBR</span> &nbsp; <span class="cite gap">Gap</span> not verified</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="scope-box">
+    <h2>Verified scope — ASBOG Domain E Knowledge Base (not just the Handbook summary)</h2>
+    <p style="margin-bottom:10px;">Paraphrased from the official domain document (not quoted verbatim — it's a numbered outline, not flowing prose): structural interpretation (three-point problems, structure contours, outcrop-pattern "rule of Vs," map/cross-section reading); deformation styles (brittle: faults/fractures/joints; ductile: folds); structural fabrics (linear/planar/shear fabric development, stereonet and rose-diagram analysis); fault and fold classification; mechanical properties of rock (stress/strain/strain rate, Mohr circle, brittle–ductile–brittle-ductile conditions); seismic/paleoseismic history (exploration methods, absolute and relative age determination); and plate tectonics, tectonic regimes, and earthquake processes.</p>
+    <p style="margin-bottom:6px;">Tasks assessed (21–25): plan structural/tectonic/seismic investigations · identify structural features, construct/interpret cross sections and structural projections, perform statistical analyses · interpret deformational history · develop and apply tectonic models · evaluate earthquake mechanisms and paleoseismic history.</p>
+    <div class="src">Sources: ASBOG Candidate Handbook (Jan 2024), Appendix 2, p.43; ASBOG Domain E Knowledge Base (asbog.org/candidates/kb.html).</div>
+  </div>
+
+  <div class="gap-box">
+    <strong>Read this before the rest of the guide.</strong> Four sub-items in ASBOG's own Domain E outline had zero hits in the 650-page Marshak text (verified by full-text search). All four are now resolved: <strong>Mohr circle/friction angle/cohesion</strong> (§1.2, Hoek's <em>Practical Rock Engineering</em>), <strong>stereonets</strong> (§1.5, USBR Engineering Geology Field Manual), <strong>three-point problems/structure contours/the rule of Vs</strong> (§1.5, Waldron &amp; Snyder's <em>Geological Structures: A Practical Introduction</em>), and <strong>rose diagrams</strong> (§1.5, Andrews 1971 via University of Regina). The V-rule was flagged as too risky to state from memory without a diagram to check against; it's now quoted precisely from a real source rather than reconstructed. <strong>OSL dating</strong> (§3.4) is the one remaining open item — confirmed absent from five sources now, including White's <em>Isotope Geochemistry</em> (which does, usefully, cover a related paleoseismology dating technique: ³⁶Cl cosmogenic exposure dating).
+  </div>
+
+  <nav class="toc">
+    <a class="str" href="#structural"><span class="cat">Structural Geology</span>Stress/strain · Faults · Folds · Fabrics</a>
+    <a class="tec" href="#tectonics"><span class="cat">Tectonics</span>Plate boundaries · Orogeny · Volcanism</a>
+    <a class="sei" href="#seismology"><span class="cat">Seismology</span>Mechanism · Waves · Hazard · Interior</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- STRUCTURAL GEOLOGY -->
+  <!-- ============================================================ -->
+  <section class="category str" id="structural">
+    <div class="cat-header">
+      <div class="cat-label">01 / Structural Geology</div>
+      <h2 class="cat-title">Deformation, brittle &amp; ductile structures, fabrics</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.1</div>
+      <h3 class="sub-title">Stress, strain &amp; mechanical behavior</h3>
+      <p>Deformation involves up to three components: displacement (change in location), rotation (change in orientation), and distortion, which geologists call <strong>strain</strong> (change in shape) <span class="cite m">M 267–268, Fig. 9.3</span>.</p>
+
+      <p><strong>Stress is force per unit area</strong> — the same force concentrated on a small area produces a larger stress than the same force spread over a large area (the "standing on one can vs. standing on a board over 100 cans" example) <span class="cite m">M 269, Fig. 9.6a</span>. Three kinds of stress act on rock bodies:</p>
+      <table>
+        <tr><th>Stress</th><th>Definition</th><th>Resulting strain</th></tr>
+        <tr><td>Compression</td><td>Squeezing — opposing forces pushed together</td><td>Shortening</td></tr>
+        <tr><td>Tension</td><td>Pulling apart — opposite ends pulled in opposite directions</td><td>Stretching</td></tr>
+        <tr><td>Shear</td><td>One part of a rock body slides sideways past another</td><td>Shear strain (angular distortion)</td></tr>
+      </table>
+      <p><strong>Pressure</strong> is a special case — equal push from all sides — that changes volume but not shape <span class="cite m">M 270, Fig. 9.6b–e</span>.</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Three Stress Types → Their Strain</text>
+          <g font-size="11" fill="#20241f" text-anchor="middle">
+            <rect x="40" y="50" width="150" height="60" fill="#e6e1f0" stroke="#5b4a8a"/>
+            <line x1="20" y1="80" x2="40" y2="80" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <line x1="230" y1="80" x2="190" y2="80" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <text x="115" y="130">Compression</text>
+            <text x="115" y="145" font-size="9.5" fill="#4b5148">→ shortening</text>
+          </g>
+          <g font-size="11" fill="#20241f" text-anchor="middle">
+            <rect x="280" y="50" width="150" height="60" fill="#e6e1f0" stroke="#5b4a8a"/>
+            <line x1="280" y1="80" x2="250" y2="80" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <line x1="430" y1="80" x2="460" y2="80" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <text x="355" y="130">Tension</text>
+            <text x="355" y="145" font-size="9.5" fill="#4b5148">→ stretching</text>
+          </g>
+          <g font-size="11" fill="#20241f" text-anchor="middle">
+            <polygon points="520,50 660,50 680,110 540,110" fill="#e6e1f0" stroke="#5b4a8a"/>
+            <line x1="520" y1="45" x2="560" y2="45" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <line x1="680" y1="115" x2="640" y2="115" stroke="#5b4a8a" stroke-width="2" marker-end="url(#arS1)"/>
+            <text x="600" y="130">Shear</text>
+            <text x="600" y="145" font-size="9.5" fill="#4b5148">→ shear strain</text>
+          </g>
+          <defs><marker id="arS1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b4a8a"/></marker></defs>
+          <text x="350" y="185" text-anchor="middle" font-size="10" fill="#4b5148" font-style="italic">stress causes strain — stress is the cause (force/area), strain is the effect (shape change)</text>
+        </svg>
+        <div class="diagram-caption">Original diagram, following Marshak's stress-type breakdown <span class="cite m" style="margin-left:0;">M 269–270, Fig. 9.6</span></div>
+      </div>
+
+      <p><strong>Brittle vs. ductile deformation</strong> — brittle: bonds break permanently (cracking, like a dropped plate). Ductile: bonds break and re-form as grains flow (like squeezed dough), no visible fracture <span class="cite m">M 267</span>. Four controls on which mode a rock takes:</p>
+      <ul>
+        <li><strong>Temperature</strong> — warmer rock deforms more ductilely; heat softens material</li>
+        <li><strong>Pressure/confining pressure</strong> — higher pressure (greater depth) favors ductile behavior; it suppresses fragmentation</li>
+        <li><strong>Strain rate</strong> — sudden stress → brittle; slow, sustained stress → ductile (hit a marble bench with a hammer vs. leaving it alone for a century)</li>
+        <li><strong>Composition</strong> — some minerals/rocks are inherently softer (halite deforms ductilely under conditions where granite deforms brittlely)</li>
+      </ul>
+      <p>In typical continental crust, rock behaves brittlely above ~10–15 km depth and ductilely below — the <strong>brittle-ductile transition</strong>. Earthquakes happen only above this depth, since they require brittle rupture <span class="cite m">M 268</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.2</div>
+      <h3 class="sub-title">Rock strength: the Mohr circle</h3>
+      <p>Not in Marshak, but verified against an ASBOG-recommended source: Hoek, <em>Practical Rock Engineering</em>, "Shear strength of discontinuities" <span class="cite h">Hoek Ch.4</span>. The Mohr circle itself (graphing the stress state at a point, centered at (σ₁+σ₃)/2 with radius (σ₁−σ₃)/2) is standard construction not walked through step-by-step in that chapter, but the failure criterion it uses is directly sourced:</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--structural-soft);padding:10px 14px;border-radius:var(--radius);">τ<sub>p</sub> = c + σ<sub>n</sub>·tan(φ)</p>
+      <p>where <strong>c = cohesion</strong>, defined by Hoek as the intercept on the shear-strength axis at zero normal stress, and <strong>φ = angle of friction</strong>, the slope of the peak-strength line <span class="cite h">Hoek Ch.4, Eq.1</span>. Hoek distinguishes <strong>peak strength</strong> (initial resistance, includes true cohesion from any cementing material) from <strong>residual strength</strong> (after displacement, cohesion has dropped to zero: τ = σ<sub>n</sub>·tan(φ<sub>r</sub>), where φ<sub>r</sub> is the residual friction angle) <span class="cite h">Hoek Ch.4</span>. In rock mechanics, "cohesion" is often used loosely as a mathematical fitting term tied to surface roughness rather than true cementation — worth knowing since it's a common point of confusion <span class="cite h">Hoek Ch.4</span>. The USBR Field Manual independently confirms the same equation in Coulomb form, S = C + N·tan(φ + i), where i is an added roughness angle <span class="cite u">USBR Vol.1, Ch.5, p.108</span>.</p>
+      <p>A rock (or discontinuity) fails when the Mohr circle grows large enough to become tangent to this line; the tangent point's angle indicates the orientation of the fracture that forms. The standard result: fractures form at an acute angle to σ₁, roughly θ ≈ 45° − φ/2 from the maximum principal stress direction — why conjugate fracture sets typically form at less than 90° to each other, not exactly perpendicular.</p>
+      <p style="font-size:13px;color:var(--ink-soft);"><strong>Scope note:</strong> Hoek's chapter goes considerably deeper than FG needs — joint roughness coefficient (JRC), joint wall compressive strength (JCS), the Barton-Bandis criterion, scale corrections. That level of detail is PG/practicing-engineer territory. The equation and cohesion/friction-angle definitions above are the FG-relevant slice.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.3</div>
+      <h3 class="sub-title">Brittle structures: joints, faults &amp; orientation</h3>
+      <p><strong>Joints</strong> are fractures with no measurable offset; <strong>faults</strong> are fractures with displacement across them <span class="cite m">M 266, 271</span>. A planar structure's orientation is described by <strong>strike</strong> (the compass bearing of a horizontal line on the plane, relative to true north) and <strong>dip</strong> (the angle the plane slopes down from horizontal, measured perpendicular to strike) <span class="cite m">M 272, Box 9.1</span>.</p>
+
+      <table>
+        <tr><th>Fault type</th><th>Motion</th><th>Tectonic setting</th></tr>
+        <tr><td>Strike-slip (left- or right-lateral)</td><td>Sideways along strike, no vertical offset; steep to vertical dip</td><td>Transform plate boundaries</td></tr>
+        <tr><td>Normal (dip-slip)</td><td>Hanging wall slides <em>down</em> relative to footwall</td><td>Extension/rifting — stretches crust</td></tr>
+        <tr><td>Reverse (dip-slip)</td><td>Hanging wall slides <em>up</em> relative to footwall</td><td>Compression/shortening; gentle-dip reverse fault = thrust fault</td></tr>
+        <tr><td>Oblique-slip</td><td>Diagonal — a combination of strike-slip and dip-slip</td><td>Transtensional/transpressional settings</td></tr>
+      </table>
+      <p><strong>Hanging wall</strong> = the block of rock above the fault surface; <strong>footwall</strong> = the block below it <span class="cite m">M 273, Fig. 9.8</span>. Left-lateral vs. right-lateral for strike-slip faults is determined by facing the fault and observing which way the far block moved <span class="cite m">M 273</span>. Independently corroborated, including the map-notation convention for strike/dip symbols (a short tick mark showing dip direction and angle off a strike line): <span class="cite e">Earle Ch.12, §12.4</span>.</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Dip-Slip Fault Types (cross section)</text>
+          <g>
+            <text x="120" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Normal fault</text>
+            <line x1="60" y1="180" x2="180" y2="60" stroke="#20241f" stroke-width="2"/>
+            <polygon points="60,180 120,180 180,120 180,60 120,120" fill="#e6e1f0" opacity="0.5"/>
+            <text x="70" y="170" font-size="9.5">footwall</text>
+            <text x="140" y="100" font-size="9.5">hanging wall ↓</text>
+          </g>
+          <g>
+            <text x="350" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Reverse fault</text>
+            <line x1="290" y1="180" x2="410" y2="60" stroke="#20241f" stroke-width="2"/>
+            <polygon points="290,180 350,180 410,120 410,60 350,120" fill="#f4dcd9" opacity="0.5"/>
+            <text x="300" y="170" font-size="9.5">footwall</text>
+            <text x="360" y="100" font-size="9.5">hanging wall ↑</text>
+          </g>
+          <g>
+            <text x="580" y="45" text-anchor="middle" font-size="11.5" fill="#5b4a8a">Strike-slip (map view)</text>
+            <line x1="520" y1="120" x2="640" y2="120" stroke="#20241f" stroke-width="2"/>
+            <line x1="520" y1="90" x2="580" y2="120" stroke="#20241f" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <line x1="640" y1="150" x2="580" y2="120" stroke="#20241f" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="580" y="175" text-anchor="middle" font-size="9.5">offset marker line — no vertical motion</text>
+          </g>
+        </svg>
+        <div class="diagram-caption">Original diagram — normal/reverse geometry follows <span class="cite m" style="margin-left:0;">M 273, Fig. 9.8b</span>; hanging wall moves relative to footwall, not the reverse.</div>
+      </div>
+
+      <p><strong>Recognizing faults:</strong> displacement (offset layers), fault scarps (steps on the landscape from dip-slip/oblique-slip movement), slip lineations/striations (grooves or scratches on the fault surface recording slip direction) <span class="cite m">M 273</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.4</div>
+      <h3 class="sub-title">Ductile structures: folds &amp; foliation</h3>
+      <p>Fold anatomy: the <strong>hinge</strong> is the line of maximum curvature; the <strong>limbs</strong> are the two sides; the <strong>axial surface</strong> bisects the fold <span class="cite m">M 275, Fig. 9.11</span>.</p>
+      <table>
+        <tr><th>Fold type</th><th>Geometry</th></tr>
+        <tr><td>Anticline</td><td>Arch-shaped — limbs dip <em>away</em> from the hinge</td></tr>
+        <tr><td>Syncline</td><td>Trough-shaped — limbs dip <em>toward</em> the hinge</td></tr>
+        <tr><td>Monocline</td><td>Carpet-over-a-stair-step shape — one steep limb between two flat ones</td></tr>
+        <tr><td>Dome</td><td>Overturned-bowl fold — oldest rock in the center, bull's-eye outcrop pattern</td></tr>
+        <tr><td>Basin</td><td>Upright-bowl fold — youngest rock in the center, also bull's-eye</td></tr>
+      </table>
+      <p>Folds are also <strong>plunging</strong> (hinge tilted from horizontal) or <strong>nonplunging</strong> (hinge horizontal) <span class="cite m">M 275</span>.</p>
+      <p><strong>Two formation mechanisms:</strong> flexural-slip folding (layers bend and slip past each other, like bending a deck of cards) and passive-flow folding (rock is soft enough to flow like plastic, different parts moving at different rates) <span class="cite m">M 276</span>. Folds form from end-on compression, from shear stress shifting one part of a layer over another, from layers draping over fault-related steps, or from basement-block uplift warping overlying sediment <span class="cite m">M 276</span>.</p>
+      <p><strong>Tectonic foliation</strong> — planar fabric from deformation-driven alignment of platy/elongate minerals (distinct from bedding). Ties directly to your Category 2 metamorphism content: slaty cleavage, schistosity, and gneissic banding are all foliation types, just named by grain size/mineralogy <span class="cite m">M 276</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">1.5</div>
+      <h3 class="sub-title">Structural fabrics &amp; map/cross-section interpretation</h3>
+      <p><strong>Verified in Marshak:</strong> slip lineations on fault surfaces (a <em>linear</em> fabric — grooves/striations recording slip direction, described by plunge and bearing) <span class="cite m">M 273</span>; tectonic foliation as a <em>planar</em> fabric <span class="cite m">M 276</span>; bull's-eye outcrop patterns for domes/basins as a basic form of map-pattern reading <span class="cite m">M 275–276, 287</span>.</p>
+
+      <p><strong>Stereonets</strong> — verified via the USBR Field Manual. Orientation data (strike/dip, or trend/plunge for lineations) is plotted as points on an equal-area (Schmidt) or equal-angle (Wulff) net, then contoured to identify dominant fracture sets/fabric orientations <span class="cite u">USBR Vol.1, Ch.7, p.208–209, Fig. 7-1</span>. Independently corroborated with a cleaner statement of the right-hand-rule convention: <em>"When you are facing in the strike direction, the plane dips downward to your right"</em> — equivalently, strike is always 90° counter-clockwise from dip direction <span class="cite w">Waldron &amp; Snyder §1.2</span>.</p>
+
+      <p><strong>Structure contours, three-point problem &amp; the rule of Vs</strong> — resolved. Found in Waldron &amp; Snyder, <em>Geological Structures: A Practical Introduction</em> (University of Alberta / Open Education Alberta, open textbook, CC BY-NC), a source specifically dedicated to this technique that Marshak, the USBR manual, and Earle all lack:</p>
+      <ul>
+        <li><strong>Structure contour</strong> — a line of equal elevation on a buried (or once-present) geologic surface, exactly analogous to a topographic contour but drawn on a stratigraphic horizon, fault plane, or unconformity. Because they're lines of constant elevation, structure contours are automatically parallel to strike — they're sometimes just called strike lines <span class="cite w">Waldron &amp; Snyder §1.2</span>.</li>
+        <li><strong>Dip from contour spacing</strong> — tan(dip) = contour interval ÷ contour spacing. Closely spaced contours = steep dip; widely spaced = gentle dip <span class="cite w">Waldron &amp; Snyder §1.2</span>.</li>
+        <li><strong>Three-point problem</strong> — given three points A (highest), B (intermediate), C (lowest) on the same planar surface: connect A–C, find the point B′ on that line at B's elevation (by linear interpolation: distance AB′ = distance AC × (a−b)/(a−c), using elevations a, b, c), then connect B to B′ — that line is a structure contour, and its orientation is the strike. Repeat/extrapolate to get contours at round-number elevations <span class="cite w">Waldron &amp; Snyder, Lab 2</span>. (This matches what was drafted here previously from general reasoning — confirmed correct, not corrected.)</li>
+        <li><strong>Rule of Vs, exact statement</strong> — "the V-shape formed as a trace crosses a river valley points in the direction of dip... The only exception occurs when the dip is in the same direction as the slope of the valley, but gentler than the gradient of the river; then the V-shapes point up-dip." Horizontal beds: trace parallels topographic contours (no V). Vertical beds: straight trace, ignores topography entirely <span class="cite w">Waldron &amp; Snyder §1.2</span>. This is the one sub-point flagged last pass as too risky to state from memory — now properly sourced.</li>
+      </ul>
+
+      <div class="specimen" style="margin-top:0;">
+      <p><strong>Rose diagrams</strong> — resolved, with a caveat on domain fit. Andrews, J.T. (1971), <em>Techniques of Till Fabric Analysis</em>, British Geomorphological Research Group Technical Bulletin No. 6 (via University of Regina) <span class="cite r">Andrews 1971</span>, describes the standard construction: a rose diagram portrays the number or proportion of measurements (pebble/fracture/lineation orientations) falling into azimuthal class intervals, plotted as a circular histogram. Two real caveats worth keeping: (1) the visual pattern is sensitive to class-interval width and starting azimuth — the same dataset binned differently can look meaningfully different; (2) for axial data with no directional sense (a fracture strikes the same whether read as 040° or 220°), frequencies are conventionally repeated through 180°, which exaggerates the apparent strength of the fabric compared to a true 360° distribution. <strong>Domain-fit note:</strong> this source describes rose diagrams for glacial till-clast orientation, not fracture/joint orientation — the graphing technique is identical either way, but it's a 1971 technical bulletin on a different application than ASBOG's E-3.2 fabric-analysis context, so treat the construction/caveats as verified and the specific example (till fabric) as illustrative only.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TECTONICS -->
+  <!-- ============================================================ -->
+  <section class="category tec" id="tectonics">
+    <div class="cat-header">
+      <div class="cat-label">02 / Tectonics</div>
+      <h2 class="cat-title">Plate boundaries, driving forces, orogeny, volcanism</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.1</div>
+      <h3 class="sub-title">Plate tectonics fundamentals</h3>
+      <p>Three plate boundary types <span class="cite m">M 51–61, §2.7–2.9</span>:</p>
+      <table>
+        <tr><th>Boundary</th><th>Motion</th><th>Key features</th></tr>
+        <tr><td>Divergent</td><td>Two plates move apart</td><td>Mid-ocean ridge, sea-floor spreading, new oceanic crust (gabbro at depth, basalt/pillow lavas at surface), black smokers, ridge-parallel normal faults</td></tr>
+        <tr><td>Convergent</td><td>Plates move together; at least one is oceanic and subducts</td><td>Deep trench, volcanic arc (island arc if oceanic-oceanic, continental arc if oceanic-continental), accretionary prism</td></tr>
+        <tr><td>Transform</td><td>Plates slide sideways past each other</td><td>Large strike-slip fault, no new crust created or destroyed; links ridge segments (fracture zones)</td></tr>
+      </table>
+      <p>Continental crust cannot subduct (too buoyant) — when two continents converge, the intervening ocean basin closes and the continents themselves collide <span class="cite m">M 61, §2.11</span>.</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Three Plate Boundary Types (cross section)</text>
+          <line x1="20" y1="140" x2="680" y2="140" stroke="#c9cdc0" stroke-width="1.5"/>
+          <g>
+            <rect x="40" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+            <rect x="150" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+            <line x1="130" y1="130" x2="150" y2="130" stroke="#2f5f7a" stroke-width="2"/>
+            <polygon points="130,100 150,100 140,60" fill="#f4dcd9" stroke="#a63328"/>
+            <text x="140" y="115" text-anchor="middle" font-size="9">MOR</text>
+            <line x1="90" y1="115" x2="65" y2="115" stroke="#2f5f7a" marker-end="url(#arT1)"/>
+            <line x1="190" y1="115" x2="215" y2="115" stroke="#2f5f7a" marker-end="url(#arT1)"/>
+            <text x="140" y="175" text-anchor="middle" font-size="10.5">Divergent</text>
+          </g>
+          <g>
+            <rect x="280" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+            <polygon points="370,120 370,140 460,140 460,50" fill="#e6e1f0" stroke="#5b4a8a"/>
+            <polygon points="440,50 460,50 460,90" fill="#f4dcd9" stroke="#a63328"/>
+            <line x1="330" y1="112" x2="400" y2="128" stroke="#2f5f7a" stroke-width="2" marker-end="url(#arT1)"/>
+            <text x="330" y="175" text-anchor="middle" font-size="10.5">Convergent</text>
+            <text x="450" y="45" font-size="9">arc volcano</text>
+          </g>
+          <g>
+            <rect x="500" y="120" width="90" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+            <rect x="610" y="120" width="70" height="20" fill="#dbe6ec" stroke="#2f5f7a"/>
+            <line x1="590" y1="100" x2="590" y2="140" stroke="#a63328" stroke-width="2.5" stroke-dasharray="5,3"/>
+            <text x="545" y="175" text-anchor="middle" font-size="10.5">Transform</text>
+          </g>
+          <defs><marker id="arT1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#2f5f7a"/></marker></defs>
+        </svg>
+        <div class="diagram-caption">Original diagram — boundary geometry follows Marshak's "Theory of Plate Tectonics" spread <span class="cite m" style="margin-left:0;">M 64–65, Geology at a Glance</span></div>
+      </div>
+
+      <p><strong>Driving forces</strong> — three mechanisms contribute, not a single cause <span class="cite m">M 65–66, §2.12</span>:</p>
+      <ul>
+        <li><strong>Mantle convection</strong> — broad-scale upwelling/downwelling in the asthenosphere may exert drag on the base of plates, though the match between convection patterns and plate boundaries isn't exact</li>
+        <li><strong>Ridge-push force</strong> — mid-ocean ridge lithosphere sits at higher elevation than adjacent abyssal plains; gravity causes this elevated mass to push laterally away from the ridge</li>
+        <li><strong>Slab-pull force</strong> — subducting lithosphere older than ~10 Ma is denser than the asthenosphere it sinks into, so it pulls the rest of the plate along behind it, like an anchor line</li>
+      </ul>
+      <p>Slab-pull is generally regarded as the dominant force among the three.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.2</div>
+      <h3 class="sub-title">Convergent settings &amp; mountain building</h3>
+      <p>Mountains form primarily via three settings, all linear because the driving boundaries/rifts are linear <span class="cite m">M 279</span>:</p>
+      <ul>
+        <li><strong>Subduction-related orogens</strong> (e.g., the Andes) — compression on the overriding plate produces fold-thrust belts; thrust slices stack and fold, merging into a subhorizontal detachment at depth. Buoyant crustal fragments (volcanic arcs, oceanic plateaus, microcontinents) that arrive at the trench are too buoyant to subduct and instead "suture" onto the margin — called <strong>accretion</strong>; offshore, such a fragment is an exotic terrane, once attached it's an accreted terrane. Orogens built by repeated accretion are accretionary orogens (the western North American Cordillera is a real-world example) <span class="cite m">M 279–280</span>.</li>
+        <li><strong>Continental collision</strong> (e.g., Himalayas, Alps, the final Appalachian collision with Africa ~300 Ma) — once the intervening ocean fully subducts, continents collide directly; intense compression produces fold-thrust belts at the margins <span class="cite m">M 281</span>.</li>
+        <li><strong>Continental rifting</strong> — the reverse process; stretching and thinning of the lithosphere allows asthenosphere to rise, and the crust may eventually break to form a new mid-ocean ridge.</li>
+      </ul>
+      <p><strong>Cratons</strong> are the stable, ancient interiors of continents; they contain <strong>shields</strong> (exposed Precambrian basement) and <strong>platforms</strong> (basement covered by a thin veneer of flat-lying sediment). Broad, gentle regional <strong>domes and basins</strong> — not the tight folds of an orogen — form within platforms <span class="cite m">M 287–288</span>.</p>
+      <p><strong>Isostasy</strong> — the principle that crust "floats" on the mantle in gravitational equilibrium; thickened crust (from collision) rises to higher elevation, and removal of dense lithospheric mantle root material (delamination) can drive further uplift after collision ends, analogous to a ship rising as ballast is removed <span class="cite m">M 285–287</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">2.3</div>
+      <h3 class="sub-title">Volcanism in tectonic context</h3>
+      <p>This is deliberately the tectonic-setting angle only — magma composition/classification and eruptive-rock petrology live in your Category 2 guide (Ch. 4–5 territory there). <span class="cite m">M 134–137, §5.4</span></p>
+      <table>
+        <tr><th>Setting</th><th>Style</th><th>Example</th></tr>
+        <tr><td>Mid-ocean ridge</td><td>Basaltic, effusive, mostly submarine — pillow lavas, black smokers; covers ~70% of Earth's surface but mostly hidden underwater</td><td>Global MOR system</td></tr>
+        <tr><td>Convergent — island arc</td><td>Oceanic crust on both sides; volcanoes ~50–100 km apart</td><td>Marianas</td></tr>
+        <tr><td>Convergent — continental arc</td><td>Often andesitic/rhyolitic, more explosive (viscous lava); alternates effusive/explosive over a volcano's life</td><td>Cascades, Andes</td></tr>
+        <tr><td>Continental rift</td><td>Fissure eruptions along rift faults, or flood basalts</td><td>Iceland (a hot spot superimposed on the Mid-Atlantic Ridge)</td></tr>
+        <tr><td>Hot spot / intraplate</td><td>Mantle plume rising near the core-mantle boundary; plate motion leaves a track of progressively older, extinct volcanoes</td><td>Yellowstone hot-spot track along the Snake River Plain</td></tr>
+      </table>
+      <p>Subduction zones border over 60% of the Pacific Ocean, forming the 20,000-km Ring of Fire <span class="cite m">M 134</span>. This section is your direct bridge to §7.2/§7.3 below (earthquake distribution follows the same plate-boundary logic).</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SEISMOLOGY -->
+  <!-- ============================================================ -->
+  <section class="category sei" id="seismology">
+    <div class="cat-header">
+      <div class="cat-label">03 / Seismology</div>
+      <h2 class="cat-title">Earthquake mechanism, waves, hazard &amp; the deep interior</h2>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.1</div>
+      <h3 class="sub-title">Earthquake mechanism</h3>
+      <p>Marshak's actual terms — not "elastic rebound" alone: <strong>elastic-rebound theory</strong> and <strong>stick-slip behavior</strong> <span class="cite m">M 221</span>. During fault formation, rock bends elastically as stress builds, storing strain energy. When stress overcomes friction on the fault, the rock ruptures suddenly, the stored elastic strain is released, and the rock snaps back toward its unstrained shape — this vibration is the earthquake. Faults don't creep continuously; they move in sudden increments (stick-slip), each increment a separate earthquake.</p>
+      <p>Key terms: <strong>focus</strong> (a.k.a. hypocenter) = the actual point of rupture at depth; <strong>epicenter</strong> = the point on the surface directly above the focus <span class="cite m">M 219</span>. <strong>Foreshocks</strong> precede the main rupture, <strong>aftershocks</strong> follow it as the fault zone adjusts <span class="cite m">M 221</span>.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.2</div>
+      <h3 class="sub-title">Seismic waves, measurement &amp; magnitude</h3>
+      <table>
+        <tr><th>Wave type</th><th>Category</th><th>Motion</th><th>Speed</th></tr>
+        <tr><td>P-wave (compressional)</td><td>Body wave</td><td>Push-pull, parallel to travel direction</td><td>Fastest — arrives first</td></tr>
+        <tr><td>S-wave (shear)</td><td>Body wave</td><td>Side-to-side, perpendicular to travel direction; cannot travel through liquid</td><td>Slower than P</td></tr>
+        <tr><td>L-wave (Love)</td><td>Surface wave</td><td>Ground moves back and forth horizontally</td><td>Slower still, largest amplitude</td></tr>
+        <tr><td>R-wave (Rayleigh)</td><td>Surface wave</td><td>Ground moves up and down (rolling motion)</td><td>Similar to L-wave</td></tr>
+      </table>
+      <p>A <strong>seismometer</strong> records ground motion as a <strong>seismogram</strong>; the arrival-time gap between P- and S-waves (the S–P interval) is used to calculate distance to the epicenter, and triangulating from three or more stations locates it <span class="cite m">M 225–227</span>.</p>
+      <p><strong>Magnitude vs. intensity</strong> — these measure fundamentally different things <span class="cite m">M 228–230</span>:</p>
+      <ul>
+        <li><strong>Magnitude</strong> (Richter/local magnitude M<sub>L</sub>, or moment magnitude M<sub>W</sub>) — an objective, instrument-based measure of the energy released. M<sub>L</sub> is distance-limited and less accurate for large or distant earthquakes; M<sub>W</sub> is the modern standard, calculated from wave amplitudes, fault-plane dimensions, and displacement. Largest ever recorded: 1960 Chile, M<sub>W</sub> 9.5.</li>
+        <li><strong>Modified Mercalli Intensity (MMI)</strong> — a subjective scale based on observed damage/felt effects at a specific location; varies by distance from epicenter and local ground conditions, unlike magnitude, which is a single number for the whole event.</li>
+      </ul>
+      <p>All magnitude scales are <strong>logarithmic</strong>: +1 magnitude unit = 10× the ground-motion amplitude and roughly 32× the energy release. A magnitude 8 quake releases about 1,000,000× more energy than a magnitude 4 <span class="cite m">M 229</span>.</p>
+
+      <div class="diagram-frame">
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'IBM Plex Mono',monospace;">
+          <text x="350" y="20" text-anchor="middle" font-size="13" fill="#20241f" font-weight="600">Magnitude Is Logarithmic</text>
+          <line x1="60" y1="150" x2="640" y2="150" stroke="#c9cdc0" stroke-width="1.5"/>
+          <line x1="60" y1="150" x2="60" y2="35" stroke="#c9cdc0" stroke-width="1.5"/>
+          <text x="350" y="175" text-anchor="middle" font-size="10" fill="#4b5148">Magnitude</text>
+          <text x="25" y="95" font-size="9" fill="#4b5148" transform="rotate(-90 25 95)">Energy (relative)</text>
+          <path d="M 100,148 C 250,146 400,120 550,45" fill="none" stroke="#a63328" stroke-width="2.5"/>
+          <g font-size="9.5" fill="#20241f">
+            <circle cx="150" cy="147" r="3" fill="#a63328"/><text x="150" y="162" text-anchor="middle">M4</text>
+            <circle cx="300" cy="140" r="3" fill="#a63328"/><text x="300" y="162" text-anchor="middle">M5</text>
+            <circle cx="450" cy="105" r="3" fill="#a63328"/><text x="450" y="162" text-anchor="middle">M7</text>
+            <circle cx="550" cy="45" r="3" fill="#a63328"/><text x="550" y="35" text-anchor="middle">M8 ≈ 1,000,000× M4</text>
+          </g>
+          <text x="640" y="170" text-anchor="end" font-size="9" fill="#4b5148" font-style="italic">curve shape illustrative — ~32× energy per whole-number step</text>
+        </svg>
+        <div class="diagram-caption">Original diagram — energy-per-magnitude relationship follows <span class="cite m" style="margin-left:0;">M 229</span></div>
+      </div>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.3</div>
+      <h3 class="sub-title">Distribution, hazard, prediction &amp; the deep interior</h3>
+      <p>Most earthquakes cluster in <strong>seismic belts</strong>, largely coincident with plate boundaries; <strong>intraplate earthquakes</strong> occur within plate interiors, away from boundaries, and are generally less understood <span class="cite m">M 231, 236</span>. At subduction zones, earthquake foci define an inclined plane dipping into the mantle along the downgoing slab — the <strong>Wadati-Benioff zone</strong> <span class="cite m">M 233</span>.</p>
+      <p><strong>Hazards:</strong> ground shaking, landslides, sediment liquefaction (saturated loose sediment temporarily behaves like a fluid under shaking), fire, and tsunamis <span class="cite m">M 236–240</span>.</p>
+      <p><strong>Prediction:</strong> seismologists can identify seismic zones as more likely and estimate <strong>recurrence intervals</strong> for large earthquakes, but precise time/place prediction remains out of reach <span class="cite m">M 245</span>. Mitigation instead relies on earthquake engineering (retrofitting, building codes) and zoning <span class="cite m">M 247–248</span>.</p>
+
+      <p><strong>Earth's interior, from seismic evidence</strong> <span class="cite m">M 253–259, Interlude D</span>, independently corroborated (same depths for Moho, CMB, and shadow zones) <span class="cite e">Earle Ch.9, §9.1</span>:</p>
+      <table>
+        <tr><th>Boundary/feature</th><th>Depth</th><th>Evidence</th></tr>
+        <tr><td>Moho (crust–mantle)</td><td>7–70 km (varies by location)</td><td>Seismic-velocity discontinuity</td></tr>
+        <tr><td>Core–mantle boundary</td><td>2,900 km</td><td>P-wave shadow zone (103°–143° from epicenter) — refraction/absorption pattern implies a dense, different-composition core</td></tr>
+        <tr><td>Outer core / inner core boundary</td><td>5,155 km</td><td>S-wave shadow zone — S-waves don't propagate through the outer core at all, meaning it's liquid</td></tr>
+        <tr><td>Earth's center</td><td>6,371 km</td><td>—</td></tr>
+      </table>
+      <p>Continental crust averages 35–40 km thick, roughly 4–5× thicker than oceanic crust. The technique underlying all of this — <strong>seismic reflection and refraction</strong> — is the same one used at Interlude D scale (whole-Earth) and at engineering-site scale (Domain G territory); the physics doesn't change, only the depth of investigation.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="sub-number">3.4</div>
+      <h3 class="sub-title">Paleoseismic history</h3>
+      <div class="gap-box">
+        <strong>Paleoseismology exploration methods and OSL specifically remain unconfirmed — checked five sources now (Marshak, USBR, Earle, Waldron &amp; Snyder, White), zero hits for "paleoseismology," "OSL," or "thermoluminescence" in any of them.</strong> Trenching methodology and OSL description below are standard content, no page reference exists for those two pieces.
+      </div>
+      <ul>
+        <li><strong>Exploration methods</strong> — trenching across a fault trace to expose offset stratigraphy; each buried, offset soil horizon or sand blow (liquefaction feature) can represent one prehistoric rupture event, allowing a recurrence interval to be estimated from the vertical stack of events. <span class="cite gap">Gap</span></li>
+        <li><strong>Absolute age determination — ¹⁴C</strong> (radiocarbon) dating of organic material in offset/buried horizons (already in your Category 2 isotope table — same technique, applied here to constrain rupture timing rather than rock age).</li>
+        <li><strong>Absolute age determination — cosmogenic nuclide exposure dating</strong>, newly verified. White's <em>Isotope Geochemistry</em> §4.1.5.3 covers ³⁶Cl (and ²⁶Al) exposure dating directly, with a worked paleoseismology-adjacent example: Phillips et al. (1990) dated moraine boulders at Bloody Canyon, eastern Sierra Nevada, by measuring ³⁶Cl built up in the rock surface since exposure to cosmic rays — the same logic used to date fault-scarp surfaces once cosmogenic-nuclide production rates are known for the site's latitude, elevation, and rock chemistry (Cl, K, Ca content) <span class="cite wh">White §4.1.5.3</span>. Caveats the source itself raises: inherited nuclides from prior exposure, preferential leaching, surface erosion, and snow shielding all bias ages young, so the maximum age in a scatter of results is generally preferred. This isn't OSL, but it's the same category of problem (dating a geomorphic surface's exposure history) and is a real, standard technique — useful bonus content even though it doesn't close the specific OSL request.</li>
+        <li><strong>Absolute age determination — OSL (optically stimulated luminescence)</strong> dates the last time quartz/feldspar sediment grains were exposed to sunlight, useful where no datable organic material is present — common in fault-scarp colluvium and alluvial fan deposits. <span class="cite gap">Gap</span> — not found in any of the five sources checked; would need a dedicated Quaternary geochronology/luminescence-dating source.</li>
+        <li><strong>Relative age determination</strong> — standard cross-cutting relationships (a fault that offsets a unit is younger than that unit; a unit that buries/onlaps a fault scarp without being offset postdates the most recent rupture) — this part is just applying principles you already know from stratigraphy to a fault-trench context.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="legend">
+    <h2>Citation key</h2>
+    <div class="legend-row"><span class="cite m">M 266</span> Marshak, <em>Essentials of Geology</em> 4th ed. — verified page from your uploaded copy, cross-checked against chapter-end Key Terms page lists where possible for exact page precision</div>
+    <div class="legend-row"><span class="cite h">Hoek Ch.4</span> Hoek, <em>Practical Rock Engineering</em> (Rocscience "Hoek's Corner", ASBOG-recommended) — verified chapter/equation</div>
+    <div class="legend-row"><span class="cite u">USBR Vol.1</span> Bureau of Reclamation, <em>Engineering Geology Field Manual</em> (ASBOG-recommended) — verified chapter/page</div>
+    <div class="legend-row"><span class="cite e">Earle</span> Steven Earle, <em>Physical Geology</em> (BCcampus, open textbook, CC BY 4.0) — verified chapter/section, used for cross-corroboration</div>
+    <div class="legend-row"><span class="cite w">Waldron &amp; Snyder</span> John Waldron &amp; Morgan Snyder, <em>Geological Structures: A Practical Introduction</em> (University of Alberta / Open Education Alberta, CC BY-NC) — verified section, resolved the map-technique gap</div>
+    <div class="legend-row"><span class="cite r">Andrews 1971</span> J.T. Andrews, <em>Techniques of Till Fabric Analysis</em>, British Geomorphological Research Group Tech. Bull. No. 6, via University of Regina — verified for rose-diagram construction; dated source, different application domain (till fabric, not fracture orientation), flagged accordingly</div>
+    <div class="legend-row"><span class="cite wh">White</span> William M. White, <em>Isotope Geochemistry</em> (Wiley, 2015) — verified chapter/section, same source used in your Category 2 guide for isotope systems</div>
+    <div class="legend-row"><span class="cite asbog">ASBOG</span> ASBOG Candidate Handbook (Jan 2024) or Domain E Knowledge Base — official scope/blueprint</div>
+    <div class="legend-row"><span class="cite gap">Gap</span> Valid ASBOG Domain E content confirmed absent from all sources checked so far — needs a supplemental source before flashcard-lock</div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--ink-soft);">This guide is intentionally lean, matching the Category 2 template — reference layer, not practice layer. Diagrams are original constructions, not reproductions of any source's figures. The Domain E Knowledge Base (asbog.org/candidates/kb.html) is meaningfully more granular than the Handbook's one-paragraph summary — worth checking the other seven domain KB pages too before assuming the Handbook's Appendix 2 wording is the full scope for any category.</p>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-soft);"><strong>Final status:</strong> Mohr circle/friction angle/cohesion (E-5.2), stereonets (E-3.2), three-point problems/structure contours/rule of Vs (E-1), and rose diagrams (E-3.2) — all resolved against real sources. OSL dating (E-6.2.1) confirmed absent from five sources (Marshak, USBR, Earle, Waldron &amp; Snyder, White) — genuinely needs a dedicated Quaternary geochronology/luminescence source not yet in hand. Paleoseismic trenching methodology (§3.4) also remains unsourced, tagged separately.</p>
+  </div>
+</footer>
+
+</body>
+</html>
