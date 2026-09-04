@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>FG Review</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FG Review">
+<meta name="theme-color" content="#20241f">
+<link rel="manifest" href="asbog-fg-review-manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
+    --verified:#2f7a4d; --verified-soft:#dcefe1;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;line-height:1.5;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:18px 16px 40px;min-height:100vh;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:24px;margin:2px 0 14px;}
+  .track-note{font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:8px 12px;margin-bottom:20px;}
+
+  .gen-btn{
+    width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:12px;
+    padding:18px 18px;margin-bottom:12px;text-align:left;
+  }
+  .gen-btn strong{display:block;font-family:'Fraunces',serif;font-size:18px;margin-bottom:4px;}
+  .gen-btn span{font-size:12.5px;color:var(--ink-soft);}
+  .gen-controls{display:flex;align-items:center;gap:10px;margin-top:12px;}
+  .gen-controls input[type=number]{
+    width:64px;font-family:'IBM Plex Mono',monospace;font-size:16px;padding:10px;
+    border:1px solid var(--rule);border-radius:8px;text-align:center;background:#fff;
+  }
+  .gen-controls button{
+    flex:1;font-family:'IBM Plex Mono',monospace;font-size:14px;padding:12px;border-radius:20px;
+    border:none;background:var(--ink);color:#fff;
+  }
+
+  .mixed-session{margin-top:20px;}
+  .mixed-statbar{
+    display:flex;justify-content:space-between;align-items:center;background:var(--paper);
+    border:1px solid var(--rule);border-radius:6px;padding:10px 14px;margin-bottom:14px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+  }
+  .mixed-card{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:22px 20px;min-height:52vh;display:flex;flex-direction:column;}
+  .mixed-tagrow{display:flex;justify-content:space-between;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .mixed-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;padding:3px 9px;border-radius:10px;border:1px solid var(--rule);color:var(--ink-soft);}
+  .mixed-prompt{font-family:'Fraunces',serif;font-weight:500;font-size:19px;line-height:1.4;flex:1;}
+  .mixed-divider{border:none;border-top:1px dashed var(--rule);margin:16px 0;}
+  .mixed-answer{font-size:15px;line-height:1.55;display:none;}
+  .mixed-answer.show{display:block;}
+  .mixed-cite{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--verified-soft);color:var(--verified);padding:2px 8px;border-radius:10px;margin-top:8px;}
+  .mixed-reveal-btn{width:100%;background:var(--ink);color:#fff;border:none;font-family:'IBM Plex Mono',monospace;font-size:15px;padding:16px;border-radius:12px;margin-top:auto;}
+  .mixed-rate-row{display:none;gap:8px;margin-top:16px;}
+  .mixed-rate-row.show{display:grid;grid-template-columns:1fr 1fr;}
+  .mixed-rate-row button{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:14px 6px;border-radius:10px;border:1.5px solid var(--rule);background:#fff;}
+  .mixed-rate-row button.again{border-color:#b5453a;color:#b5453a;}
+  .mixed-rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
+  .mixed-rate-row button.good{border-color:var(--verified);color:var(--verified);}
+  .mixed-rate-row button.easy{border-color:#3b5b7a;color:#3b5b7a;}
+  .mixed-done{text-align:center;padding:60px 20px;background:var(--paper);border:1px solid var(--rule);border-radius:12px;}
+  .mixed-done h3{font-family:'Fraunces',serif;font-size:20px;margin:0 0 8px;}
+  .mixed-done p{color:var(--ink-soft);font-size:13.5px;}
+  .mixed-done button{margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 20px;border-radius:20px;border:1px solid var(--ink);background:none;color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">ASBOG&reg; FG</div>
+  <h1>Mixed Review</h1>
+  <div class="track-note">This app tracks its own progress, separate from the laptop hub &mdash; ratings here don't sync with the per-domain decks.</div>
+
+  <div class="gen-btn">
+    <strong>Quick review</strong>
+    <span>10&ndash;15 cards</span>
+    <div class="gen-controls">
+      <input type="number" id="quickN" min="10" max="15" value="12">
+      <button onclick="startMixedSession('quickN',10,15)">Start</button>
+    </div>
+  </div>
+  <div class="gen-btn">
+    <strong>Full review</strong>
+    <span>20&ndash;30 cards</span>
+    <div class="gen-controls">
+      <input type="number" id="fullN" min="20" max="30" value="25">
+      <button onclick="startMixedSession('fullN',20,30)">Start</button>
+    </div>
+  </div>
+
+  <div class="mixed-session" id="mixedSession"></div>
+</div>
+
+<script src="asbog-fg-review-logic.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('asbog-fg-review-sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
