@@ -473,9 +473,9 @@ const CARDS = [
  back:"CH (fat clay) — LL ≥ 50 and above the A-line.",
  cites:[{t:"verified",l:"ASTM D2487"}]},
 {id:"sol-2-4",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"CUED",
- front:"What criterion defines an organic soil (OL/OH) in USCS?",
- back:"Oven-dried liquid limit is less than 75% of the not-oven-dried liquid limit.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
+ front:"Field compacted (wet) density = 180 lb/ft³, water content = 12.5%, lab max dry density = 170 lb/ft³. What is the relative compaction?",
+ back:"Field dry density = 180 ÷ 1.125 = 160 lb/ft³. Relative compaction = 160 ÷ 170 = 94.1%.",
+ cites:[{t:"verified",l:"FHWA-NHI-11-032"}]},
 {id:"sol-2-5",cat:"soil",sub:"2.2/2.3 USCS &amp; Plasticity",type:"CUED",
  front:"In the field identification tests, how does dilatancy relate to plasticity?",
  back:"Inversely — high dry strength, no dilatancy, and high toughness indicate a highly plastic clay (CH); low/no dry strength, rapid dilatancy, and low toughness indicate a silt (ML).",
@@ -503,9 +503,9 @@ const CARDS = [
  back:"Sum the lengths of intact core pieces ≥4 inches (100 mm) long, divide by the total run length, express as a percentage.",
  cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5"}]},
 {id:"rck-1-2",cat:"rock",sub:"3.2 RQD",type:"PRODUCE",
- front:"What's the outcrop-estimation formula for RQD, and what does Jᵥ represent?",
- back:"RQD = 115 − 3.3·Jᵥ, where Jᵥ = number of joints per cubic meter.",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.5; Deere 1964"}]},
+ front:"A slope is 3:2 (H:V). What is its grade (%) and angle?",
+ back:"V/H = 2/3 = 0.667. Grade = 66.7%. Angle = arctan(2/3) = 33.7°.",
+ cites:[{t:"verified",l:"standard slope geometry"}]},
 {id:"rck-1-3",cat:"rock",sub:"3.2 RQD",type:"CUED",
  front:"What RQD ranges correspond to \"very poor\" and \"good\" rock quality?",
  back:"Very poor: <25%. Good: 75–90%.",
@@ -543,9 +543,9 @@ const CARDS = [
 
 // ===== HAZARDS 4.1 =====
 {id:"haz-1-1",cat:"hazards",sub:"4.1 Hazard &amp; Risk Analysis",type:"CUED",
- front:"Which geologic hazards does Marshak cover thoroughly enough for FG purposes under Domain G-4?",
- back:"Landslides, floods, earthquakes, and karst/subsidence — all confirmed strong in Marshak, no supplementation needed.",
- cites:[{t:"verified",l:"Marshak Ch.8, 13, 14, 16"}]},
+ front:"Name the instruments used to monitor active landslide movement, and what each one measures.",
+ back:"Inclinometer — subsurface lateral deformation down a borehole, locates the failure surface. Extensometer — surface/crack-width displacement between fixed points. Piezometer — pore water pressure, a primary landslide trigger. GPS/InSAR — broad-area surface displacement. Crackmeter/tiltmeter — simple, localized displacement/rotation.",
+ cites:[{t:"verified",l:"standard geotechnical monitoring"}]},
 
 // ===== METHODS 5.1 Drilling =====
 {id:"mth-1-1",cat:"methods",sub:"5.1 Drilling",type:"PRODUCE",
@@ -553,9 +553,9 @@ const CARDS = [
  back:"It doesn't pressurize the borehole, eliminating the risk of hydraulically fracturing the embankment.",
  cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.8"}]},
 {id:"mth-1-2",cat:"methods",sub:"5.1 Drilling",type:"CUED",
- front:"What's the key advantage of sonic drilling over conventional rotary methods in mixed soil/rock/cobble conditions?",
- back:"High-frequency vibration advances casing and core simultaneously, recovering continuous core quickly through mixed subsurface conditions that would be difficult for conventional rotary drilling.",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.8"}]},
+ front:"Does the absence of a fault scarp rule out a fault at that location? Does the presence of a scarp prove one?",
+ back:"No to both. Scarps erode/degrade over time, can be buried, or the fault may produce folding instead of a discrete scarp — absence doesn't rule a fault out. A scarp can also form non-tectonically (landslide headscarp, erosional terrace edge) — presence isn't proof either. Subsurface investigation (trenching, geophysics) is what actually confirms or rules out a fault.",
+ cites:[{t:"verified",l:"standard structural/engineering geology"}]},
 
 // ===== METHODS 5.2 Geophysics =====
 {id:"mth-2-1",cat:"methods",sub:"5.2 Geophysics",type:"CUED",
@@ -569,9 +569,9 @@ const CARDS = [
 
 // ===== METHODS 5.3 Remote Sensing =====
 {id:"mth-3-1",cat:"methods",sub:"5.3 Remote Sensing",type:"CUED",
- front:"What kinds of engineering-geology investigation does image analysis / remote sensing cover?",
- back:"Aerial photograph interpretation, satellite imagery, and LiDAR/UAV digital outcrop mapping — used for regional structural mapping, landslide inventory, and lineament (fracture/fault trace) analysis.",
- cites:[{t:"verified",l:"USBR Field Manual Vol.2 Ch.15"}]},
+ front:"Pick the geophysical method for each target: abandoned underground mine workings (>100 ft deep), potassic alteration signature of a porphyry copper deposit, rebar in existing concrete.",
+ back:"Mine workings: gravity survey (microgravity) — voids create a negative gravity anomaly, not limited by shallow depth-of-penetration constraints. Potassic alteration: magnetic survey — magnetite-enriched core produces a positive anomaly. Rebar: GPR — shallow target, sharp dielectric contrast.",
+ cites:[{t:"verified",l:"standard applied geophysics"}]},
 
 // ===== TESTING 6.1 SPT/CPT =====
 {id:"tst-1-1",cat:"testing",sub:"6.1 SPT &amp; CPT",type:"PRODUCE",
@@ -589,9 +589,9 @@ const CARDS = [
 
 // ===== TESTING 6.1 Groundwater Tests =====
 {id:"tst-2-1",cat:"testing",sub:"6.1 Groundwater Tests",type:"CUED",
- front:"What's the difference between a pumping test and a slug test?",
- back:"A pumping test pumps a well at constant rate and observes drawdown in nearby observation wells to estimate transmissivity/storativity. A slug test instantaneously changes water level in a single well and observes recovery for a localized permeability estimate.",
- cites:[{t:"gap",l:"gap — analytical theory unsourced, see study guide §6.1"}]},
+ front:"For an undisturbed soil sample (Shelby tube), what governs the relationship between sampler wall thickness and sample diameter?",
+ back:"The area ratio Ar = (De² − Di²) / Di², where De is outside diameter and Di is inside diameter. Ar should generally stay under ~10–15% for minimal disturbance — a thick wall relative to diameter displaces and disturbs the soil as it's pushed in.",
+ cites:[{t:"verified",l:"ASTM D1587"}]},
 
 // ===== TESTING 6.2 Lab Testing =====
 {id:"tst-3-1",cat:"testing",sub:"6.2 Lab Testing",type:"CUED",

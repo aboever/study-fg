@@ -394,13 +394,18 @@
         <li><strong>Compaction</strong> — mechanical densification (reducing air voids), typically for engineered fill</li>
         <li><strong>Consolidation</strong> — time-dependent settlement from expulsion of pore water under load; most significant in saturated fine-grained (clay) soils</li>
       </ul>
+      <p><strong>Relative compaction</strong> = (field dry density &divide; laboratory max dry density) &times; 100% — the standard field QA/QC metric for engineered fill, independent of the compaction/consolidation distinction above. Requires converting a wet (bulk) field density to a <em>dry</em> density first if water content is given separately: dry density = wet density &divide; (1 + water content).</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--paper);padding:10px 14px;border-radius:var(--radius);">Worked example: field compacted (wet) density = 180 lb/ft&sup3;, water content = 12.5%, lab max dry density = 170 lb/ft&sup3;. Field dry density = 180 &divide; 1.125 = 160 lb/ft&sup3;. Relative compaction = 160 &divide; 170 = <strong>94.1%</strong>.</p>
     </div>
 
     <div class="specimen">
       <div class="sub-number">2.6</div>
       <h3 class="sub-title">Soil Slope Stability</h3>
       <p>Strong qualitative grounding: downslope vs. resistance force, angle of repose (30–37&deg; typical, up to 45&deg; for large angular grains), weak failure surfaces (wet clay, unconsolidated wet sand, joints, bedding, foliation) <span class="cite v">Marshak Ch.13, pp.406–413</span>. Remediation techniques — terracing, drainage/lowering water table, retaining walls, riprap, rock bolts, revegetation — are Marshak-sourced directly <span class="cite v">Marshak Fig.13.17</span>.</p>
-      <p><strong>Factor of safety:</strong> FS = resisting forces / driving forces; FS &lt; 1 indicates failure <span class="cite v">FHWA-NHI-11-032</span>.</p>
+      <p><strong>Factor of safety:</strong> FS = resisting forces / driving forces; FS &lt; 1 indicates failure (driving forces exceed resisting forces — the slope is unstable, not necessarily that it has already failed at that exact instant, but that it will move without intervention). FS &gt; 1 indicates stability, with the margin above 1 indicating how much reserve capacity exists <span class="cite v">FHWA-NHI-11-032</span>.</p>
+      <p><strong>Slope grade and angle</strong> — a slope expressed as a ratio (H:V, horizontal run : vertical rise) converts to grade (%) as (V/H)&times;100, and to angle via arctan(V/H).</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--paper);padding:10px 14px;border-radius:var(--radius);">Worked example: a 3:2 (H:V) slope &rarr; V/H = 2/3 = 0.667. Grade = <strong>66.7%</strong>. Angle = arctan(2/3) = <strong>33.7&deg;</strong>.</p>
+      <p><strong>Scarp without an obvious fault</strong> — a fault scarp (a steep step in the ground surface marking a fault trace) is strong evidence of past fault movement, but its absence, or an existing scarp with no visible fault, doesn't rule a fault out: scarps erode and degrade over time (especially in humid climates or on unconsolidated material), can be buried by later deposition, or the fault may have produced folding/warping at the surface rather than a clean discrete scarp. A scarp can also form from purely non-tectonic causes (landslide headscarp, erosional terrace edge) — so a scarp's presence isn't proof of faulting either. Surface expression is an unreliable, two-way indicator on its own; subsurface investigation (trenching, geophysics) is what actually confirms or rules out a fault.</p>
     </div>
   </section>
 
@@ -476,7 +481,16 @@
     <div class="specimen">
       <div class="sub-number">4.1</div>
       <h3 class="sub-title">Hazard &amp; Risk Analysis</h3>
-      <p>This is Marshak's home turf — landslides <span class="cite v">Marshak Ch.13</span>, floods <span class="cite v">Marshak Ch.14</span>, earthquakes <span class="cite v">Marshak Ch.8</span>, karst/subsidence <span class="cite v">Marshak Ch.16</span>. FG-sufficient as-is; no supplementation required.</p>
+      <p>This is Marshak's home turf — landslides <span class="cite v">Marshak Ch.13</span>, floods <span class="cite v">Marshak Ch.14</span>, earthquakes <span class="cite v">Marshak Ch.8</span>, karst/subsidence <span class="cite v">Marshak Ch.16</span>. FG-sufficient as-is for the hazard mechanisms themselves; one specific gap found since — monitoring instrumentation for active slope movement, which is a distinct topic from what causes a landslide.</p>
+      <p><strong>Landslide/slope monitoring instruments</strong>:</p>
+      <ul>
+        <li><strong>Inclinometer</strong> — measures subsurface lateral deformation down a borehole casing; the standard tool for locating the actual failure/shear surface depth, not just detecting that movement is happening</li>
+        <li><strong>Extensometer</strong> — measures surface or crack-width displacement between two fixed points over time</li>
+        <li><strong>Piezometer</strong> — monitors pore water pressure, not displacement directly, but critical since rising pore pressure is a primary landslide trigger (below)</li>
+        <li><strong>GPS/InSAR</strong> — surface displacement over broad areas, useful for regional monitoring rather than a single slope</li>
+        <li><strong>Crackmeter/tiltmeter</strong> — simple, localized displacement/rotation sensors, often the first instruments installed on a newly identified moving slope</li>
+      </ul>
+      <p style="font-size:12.5px;color:var(--ink-soft);">What's <em>not</em> useful here: instruments that measure something unrelated to displacement or pore pressure — e.g., a standard gamma-ray log (lithology, not movement) or a magnetometer (mineral/structural mapping, not slope kinematics) would be the wrong tool if a question asks you to pick the non-useful option from a list of monitoring instruments.</p>
     </div>
   </section>
 
@@ -512,6 +526,12 @@
         <tr><td>Ground-penetrating radar (GPR)</td><td>Very shallow, high resolution (&lt;10–15 m, less in clay)</td><td>Utilities, voids, shallow stratigraphy; poor in saturated clay (signal attenuation)</td></tr>
         <tr><td>Borehole geophysics</td><td>In-hole logging (natural gamma, resistivity, caliper)</td><td>Correlate strata between widely spaced borings</td></tr>
       </table>
+      <p><strong>Method selection by specific target</strong> — the exam tends to test this as "given this target, pick the method," not just "what does each method measure":</p>
+      <ul>
+        <li><strong>Abandoned underground mine workings, &gt;100 ft deep</strong> — gravity survey (microgravity) is the standard first-pass method: void spaces create a measurable negative gravity anomaly, and gravity isn't limited by the same depth-of-penetration constraints as GPR or shallow resistivity at that depth. Magnetics can help too if the workings have metal debris/rails.</li>
+        <li><strong>Potassic alteration signature of a porphyry copper deposit</strong> — magnetic survey: potassic-zone alteration (K-feldspar, biotite, secondary magnetite) is magnetite-enriched relative to the propylitic halo, producing a detectable positive magnetic anomaly centered on the alteration core.</li>
+        <li><strong>Rebar location in existing concrete</strong> — ground-penetrating radar (GPR): shallow target, sharp dielectric contrast between rebar and concrete, exactly GPR's strength; this is a standard forensic/structural application distinct from GPR's geologic uses above.</li>
+      </ul>
       <div class="note-box">Sourced at chapter-scope confidence, not full-text verified: <span class="cite v" style="margin-left:0;">USBR Field Manual Vol.2 Ch.13/14, "Surface and Borehole Geophysical Investigations"</span> — chapter scope and title confirmed against the USBR TOC; full chapter text not yet pulled. Flag if you want this closed to full-text verification before relying on it for exact wording.</div>
     </div>
 
@@ -542,6 +562,7 @@
         <li>Reclamation uses SPT data for dam liquefaction-hazard evaluation — direct tie to G-4</li>
       </ul>
       <p><strong>Cone Penetration Test (CPT)</strong> — continuously pushed at controlled rate (1.5–2.5 cm/s); measures tip resistance and sleeve friction continuously with depth; no physical sample recovered (key CPT-vs-SPT distinction); piezocone (CPTu) variants add pore-pressure measurement.</p>
+      <p><strong>Undisturbed sampling</strong> — a genuinely different goal from SPT, which deliberately drives a thick-walled sampler and accepts disturbance. For an undisturbed sample (thin-walled "Shelby tube," ASTM D1587), the sampler's <strong>wall thickness must be thin relative to the sample diameter</strong> — a thick wall displaces and disturbs the soil as it's pushed in, defeating the purpose. This is formalized as the <strong>area ratio</strong>: A<sub>r</sub> = (D<sub>e</sub>&sup2; &minus; D<sub>i</sub>&sup2;) / D<sub>i</sub>&sup2;, where D<sub>e</sub> is the sampler's outside diameter and D<sub>i</sub> is its inside diameter. A<sub>r</sub> should generally stay under ~10&ndash;15% for a sample to be considered minimally disturbed — the direct, quantitative answer to "what's the relationship between sample diameter and sampler wall thickness."</p>
     </div>
 
     <div class="specimen">

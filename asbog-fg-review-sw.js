@@ -1,4 +1,4 @@
-const CACHE_NAME = 'asbog-fg-review-v1';
+const CACHE_NAME = 'asbog-fg-review-v2';
 const ASSETS = [
   './asbog-fg-mobile-review.html',
   './asbog-fg-review-logic.js',

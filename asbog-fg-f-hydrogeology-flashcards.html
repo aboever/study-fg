@@ -456,9 +456,9 @@ const CARDS = [
  back:"Evapotranspiration, infiltration, precipitation, and recharge (with discharge as the corresponding output side of the budget).",
  cites:[{t:"verified",l:"Marshak pp.390–393"},{t:"verified",l:"Freeze &amp; Cherry 1979 Ch.6.2"}]},
 {id:"cyc-4-2",cat:"cycle",sub:"1.4 Mass Balance",type:"CUED",
- front:"Is sublimation explicitly treated as a named water-balance term in any of your sourced texts?",
- back:"No — flagged as an open gap. The concept (ice/snow → vapor without a liquid phase) is basic, but no source checked (Marshak, Freeze &amp; Cherry, Groundwater Project) names it as a discrete water-balance component.",
- cites:[{t:"gap",l:"gap — see study guide §1.4"}]},
+ front:"What is MTBE, and why is it a persistent groundwater contaminant?",
+ back:"Methyl Tert-Butyl Ether — a gasoline additive (1979–early 2000s) used to boost octane. Highly soluble and mobile in groundwater compared to other gasoline components, so it travels farther and faster from leaking underground storage tanks (the primary source).",
+ cites:[{t:"verified",l:"standard contaminant hydrogeology"}]},
 
 // ===== CYCLE 1.5 Stream Discharge & Hydrographs =====
 {id:"cyc-5-1",cat:"cycle",sub:"1.5 Discharge &amp; Hydrographs",type:"PRODUCE",
@@ -556,9 +556,9 @@ const CARDS = [
  back:"Adjusting a model's input parameters so its simulated heads match observed field heads — working backward from known outcomes to unknown parameters.",
  cites:[{t:"verified",l:"Freeze &amp; Cherry 1979 Ch.8.8"}]},
 {id:"flw-2-3",cat:"flow",sub:"3.2 Flow Models",type:"CUED",
- front:"(Beyond FG scope) What was MODFLOW's defining architectural innovation, and when was it first released?",
- back:"First released 1984; its defining innovation is a modular 'package' architecture — separate packages (River, Recharge, Well, General-Head Boundary, etc.) handle different boundary conditions around a shared flow-solution core, rather than requiring a custom monolithic code per problem.",
- cites:[{t:"verified",l:"McDonald &amp; Harbaugh 2003, Groundwater 41(2)"}]},
+ front:"What is connate water?",
+ back:"Water trapped in a sediment's pores at the time of deposition, rather than water that later infiltrated from the surface — effectively \"fossil\" pore water, often more saline than modern groundwater. More commonly discussed in petroleum/subsurface fluids context than active groundwater systems.",
+ cites:[{t:"verified",l:"standard subsurface fluids terminology"}]},
 
 // ===== FLOW 3.3 Well Interference =====
 {id:"flw-3-1",cat:"flow",sub:"3.3 Well Interference",type:"PRODUCE",
@@ -604,8 +604,8 @@ const CARDS = [
  back:"Hvorslev assumes a homogeneous, isotropic, infinite medium and neglects wellbore storage. Bouwer-Rice accounts for finite wellbore storage and works for confined, unconfined, or partially penetrating wells.",
  cites:[{t:"verified",l:"USBR Vol.2 Ch.17, pp.166–174"}]},
 {id:"mth-3-3",cat:"methods",sub:"4.3 Single-Well Tests",type:"CUED",
- front:"Give the formula for specific capacity.",
- back:"Specific capacity = well yield ÷ drawdown at that yield — a quick, approximate index of well/aquifer performance, distinct from a full aquifer test.",
+ front:"A well is pumped steadily at 1000 GPM. Static water level was 50 ft below ground surface; pumping water level is 150 ft below ground surface. What is the specific capacity?",
+ back:"Drawdown = 150 − 50 = 100 ft. Specific capacity = 1000 GPM ÷ 100 ft = 10 GPM/ft.",
  cites:[{t:"verified",l:"study guide §4.3"}]},
 
 // ===== METHODS 4.4 Multiple-Well (Pumping) Tests =====
@@ -642,9 +642,9 @@ const CARDS = [
  back:"A porous cup, water-filled tube, and vacuum gauge assembly; as soil pulls water out of the cup through suction, the vacuum inside the tube increases until it matches the soil-water pressure, which is read on the gauge.",
  cites:[{t:"verified",l:"Freeze &amp; Cherry 1979 Ch.2.6"}]},
 {id:"mth-6-3",cat:"methods",sub:"4.6 Unsaturated Zone",type:"CUED",
- front:"What physical principle does TDR (time domain reflectometry) use to measure soil-water content?",
- back:"The propagation velocity of an electromagnetic pulse along a waveguide embedded in the soil — velocity depends on the soil's dielectric properties, which are strongly influenced by water content.",
- cites:[{t:"verified",l:"Everett, Hoylman &amp; Wilson 1984"}]},
+ front:"What does a gamma-ray log measure, and what is it standardly used to identify?",
+ back:"Natural formation radioactivity. Standard log for distinguishing shale from other sedimentary rocks — shale's clay content carries naturally higher radioactivity (K, Th, U) than clean sandstone or limestone. Works in both open and cased holes.",
+ cites:[{t:"verified",l:"standard well-logging practice"}]},
 
 // ===== METHODS 4.7 Hydrogeophysical Methods =====
 {id:"mth-7-1",cat:"methods",sub:"4.7 Hydrogeophysics",type:"CUED",
@@ -670,9 +670,9 @@ const CARDS = [
  back:"Visualizing which chemical species/oxidation states are stable across a range of redox potential (pE or Eh) and pH conditions in a water system.",
  cites:[{t:"verified",l:"Stumm &amp; Morgan 1996 Ch.8, §8.4, p.455"}]},
 {id:"gch-1-3",cat:"geochem",sub:"5.1 Geochemical Parameters",type:"CUED",
- front:"Match the natural water-quality issue to its cause: rusty staining, rotten-egg odor, toxic contamination from a widely-feared trace element.",
- back:"Rusty staining = dissolved iron oxide precipitating out. Rotten-egg odor = dissolved hydrogen sulfide (H₂S) coming out of solution. Toxic trace element = arsenic, entering groundwater as As-bearing minerals dissolve.",
- cites:[{t:"verified",l:"Marshak p.486"}]},
+ front:"What is effective well development, and what's its measurable result?",
+ back:"Post-drilling techniques (surging, jetting, overpumping) that remove fine material clogging the well screen/adjacent formation, improving the hydraulic connection to the aquifer. Result: increased specific capacity and reduced well-loss component of drawdown.",
+ cites:[{t:"verified",l:"standard water-well construction practice"}]},
 
 // ===== GEOCHEM 5.2 Contaminants =====
 {id:"gch-2-1",cat:"geochem",sub:"5.2 Contaminants",type:"CUED",
