@@ -80,6 +80,21 @@
     border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;
   }
   .gen-controls button:hover{opacity:.88;}
+  .domain-filter{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin-top:14px;}
+  .domain-filter-label{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .domain-filter-grid{display:flex;gap:8px;flex-wrap:wrap;}
+  .domain-pill{position:relative;}
+  .domain-pill input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;}
+  .domain-pill label{
+    display:block;min-width:56px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;
+    padding:8px 10px;border-radius:8px;border:1.5px solid var(--rule);background:#fff;color:var(--ink-soft);cursor:pointer;
+  }
+  .domain-pill input:checked + label{border-color:var(--verified);background:var(--verified-soft);color:var(--verified);}
+  .domain-filter-actions{display:flex;gap:10px;margin-top:10px;}
+  .domain-filter-actions button{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 12px;border-radius:14px;
+    border:1px solid var(--rule);background:none;color:var(--ink-soft);cursor:pointer;
+  }
   .mixed-session{margin-top:22px;}
   .mixed-statbar{
     display:flex;justify-content:space-between;align-items:center;background:var(--paper);
@@ -117,7 +132,7 @@
     <div class="eyebrow">ASBOG&reg; Fundamentals of Geology</div>
     <h1>Study Hub</h1>
     <p class="sub">One index into all eight FG domains — study guides, flashcard decks, and (soon) glossary and weighted mixed-domain review.</p>
-    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.1 &middot; Last updated Sept 11, 2026</p>
+    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.5 &middot; Last updated Sept 26, 2026</p>
     <div class="exam-note">Exam: Thursday, October 1, 2026 — 12:45 PM</div>
   </header>
 
@@ -190,7 +205,24 @@
 
   <div class="section">
     <h2>Mixed-Domain Review</h2>
-    <p class="section-sub">Weighted random draw across all eight domains, proportional to the official ASBOG FG blueprint, with cards you know less well drawn more often. Ratings update the same progress data as each domain's own deck.</p>
+    <p class="section-sub">Weighted random draw across the domains you select below, proportional to the official ASBOG FG blueprint (renormalized if you narrow the selection), with cards you know less well drawn more often. Ratings update the same progress data as each domain's own deck.</p>
+    <div class="domain-filter">
+      <div class="domain-filter-label">Domains included</div>
+      <div class="domain-filter-grid">
+        <div class="domain-pill"><input type="checkbox" id="dom-A" class="domain-filter-checkbox" value="A" checked><label for="dom-A">A</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-B" class="domain-filter-checkbox" value="B" checked><label for="dom-B">B</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-C" class="domain-filter-checkbox" value="C" checked><label for="dom-C">C</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-D" class="domain-filter-checkbox" value="D" checked><label for="dom-D">D</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-E" class="domain-filter-checkbox" value="E" checked><label for="dom-E">E</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-F" class="domain-filter-checkbox" value="F" checked><label for="dom-F">F</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-G" class="domain-filter-checkbox" value="G" checked><label for="dom-G">G</label></div>
+        <div class="domain-pill"><input type="checkbox" id="dom-H" class="domain-filter-checkbox" value="H" checked><label for="dom-H">H</label></div>
+      </div>
+      <div class="domain-filter-actions">
+        <button type="button" onclick="document.querySelectorAll('.domain-filter-checkbox').forEach(b=>b.checked=true)">All</button>
+        <button type="button" onclick="document.querySelectorAll('.domain-filter-checkbox').forEach(b=>b.checked=false)">None</button>
+      </div>
+    </div>
     <div class="gen-row">
       <div class="gen-btn active-mode">
         <strong>Quick review</strong>
@@ -273,23 +305,29 @@
       </div>
 
       <div class="plan-week">
-        <div class="wk-label">Week 4 &middot; Sept 23&ndash;29</div>
-        <h3>Integrated review, Practice Exams #3 &amp; #4</h3>
+        <div class="wk-label">Week 4 &middot; Sept 23&ndash;25</div>
+        <h3>Exam #2 retaken late (Sept 25, not Sept 17 as planned)</h3>
         <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
-          <li>Wed 9/23 &mdash; Mixed-domain generator, full review (20&ndash;30 cards), blueprint-weighted</li>
-          <li>Thu 9/24 &mdash; <strong>Practice Exam #3</strong> (practice mode)</li>
-          <li>Fri 9/25 &mdash; Review Exam #3 misses; flagged-card cleanup across all ten decks</li>
-          <li>Sat 9/26 (light) &mdash; mixed-domain generator, quick pull</li>
-          <li>Sun 9/27 (light) &mdash; mixed-domain generator, quick pull</li>
-          <li>Mon 9/28 &mdash; <strong>Practice Exam #4</strong> (<strong>test mode</strong> &mdash; timed, no mid-test feedback, simulates real exam conditions/pacing)</li>
-          <li>Tue 9/29 &mdash; Review Exam #4 misses; final full-spectrum flashcard pass, all domains</li>
+          <li>Thu 9/25 &mdash; <strong>Practice Exam #2</strong> (practice mode): 74% overall (101 Q). B 82%, F 93% &mdash; huge gains, both now strengths. C 58%, E 69% &mdash; improving, still soft. <strong>G 45%, H 56% &mdash; reversed from earlier strengths, now the two weakest domains.</strong> Schedule was 8 days behind here &mdash; compressing the rest below rather than pretending two more full exam cycles still fit in 6 days.</li>
+        </ul>
+      </div>
+
+      <div class="plan-week">
+        <div class="wk-label">Final 6 days &middot; Sept 26&ndash;Oct 1</div>
+        <h3>Revised: C/E are the consistent weak spots, not G/H</h3>
+        <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);">
+          <li style="margin-bottom:6px;"><em>Reconsidered from the original post-Exam-#2 plan: G's 75%&rarr;45% swing was on small, topic-disparate samples (8, then 11 questions) and likely reflects which G sub-topics got drawn, not a real regression. C (50%&rarr;58%) and E (64%&rarr;69%) are the domains that scored below 70% on <strong>both</strong> exams, with more consistent sample sizes &mdash; a repeated signal, not noise. Prioritizing accordingly.</em></li>
+          <li>Sat 9/26 &mdash; Domain C: intensive remediation &mdash; guide + full deck + flagged cards, including everything added recently (dolomitization, phosphorite, varves, oxygen isotope paleothermometry)</li>
+          <li>Sun 9/27 (full day, not the usual light weekend day) &mdash; Domain C reinforcement + Domain E intensive remediation via flashcards (growth faults, magnetic striping/chron boundaries, stereonet/structural interpretation), <strong>then a Udemy domain-filtered practice-mode session on C/E/G/H</strong> &mdash; a targeted diagnostic/reinforcement check on exactly these four domains, not a full-length timed rep</li>
+          <li>Mon 9/28 &mdash; Review Sunday's filtered-session misses first thing, then <strong>Practice Exam #3, full-length, test mode</strong> (timed, no mid-test feedback, all domains proportional) &mdash; the pacing/stamina rep a domain-subset session can't substitute for, done close to the actual exam on purpose</li>
+          <li>Tue 9/29 &mdash; Review Exam #3 misses; light buffer on whatever still shows weak across any domain</li>
         </ul>
       </div>
 
       <div class="plan-week taper">
         <div class="wk-label">Sept 30 &middot; Taper</div>
         <h3>Light review only, 20&ndash;30 minutes</h3>
-        <p>Flagged cards and Domain B/C specifically (updated from the original E/B priority). No new material, no full decks.</p>
+        <p>Flagged cards only, whatever Exam #3 still flags as weak. No new material, no full decks.</p>
       </div>
 
       <div class="plan-week examday">
@@ -2871,8 +2909,13 @@ function buildDomainPools(){
 
 // Largest remainder (Hamilton) apportionment: proportional allocation of N cards across
 // domains by blueprint weight, exact total, minimum-1 floor as a defensive backstop.
-function allocateByBlueprint(N, pools){
-  const shares = BLUEPRINT.map(b => ({domain:b.domain, exact: (b.weight/100)*N}));
+function allocateByBlueprint(N, pools, activeDomains){
+  const active = (activeDomains && activeDomains.length) ? activeDomains : DOMAIN_ORDER;
+  const activeSet = new Set(active);
+  const activeBlueprint = BLUEPRINT.filter(b => activeSet.has(b.domain));
+  const weightSum = activeBlueprint.reduce((s,b) => s + b.weight, 0);
+
+  const shares = activeBlueprint.map(b => ({domain:b.domain, exact: (b.weight/weightSum)*N}));
   const floors = shares.map(s => ({domain:s.domain, count: Math.floor(s.exact), rem: s.exact - Math.floor(s.exact)}));
   let allocated = floors.reduce((sum,f) => sum + f.count, 0);
   let remaining = N - allocated;
@@ -2895,6 +2938,7 @@ function allocateByBlueprint(N, pools){
   }
 
   const alloc = {};
+  DOMAIN_ORDER.forEach(d => alloc[d] = 0); // domains outside the active set explicitly get 0
   floors.forEach(f => alloc[f.domain] = Math.min(f.count, pools[f.domain].length));
   return alloc;
 }
@@ -2909,9 +2953,9 @@ function setProgress(storageKey, progress){
   try{ localStorage.setItem(storageKey, JSON.stringify(progress)); }catch(e){ /* storage unavailable */ }
 }
 
-function buildMixedDeck(N){
+function buildMixedDeck(N, activeDomains){
   const pools = buildDomainPools();
-  const alloc = allocateByBlueprint(N, pools);
+  const alloc = allocateByBlueprint(N, pools, activeDomains);
   let deck = [];
   DOMAIN_ORDER.forEach(d => {
     const src = pools[d];
@@ -2961,11 +3005,23 @@ let mixedQueue = [];
 let mixedCurrent = null;
 let mixedTotal = 0;
 
+function getActiveDomains(){
+  const boxes = document.querySelectorAll('.domain-filter-checkbox');
+  if(!boxes.length) return DOMAIN_ORDER; // no filter UI present, default to all
+  const checked = Array.from(boxes).filter(b => b.checked).map(b => b.value);
+  return checked;
+}
+
 function startMixedSession(inputId, min, max){
+  const activeDomains = getActiveDomains();
+  if(activeDomains.length === 0){
+    alert('Select at least one domain before starting a review session.');
+    return;
+  }
   let N = parseInt(document.getElementById(inputId).value, 10);
   if(isNaN(N)) N = min;
   N = Math.max(min, Math.min(max, N));
-  mixedQueue = buildMixedDeck(N).map(c => ({card:c}));
+  mixedQueue = buildMixedDeck(N, activeDomains).map(c => ({card:c}));
   mixedTotal = mixedQueue.length;
   document.getElementById('mixedSession').scrollIntoView({behavior:'smooth', block:'start'});
   nextMixedCard();

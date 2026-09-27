@@ -2560,8 +2560,13 @@ function buildDomainPools(){
 
 // Largest remainder (Hamilton) apportionment: proportional allocation of N cards across
 // domains by blueprint weight, exact total, minimum-1 floor as a defensive backstop.
-function allocateByBlueprint(N, pools){
-  const shares = BLUEPRINT.map(b => ({domain:b.domain, exact: (b.weight/100)*N}));
+function allocateByBlueprint(N, pools, activeDomains){
+  const active = (activeDomains && activeDomains.length) ? activeDomains : DOMAIN_ORDER;
+  const activeSet = new Set(active);
+  const activeBlueprint = BLUEPRINT.filter(b => activeSet.has(b.domain));
+  const weightSum = activeBlueprint.reduce((s,b) => s + b.weight, 0);
+
+  const shares = activeBlueprint.map(b => ({domain:b.domain, exact: (b.weight/weightSum)*N}));
   const floors = shares.map(s => ({domain:s.domain, count: Math.floor(s.exact), rem: s.exact - Math.floor(s.exact)}));
   let allocated = floors.reduce((sum,f) => sum + f.count, 0);
   let remaining = N - allocated;
@@ -2584,6 +2589,7 @@ function allocateByBlueprint(N, pools){
   }
 
   const alloc = {};
+  DOMAIN_ORDER.forEach(d => alloc[d] = 0); // domains outside the active set explicitly get 0
   floors.forEach(f => alloc[f.domain] = Math.min(f.count, pools[f.domain].length));
   return alloc;
 }
@@ -2598,9 +2604,9 @@ function setProgress(storageKey, progress){
   try{ localStorage.setItem('mobilegen-' + storageKey, JSON.stringify(progress)); }catch(e){ /* storage unavailable */ }
 }
 
-function buildMixedDeck(N){
+function buildMixedDeck(N, activeDomains){
   const pools = buildDomainPools();
-  const alloc = allocateByBlueprint(N, pools);
+  const alloc = allocateByBlueprint(N, pools, activeDomains);
   let deck = [];
   DOMAIN_ORDER.forEach(d => {
     const src = pools[d];
@@ -2650,11 +2656,23 @@ let mixedQueue = [];
 let mixedCurrent = null;
 let mixedTotal = 0;
 
+function getActiveDomains(){
+  const boxes = document.querySelectorAll('.domain-filter-checkbox');
+  if(!boxes.length) return DOMAIN_ORDER; // no filter UI present, default to all
+  const checked = Array.from(boxes).filter(b => b.checked).map(b => b.value);
+  return checked;
+}
+
 function startMixedSession(inputId, min, max){
+  const activeDomains = getActiveDomains();
+  if(activeDomains.length === 0){
+    alert('Select at least one domain before starting a review session.');
+    return;
+  }
   let N = parseInt(document.getElementById(inputId).value, 10);
   if(isNaN(N)) N = min;
   N = Math.max(min, Math.min(max, N));
-  mixedQueue = buildMixedDeck(N).map(c => ({card:c}));
+  mixedQueue = buildMixedDeck(N, activeDomains).map(c => ({card:c}));
   mixedTotal = mixedQueue.length;
   document.getElementById('mixedSession').scrollIntoView({behavior:'smooth', block:'start'});
   nextMixedCard();
