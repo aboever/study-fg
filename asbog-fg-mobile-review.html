@@ -17,6 +17,22 @@
     --bg:#eef0ea; --paper:#fbfaf6; --ink:#20241f; --ink-soft:#4b5148; --rule:#c9cdc0;
     --verified:#2f7a4d; --verified-soft:#dcefe1;
   }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14160f; --paper:#1e2219; --ink:#eef0ea; --ink-soft:#a8ab9f; --rule:#3a3f34;
+      --verified:#5fb383; --verified-soft:#24352b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14160f; --paper:#1e2219; --ink:#eef0ea; --ink-soft:#a8ab9f; --rule:#3a3f34;
+    --verified:#5fb383; --verified-soft:#24352b;
+  }
+  .theme-toggle{
+    position:fixed; top:calc(env(safe-area-inset-top, 0px) + 10px); right:14px;
+    width:40px; height:40px; border-radius:20px; border:1px solid var(--rule);
+    background:var(--paper); color:var(--ink); font-size:18px; line-height:38px; text-align:center;
+    z-index:100; cursor:pointer;
+  }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{height:100%;}
   body{
@@ -90,10 +106,11 @@
 </head>
 <body>
 <div class="wrap">
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">&#9789;</button>
   <div class="eyebrow">ASBOG&reg; FG</div>
   <h1>Mixed Review</h1>
   <div class="track-note">This app tracks its own progress, separate from the laptop hub &mdash; ratings here don't sync with the per-domain decks.</div>
-  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);opacity:.75;margin:-8px 0 14px;">v1.1 &middot; Sept 26, 2026</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);opacity:.75;margin:-8px 0 14px;">v1.2 &middot; Sept 27, 2026</p>
 
   <div class="domain-filter">
     <div class="domain-filter-label">Domains included</div>
@@ -133,6 +150,30 @@
   <div class="mixed-session" id="mixedSession"></div>
 </div>
 
+<script>
+(function(){
+  function systemPrefersDark(){
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function currentTheme(){
+    var saved = null;
+    try { saved = localStorage.getItem('mobilegen-theme-override'); } catch(e) {}
+    if(saved === 'light' || saved === 'dark') return saved;
+    return systemPrefersDark() ? 'dark' : 'light';
+  }
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    var btn = document.getElementById('themeToggle');
+    if(btn) btn.innerHTML = theme === 'dark' ? '&#9788;' : '&#9789;';
+  }
+  window.toggleTheme = function(){
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('mobilegen-theme-override', next); } catch(e) {}
+    applyTheme(next);
+  };
+  applyTheme(currentTheme());
+})();
+</script>
 <script src="asbog-fg-review-logic.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
