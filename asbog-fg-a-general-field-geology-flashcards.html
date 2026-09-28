@@ -565,9 +565,9 @@ const CARDS = [
  back:"Bare-earth DEM = last laser return, vegetation/structures filtered out (ground surface only). DSM = everything the laser hit, including canopy/buildings.",
  cites:[{t:"verified",l:"Sun et al. (2022) / Roberts (2010)"}]},
 {id:"map-4-3",cat:"map",sub:"3.4 LiDAR",type:"PRODUCE",
- front:"Name three advantages of airborne LiDAR over conventional photogrammetry for geologic mapping.",
- back:"(1) Direct 3D measurement vs. photogrammetry's indirect derivation; (2) partial vegetation-canopy penetration, revealing bare-earth topography directly; (3) active sensor — largely independent of lighting/weather.",
- cites:[{t:"verified",l:"Sun et al. (2022)"}]},
+ front:"Applying the Rule of V's: a dipping bed crosses a stream valley and its outcrop trace points upstream. What does this tell you about the dip direction? What would you see instead for a horizontal bed, or a vertical bed?",
+ back:"V pointing upstream means the bed dips downstream (same direction as the valley slopes). A horizontal bed also V's pointing upstream, but its trace closely follows the topographic contours regardless of any dip. A vertical bed shows no V at all — it crosses the valley as a straight line.",
+ cites:[{t:"verified",l:"standard structural geology field mapping"}]},
 
 // ===== MAPPING 3.5 GIS =====
 {id:"map-5-1",cat:"map",sub:"3.5 GIS",type:"PRODUCE",
@@ -575,9 +575,9 @@ const CARDS = [
  back:"Vector = discrete features (points/lines/polygons) with attribute data linked via an ID field to a table. Raster = a grid of cells, each with one value — better suited to continuous data like elevation or spectral imagery.",
  cites:[{t:"verified",l:"Campbell & Shin (Saylor Academy)"}]},
 {id:"map-5-2",cat:"map",sub:"3.5 GIS",type:"CUED",
- front:"In a real geologic-mapping geodatabase, how are feature classes and relational tables connected to enable a query like \"select all major carbonate polygons\"?",
- back:"Via a shared key field — feature classes (polygons/polylines/points) are linked to relational tables (e.g., Age, Lithology) by that key, so an attribute-based query on the table automatically highlights the matching map features.",
- cites:[{t:"verified",l:"Horton, San Juan & Stoeser (2017)"}]},
+ front:"What is a Jacob's staff, and what does it let you measure directly?",
+ back:"A graduated pole, held vertically and sighted with a hand-level/clinometer, used to measure stratigraphic thickness in the field bed-by-bed — directly, without needing to calculate true thickness from an oblique outcrop width via trigonometry.",
+ cites:[{t:"verified",l:"standard field geology technique"}]},
 
 // ===== MAPPING 3.6 Relative Dating =====
 {id:"map-6-1",cat:"map",sub:"3.6 Relative Dating",type:"PRODUCE",

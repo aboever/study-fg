@@ -422,9 +422,9 @@
 const CARDS = [
 // ===== CYCLE 1.1 Hydrologic Cycle =====
 {id:"cyc-1-1",cat:"cycle",sub:"1.1 Hydrologic Cycle",type:"PRODUCE",
- front:"About what percentage of ocean volume evaporates annually, and what fraction of that precipitates directly back into the ocean?",
- back:"About 30% of ocean volume evaporates annually; roughly 76% of that precipitates directly back into the ocean (the remainder falls on land).",
- cites:[{t:"verified",l:"Marshak p.390"}]},
+ front:"What condition must be met for a well to be classified as \"flowing artesian,\" specifically?",
+ back:"The potentiometric surface must be above ground level at the well location, so water discharges at the surface with no pumping. \"Artesian\" alone only requires the potentiometric surface to exceed the top of the confined aquifer — \"flowing\" is the stricter condition.",
+ cites:[{t:"verified",l:"standard hydrogeology"}]},
 {id:"cyc-1-2",cat:"cycle",sub:"1.1 Hydrologic Cycle",type:"CUED",
  front:"Define evapotranspiration.",
  back:"The sum of evaporation from bodies of water, evaporation from the ground surface, and release of water from plants and animals.",
@@ -548,13 +548,13 @@ const CARDS = [
 
 // ===== FLOW 3.2 Flow Models =====
 {id:"flw-2-1",cat:"flow",sub:"3.2 Flow Models",type:"CUED",
- front:"What's the difference between finite-difference and finite-element numerical groundwater models?",
- back:"Both discretize and solve the groundwater flow equation over a grid, but they use different discretization/solution schemes (rectangular grid cells for finite-difference vs. flexible mesh elements for finite-element).",
- cites:[{t:"verified",l:"Freeze &amp; Cherry 1979 Ch.8.8–8.9"}]},
+ front:"A well shows significant microbial (biological) plugging on its screen slots. What effect on specific capacity, and why does it matter to distinguish from mechanical clogging?",
+ back:"Lower specific capacity — biofouling (often iron/manganese-oxidizing bacteria) clogs screen openings and pore space, same measurable symptom as poor well development. Matters because remediation differs: biofouling often needs chemical (chlorination) or mechanical (brushing/surging) rehabilitation, not standard development alone.",
+ cites:[{t:"verified",l:"standard water-well maintenance"}]},
 {id:"flw-2-2",cat:"flow",sub:"3.2 Flow Models",type:"PRODUCE",
- front:"What is the 'inverse problem' in groundwater model calibration?",
- back:"Adjusting a model's input parameters so its simulated heads match observed field heads — working backward from known outcomes to unknown parameters.",
- cites:[{t:"verified",l:"Freeze &amp; Cherry 1979 Ch.8.8"}]},
+ front:"What triggers saltwater intrusion in a coastal aquifer, specifically?",
+ back:"Reduced freshwater hydraulic head/pressure (commonly from overpumping near the coast), not simply proximity to the ocean. Lower freshwater head lets the denser saline interface migrate landward and upward in response (Ghyben-Herzberg relationship describes the static interface depth).",
+ cites:[{t:"verified",l:"standard coastal hydrogeology"}]},
 {id:"flw-2-3",cat:"flow",sub:"3.2 Flow Models",type:"CUED",
  front:"What is connate water?",
  back:"Water trapped in a sediment's pores at the time of deposition, rather than water that later infiltrated from the surface — effectively \"fossil\" pore water, often more saline than modern groundwater. More commonly discussed in petroleum/subsurface fluids context than active groundwater systems.",
