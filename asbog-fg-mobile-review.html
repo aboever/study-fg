@@ -58,9 +58,11 @@
   .domain-pill input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;}
   .domain-pill label{
     display:block;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;
-    padding:10px 4px;border-radius:8px;border:1.5px solid var(--rule);background:#fff;color:var(--ink-soft);
+    padding:8px 3px;border-radius:8px;border:1.5px solid var(--rule);background:#fff;color:var(--ink-soft);
   }
   .domain-pill input:checked + label{border-color:var(--verified);background:var(--verified-soft);color:var(--verified);}
+  .domain-pill label b{display:block;font-size:14px;}
+  .domain-pill label span{display:block;font-family:'Source Sans 3',sans-serif;font-weight:500;font-size:10px;line-height:1.15;margin-top:2px;overflow-wrap:anywhere;}
   .domain-filter-actions{display:flex;gap:10px;margin-top:10px;}
   .domain-filter-actions button{
     flex:1;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:6px;border-radius:14px;
@@ -110,19 +112,19 @@
   <div class="eyebrow">ASBOG&reg; FG</div>
   <h1>Mixed Review</h1>
   <div class="track-note">This app tracks its own progress, separate from the laptop hub &mdash; ratings here don't sync with the per-domain decks.</div>
-  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);opacity:.75;margin:-8px 0 14px;">v1.2 &middot; Sept 27, 2026</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);opacity:.75;margin:-8px 0 14px;">v1.3 &middot; Sept 27, 2026</p>
 
   <div class="domain-filter">
     <div class="domain-filter-label">Domains included</div>
     <div class="domain-filter-grid">
-      <div class="domain-pill"><input type="checkbox" id="dom-A" class="domain-filter-checkbox" value="A" checked><label for="dom-A">A</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-B" class="domain-filter-checkbox" value="B" checked><label for="dom-B">B</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-C" class="domain-filter-checkbox" value="C" checked><label for="dom-C">C</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-D" class="domain-filter-checkbox" value="D" checked><label for="dom-D">D</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-E" class="domain-filter-checkbox" value="E" checked><label for="dom-E">E</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-F" class="domain-filter-checkbox" value="F" checked><label for="dom-F">F</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-G" class="domain-filter-checkbox" value="G" checked><label for="dom-G">G</label></div>
-      <div class="domain-pill"><input type="checkbox" id="dom-H" class="domain-filter-checkbox" value="H" checked><label for="dom-H">H</label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-A" class="domain-filter-checkbox" value="A" checked><label for="dom-A"><b>A</b><span>Gen/<wbr>Field</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-B" class="domain-filter-checkbox" value="B" checked><label for="dom-B"><b>B</b><span>Min/<wbr>Pet/<wbr>Geochem</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-C" class="domain-filter-checkbox" value="C" checked><label for="dom-C"><b>C</b><span>Sed/<wbr>Strat/<wbr>Paleo</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-D" class="domain-filter-checkbox" value="D" checked><label for="dom-D"><b>D</b><span>Geomorph/<wbr>Surficial</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-E" class="domain-filter-checkbox" value="E" checked><label for="dom-E"><b>E</b><span>Struct/<wbr>Tect/<wbr>Seis</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-F" class="domain-filter-checkbox" value="F" checked><label for="dom-F"><b>F</b><span>Hydro</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-G" class="domain-filter-checkbox" value="G" checked><label for="dom-G"><b>G</b><span>Eng Geo</span></label></div>
+      <div class="domain-pill"><input type="checkbox" id="dom-H" class="domain-filter-checkbox" value="H" checked><label for="dom-H"><b>H</b><span>Econ/<wbr>Energy</span></label></div>
     </div>
     <div class="domain-filter-actions">
       <button type="button" onclick="document.querySelectorAll('.domain-filter-checkbox').forEach(b=>b.checked=true)">All</button>
