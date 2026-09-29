@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASBOG FG — Domain G Priority Deck: USCS &amp; Plasticity Chart</title>
+<title>ASBOG FG — Priority Minerals & Rock Names Flashcards</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -13,12 +13,9 @@
     --ink:#20241f;
     --ink-soft:#4b5148;
     --rule:#c9cdc0;
-    --f1:#2f6b6e;
-    --f2:#93691a;
-    --f3:#6d3f60;
-    --f4:#3b5b7a;
-    --f5:#a3462c;
-    --f6:#5c6b2e;
+    --mineralogy:#9c6b30;
+    --petrology:#a63d1f;
+    --geochem:#1f6e73;
     --verified:#2f7a4d;
     --verified-soft:#dcefe1;
     --asbog:#54574d;
@@ -55,6 +52,7 @@
   }
   .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
 
+  /* legend */
   .legend{
     display:flex;
     flex-wrap:wrap;
@@ -66,6 +64,7 @@
   .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
   .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
 
+  /* stats bar */
   .statbar{
     display:flex;
     justify-content:space-between;
@@ -77,13 +76,11 @@
     margin:18px 0 26px;
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
-    flex-wrap:wrap;
-    gap:10px;
   }
   .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
   .statbar strong{color:var(--ink);}
   .progress-track{
-    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;min-width:60px;
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
   }
   .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
   button.textbtn{
@@ -91,6 +88,7 @@
     font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
   }
 
+  /* card */
   .card-shell{
     perspective:1400px;
     margin-bottom:20px;
@@ -109,10 +107,8 @@
     justify-content:space-between;
     align-items:center;
     margin-bottom:18px;
-    flex-wrap:wrap;
-    gap:8px;
   }
-  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tags{display:flex;gap:8px;}
   .tag{
     font-family:'IBM Plex Mono', monospace;
     font-size:10.5px;
@@ -123,12 +119,9 @@
     border:1px solid var(--rule);
     color:var(--ink-soft);
   }
-  .tag.cat-origins{border-color:var(--f1);color:var(--f1);}
-  .tag.cat-soil{border-color:var(--f2);color:var(--f2);}
-  .tag.cat-rock{border-color:var(--f3);color:var(--f3);}
-  .tag.cat-hazards{border-color:var(--f4);color:var(--f4);}
-  .tag.cat-methods{border-color:var(--f5);color:var(--f5);}
-  .tag.cat-testing{border-color:var(--f6);color:var(--f6);}
+  .tag.cat-min{border-color:var(--mineralogy);color:var(--mineralogy);}
+  .tag.cat-pet{border-color:var(--petrology);color:var(--petrology);}
+  .tag.cat-geo{border-color:var(--geochem);color:var(--geochem);}
   .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
   .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
 
@@ -161,7 +154,8 @@
   .cite.verified{background:var(--verified-soft);color:var(--verified);}
   .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
   .cite.gap{background:var(--gap-soft);color:var(--gap);}
-  .cite.other{background:var(--asbog-soft);color:var(--asbog);}
+
+  .diagram-reveal svg{width:100%;height:auto;margin-top:10px;}
 
   .reveal-btn{
     align-self:flex-start;
@@ -201,7 +195,7 @@
   .rate-row button.again{border-color:#b5453a;color:#b5453a;}
   .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
   .rate-row button.good{border-color:var(--verified);color:var(--verified);}
-  .rate-row button.easy{border-color:var(--f4);color:var(--f4);}
+  .rate-row button.easy{border-color:var(--geochem);color:var(--geochem);}
   .rate-row button:hover{filter:brightness(0.97);}
 
   .feedback-row{
@@ -224,7 +218,7 @@
   }
   .flag-btn:hover{border-color:var(--ink-soft);}
   .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
-  .flag-btn.note-active{background:var(--f4);color:#fff;border-color:var(--f4);}
+  .flag-btn.note-active{background:var(--geochem);color:#fff;border-color:var(--geochem);}
   .note-box{
     width:100%;
     margin-top:10px;
@@ -254,6 +248,7 @@
     cursor:pointer;
   }
 
+  /* feedback panel */
   .overlay{
     display:none;
     position:fixed;inset:0;
@@ -337,15 +332,18 @@
 <div class="wrap">
 
   <header>
-    <div class="eyebrow">ASBOG&reg; FG — Domain G — Priority Deck</div>
-    <h1>USCS Letter Codes &amp; the Plasticity Chart</h1>
-    <p class="sub">A short, high-value deck for the single most-tested figure in this domain — confirmed directly tested in the official Candidate Handbook FG sample questions (Appendix 3, Q27). Same engine and scheduling as the main Domain G deck; separate storage key so progress here won't collide with it.</p>
-    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.2 &middot; Last updated Sept 29, 2026</p>
+    <div class="eyebrow">ASBOG&reg; FG — Category 2 side-deck</div>
+    <h1>Priority Rocks — Flashcards</h1>
+    <p class="sub">Quick-reference recall deck: formula/crystal system/occurrence for every Tier 1–3 mineral, and mineral content/formation/setting for every rock name in the guide. Companion to the main Category 2 deck, not a replacement — use both.</p>
+    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.0 &middot; Last updated Sept 29, 2026</p>
   </header>
 
   <div class="legend">
-    <span><span class="dot" style="background:var(--f2);border-radius:50%;"></span>USCS &amp; Plasticity Chart</span>
-    <span><span class="cite verified" style="margin:0;">verified</span>full source in study guide</span>
+    <span><span class="dot" style="background:var(--mineralogy);border-radius:50%;"></span>Minerals (35 cards)</span>
+    <span><span class="dot" style="background:var(--petrology);border-radius:50%;"></span>Rock names (25 cards)</span>
+    <span><span class="cite verified" style="margin:0;">K 00</span>Klein &amp; Dutrow / Marshak page — verified</span>
+    <span><span class="cite asbog" style="margin:0;">ASBOG</span>handbook / official sample Q</span>
+    <span><span class="cite gap" style="margin:0;">Gap</span>not verified in either source</span>
   </div>
 
   <div class="statbar">
@@ -368,7 +366,7 @@
   <div class="overlay" id="syncOverlay">
     <div class="panel">
       <h2>Sync progress</h2>
-      <p class="panel-sub">Two ways to move progress between sessions/devices. Copy/paste is the more reliable method if the file picker shows no files.</p>
+      <p class="panel-sub">Two ways to move progress between sessions/devices — use whichever actually works in your setup. The copy/paste method is the more reliable one if the file picker shows no files, since it doesn't depend on browser download locations or file-type filtering.</p>
 
       <div style="margin-bottom:20px;">
         <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
@@ -399,7 +397,7 @@
   <div class="overlay" id="feedbackOverlay">
     <div class="panel">
       <h2>Flagged cards</h2>
-      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request.</p>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request, same as it did in the original discussion.</p>
       <div id="panelList"></div>
       <div class="panel-actions">
         <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
@@ -411,7 +409,7 @@
 
   <footer>
     <div class="box">
-      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if opened standalone in a browser, progress will not persist between sessions.
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if you've downloaded this file and opened it standalone in a browser, progress will not persist between sessions — it'll still work for a single sitting, just starting fresh each time you reopen it.
     </div>
   </footer>
 
@@ -419,81 +417,161 @@
 
 <script>
 const CARDS = [
-{id:"usc-1",cat:"soil",sub:"USCS Group Symbols",type:"PRODUCE",
- front:"What does the first letter of a USCS group symbol indicate?",
- back:"The dominant soil fraction — G (gravel), S (sand), M (silt), C (clay), O (organic), or PT (peat).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-2",cat:"soil",sub:"USCS Group Symbols",type:"PRODUCE",
- front:"What does the second letter of a USCS group symbol indicate?",
- back:"A gradation or plasticity modifier — W (well graded), P (poorly graded), M (silty), C (clayey), L (low plasticity), H (high plasticity).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-3",cat:"soil",sub:"Plasticity Chart",type:"CUED",
- front:"On the plasticity chart, what does the \u201cA\u201d-line separate?",
- back:"Clays (plot on/above the A-line) from silts (plot below the A-line).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-4",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"A soil has LL = 65 and plots above the A-line. What is its USCS group symbol?",
- back:"CH (fat clay) \u2014 LL \u2265 50 and above the A-line.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-5",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"A soil has LL = 30 and plots above the A-line. What is its USCS group symbol?",
- back:"CL (lean clay) \u2014 LL < 50 and above the A-line.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-6",cat:"soil",sub:"Plasticity Chart",type:"CUED",
- front:"What defines an organic soil (OL/OH) in USCS?",
- back:"Oven-dried liquid limit is less than 75% of the not-oven-dried liquid limit.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-7",cat:"soil",sub:"Field ID Tests",type:"CUED",
- front:"In the field identification tests, what does a soil showing high dry strength, no dilatancy, and high toughness indicate?",
- back:"A highly plastic clay (CH).",
- cites:[{t:"verified",l:"ASTM D2488"}]},
-{id:"usc-8",cat:"soil",sub:"Field ID Tests",type:"CUED",
- front:"In the field identification tests, what does a soil showing low/no dry strength, rapid dilatancy, and low toughness indicate?",
- back:"A silt (ML) \u2014 dilatancy is inversely related to plasticity.",
- cites:[{t:"verified",l:"ASTM D2488"}]},
-{id:"usc-9",cat:"soil",sub:"Particle Size",type:"PRODUCE",
- front:"What sieve size separates gravel from sand in USCS?",
- back:"The No. 4 sieve (4.75 mm).",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-10",cat:"soil",sub:"Particle Size",type:"PRODUCE",
- front:"What sieve size separates sand from fines (silt/clay) in USCS?",
- back:"The No. 200 sieve (0.075 mm).",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-11",cat:"soil",sub:"Particle Size",type:"CUED",
- front:"What percent-fines threshold separates a coarse-grained from a fine-grained USCS soil?",
- back:"50% \u2014 <50% fines is coarse-grained, \u226550% fines is fine-grained.",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-12",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"What is PI, and how is it calculated?",
- back:"Plasticity Index = LL \u2212 PL (Liquid Limit minus Plastic Limit).",
- cites:[{t:"verified",l:"ASTM D2487"}]}
+{id:"series-1",cat:"pet",sub:"Compositional Series",type:"PRODUCE",
+ front:"Name the igneous compositional series from ultramafic to felsic, with the intrusive rock for each.",
+ back:"Ultramafic (peridotite) → Mafic (gabbro) → Intermediate (diorite) → Felsic (granite). Silica increases, color lightens, density decreases across this same order.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-2",cat:"pet",sub:"Compositional Series",type:"PRODUCE",
+ front:"Name the extrusive (volcanic) equivalent for each intrusive rock: peridotite, gabbro, diorite, granite.",
+ back:"Peridotite → komatiite (rare). Gabbro → basalt. Diorite → andesite. Granite → rhyolite. Same composition as the intrusive pair, just fine-grained/glassy from fast cooling instead of coarse-grained from slow cooling.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-3",cat:"pet",sub:"Compositional Series",type:"CUED",
+ front:"Granodiorite sits between diorite and granite. What's its volcanic equivalent, and why is it easy to mix up with andesite/rhyolite?",
+ back:"Dacite. It's easy to mix up because dacite is compositionally between andesite (diorite's volcanic pair) and rhyolite (granite's volcanic pair) — same intermediate-position logic as granodiorite itself sitting between diorite and granite.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-4",cat:"pet",sub:"Compositional Series",type:"CUED",
+ front:"Across the ultramafic-to-felsic series, what happens to color, density, and silica content, in one direction?",
+ back:"Moving ultramafic → felsic: silica content increases, color lightens (dark → light), density decreases. Moving felsic → ultramafic reverses all three. One trend, three correlated observables — useful for identifying a rock's rough position in the series from hand-sample appearance alone.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-5",cat:"pet",sub:"Metamorphic Grade Series",type:"PRODUCE",
+ front:"Name the foliated metamorphic series from lowest to highest grade, same shale/mudstone protolith throughout.",
+ back:"Slate → phyllite → schist → gneiss. Foliation intensity and grain size both increase with grade: slate splits into flat dull sheets, phyllite has a silky sheen, schist shows visible mica flakes, gneiss shows compositional banding rather than mica foliation.",
+ cites:[{t:"verified",l:"standard metamorphic classification"}]},
+{id:"series-6",cat:"pet",sub:"Metamorphic Facies Series",type:"PRODUCE",
+ front:"Name the normal-geothermal-gradient facies series from lowest to highest grade, and the separate subduction-specific pair.",
+ back:"Normal gradient: zeolite → greenschist → amphibolite → granulite. Subduction (high P, low T): blueschist → eclogite. Same depth gives a different facies depending on which gradient applies — see Domain B guide §2.4 for the volcanic/typical/subduction comparison.",
+ cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]},
+{id:"r-granite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Granite",
+ back:"<strong>Minerals:</strong> quartz, K-feldspar, plagioclase, biotite/muscovite &middot; <strong>Texture:</strong> phaneritic (coarse), felsic &middot; <strong>Forms:</strong> slow crystallization of felsic magma at depth (intrusive) &middot; <strong>Found:</strong> cores of continental mountain belts, batholiths.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 578–583, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-rhyolite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Rhyolite",
+ back:"<strong>Minerals:</strong> same as granite (quartz, K-feldspar, plagioclase) but too fine-grained to see individual crystals &middot; <strong>Texture:</strong> aphanitic, felsic, often porphyritic &middot; <strong>Forms:</strong> rapid cooling of felsic lava at the surface (extrusive) &middot; <strong>Found:</strong> continental volcanic settings, often explosive eruptions.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 583, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-diorite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Diorite",
+ back:"<strong>Minerals:</strong> plagioclase (Na-rich), amphibole, some biotite/pyroxene, little/no quartz &middot; <strong>Texture:</strong> phaneritic, intermediate &middot; <strong>Forms:</strong> intrusive crystallization of intermediate magma &middot; <strong>Found:</strong> continental arc plutons above subduction zones.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 580, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-andesite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Andesite",
+ back:"<strong>Minerals:</strong> same as diorite (plagioclase, amphibole/pyroxene) but fine-grained &middot; <strong>Texture:</strong> aphanitic, intermediate, often porphyritic &middot; <strong>Forms:</strong> extrusive intermediate lava &middot; <strong>Found:</strong> classic continental arc volcano rock (Andes, Cascades) — the largest volumes of andesite occur where oceanic lithosphere subducts beneath continental crust.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 583, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-gabbro",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Gabbro",
+ back:"<strong>Minerals:</strong> Ca-plagioclase, pyroxene, some olivine — no quartz &middot; <strong>Texture:</strong> phaneritic, mafic &middot; <strong>Forms:</strong> slow crystallization of mafic magma at depth &middot; <strong>Found:</strong> lower oceanic crust, layered mafic intrusions.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 580, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-basalt",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Basalt",
+ back:"<strong>Minerals:</strong> same as gabbro (Ca-plagioclase, pyroxene, olivine) but fine-grained &middot; <strong>Texture:</strong> aphanitic, mafic, often vesicular &middot; <strong>Forms:</strong> extrusive mafic lava &middot; <strong>Found:</strong> the most common volcanic rock on Earth — ocean floor (mid-ocean ridges), flood basalt provinces, oceanic islands.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 583, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-peridotite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Peridotite",
+ back:"<strong>Minerals:</strong> dominantly olivine + pyroxene, essentially no feldspar &middot; <strong>Texture:</strong> phaneritic, ultramafic &middot; <strong>Forms:</strong> represents mantle rock directly, or cumulate crystal settling in mafic magma chambers &middot; <strong>Found:</strong> the mantle itself; ophiolite sequences (obducted oceanic mantle); source rock for serpentinite when hydrothermally altered.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 580, Ch.21"},{t:"verified",l:"Marshak (2013) 113"}]},
+{id:"r-pegmatite",cat:"pet",sub:"Igneous rock",type:"CUED",
+ front:"Pegmatite",
+ back:"<strong>Minerals:</strong> same broad composition as granite (usually) but exceptionally coarse; concentrates rare accessory minerals (tourmaline, beryl, mica books) &middot; <strong>Texture:</strong> extremely coarse-grained (crystals often &gt;a few cm) &middot; <strong>Forms:</strong> crystallizes from water-rich, slow-diffusing residual melt late in a magma chamber's cooling history &middot; <strong>Found:</strong> dikes/veins at the margins of granite plutons — the classic source for large gem crystals.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 585, Ch.21"}]},
+{id:"r-conglomerate",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Conglomerate / Breccia",
+ back:"<strong>Minerals:</strong> variable — whatever clasts were locally available (often quartz-rich) &middot; <strong>Texture:</strong> gravel-sized (&gt;2mm) clasts; conglomerate = rounded, breccia = angular &middot; <strong>Forms:</strong> high-energy deposition (rivers, alluvial fans, talus for breccia) with minimal transport distance (breccia) or significant transport/rounding (conglomerate).",
+ cites:[{t:"verified",l:"Marshak (2013) 167–168"}]},
+{id:"r-sandstone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Sandstone (quartz arenite / arkose / graywacke)",
+ back:"<strong>Minerals:</strong> quartz arenite = &gt;90% quartz (mature); arkose = abundant feldspar (immature, near-source); graywacke = lithic fragments + clay matrix (poorly sorted, often turbidite) &middot; <strong>Texture:</strong> sand-sized (1/16–2mm) &middot; <strong>Forms:</strong> beach/dune/fluvial/deltaic/turbidite deposition depending on variety.",
+ cites:[{t:"verified",l:"Marshak (2013) 167–168"}]},
+{id:"r-shale",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Shale",
+ back:"<strong>Minerals:</strong> clay minerals (illite, kaolinite, smectite) + fine quartz/mica &middot; <strong>Texture:</strong> clay-sized (&lt;1/256mm), fissile (splits along bedding) &middot; <strong>Forms:</strong> low-energy settling of fine mud in quiet water (lakes, deep marine, floodplains); the protolith for slate.",
+ cites:[{t:"verified",l:"Marshak (2013) 167–168"}]},
+{id:"r-limestone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Limestone",
+ back:"<strong>Minerals:</strong> calcite (dominant), sometimes aragonite &middot; <strong>Texture:</strong> variable — micritic (fine), bioclastic (fossil fragments), oolitic &middot; <strong>Forms:</strong> biochemical/chemical precipitation in warm, shallow marine environments — reefs, carbonate platforms; the protolith for marble.",
+ cites:[{t:"verified",l:"Marshak (2013) 164–172"},{t:"verified",l:"Klein & Dutrow (2007) 590, Ch.21"}]},
+{id:"r-dolostone",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Dolostone",
+ back:"<strong>Minerals:</strong> dolomite &middot; <strong>Texture:</strong> similar to limestone, often more crystalline/sugary &middot; <strong>Forms:</strong> diagenetic replacement of limestone by Mg-rich fluids (dolomitization) — rarely a primary precipitate.",
+ cites:[{t:"verified",l:"Marshak (2013) 164–172"}]},
+{id:"r-chert",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Chert",
+ back:"<strong>Minerals:</strong> cryptocrystalline quartz (SiO&#8322;) &middot; <strong>Texture:</strong> dense, glassy to dull, conchoidal fracture &middot; <strong>Forms:</strong> biogenic (accumulation of radiolarian/diatom silica skeletons on deep ocean floor) or chemical precipitation/nodule replacement in limestone.",
+ cites:[{t:"verified",l:"Marshak (2013) 164–172"}]},
+{id:"r-evaporite",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Evaporite (rock gypsum / rock salt)",
+ back:"<strong>Minerals:</strong> gypsum/anhydrite or halite, precipitating in that solubility order &middot; <strong>Texture:</strong> crystalline, often bedded/laminated &middot; <strong>Forms:</strong> evaporation of restricted seawater or saline lake water in arid climates (e.g., silled basins, playas).",
+ cites:[{t:"verified",l:"Marshak (2013) 164–172"}]},
+{id:"r-coal",cat:"pet",sub:"Sedimentary rock",type:"CUED",
+ front:"Coal",
+ back:"<strong>Minerals:</strong> not mineral-based — organic carbon (plant material) with minor mineral impurities &middot; <strong>Texture:</strong> banded, low density &middot; <strong>Forms:</strong> accumulation and burial of plant material in low-oxygen swamp/peat environments, progressively compacted and matured (peat &#8594; lignite &#8594; bituminous &#8594; anthracite).",
+ cites:[{t:"verified",l:"Marshak (2013) 164–172"}]},
+{id:"r-slate",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Slate",
+ back:"<strong>Minerals:</strong> fine mica + chlorite (too fine to see) &middot; <strong>Texture:</strong> slaty cleavage — splits into flat sheets &middot; <strong>Forms:</strong> lowest-grade regional metamorphism of shale &middot; <strong>Found:</strong> low-grade metamorphic belts; classic roofing/flagstone material.",
+ cites:[{t:"verified",l:"Marshak (2013) 194, Fig.7.4"}]},
+{id:"r-phyllite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Phyllite",
+ back:"<strong>Minerals:</strong> fine mica (visible sheen), chlorite &middot; <strong>Texture:</strong> silky luster from aligned fine mica, more crystalline than slate &middot; <strong>Forms:</strong> low-to-moderate grade regional metamorphism, between slate and schist.",
+ cites:[{t:"verified",l:"Marshak (2013) 199, Fig.7.8"}]},
+{id:"r-schist",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Schist",
+ back:"<strong>Minerals:</strong> visible mica (muscovite/biotite), often garnet/staurolite/kyanite as index minerals &middot; <strong>Texture:</strong> schistosity — visible, wavy mica flakes &middot; <strong>Forms:</strong> medium-grade regional metamorphism &middot; <strong>Found:</strong> the most common regional metamorphic rock type in mountain belts.",
+ cites:[{t:"verified",l:"Marshak (2013) 199, Fig.7.8"}]},
+{id:"r-gneiss",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Gneiss",
+ back:"<strong>Minerals:</strong> quartz, feldspar, biotite, often sillimanite/garnet — segregated into light and dark bands &middot; <strong>Texture:</strong> coarse gneissic banding, may lack continuous foliation planes &middot; <strong>Forms:</strong> highest-grade regional metamorphism, approaching partial melting (migmatite) &middot; <strong>Found:</strong> cores of orogenic belts, Precambrian shields.",
+ cites:[{t:"verified",l:"Marshak (2013) 199, Fig.7.8"}]},
+{id:"r-marble",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Marble",
+ back:"<strong>Minerals:</strong> coarse recrystallized calcite (or dolomite) &middot; <strong>Texture:</strong> interlocking crystalline, non-foliated &middot; <strong>Forms:</strong> contact or regional metamorphism of limestone/dolostone &middot; <strong>Found:</strong> contact aureoles around plutons; regionally metamorphosed carbonate sequences.",
+ cites:[{t:"verified",l:"Marshak (2013) 198–207"}]},
+{id:"r-quartzite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Quartzite",
+ back:"<strong>Minerals:</strong> interlocking recrystallized quartz &middot; <strong>Texture:</strong> hard, dense, non-foliated, breaks across grains (not around them, unlike sandstone) &middot; <strong>Forms:</strong> contact or regional metamorphism of quartz sandstone.",
+ cites:[{t:"verified",l:"Marshak (2013) 198–207"}]},
+{id:"r-hornfels",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Hornfels",
+ back:"<strong>Minerals:</strong> variable, fine-grained recrystallized minerals depending on protolith (often mica + quartz + new index minerals like andalusite) &middot; <strong>Texture:</strong> fine-grained, hard, non-foliated (no directed pressure) &middot; <strong>Forms:</strong> contact metamorphism — baked zone immediately around an igneous intrusion.",
+ cites:[{t:"verified",l:"Marshak (2013) 198–207"}]},
+{id:"r-amphibolite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Amphibolite",
+ back:"<strong>Minerals:</strong> amphibole (hornblende) + plagioclase, dark colored &middot; <strong>Texture:</strong> weakly to moderately foliated &middot; <strong>Forms:</strong> medium-to-high grade regional metamorphism of mafic protoliths (basalt/gabbro) — amphibolite facies.",
+ cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]},
+{id:"r-blueschist-eclogite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
+ front:"Blueschist / Eclogite",
+ back:"<strong>Minerals:</strong> blueschist = glaucophane (blue amphibole) + lawsonite; eclogite = garnet + omphacite (Na-pyroxene) &middot; <strong>Texture:</strong> blueschist foliated, eclogite often granular/non-foliated &middot; <strong>Forms:</strong> unusually high-pressure, relatively low-temperature metamorphism — the signature of subduction zones, not a normal geothermal gradient.",
+ cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]}
 ];
 
-const CAT_LABEL = {soil:"USCS &amp; Plasticity Chart"};
+const DIAGRAMS = {};
 
-let progress = {};
-let feedback = {};
-let queue = [];
+const CAT_LABEL = {min:"Mineral", pet:"Rock"};
+
+
+let progress = {};       // {cardId: {box, dueOffset}}
+let feedback = {};       // {cardId: {difficulty:bool, foundation:bool, note:string}}
+let queue = [];          // array of {cardId, dueAt} where dueAt is a position counter for in-session scheduling
+let sessionCounter = 0;
 let currentCard = null;
 const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
 const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
 
 async function loadProgress(){
   try{
-    const raw = localStorage.getItem('domG-uscs-flashcard-progress');
+    const raw = localStorage.getItem('priority-rocks-flashcard-progress');
     if(raw){ progress = JSON.parse(raw); }
   }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
   try{
-    const raw2 = localStorage.getItem('domG-uscs-flashcard-feedback');
+    const raw2 = localStorage.getItem('priority-rocks-flashcard-feedback');
     if(raw2){ feedback = JSON.parse(raw2); }
   }catch(e){ /* none yet */ }
 }
 async function saveProgress(){
-  try{ localStorage.setItem('domG-uscs-flashcard-progress', JSON.stringify(progress)); }
+  try{ localStorage.setItem('priority-rocks-flashcard-progress', JSON.stringify(progress)); }
   catch(e){ /* storage unavailable (e.g. private browsing) — session-only, that's fine */ }
 }
 async function saveFeedback(){
-  try{ localStorage.setItem('domG-uscs-flashcard-feedback', JSON.stringify(feedback)); }
+  try{ localStorage.setItem('priority-rocks-flashcard-feedback', JSON.stringify(feedback)); }
   catch(e){ /* storage unavailable (e.g. private browsing) — session-only, that's fine */ }
 }
 
@@ -507,6 +585,7 @@ function flaggedCount(){
 
 function initQueue(){
   const ids = CARDS.map(c=>c.id);
+  // interleave: shuffle across categories/subsections rather than blocking by topic
   for(let i=ids.length-1;i>0;i--){
     const j = Math.floor(Math.random()*(i+1));
     [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -547,7 +626,9 @@ function nextCard(){
 
   const catClass = 'cat-'+currentCard.cat;
   let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
-  let answerBody = `<div class="a-main">${currentCard.back}</div>`;
+  let answerBody = currentCard.diagram
+    ? `<div class="diagram-reveal">${DIAGRAMS[currentCard.diagram]}</div>`
+    : `<div class="a-main">${currentCard.back}</div>`;
 
   area.innerHTML = `
     <div class="card-shell">
@@ -585,6 +666,7 @@ function nextCard(){
       </div>
     </div>`;
 
+  // reflect existing feedback state for this card
   const fb = feedback[currentCard.id] || {};
   setTimeout(()=>{
     document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
@@ -656,7 +738,7 @@ function openFeedbackPanel(){
 function feedbackAsText(){
   const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
   if(flaggedIds.length===0) return 'No flagged cards.';
-  let out = 'Flagged flashcards — Domain G Priority Deck (USCS &amp; Plasticity Chart)\n';
+  let out = 'Flagged flashcards — Priority Minerals & Rock Names\n';
   out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
   flaggedIds.forEach(id=>{
     const c = cardById(id);
@@ -676,7 +758,7 @@ function feedbackAsText(){
 function rate(level){
   const id = currentCard.id;
   const p = progress[id] || {box:1};
-  let requeueWithin = null;
+  let requeueWithin = null; // position within current session queue; null = retire from this session
 
   if(level==='again'){ p.box = 1; requeueWithin = 4; }
   else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
@@ -714,7 +796,7 @@ document.getElementById('copyFeedbackBtn').onclick = async ()=>{
     document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
     setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
   }catch(e){
-    alert(text);
+    alert(text); // fallback if clipboard API is blocked
   }
 };
 document.getElementById('clearFeedbackBtn').onclick = async ()=>{
@@ -774,7 +856,7 @@ document.getElementById('exportBtn').onclick = ()=>{
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'domG-uscs-flashcard-progress.json';
+  a.download = 'priority-rocks-flashcard-progress.json';
   a.click();
   URL.revokeObjectURL(url);
 };
@@ -796,6 +878,7 @@ document.getElementById('importFile').onchange = (e)=>{
   };
   reader.readAsText(file);
 };
+(function removeOldImportHandlerTail(){ /* no-op marker to keep structure clear */ })();
 
 (async function init(){
   await loadProgress();

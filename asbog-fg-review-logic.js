@@ -539,7 +539,6 @@ const RAW_B_0 = [
  cites:[{t:"gap",l:"Gap — not in Marshak"}]},
 ];
 const RAW_B_1 = [
-// ===== TIER 1 MINERALS — know cold =====
 {id:"m-quartz",cat:"min",sub:"Tier 1 mineral",type:"CUED",
  front:"Quartz",
  back:"SiO&#8322; &middot; tectosilicate, trigonal &middot; no cleavage, conchoidal fracture, H=7. Common in granite, rhyolite, quartz sandstone/quartzite — the most weathering-resistant common rock-forming mineral (last to crystallize in Bowen's series, first to survive weathering).",
@@ -584,8 +583,6 @@ const RAW_B_1 = [
  front:"Clay minerals (kaolinite)",
  back:"Al&#8322;Si&#8322;O&#8325;(OH)&#8324; &middot; phyllosilicate, triclinic &middot; 1 perfect cleavage (rarely visible, earthy masses), H=2. The most-weathered clay end-member; found in shale, claystone, and residual soils over feldspar-rich rocks.",
  cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
-
-// ===== TIER 2 MINERALS — know well =====
 {id:"m-garnet",cat:"min",sub:"Tier 2 mineral",type:"CUED",
  front:"Garnet (general group)",
  back:"A&#8323;B&#8322;(SiO&#8324;)&#8323; (A=Ca,Mg,Fe,Mn; B=Al,Fe,Cr) &middot; nesosilicate, isometric &middot; no cleavage, H=6.5–7.5. Diagnostic index mineral of medium-grade regional metamorphism (schist, gneiss); also occurs in some granites/pegmatites.",
@@ -638,8 +635,6 @@ const RAW_B_1 = [
  front:"Tourmaline",
  back:"(Na,Ca)(Al,Fe,Li,Mg)&#8323;Al&#8326;(BO&#8323;)&#8323;Si&#8326;O&#8321;&#8328;(OH)&#8324; &middot; cyclosilicate, trigonal &middot; H=7–7.5, striated prisms, many colors. Common accessory in granite and especially pegmatites (boron-rich late-stage fluids).",
  cites:[{t:"verified",l:"Klein & Dutrow (2007) 513"}]},
-
-// ===== TIER 3 MINERALS — ID / economic relevance =====
 {id:"m-pyrite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
  front:"Pyrite",
  back:"FeS&#8322; &middot; isometric &middot; cubic crystals with striated faces, brassy gold, H=6–6.5, not magnetic ('fool's gold'). Common accessory in many rock types and in hydrothermal veins; oxidizes to produce acid mine drainage.",
@@ -684,8 +679,6 @@ const RAW_B_1 = [
  front:"Graphite",
  back:"C &middot; hexagonal &middot; 1 perfect cleavage, black, greasy feel, H=1–2, marks paper. Forms by metamorphism of carbon-rich sedimentary rocks (organic-rich shale/coal) under regional metamorphism.",
  cites:[{t:"verified",l:"Klein & Dutrow (2007) 332"}]},
-
-// ===== HAZARDOUS MINERALS =====
 {id:"m-chrysotile",cat:"min",sub:"Hazardous mineral",type:"CUED",
  front:"Chrysotile",
  back:"Mg&#8323;Si&#8322;O&#8325;(OH)&#8324; &middot; serpentine-group phyllosilicate, fibrous (asbestiform) habit &middot; the most heavily mined form of asbestos — historically &gt;90% of world asbestos production. Forms by hydrothermal alteration of ultramafic rocks (same origin as ordinary serpentine).",
@@ -693,9 +686,33 @@ const RAW_B_1 = [
 {id:"m-amphibole-asbestos",cat:"min",sub:"Hazardous mineral",type:"CUED",
  front:"Amphibole asbestos (5 regulated varieties)",
  back:"Amosite (asbestiform grunerite), crocidolite (asbestiform riebeckite, \"blue asbestos\" — most hazardous), tremolite, actinolite, anthophyllite. All are fibrous habits of amphibole minerals that also occur in ordinary, non-hazardous forms. Health effects: asbestosis, lung cancer, mesothelioma.",
- cites:[{t:"verified",l:"Klein & Dutrow (2007) 527, Box 19.2"},{t:"verified",l:"Klein & Dutrow (2007) 531 (health effects)"}]},
-
-// ===== IGNEOUS ROCKS =====
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 527, Box 19.2"},{t:"verified",l:"Klein & Dutrow (2007) 531 (health effects)"}]}
+];
+const RAW_B_2 = [
+{id:"series-1",cat:"pet",sub:"Compositional Series",type:"PRODUCE",
+ front:"Name the igneous compositional series from ultramafic to felsic, with the intrusive rock for each.",
+ back:"Ultramafic (peridotite) → Mafic (gabbro) → Intermediate (diorite) → Felsic (granite). Silica increases, color lightens, density decreases across this same order.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-2",cat:"pet",sub:"Compositional Series",type:"PRODUCE",
+ front:"Name the extrusive (volcanic) equivalent for each intrusive rock: peridotite, gabbro, diorite, granite.",
+ back:"Peridotite → komatiite (rare). Gabbro → basalt. Diorite → andesite. Granite → rhyolite. Same composition as the intrusive pair, just fine-grained/glassy from fast cooling instead of coarse-grained from slow cooling.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-3",cat:"pet",sub:"Compositional Series",type:"CUED",
+ front:"Granodiorite sits between diorite and granite. What's its volcanic equivalent, and why is it easy to mix up with andesite/rhyolite?",
+ back:"Dacite. It's easy to mix up because dacite is compositionally between andesite (diorite's volcanic pair) and rhyolite (granite's volcanic pair) — same intermediate-position logic as granodiorite itself sitting between diorite and granite.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-4",cat:"pet",sub:"Compositional Series",type:"CUED",
+ front:"Across the ultramafic-to-felsic series, what happens to color, density, and silica content, in one direction?",
+ back:"Moving ultramafic → felsic: silica content increases, color lightens (dark → light), density decreases. Moving felsic → ultramafic reverses all three. One trend, three correlated observables — useful for identifying a rock's rough position in the series from hand-sample appearance alone.",
+ cites:[{t:"verified",l:"standard igneous classification"}]},
+{id:"series-5",cat:"pet",sub:"Metamorphic Grade Series",type:"PRODUCE",
+ front:"Name the foliated metamorphic series from lowest to highest grade, same shale/mudstone protolith throughout.",
+ back:"Slate → phyllite → schist → gneiss. Foliation intensity and grain size both increase with grade: slate splits into flat dull sheets, phyllite has a silky sheen, schist shows visible mica flakes, gneiss shows compositional banding rather than mica foliation.",
+ cites:[{t:"verified",l:"standard metamorphic classification"}]},
+{id:"series-6",cat:"pet",sub:"Metamorphic Facies Series",type:"PRODUCE",
+ front:"Name the normal-geothermal-gradient facies series from lowest to highest grade, and the separate subduction-specific pair.",
+ back:"Normal gradient: zeolite → greenschist → amphibolite → granulite. Subduction (high P, low T): blueschist → eclogite. Same depth gives a different facies depending on which gradient applies — see Domain B guide §2.4 for the volcanic/typical/subduction comparison.",
+ cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]},
 {id:"r-granite",cat:"pet",sub:"Igneous rock",type:"CUED",
  front:"Granite",
  back:"<strong>Minerals:</strong> quartz, K-feldspar, plagioclase, biotite/muscovite &middot; <strong>Texture:</strong> phaneritic (coarse), felsic &middot; <strong>Forms:</strong> slow crystallization of felsic magma at depth (intrusive) &middot; <strong>Found:</strong> cores of continental mountain belts, batholiths.",
@@ -728,8 +745,6 @@ const RAW_B_1 = [
  front:"Pegmatite",
  back:"<strong>Minerals:</strong> same broad composition as granite (usually) but exceptionally coarse; concentrates rare accessory minerals (tourmaline, beryl, mica books) &middot; <strong>Texture:</strong> extremely coarse-grained (crystals often &gt;a few cm) &middot; <strong>Forms:</strong> crystallizes from water-rich, slow-diffusing residual melt late in a magma chamber's cooling history &middot; <strong>Found:</strong> dikes/veins at the margins of granite plutons — the classic source for large gem crystals.",
  cites:[{t:"verified",l:"Klein & Dutrow (2007) 585, Ch.21"}]},
-
-// ===== SEDIMENTARY ROCKS =====
 {id:"r-conglomerate",cat:"pet",sub:"Sedimentary rock",type:"CUED",
  front:"Conglomerate / Breccia",
  back:"<strong>Minerals:</strong> variable — whatever clasts were locally available (often quartz-rich) &middot; <strong>Texture:</strong> gravel-sized (&gt;2mm) clasts; conglomerate = rounded, breccia = angular &middot; <strong>Forms:</strong> high-energy deposition (rivers, alluvial fans, talus for breccia) with minimal transport distance (breccia) or significant transport/rounding (conglomerate).",
@@ -762,8 +777,6 @@ const RAW_B_1 = [
  front:"Coal",
  back:"<strong>Minerals:</strong> not mineral-based — organic carbon (plant material) with minor mineral impurities &middot; <strong>Texture:</strong> banded, low density &middot; <strong>Forms:</strong> accumulation and burial of plant material in low-oxygen swamp/peat environments, progressively compacted and matured (peat &#8594; lignite &#8594; bituminous &#8594; anthracite).",
  cites:[{t:"verified",l:"Marshak (2013) 164–172"}]},
-
-// ===== METAMORPHIC ROCKS =====
 {id:"r-slate",cat:"pet",sub:"Metamorphic rock",type:"CUED",
  front:"Slate",
  back:"<strong>Minerals:</strong> fine mica + chlorite (too fine to see) &middot; <strong>Texture:</strong> slaty cleavage — splits into flat sheets &middot; <strong>Forms:</strong> lowest-grade regional metamorphism of shale &middot; <strong>Found:</strong> low-grade metamorphic belts; classic roofing/flagstone material.",
@@ -799,7 +812,7 @@ const RAW_B_1 = [
 {id:"r-blueschist-eclogite",cat:"pet",sub:"Metamorphic rock",type:"CUED",
  front:"Blueschist / Eclogite",
  back:"<strong>Minerals:</strong> blueschist = glaucophane (blue amphibole) + lawsonite; eclogite = garnet + omphacite (Na-pyroxene) &middot; <strong>Texture:</strong> blueschist foliated, eclogite often granular/non-foliated &middot; <strong>Forms:</strong> unusually high-pressure, relatively low-temperature metamorphism — the signature of subduction zones, not a normal geothermal gradient.",
- cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]},
+ cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]}
 ];
 const RAW_C_0 = [
 // ===== STRAT 1.1 Naming Conventions =====
@@ -2520,7 +2533,8 @@ const RAW_H_0 = [
 const DOMAIN_SOURCES = [
   {domain:"A", storageKey:"domA-flashcard-progress", cards:RAW_A_0},
   {domain:"B", storageKey:"domB-flashcard-progress", cards:RAW_B_0},
-  {domain:"B", storageKey:"minrock-flashcard-progress", cards:RAW_B_1},
+  {domain:"B", storageKey:"priority-minerals-flashcard-progress", cards:RAW_B_1},
+  {domain:"B", storageKey:"priority-rocks-flashcard-progress", cards:RAW_B_2},
   {domain:"C", storageKey:"domC-flashcard-progress", cards:RAW_C_0},
   {domain:"D", storageKey:"domD-flashcard-progress", cards:RAW_D_0},
   {domain:"E", storageKey:"domE-flashcard-progress", cards:RAW_E_0},

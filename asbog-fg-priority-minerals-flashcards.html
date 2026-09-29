@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASBOG FG — Domain G Priority Deck: USCS &amp; Plasticity Chart</title>
+<title>ASBOG FG — Priority Minerals & Rock Names Flashcards</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -13,12 +13,9 @@
     --ink:#20241f;
     --ink-soft:#4b5148;
     --rule:#c9cdc0;
-    --f1:#2f6b6e;
-    --f2:#93691a;
-    --f3:#6d3f60;
-    --f4:#3b5b7a;
-    --f5:#a3462c;
-    --f6:#5c6b2e;
+    --mineralogy:#9c6b30;
+    --petrology:#a63d1f;
+    --geochem:#1f6e73;
     --verified:#2f7a4d;
     --verified-soft:#dcefe1;
     --asbog:#54574d;
@@ -55,6 +52,7 @@
   }
   .sub{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
 
+  /* legend */
   .legend{
     display:flex;
     flex-wrap:wrap;
@@ -66,6 +64,7 @@
   .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);}
   .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
 
+  /* stats bar */
   .statbar{
     display:flex;
     justify-content:space-between;
@@ -77,13 +76,11 @@
     margin:18px 0 26px;
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
-    flex-wrap:wrap;
-    gap:10px;
   }
   .statbar .stats{display:flex;gap:18px;flex-wrap:wrap;}
   .statbar strong{color:var(--ink);}
   .progress-track{
-    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;min-width:60px;
+    flex:1;height:5px;background:var(--rule);border-radius:3px;margin:0 18px;overflow:hidden;
   }
   .progress-fill{height:100%;background:var(--verified);width:0%;transition:width .25s ease;}
   button.textbtn{
@@ -91,6 +88,7 @@
     font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0;
   }
 
+  /* card */
   .card-shell{
     perspective:1400px;
     margin-bottom:20px;
@@ -109,10 +107,8 @@
     justify-content:space-between;
     align-items:center;
     margin-bottom:18px;
-    flex-wrap:wrap;
-    gap:8px;
   }
-  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tags{display:flex;gap:8px;}
   .tag{
     font-family:'IBM Plex Mono', monospace;
     font-size:10.5px;
@@ -123,12 +119,9 @@
     border:1px solid var(--rule);
     color:var(--ink-soft);
   }
-  .tag.cat-origins{border-color:var(--f1);color:var(--f1);}
-  .tag.cat-soil{border-color:var(--f2);color:var(--f2);}
-  .tag.cat-rock{border-color:var(--f3);color:var(--f3);}
-  .tag.cat-hazards{border-color:var(--f4);color:var(--f4);}
-  .tag.cat-methods{border-color:var(--f5);color:var(--f5);}
-  .tag.cat-testing{border-color:var(--f6);color:var(--f6);}
+  .tag.cat-min{border-color:var(--mineralogy);color:var(--mineralogy);}
+  .tag.cat-pet{border-color:var(--petrology);color:var(--petrology);}
+  .tag.cat-geo{border-color:var(--geochem);color:var(--geochem);}
   .tag.type{background:var(--ink);color:#fff;border-color:var(--ink);}
   .card-index{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--ink-soft);}
 
@@ -161,7 +154,8 @@
   .cite.verified{background:var(--verified-soft);color:var(--verified);}
   .cite.asbog{background:var(--asbog-soft);color:var(--asbog);}
   .cite.gap{background:var(--gap-soft);color:var(--gap);}
-  .cite.other{background:var(--asbog-soft);color:var(--asbog);}
+
+  .diagram-reveal svg{width:100%;height:auto;margin-top:10px;}
 
   .reveal-btn{
     align-self:flex-start;
@@ -201,7 +195,7 @@
   .rate-row button.again{border-color:#b5453a;color:#b5453a;}
   .rate-row button.hard{border-color:#a67a2e;color:#a67a2e;}
   .rate-row button.good{border-color:var(--verified);color:var(--verified);}
-  .rate-row button.easy{border-color:var(--f4);color:var(--f4);}
+  .rate-row button.easy{border-color:var(--geochem);color:var(--geochem);}
   .rate-row button:hover{filter:brightness(0.97);}
 
   .feedback-row{
@@ -224,7 +218,7 @@
   }
   .flag-btn:hover{border-color:var(--ink-soft);}
   .flag-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
-  .flag-btn.note-active{background:var(--f4);color:#fff;border-color:var(--f4);}
+  .flag-btn.note-active{background:var(--geochem);color:#fff;border-color:var(--geochem);}
   .note-box{
     width:100%;
     margin-top:10px;
@@ -254,6 +248,7 @@
     cursor:pointer;
   }
 
+  /* feedback panel */
   .overlay{
     display:none;
     position:fixed;inset:0;
@@ -337,15 +332,18 @@
 <div class="wrap">
 
   <header>
-    <div class="eyebrow">ASBOG&reg; FG — Domain G — Priority Deck</div>
-    <h1>USCS Letter Codes &amp; the Plasticity Chart</h1>
-    <p class="sub">A short, high-value deck for the single most-tested figure in this domain — confirmed directly tested in the official Candidate Handbook FG sample questions (Appendix 3, Q27). Same engine and scheduling as the main Domain G deck; separate storage key so progress here won't collide with it.</p>
-    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.2 &middot; Last updated Sept 29, 2026</p>
+    <div class="eyebrow">ASBOG&reg; FG — Category 2 side-deck</div>
+    <h1>Priority Minerals — Flashcards</h1>
+    <p class="sub">Quick-reference recall deck: formula/crystal system/occurrence for every Tier 1–3 mineral, and mineral content/formation/setting for every rock name in the guide. Companion to the main Category 2 deck, not a replacement — use both.</p>
+    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.0 &middot; Last updated Sept 29, 2026</p>
   </header>
 
   <div class="legend">
-    <span><span class="dot" style="background:var(--f2);border-radius:50%;"></span>USCS &amp; Plasticity Chart</span>
-    <span><span class="cite verified" style="margin:0;">verified</span>full source in study guide</span>
+    <span><span class="dot" style="background:var(--mineralogy);border-radius:50%;"></span>Minerals (35 cards)</span>
+    <span><span class="dot" style="background:var(--petrology);border-radius:50%;"></span>Rock names (25 cards)</span>
+    <span><span class="cite verified" style="margin:0;">K 00</span>Klein &amp; Dutrow / Marshak page — verified</span>
+    <span><span class="cite asbog" style="margin:0;">ASBOG</span>handbook / official sample Q</span>
+    <span><span class="cite gap" style="margin:0;">Gap</span>not verified in either source</span>
   </div>
 
   <div class="statbar">
@@ -368,7 +366,7 @@
   <div class="overlay" id="syncOverlay">
     <div class="panel">
       <h2>Sync progress</h2>
-      <p class="panel-sub">Two ways to move progress between sessions/devices. Copy/paste is the more reliable method if the file picker shows no files.</p>
+      <p class="panel-sub">Two ways to move progress between sessions/devices — use whichever actually works in your setup. The copy/paste method is the more reliable one if the file picker shows no files, since it doesn't depend on browser download locations or file-type filtering.</p>
 
       <div style="margin-bottom:20px;">
         <strong style="font-size:13.5px;">Copy / paste (recommended)</strong>
@@ -399,7 +397,7 @@
   <div class="overlay" id="feedbackOverlay">
     <div class="panel">
       <h2>Flagged cards</h2>
-      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request.</p>
+      <p class="panel-sub">These stay flagged until you clear them. Copy the text block and paste it into a chat — Claude should push back on flags that don't hold up rather than revise on request, same as it did in the original discussion.</p>
       <div id="panelList"></div>
       <div class="panel-actions">
         <button class="primary" id="copyFeedbackBtn">Copy for Claude</button>
@@ -411,7 +409,7 @@
 
   <footer>
     <div class="box">
-      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if opened standalone in a browser, progress will not persist between sessions.
+      <strong>How this deck schedules cards:</strong> a lightweight Leitner-style system — Again brings a card back within a few cards (same session), Hard and Good push it further out, Easy retires it for longer. Progress is saved automatically when running inside Claude; if you've downloaded this file and opened it standalone in a browser, progress will not persist between sessions — it'll still work for a single sitting, just starting fresh each time you reopen it.
     </div>
   </footer>
 
@@ -419,81 +417,185 @@
 
 <script>
 const CARDS = [
-{id:"usc-1",cat:"soil",sub:"USCS Group Symbols",type:"PRODUCE",
- front:"What does the first letter of a USCS group symbol indicate?",
- back:"The dominant soil fraction — G (gravel), S (sand), M (silt), C (clay), O (organic), or PT (peat).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-2",cat:"soil",sub:"USCS Group Symbols",type:"PRODUCE",
- front:"What does the second letter of a USCS group symbol indicate?",
- back:"A gradation or plasticity modifier — W (well graded), P (poorly graded), M (silty), C (clayey), L (low plasticity), H (high plasticity).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-3",cat:"soil",sub:"Plasticity Chart",type:"CUED",
- front:"On the plasticity chart, what does the \u201cA\u201d-line separate?",
- back:"Clays (plot on/above the A-line) from silts (plot below the A-line).",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-4",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"A soil has LL = 65 and plots above the A-line. What is its USCS group symbol?",
- back:"CH (fat clay) \u2014 LL \u2265 50 and above the A-line.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-5",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"A soil has LL = 30 and plots above the A-line. What is its USCS group symbol?",
- back:"CL (lean clay) \u2014 LL < 50 and above the A-line.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-6",cat:"soil",sub:"Plasticity Chart",type:"CUED",
- front:"What defines an organic soil (OL/OH) in USCS?",
- back:"Oven-dried liquid limit is less than 75% of the not-oven-dried liquid limit.",
- cites:[{t:"verified",l:"ASTM D2487"}]},
-{id:"usc-7",cat:"soil",sub:"Field ID Tests",type:"CUED",
- front:"In the field identification tests, what does a soil showing high dry strength, no dilatancy, and high toughness indicate?",
- back:"A highly plastic clay (CH).",
- cites:[{t:"verified",l:"ASTM D2488"}]},
-{id:"usc-8",cat:"soil",sub:"Field ID Tests",type:"CUED",
- front:"In the field identification tests, what does a soil showing low/no dry strength, rapid dilatancy, and low toughness indicate?",
- back:"A silt (ML) \u2014 dilatancy is inversely related to plasticity.",
- cites:[{t:"verified",l:"ASTM D2488"}]},
-{id:"usc-9",cat:"soil",sub:"Particle Size",type:"PRODUCE",
- front:"What sieve size separates gravel from sand in USCS?",
- back:"The No. 4 sieve (4.75 mm).",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-10",cat:"soil",sub:"Particle Size",type:"PRODUCE",
- front:"What sieve size separates sand from fines (silt/clay) in USCS?",
- back:"The No. 200 sieve (0.075 mm).",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-11",cat:"soil",sub:"Particle Size",type:"CUED",
- front:"What percent-fines threshold separates a coarse-grained from a fine-grained USCS soil?",
- back:"50% \u2014 <50% fines is coarse-grained, \u226550% fines is fine-grained.",
- cites:[{t:"verified",l:"USBR Field Manual Vol.1 Ch.3"}]},
-{id:"usc-12",cat:"soil",sub:"Plasticity Chart",type:"PRODUCE",
- front:"What is PI, and how is it calculated?",
- back:"Plasticity Index = LL \u2212 PL (Liquid Limit minus Plastic Limit).",
- cites:[{t:"verified",l:"ASTM D2487"}]}
+{id:"m-quartz",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Quartz",
+ back:"SiO&#8322; &middot; tectosilicate, trigonal &middot; no cleavage, conchoidal fracture, H=7. Common in granite, rhyolite, quartz sandstone/quartzite — the most weathering-resistant common rock-forming mineral (last to crystallize in Bowen's series, first to survive weathering).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 542"}]},
+{id:"m-kfeldspar",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"K-feldspar (orthoclase / microcline)",
+ back:"KAlSi&#8323;O&#8328; &middot; tectosilicate, monoclinic (orthoclase) / triclinic (microcline) &middot; 2 cleavages ~90°, H=6. Diagnostic of granite and rhyolite; microcline typical of pegmatites.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 545"}]},
+{id:"m-plagioclase",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Plagioclase feldspar",
+ back:"NaAlSi&#8323;O&#8328; (albite) – CaAl&#8322;Si&#8322;O&#8328; (anorthite) solid-solution series &middot; tectosilicate, triclinic &middot; 2 cleavages ~90°, H=6. Ca-rich varieties in gabbro/basalt; Na-rich in diorite/andesite and granite.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 545"}]},
+{id:"m-muscovite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Muscovite",
+ back:"KAl&#8322;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2–2.5, colorless/pale in sheets. Common in granite, schist, and phyllite; a light-colored (\"white\") mica.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-biotite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Biotite",
+ back:"K(Mg,Fe)&#8323;(AlSi&#8323;O&#8321;&#8320;)(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2.5–3, dark brown/black sheets. Common in granite, diorite, schist, and gneiss; the \"dark\" mica.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-amphibole",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Amphibole (hornblende)",
+ back:"Ca&#8322;(Mg,Fe,Al)&#8325;(Si,Al)&#8328;O&#8322;&#8322;(OH)&#8322; &middot; double-chain inosilicate, monoclinic &middot; 2 cleavages ~56°/124°, H=5–6, dark green/black. Common in diorite, andesite, and amphibolite (its namesake metamorphic rock).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 525"}]},
+{id:"m-pyroxene",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Pyroxene (augite)",
+ back:"(Ca,Na)(Mg,Fe,Al)(Si,Al)&#8322;O&#8326; &middot; single-chain inosilicate, monoclinic &middot; 2 cleavages ~87°/93°, H=5.5–6, dark green/black, stubby crystals. Diagnostic of gabbro and basalt — a defining mafic mineral.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 516"}]},
+{id:"m-olivine",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Olivine",
+ back:"(Mg,Fe)&#8322;SiO&#8324; &middot; nesosilicate, orthorhombic &middot; no cleavage (conchoidal fracture), H=6.5–7, olive-green, glassy. Diagnostic of peridotite (essentially defines it) and common in basalt/gabbro; first mineral to crystallize in Bowen's series, first to weather away.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 483"}]},
+{id:"m-calcite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Calcite",
+ back:"CaCO&#8323; &middot; trigonal &middot; 3 perfect rhombohedral cleavages, H=3, fizzes readily in dilute HCl. The essential mineral of limestone and marble.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 399"}]},
+{id:"m-dolomite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Dolomite",
+ back:"CaMg(CO&#8323;)&#8322; &middot; trigonal &middot; 3 perfect rhombohedral cleavages, H=3.5–4, fizzes in HCl only when powdered. The essential mineral of dolostone, usually formed by diagenetic replacement of limestone.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 399"}]},
+{id:"m-kaolinite",cat:"min",sub:"Tier 1 mineral",type:"CUED",
+ front:"Clay minerals (kaolinite)",
+ back:"Al&#8322;Si&#8322;O&#8325;(OH)&#8324; &middot; phyllosilicate, triclinic &middot; 1 perfect cleavage (rarely visible, earthy masses), H=2. The most-weathered clay end-member; found in shale, claystone, and residual soils over feldspar-rich rocks.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-garnet",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Garnet (general group)",
+ back:"A&#8323;B&#8322;(SiO&#8324;)&#8323; (A=Ca,Mg,Fe,Mn; B=Al,Fe,Cr) &middot; nesosilicate, isometric &middot; no cleavage, H=6.5–7.5. Diagnostic index mineral of medium-grade regional metamorphism (schist, gneiss); also occurs in some granites/pegmatites.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 483"}]},
+{id:"m-chlorite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Chlorite",
+ back:"(Mg,Fe,Al)&#8326;(Si,Al)&#8324;O&#8321;&#8320;(OH)&#8328; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=2–2.5, green. Index mineral of the lowest metamorphic grade (chlorite zone, greenschist facies); gives greenschist and phyllite their color.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-serpentine",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Serpentine",
+ back:"Mg&#8323;Si&#8322;O&#8325;(OH)&#8324; &middot; phyllosilicate &middot; H=2.5–4, greasy/waxy green. Forms by hydrothermal alteration of olivine/pyroxene in ultramafic rocks — diagnostic of serpentinite.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-talc",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Talc",
+ back:"Mg&#8323;Si&#8324;O&#8321;&#8320;(OH)&#8322; &middot; phyllosilicate, monoclinic &middot; 1 perfect cleavage, H=1 (softest mineral, greasy feel). Forms by alteration of ultramafic rocks (with serpentine); found in low-grade metamorphosed ultramafics (soapstone).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 530"}]},
+{id:"m-gypsum",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Gypsum",
+ back:"CaSO&#8324;&middot;2H&#8322;O &middot; monoclinic &middot; 1 perfect cleavage, H=2. Precipitates from evaporating restricted seawater/lake water — the essential mineral of gypsum rock (an evaporite).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 419"}]},
+{id:"m-anhydrite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Anhydrite",
+ back:"CaSO&#8324; &middot; orthorhombic &middot; H=3–3.5. The dehydrated form of gypsum; occurs in evaporite sequences, often interbedded with or below gypsum/halite.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 419"}]},
+{id:"m-halite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Halite",
+ back:"NaCl &middot; isometric &middot; 3 perfect cubic cleavages, H=2.5, salty taste. Precipitates last (most soluble) in an evaporating sequence — the essential mineral of rock salt.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 392"}]},
+{id:"m-kyanite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Kyanite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, triclinic &middot; blue, bladed crystals, H varies by direction (5 along blade, 7 across — unusual diagnostic trait). Al&#8322;SiO&#8325; polymorph indicating <strong>high pressure</strong> regional metamorphism (found in kyanite-schist/gneiss).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 491"}]},
+{id:"m-andalusite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Andalusite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, orthorhombic &middot; H=6.5–7.5, often pink/reddish, square cross-section. Al&#8322;SiO&#8325; polymorph indicating <strong>low pressure, moderate temperature</strong> (contact metamorphic aureoles around plutons).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 491"}]},
+{id:"m-sillimanite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Sillimanite",
+ back:"Al&#8322;SiO&#8325; &middot; nesosilicate, orthorhombic &middot; H=6.5–7.5, fibrous/needle habit. Al&#8322;SiO&#8325; polymorph indicating <strong>high temperature</strong> — highest-grade regional metamorphism (gneiss/migmatite).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 491"}]},
+{id:"m-staurolite",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Staurolite",
+ back:"Fe&#8322;Al&#8329;Si&#8324;O&#8322;&#8323;(OH)&#8322; &middot; nesosilicate, monoclinic &middot; H=7–7.5, reddish-brown, famous for cross-shaped twins. Index mineral of mid-grade regional metamorphism, between garnet and kyanite zones.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 483"}]},
+{id:"m-epidote",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Epidote",
+ back:"Ca&#8322;(Al,Fe)&#8323;Si&#8323;O&#8321;&#8322;(OH) &middot; sorosilicate, monoclinic &middot; H=6–7, distinctive pistachio-green. Typical of greenschist-facies metamorphism and propylitic hydrothermal alteration.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 509"}]},
+{id:"m-tourmaline",cat:"min",sub:"Tier 2 mineral",type:"CUED",
+ front:"Tourmaline",
+ back:"(Na,Ca)(Al,Fe,Li,Mg)&#8323;Al&#8326;(BO&#8323;)&#8323;Si&#8326;O&#8321;&#8328;(OH)&#8324; &middot; cyclosilicate, trigonal &middot; H=7–7.5, striated prisms, many colors. Common accessory in granite and especially pegmatites (boron-rich late-stage fluids).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 513"}]},
+{id:"m-pyrite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Pyrite",
+ back:"FeS&#8322; &middot; isometric &middot; cubic crystals with striated faces, brassy gold, H=6–6.5, not magnetic ('fool's gold'). Common accessory in many rock types and in hydrothermal veins; oxidizes to produce acid mine drainage.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 354"}]},
+{id:"m-galena",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Galena",
+ back:"PbS &middot; isometric &middot; 3 perfect cubic cleavages, gray metallic, H=2.5, high specific gravity (~7.5). Primary ore of lead, typically in hydrothermal veins with sphalerite.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 339"}]},
+{id:"m-sphalerite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Sphalerite",
+ back:"ZnS &middot; isometric &middot; 6 cleavage directions, resinous luster, variable color (yellow-brown-black), H=3.5–4. Primary ore of zinc, typically in hydrothermal veins with galena.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 339"}]},
+{id:"m-chalcopyrite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Chalcopyrite",
+ back:"CuFeS&#8322; &middot; tetragonal &middot; brassy yellow (darker/more golden than pyrite), H=3.5–4, softer than pyrite. The most important copper ore mineral, especially in porphyry copper deposits.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 339"}]},
+{id:"m-magnetite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Magnetite",
+ back:"Fe&#8323;O&#8324; &middot; isometric &middot; black, strongly magnetic, H=5.5–6.5, no cleavage. Common accessory in igneous/metamorphic rocks; major iron ore, especially in banded iron formations.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 368"}]},
+{id:"m-hematite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Hematite",
+ back:"Fe&#8322;O&#8323; &middot; trigonal &middot; red-brown streak regardless of specimen color/luster, H=5–6. Major iron ore (banded iron formations); gives red color to many sedimentary rocks and soils.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 368"}]},
+{id:"m-limonite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Limonite / goethite",
+ back:"FeO(OH)&middot;nH&#8322;O &middot; \"Limonite\" is a field term for undifferentiated Fe-oxyhydroxide mixtures, not a true species — goethite is the actual mineral usually meant. Yellow-brown, earthy, forms by weathering of Fe-bearing minerals (pyrite, magnetite, olivine).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 372"}]},
+{id:"m-fluorite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Fluorite",
+ back:"CaF&#8322; &middot; isometric &middot; 4 perfect octahedral cleavages, H=4 (defines Mohs 4), often purple/green/colorless, fluoresces under UV. Common hydrothermal vein mineral, often with galena/sphalerite.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 370"}]},
+{id:"m-apatite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Apatite",
+ back:"Ca&#8325;(PO&#8324;)&#8323;(F,Cl,OH) &middot; hexagonal &middot; H=5 (defines Mohs 5), variable color. Common accessory mineral in almost all rock types; the mineral component of bone and teeth; phosphate ore.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 426"}]},
+{id:"m-corundum",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Corundum",
+ back:"Al&#8322;O&#8323; &middot; trigonal &middot; H=9 (defines Mohs 9), no cleavage. Ruby (red, Cr-bearing) and sapphire (blue, Fe/Ti-bearing) varieties; forms in Al-rich, Si-poor metamorphic rocks and some syenites.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 375"}]},
+{id:"m-graphite",cat:"min",sub:"Tier 3 mineral",type:"CUED",
+ front:"Graphite",
+ back:"C &middot; hexagonal &middot; 1 perfect cleavage, black, greasy feel, H=1–2, marks paper. Forms by metamorphism of carbon-rich sedimentary rocks (organic-rich shale/coal) under regional metamorphism.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 332"}]},
+{id:"m-chrysotile",cat:"min",sub:"Hazardous mineral",type:"CUED",
+ front:"Chrysotile",
+ back:"Mg&#8323;Si&#8322;O&#8325;(OH)&#8324; &middot; serpentine-group phyllosilicate, fibrous (asbestiform) habit &middot; the most heavily mined form of asbestos — historically &gt;90% of world asbestos production. Forms by hydrothermal alteration of ultramafic rocks (same origin as ordinary serpentine).",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 527, Box 19.2"}]},
+{id:"m-amphibole-asbestos",cat:"min",sub:"Hazardous mineral",type:"CUED",
+ front:"Amphibole asbestos (5 regulated varieties)",
+ back:"Amosite (asbestiform grunerite), crocidolite (asbestiform riebeckite, \"blue asbestos\" — most hazardous), tremolite, actinolite, anthophyllite. All are fibrous habits of amphibole minerals that also occur in ordinary, non-hazardous forms. Health effects: asbestosis, lung cancer, mesothelioma.",
+ cites:[{t:"verified",l:"Klein & Dutrow (2007) 527, Box 19.2"},{t:"verified",l:"Klein & Dutrow (2007) 531 (health effects)"}]}
 ];
 
-const CAT_LABEL = {soil:"USCS &amp; Plasticity Chart"};
+const DIAGRAMS = {};
 
-let progress = {};
-let feedback = {};
-let queue = [];
+const CAT_LABEL = {min:"Mineral", pet:"Rock"};
+
+
+let progress = {};       // {cardId: {box, dueOffset}}
+let feedback = {};       // {cardId: {difficulty:bool, foundation:bool, note:string}}
+let queue = [];          // array of {cardId, dueAt} where dueAt is a position counter for in-session scheduling
+let sessionCounter = 0;
 let currentCard = null;
 const BOX_INTERVAL_DAYS = {1:0, 2:1, 3:2, 4:4, 5:7};
 const EXAM_DATE = new Date('2026-10-01T12:45:00').getTime();
 
 async function loadProgress(){
   try{
-    const raw = localStorage.getItem('domG-uscs-flashcard-progress');
+    const raw = localStorage.getItem('priority-minerals-flashcard-progress');
     if(raw){ progress = JSON.parse(raw); }
   }catch(e){ /* no saved progress yet, or storage unavailable — start fresh */ }
   try{
-    const raw2 = localStorage.getItem('domG-uscs-flashcard-feedback');
+    const raw2 = localStorage.getItem('priority-minerals-flashcard-feedback');
     if(raw2){ feedback = JSON.parse(raw2); }
   }catch(e){ /* none yet */ }
 }
 async function saveProgress(){
-  try{ localStorage.setItem('domG-uscs-flashcard-progress', JSON.stringify(progress)); }
+  try{ localStorage.setItem('priority-minerals-flashcard-progress', JSON.stringify(progress)); }
   catch(e){ /* storage unavailable (e.g. private browsing) — session-only, that's fine */ }
 }
 async function saveFeedback(){
-  try{ localStorage.setItem('domG-uscs-flashcard-feedback', JSON.stringify(feedback)); }
+  try{ localStorage.setItem('priority-minerals-flashcard-feedback', JSON.stringify(feedback)); }
   catch(e){ /* storage unavailable (e.g. private browsing) — session-only, that's fine */ }
 }
 
@@ -507,6 +609,7 @@ function flaggedCount(){
 
 function initQueue(){
   const ids = CARDS.map(c=>c.id);
+  // interleave: shuffle across categories/subsections rather than blocking by topic
   for(let i=ids.length-1;i>0;i--){
     const j = Math.floor(Math.random()*(i+1));
     [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -547,7 +650,9 @@ function nextCard(){
 
   const catClass = 'cat-'+currentCard.cat;
   let citesHtml = currentCard.cites.map(c=>`<span class="cite ${c.t}">${c.l}</span>`).join('');
-  let answerBody = `<div class="a-main">${currentCard.back}</div>`;
+  let answerBody = currentCard.diagram
+    ? `<div class="diagram-reveal">${DIAGRAMS[currentCard.diagram]}</div>`
+    : `<div class="a-main">${currentCard.back}</div>`;
 
   area.innerHTML = `
     <div class="card-shell">
@@ -585,6 +690,7 @@ function nextCard(){
       </div>
     </div>`;
 
+  // reflect existing feedback state for this card
   const fb = feedback[currentCard.id] || {};
   setTimeout(()=>{
     document.getElementById('flagDifficulty').classList.toggle('active', !!fb.difficulty);
@@ -656,7 +762,7 @@ function openFeedbackPanel(){
 function feedbackAsText(){
   const flaggedIds = Object.keys(feedback).filter(cardHasFeedback);
   if(flaggedIds.length===0) return 'No flagged cards.';
-  let out = 'Flagged flashcards — Domain G Priority Deck (USCS &amp; Plasticity Chart)\n';
+  let out = 'Flagged flashcards — Priority Minerals & Rock Names\n';
   out += 'Note to Claude: challenge each flag before revising — check whether the card is actually wrong/unrepresentative, or whether the flag reflects something else (missing prerequisite knowledge, a one-off recall miss, etc.) before changing or cutting anything. Ask if uncertain rather than assuming the flag is correct.\n\n';
   flaggedIds.forEach(id=>{
     const c = cardById(id);
@@ -676,7 +782,7 @@ function feedbackAsText(){
 function rate(level){
   const id = currentCard.id;
   const p = progress[id] || {box:1};
-  let requeueWithin = null;
+  let requeueWithin = null; // position within current session queue; null = retire from this session
 
   if(level==='again'){ p.box = 1; requeueWithin = 4; }
   else if(level==='hard'){ p.box = Math.max(1,p.box); requeueWithin = 10; }
@@ -714,7 +820,7 @@ document.getElementById('copyFeedbackBtn').onclick = async ()=>{
     document.getElementById('copyFeedbackBtn').textContent = 'Copied ✓';
     setTimeout(()=>{ document.getElementById('copyFeedbackBtn').textContent = 'Copy for Claude'; }, 1500);
   }catch(e){
-    alert(text);
+    alert(text); // fallback if clipboard API is blocked
   }
 };
 document.getElementById('clearFeedbackBtn').onclick = async ()=>{
@@ -774,7 +880,7 @@ document.getElementById('exportBtn').onclick = ()=>{
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'domG-uscs-flashcard-progress.json';
+  a.download = 'priority-minerals-flashcard-progress.json';
   a.click();
   URL.revokeObjectURL(url);
 };
@@ -796,6 +902,7 @@ document.getElementById('importFile').onchange = (e)=>{
   };
   reader.readAsText(file);
 };
+(function removeOldImportHandlerTail(){ /* no-op marker to keep structure clear */ })();
 
 (async function init(){
   await loadProgress();

@@ -335,7 +335,7 @@
     <div class="eyebrow">ASBOG&reg; FG — Category 2</div>
     <h1>Mineralogy, Petrology &amp; Geochemistry — Flashcards</h1>
     <p class="sub">Production and cued recall, weighted heavy per our strategy. No multiple choice. Self-graded — be honest, since the schedule only works if the rating reflects real recall difficulty.</p>
-    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.1 &middot; Last updated Sept 27, 2026</p>
+    <p class="version-stamp" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);opacity:.75;margin-top:6px;">v1.2 &middot; Last updated Sept 29, 2026</p>
   </header>
 
   <div class="legend">
@@ -420,9 +420,9 @@
 const CARDS = [
 // ===== MINERALOGY 1.1 Crystallography =====
 {id:"min-1-1",cat:"min",sub:"1.1 Crystallography",type:"PRODUCE",
- front:"List the crystal systems, roughly highest to lowest symmetry.",
- back:"Isometric &gt; Hexagonal/Trigonal &gt; Tetragonal &gt; Orthorhombic &gt; Monoclinic &gt; Triclinic.",
- cites:[{t:"verified",l:"Marshak (2013) 77, Fig. 3.4"},{t:"verified",l:"Klein & Dutrow (2007) 129"}]},
+ front:"Diamond and graphite are both pure carbon. What makes them polymorphs, and what drives which one forms?",
+ back:"Identical composition (C), radically different structure: diamond's rigid 3D lattice (each C bonded to 4 others) vs. graphite's weakly-bonded sheets — driven by pressure at formation, not temperature. Same underlying logic as the Al₂SiO₅ trio, just pressure-only rather than P-T.",
+ cites:[{t:"verified",l:"standard mineralogy"}]},
 {id:"min-1-2",cat:"min",sub:"1.1 Crystallography",type:"CUED",
  front:"Which crystal system has 3 equal axes, all at 90°?",
  back:"Isometric (cubic) — e.g., pyrite, garnet, halite, magnetite.",
@@ -642,8 +642,8 @@ const CARDS = [
  back:"Phyllite has a silky sheen from visible-but-fine mica; slate has dull, flat slaty cleavage without that sheen.",
  cites:[{t:"verified",l:"Marshak (2013) 194, Fig. 7.4"}]},
 {id:"pet-3-3",cat:"pet",sub:"2.4 Metamorphic",type:"PRODUCE",
- front:"List the Barrovian index-mineral sequence, low to high grade.",
- back:"Chlorite → biotite → garnet → staurolite → kyanite → sillimanite.",
+ front:"List the Barrovian index-mineral sequence, low to high grade. Which of these minerals does double duty as a hydrothermal alteration indicator?",
+ back:"Chlorite → biotite → garnet → staurolite → kyanite → sillimanite. Chlorite is also a standard geochemical marker of hydrothermal alteration in altered igneous/volcanic rocks — a separate role from its position here as the lowest-grade index mineral.",
  cites:[{t:"verified",l:"Marshak (2013) 200, Box 7.1"}]},
 {id:"pet-3-4",cat:"pet",sub:"2.4 Metamorphic",type:"CUED",
  front:"Name the non-foliated metamorphic rocks formed from pure limestone and from quartz sandstone.",
@@ -668,9 +668,9 @@ const CARDS = [
  back:"Whole Earth: iron dominates (~32%) because the dense, iron-rich core is included. Crust only: oxygen dominates — the crust is depleted in the iron that sank to form the core during differentiation.",
  cites:[{t:"verified",l:"Marshak (2013) 27, Fig.1.12"},{t:"verified",l:"Marshak (2013) 31, Fig.1.16"}]},
 {id:"geo-comp-2",cat:"geo",sub:"3.1 Composition & diagrams",type:"CUED",
- front:"What is the core's approximate composition, and how do we know it since we can't sample it directly?",
- back:"~85% Fe, ~5% Ni, ~10% of a lighter element (O, Si, and/or S) — inferred from meteorite composition (fragments of differentiated planetesimals) plus seismic wave behavior, not direct sampling.",
- cites:[{t:"verified",l:"Marshak (2013) 258, Interlude D"}]},
+ front:"What is the most common mineral group in Earth's crust?",
+ back:"Silicates — quartz and feldspars are the dominant contributors. Not carbonates, oxides, or sulfides, all of which are minor by comparison.",
+ cites:[{t:"verified",l:"standard mineralogy"}]},
 {id:"geo-comp-3",cat:"geo",sub:"3.1 Composition & diagrams",type:"CUED",
  front:"Smectite and illite are both 2:1 clay minerals, but only smectite swells with water. Why?",
  back:"Smectite's interlayer cations (Na+, Ca2+) are loosely bound and hydrated, letting water wedge into the interlayer. Illite's interlayer is filled with K+ ions that bond tightly (same bonding that holds mica together), blocking water entry — the difference is what's occupying the interlayer, not the 2:1 structure itself.",
@@ -724,8 +724,8 @@ const CARDS = [
  back:"Lu-Hf (36 Ga) is shorter-lived than Rb-Sr; Sm-Nd (106 Ga) is longer-lived than Rb-Sr. Full order: K-Ar &lt; U-Pb &lt; Lu-Hf &lt; Rb-Sr &lt; Sm-Nd.",
  cites:[{t:"verified",l:"White (2015) 33"}]},
 {id:"geo-2-4",cat:"geo",sub:"3.3 Isotopes",type:"CUED",
- front:"Which stable isotope ratio is commonly used for paleoclimate/paleotemperature reconstruction?",
- back:"δ¹⁸O (oxygen-18 to oxygen-16 ratio), measured against the SMOW standard.",
+ front:"Which stable isotope ratio is commonly used for paleoclimate/paleotemperature reconstruction? What happens to a rock's value of this ratio during low-temperature water-rock interaction with surface-derived fluids?",
+ back:"δ¹⁸O (oxygen-18 to oxygen-16 ratio), measured against the SMOW standard. Low-temperature interaction with meteoric/surface water increases δ¹⁸O — the opposite of high-temperature hydrothermal exchange, which lowers it. Temperature, not just presence of meteoric water, determines the direction.",
  cites:[{t:"verified",l:"White (2015) 246, §8.2.1"}]},
 {id:"geo-2-5",cat:"geo",sub:"3.3 Isotopes",type:"PRODUCE",
  front:"Write the general form of the δ notation (using δ¹⁸O as the example) and state what SMOW stands for.",
